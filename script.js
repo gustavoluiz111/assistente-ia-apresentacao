@@ -4,36 +4,40 @@ function responderIA() {
 
   let resposta = "Desculpe, não entendi sua pergunta.";
 
-  if (pergunta.includes("objetivo") || pergunta.includes("projeto")) {
-    resposta = "Nosso objetivo é criar uma IA que ajude em apresentações.";
+  // Respostas personalizadas
+  if (pergunta.includes("objetivo")) {
+    resposta = "O objetivo do projeto é automatizar apresentações com uma I.A. que interage com o público.";
   } else if (pergunta.includes("quem fez") || pergunta.includes("participantes")) {
-    resposta = "O projeto foi desenvolvido por Nome 1, Nome 2 e Nome 3.";
+    resposta = "O projeto foi desenvolvido por Luiz Gustavo.";
   } else if (pergunta.includes("professor")) {
     resposta = "O professor orientador é Nome do Professor.";
+  } else if (pergunta.includes("como funciona") || pergunta.includes("ia")) {
+    resposta = "A I.A. escuta perguntas e responde com base em comandos programados. Em breve, será conectada com servidores reais.";
   }
 
   respostaDiv.textContent = resposta;
 
+  // Fala a resposta
   const synth = window.speechSynthesis;
   const utter = new SpeechSynthesisUtterance(resposta);
   utter.lang = "pt-BR";
   synth.speak(utter);
 }
 
-// 🌙 Alternar entre tema claro e escuro
+// Alternar tema claro/escuro
 function alternarTema() {
   document.body.classList.toggle("light");
   localStorage.setItem("tema", document.body.classList.contains("light") ? "claro" : "escuro");
 }
 
-// Carrega o tema salvo
+// Carrega tema salvo
 window.onload = function () {
   if (localStorage.getItem("tema") === "claro") {
     document.body.classList.add("light");
   }
 };
 
-// 🎙️ Reconhecimento de voz (fala do usuário para texto)
+// Reconhecimento de voz
 if ("webkitSpeechRecognition" in window) {
   const micBtn = document.createElement("button");
   micBtn.textContent = "🎤 Falar";
@@ -47,8 +51,8 @@ if ("webkitSpeechRecognition" in window) {
     recognition.maxAlternatives = 1;
 
     recognition.onresult = function (event) {
-      const textoFalado = event.results[0][0].transcript;
-      document.getElementById("pergunta").value = textoFalado;
+      const texto = event.results[0][0].transcript;
+      document.getElementById("pergunta").value = texto;
       responderIA();
     };
 
