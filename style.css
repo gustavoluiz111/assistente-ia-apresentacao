@@ -138,3 +138,6 @@ footer {
   color: #cbd5e1;
   margin-top: 50px;
 }
+body {
+  transition: background 0.3s ease, color 0.3s ease;
+}
