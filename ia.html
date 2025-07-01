@@ -1,9 +1,52 @@
-<section>
-  <h2>I.A. em Ação</h2>
-  <p>Você pode digitar perguntas para a I.A. responder. Em breve, adicionaremos reconhecimento de voz!</p>
-  <textarea id="pergunta" placeholder="Digite sua pergunta..."></textarea>
-  <button onclick="responderIA()">Perguntar</button>
-  <div id="resposta"></div>
-</section>
-<script src="script.js"></script>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>I.A. em Ação</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Assistente Inteligente de Apresentação</h1>
+  </header>
 
+  <div style="text-align:center; margin: 10px;">
+    <button onclick="alternarTema()">🌓 Alternar Tema</button>
+  </div>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="projeto.html">Projeto</a>
+    <a href="ia.html">I.A.</a>
+    <a href="creditos.html">Créditos</a>
+  </nav>
+
+  <section>
+    <h2>I.A. em Ação</h2>
+    <p>Você pode digitar perguntas para a I.A. responder. Também pode falar clicando no botão 🎤.</p>
+    <textarea id="pergunta" placeholder="Digite sua pergunta..."></textarea>
+    <button onclick="responderIA()">Perguntar</button>
+    <div id="resposta"></div>
+  </section>
+
+  <footer>
+    &copy; 2025 - Projeto IPA
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.querySelectorAll("nav a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = this.href;
+        }, 300);
+        e.preventDefault();
+      });
+    });
+    document.body.style.opacity = "0";
+    setTimeout(() => document.body.style.opacity = "1", 100);
+  </script>
+</body>
+</html>
