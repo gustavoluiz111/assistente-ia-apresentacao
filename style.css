@@ -2,37 +2,59 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  scroll-behavior: smooth;
 }
 body {
   font-family: 'Inter', sans-serif;
-  background-color: #0f172a;
+  background: linear-gradient(to right, #0f172a, #1e293b);
   color: #f8fafc;
+  min-height: 100vh;
   line-height: 1.6;
+  animation: fadeIn 0.7s ease-in;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 header {
   background-color: #1e293b;
-  padding: 20px;
+  padding: 30px;
   text-align: center;
   box-shadow: 0 2px 10px rgba(0,0,0,0.5);
 }
 header h1 {
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: #38bdf8;
+  transition: 0.3s;
+}
+header h1:hover {
+  color: #0ea5e9;
 }
 nav {
   display: flex;
   justify-content: center;
   gap: 30px;
   background-color: #0f172a;
-  padding: 10px 0;
+  padding: 15px 0;
 }
 nav a {
-  color: #f8fafc;
+  color: #f1f5f9;
   text-decoration: none;
   font-weight: 600;
+  position: relative;
 }
-nav a:hover {
-  color: #38bdf8;
+nav a::after {
+  content: '';
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  bottom: -3px;
+  left: 0;
+  background-color: #38bdf8;
+  transition: width 0.3s;
+}
+nav a:hover::after {
+  width: 100%;
 }
 section {
   padding: 40px 20px;
@@ -40,14 +62,14 @@ section {
   margin: auto;
 }
 h2 {
-  font-size: 1.8rem;
+  font-size: 2rem;
   margin-bottom: 15px;
   color: #38bdf8;
 }
 p {
   margin-bottom: 15px;
 }
-textarea {
+textarea, input {
   width: 100%;
   min-height: 60px;
   padding: 10px;
@@ -64,15 +86,18 @@ button {
   border-radius: 10px;
   font-weight: bold;
   cursor: pointer;
+  transition: 0.2s ease-in;
 }
 button:hover {
   background-color: #0ea5e9;
+  transform: scale(1.05);
 }
 #resposta {
   margin-top: 20px;
   background: #1e293b;
   padding: 15px;
   border-radius: 10px;
+  box-shadow: 0 0 10px #0ea5e9;
 }
 footer {
   background-color: #1e293b;
@@ -80,4 +105,5 @@ footer {
   padding: 15px;
   font-size: 0.9rem;
   color: #cbd5e1;
+  margin-top: 50px;
 }
