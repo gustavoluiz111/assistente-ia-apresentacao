@@ -107,3 +107,30 @@ footer {
   color: #cbd5e1;
   margin-top: 50px;
 }
+:root {
+  --bg: #0f172a;
+  --bg-light: #f8fafc;
+  --text: #f8fafc;
+  --text-light: #0f172a;
+  --primary: #38bdf8;
+  --secondary: #1e293b;
+}
+
+body.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.light header,
+body.light footer {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+body.light nav {
+  background-color: #f1f5f9;
+}
+
+body.light nav a {
+  color: #0f172a;
+}
