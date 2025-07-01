@@ -1,6 +1,50 @@
-<section>
-  <h2>Sobre o Projeto</h2>
-  <p>O objetivo é automatizar apresentações com uma I.A. que compreende perguntas, responde e controla o ritmo da fala.</p>
-  <p>Essa tecnologia pode ser usada em escolas, eventos, empresas, feiras, etc.</p>
-</section>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeto</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>Assistente Inteligente de Apresentação</h1>
+  </header>
 
+  <div style="text-align:center; margin: 10px;">
+    <button onclick="alternarTema()">🌓 Alternar Tema</button>
+  </div>
+
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="projeto.html">Projeto</a>
+    <a href="ia.html">I.A.</a>
+    <a href="creditos.html">Créditos</a>
+  </nav>
+
+  <section>
+    <h2>Sobre o Projeto</h2>
+    <p>O objetivo é automatizar apresentações com uma I.A. que compreende perguntas, responde e controla o ritmo da fala.</p>
+    <p>Essa tecnologia pode ser usada em escolas, eventos, empresas, feiras, etc.</p>
+  </section>
+
+  <footer>
+    &copy; 2025 - Projeto IPA
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.querySelectorAll("nav a").forEach(link => {
+      link.addEventListener("click", function (e) {
+        document.body.style.opacity = "0";
+        setTimeout(() => {
+          window.location.href = this.href;
+        }, 300);
+        e.preventDefault();
+      });
+    });
+    document.body.style.opacity = "0";
+    setTimeout(() => document.body.style.opacity = "1", 100);
+  </script>
+</body>
+</html>
