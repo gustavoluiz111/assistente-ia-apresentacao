@@ -1,3 +1,30 @@
+:root {
+  --bg: #0f172a;
+  --bg-light: #f8fafc;
+  --text: #f8fafc;
+  --text-light: #0f172a;
+  --primary: #38bdf8;
+  --secondary: #1e293b;
+}
+
+body.light {
+  background: var(--bg-light);
+  color: var(--text-light);
+}
+
+body.light header,
+body.light footer {
+  background: #e2e8f0;
+  color: #0f172a;
+}
+
+body.light nav {
+  background-color: #f1f5f9;
+}
+
+body.light nav a {
+  color: #0f172a;
+}
 * {
   box-sizing: border-box;
   margin: 0;
@@ -17,6 +44,10 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 header {
+  <div style="text-align:center; margin: 10px;">
+  <button onclick="alternarTema()">🌓 Alternar Tema</button>
+</div>
+
   background-color: #1e293b;
   padding: 30px;
   text-align: center;
@@ -106,31 +137,4 @@ footer {
   font-size: 0.9rem;
   color: #cbd5e1;
   margin-top: 50px;
-}
-:root {
-  --bg: #0f172a;
-  --bg-light: #f8fafc;
-  --text: #f8fafc;
-  --text-light: #0f172a;
-  --primary: #38bdf8;
-  --secondary: #1e293b;
-}
-
-body.light {
-  background: var(--bg-light);
-  color: var(--text-light);
-}
-
-body.light header,
-body.light footer {
-  background: #e2e8f0;
-  color: #0f172a;
-}
-
-body.light nav {
-  background-color: #f1f5f9;
-}
-
-body.light nav a {
-  color: #0f172a;
 }
