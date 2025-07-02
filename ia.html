@@ -2,7 +2,35 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Assistente IA Simulada</title>
+  <title>Assistente IA</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="ia.html">Assistente IA</a></li>
+        <li><a href="projeto.html">Projeto</a></li>
+        <li><a href="creditos.html">Créditos</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="container">
+    <h1>Assistente IA Simulada</h1>
+
+    <textarea id="pergunta" placeholder="Digite ou fale sua pergunta..."></textarea><br>
+
+    <button onclick="responderIA()">Perguntar</button>
+    <button onclick="iniciarVoz()">🎤 Falar Pergunta</button>
+
+    <div id="resposta"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
   <style>
     body {
       font-family: Arial, sans-serif;
