@@ -1,143 +1,140 @@
-:root {
-  --bg: #0f172a;
-  --bg-light: #f8fafc;
-  --text: #f8fafc;
-  --text-light: #0f172a;
-  --primary: #38bdf8;
-  --secondary: #1e293b;
-}
-
-body.light {
-  background: var(--bg-light);
-  color: var(--text-light);
-}
-
-body.light header,
-body.light footer {
-  background: #e2e8f0;
-  color: #0f172a;
-}
-
-body.light nav {
-  background-color: #f1f5f9;
-}
-
-body.light nav a {
-  color: #0f172a;
-}
+/* Reset básico */
 * {
   box-sizing: border-box;
+}
+
+/* Corpo da página */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
-  scroll-behavior: smooth;
-}
-body {
-  font-family: 'Inter', sans-serif;
-  background: linear-gradient(to right, #0f172a, #1e293b);
-  color: #f8fafc;
+  background: #f7f7f7;
+  color: #333;
+  transition: background 0.4s, color 0.4s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   min-height: 100vh;
-  line-height: 1.6;
-  animation: fadeIn 0.7s ease-in;
 }
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-header {
-  <div style="text-align:center; margin: 10px;">
-  <button onclick="alternarTema()">🌓 Alternar Tema</button>
-</div>
 
-  background-color: #1e293b;
-  padding: 30px;
-  text-align: center;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+/* Modo escuro */
+.dark-mode {
+  background: #121212;
+  color: #eee;
 }
-header h1 {
-  font-size: 2.5rem;
-  color: #38bdf8;
-  transition: 0.3s;
+
+/* Container centralizado */
+.container {
+  max-width: 700px;
+  width: 90%;
+  margin: auto;
+  padding: 40px 20px;
 }
-header h1:hover {
-  color: #0ea5e9;
+
+/* Cabeçalho fixo */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: #0077cc;
+  padding: 10px 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+  z-index: 1000;
 }
-nav {
+
+/* Menu */
+.menu {
+  list-style: none;
   display: flex;
   justify-content: center;
-  gap: 30px;
-  background-color: #0f172a;
-  padding: 15px 0;
+  margin: 0;
+  padding: 0;
 }
-nav a {
-  color: #f1f5f9;
+
+.menu li {
+  margin: 0 15px;
+}
+
+.menu a {
+  color: white;
   text-decoration: none;
   font-weight: 600;
-  position: relative;
+  font-size: 16px;
+  transition: color 0.3s;
 }
-nav a::after {
-  content: '';
-  position: absolute;
-  width: 0%;
-  height: 2px;
-  bottom: -3px;
-  left: 0;
-  background-color: #38bdf8;
-  transition: width 0.3s;
+
+.menu a:hover {
+  color: #ffcc00;
 }
-nav a:hover::after {
+
+/* Para evitar conteúdo atrás do header */
+body {
+  padding-top: 60px; /* altura do header */
+}
+
+/* Títulos */
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+
+/* Textarea */
+textarea {
   width: 100%;
-}
-section {
-  padding: 40px 20px;
-  max-width: 1000px;
-  margin: auto;
-}
-h2 {
-  font-size: 2rem;
-  margin-bottom: 15px;
-  color: #38bdf8;
-}
-p {
-  margin-bottom: 15px;
-}
-textarea, input {
-  width: 100%;
-  min-height: 60px;
-  padding: 10px;
-  margin: 10px 0;
+  height: 100px;
+  padding: 12px;
+  font-size: 16px;
+  border: 1px solid #ccc;
   border-radius: 10px;
-  border: none;
-  font-size: 1rem;
+  resize: none;
+  margin-bottom: 15px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
 }
+
+/* Botões */
 button {
-  background-color: #38bdf8;
-  color: #0f172a;
   padding: 10px 20px;
+  font-size: 16px;
+  margin: 5px;
   border: none;
-  border-radius: 10px;
-  font-weight: bold;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s ease-in;
+  background-color: #0077cc;
+  color: white;
+  transition: background 0.3s;
 }
+
 button:hover {
-  background-color: #0ea5e9;
-  transform: scale(1.05);
+  background-color: #005fa3;
 }
+
+/* Resposta da IA */
 #resposta {
   margin-top: 20px;
-  background: #1e293b;
   padding: 15px;
+  background: #fff;
   border-radius: 10px;
-  box-shadow: 0 0 10px #0ea5e9;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+  min-height: 60px;
 }
-footer {
-  background-color: #1e293b;
-  text-align: center;
-  padding: 15px;
-  font-size: 0.9rem;
-  color: #cbd5e1;
-  margin-top: 50px;
+
+/* Modo escuro para textarea e resposta */
+.dark-mode textarea,
+.dark-mode #resposta {
+  background: #1e1e1e;
+  color: #fff;
+  border: 1px solid #555;
 }
-body {
-  transition: background 0.3s ease, color 0.3s ease;
+
+/* Responsividade */
+@media (max-width: 600px) {
+  textarea {
+    height: 80px;
+  }
+
+  button {
+    width: 100%;
+    margin: 8px 0;
+  }
 }
