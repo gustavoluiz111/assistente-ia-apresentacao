@@ -1,113 +1,222 @@
-body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+/* Reset básico */
+* {
+  box-sizing: border-box;
   margin: 0;
   padding: 0;
-  background: #f7f7f7;
-  color: #333;
-  transition: background 0.4s ease, color 0.4s ease;
+}
+
+/* Corpo da página */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fafafa;
+  color: #222;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  padding-top: 70px; /* espaço para header fixo */
 }
 
-.dark-mode {
-  background: #121212;
-  color: #eee;
+/* Modo escuro */
+body.dark-mode {
+  background-color: #121212;
+  color: #ddd;
 }
 
-.container {
-  max-width: 700px;
-  width: 90%;
-  margin: 60px auto 40px;
-  padding: 20px;
-  background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  transition: background 0.4s ease, color 0.4s ease;
-}
-
-.dark-mode .container {
-  background: #1e1e1e;
-  color: #eee;
-}
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
-  font-weight: 700;
-  font-size: 2.2rem;
-}
-
-textarea {
+/* Header fixo e estilizado */
+header {
+  position: fixed;
+  top: 0;
   width: 100%;
-  height: 110px;
-  padding: 15px;
-  font-size: 1rem;
-  border-radius: 10px;
-  border: 1.5px solid #ccc;
-  box-shadow: inset 0 1px 4px rgba(0,0,0,0.1);
-  resize: none;
-  margin-bottom: 15px;
-  transition: border-color 0.3s ease;
+  background: #004d99;
+  padding: 15px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
 }
 
-textarea:focus {
-  border-color: #0077cc;
-  outline: none;
+.menu {
+  display: flex;
+  justify-content: center;
+  list-style: none;
 }
 
-button {
-  cursor: pointer;
-  border: none;
-  padding: 12px 25px;
-  border-radius: 10px;
+.menu li {
+  margin: 0 20px;
+}
+
+.menu a {
+  color: #fff;
+  text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
-  background-color: #0077cc;
-  color: white;
-  margin-right: 12px;
+  font-size: 1.1rem;
+  padding: 6px 12px;
+  border-radius: 6px;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #005fa3;
+.menu a:hover,
+.menu a:focus {
+  background-color: #003366;
+  outline: none;
 }
 
-#resposta {
-  margin-top: 25px;
-  min-height: 80px;
-  background-color: #fefefe;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-  font-size: 1.1rem;
-  line-height: 1.5;
+/* Container principal */
+.container {
+  background-color: #fff;
+  max-width: 720px;
+  width: 90%;
+  padding: 40px 30px;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-.dark-mode textarea,
-.dark-mode #resposta {
-  background: #2a2a2a;
-  border-color: #444;
+/* Modo escuro para container */
+body.dark-mode .container {
+  background-color: #1f1f1f;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+  color: #ddd;
+}
+
+/* Título */
+h1 {
+  font-weight: 700;
+  font-size: 2.6rem;
+  margin-bottom: 25px;
+  text-align: center;
+  letter-spacing: 1.2px;
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  height: 120px;
+  padding: 18px 20px;
+  font-size: 1.1rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  box-shadow: inset 0 2px 8px rgba(0,0,0,0.05);
+  resize: none;
+  transition: border-color 0.3s ease;
+  margin-bottom: 20px;
+  color: #222;
+}
+
+textarea:focus {
+  outline: none;
+  border-color: #0077cc;
+  box-shadow: 0 0 10px #0077ccaa;
+}
+
+/* Modo escuro textarea */
+body.dark-mode textarea {
+  background-color: #2c2c2c;
   color: #eee;
+  border-color: #555;
+  box-shadow: inset 0 2px 8px rgba(255,255,255,0.1);
 }
 
-.dark-mode button {
-  background-color: #3399ff;
+/* Botões */
+button {
+  cursor: pointer;
+  font-size: 1.1rem;
+  padding: 14px 28px;
+  margin-right: 15px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, #0077cc 0%, #005fa3 100%);
+  box-shadow: 0 6px 12px rgba(0,123,255,0.5);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  user-select: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.dark-mode button:hover {
-  background-color: #1a73e8;
+button:hover,
+button:focus {
+  background: linear-gradient(135deg, #005fa3 0%, #00497a 100%);
+  box-shadow: 0 8px 18px rgba(0,100,220,0.7);
+  outline: none;
 }
 
-@media (max-width: 600px) {
+button:active {
+  transform: scale(0.98);
+}
+
+/* Botão de tema diferente */
+#toggle-tema {
+  position: fixed;
+  top: 15px;
+  right: 20px;
+  background: #005fa3;
+  box-shadow: 0 5px 12px rgba(0,95,163,0.7);
+  padding: 10px 14px;
+  border-radius: 14px;
+  font-size: 1.2rem;
+  user-select: none;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+#toggle-tema:hover,
+#toggle-tema:focus {
+  background: #00497a;
+  box-shadow: 0 7px 18px rgba(0,73,122,0.9);
+  outline: none;
+}
+
+/* Área da resposta */
+#resposta {
+  margin-top: 30px;
+  background-color: #fefefe;
+  padding: 24px 28px;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  border-radius: 15px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  min-height: 90px;
+  transition: background-color 0.4s ease, color 0.4s ease;
+  white-space: pre-wrap;
+  color: #222;
+}
+
+/* Modo escuro resposta */
+body.dark-mode #resposta {
+  background-color: #272727;
+  color: #eee;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+}
+
+/* Responsividade */
+@media (max-width: 700px) {
   .container {
-    margin: 80px 10px 40px;
+    padding: 30px 20px;
+    width: 95%;
   }
-  
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  textarea {
+    height: 100px;
+    font-size: 1rem;
+  }
+
   button {
-    margin: 8px 5px 8px 0;
-    width: 48%;
+    padding: 12px 22px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 400px) {
+  button {
+    width: 100%;
+    margin: 0 0 15px 0 !important;
+    display: block;
   }
 }
