@@ -1,55 +1,32 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Créditos</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Assistente Inteligente de Apresentação</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="ia.html">Assistente IA</a></li>
+        <li><a href="projeto.html">Projeto</a></li>
+        <li><a href="creditos.html">Créditos</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div style="text-align:center; margin: 10px;">
-    <button onclick="alternarTema()">🌓 Alternar Tema</button>
-  </div>
+  <button id="toggle-tema" aria-label="Alternar tema">🌙</button>
 
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="projeto.html">Projeto</a>
-    <a href="ia.html">I.A.</a>
-    <a href="creditos.html">Créditos</a>
-  </nav>
-
-  <section>
-    <h2>Créditos</h2>
-    <p>Participantes:</p>
+  <main class="container">
+    <h1>Créditos e Agradecimentos</h1>
     <ul>
-      <li>Nome 1</li>
-      <li>Nome 2</li>
-      <li>Nome 3</li>
+      <li>Estudantes participantes: Nome 1, Nome 2, Nome 3</li>
+      <li>Professor orientador: Prof. Nome do Professor</li>
+      <li>Agradecimentos à escola e aos colaboradores</li>
     </ul>
-    <p>Professor orientador: Nome do Professor</p>
-  </section>
-
-  <footer>
-    &copy; 2025 - Projeto IPA
-  </footer>
-
-  <script src="script.js"></script>
-  <script>
-    document.querySelectorAll("nav a").forEach(link => {
-      link.addEventListener("click", function (e) {
-        document.body.style.opacity = "0";
-        setTimeout(() => {
-          window.location.href = this.href;
-        }, 300);
-        e.preventDefault();
-      });
-    });
-    document.body.style.opacity = "0";
-    setTimeout(() => document.body.style.opacity = "1", 100);
-  </script>
+  </main>
 </body>
 </html>
