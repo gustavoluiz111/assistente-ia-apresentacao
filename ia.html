@@ -2,30 +2,37 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Assistente IA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Assistente IA - Projeto IPA</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <nav>
-      <ul class="menu">
-        <li><a href="index.html">Início</a></li>
-        <li><a href="ia.html">Assistente IA</a></li>
-        <li><a href="projeto.html">Projeto</a></li>
-        <li><a href="creditos.html">Créditos</a></li>
-      </ul>
-    </nav>
+    <h1>Assistente IA</h1>
+    <button id="toggle-tema">🌙</button>
   </header>
-  <button id="toggle-tema" aria-label="Alternar tema">🌙</button>
-  <main class="container">
-    <h1>Assistente IA Simulada</h1>
-    <textarea id="pergunta" placeholder="Digite ou fale sua pergunta..."></textarea>
-    <div>
-      <button onclick="responderIA()">Perguntar</button>
-      <button onclick="iniciarVoz()">🎤 Falar Pergunta</button>
-    </div>
-    <div id="resposta"></div>
+
+  <main>
+    <section class="container-ia">
+      <h2>Converse com a IA</h2>
+
+      <div class="input-container">
+        <input type="text" id="pergunta" placeholder="Digite sua pergunta aqui..." />
+        <div class="botoes">
+          <button onclick="responderIA()">Perguntar</button>
+          <button onclick="iniciarVoz()">🎤 Voz</button>
+        </div>
+      </div>
+
+      <div id="resposta" class="resposta">Eu responderei aqui!</div>
+    </section>
   </main>
+
+  <footer>
+    <p>Projeto de Pesquisa Aplicada - 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
+
