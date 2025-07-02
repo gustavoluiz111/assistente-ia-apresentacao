@@ -2,51 +2,127 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>I.A. em Ação</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Assistente IA Simulada</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f0f0f0;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    .dark-mode {
+      background: #1e1e1e;
+      color: #ffffff;
+    }
+
+    .dark-mode textarea,
+    .dark-mode #resposta {
+      background: #333;
+      color: #fff;
+      border-color: #555;
+    }
+
+    textarea {
+      width: 100%;
+      height: 80px;
+      font-size: 16px;
+      resize: none;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px 5px 0 0;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    #resposta {
+      margin-top: 20px;
+      font-weight: bold;
+      min-height: 60px;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 5px #ccc;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Assistente Inteligente de Apresentação</h1>
-  </header>
+  <h1>Assistente IA Simulada</h1>
 
-  <div style="text-align:center; margin: 10px;">
-    <button onclick="alternarTema()">🌓 Alternar Tema</button>
-  </div>
+  <button onclick="alternarTema()">🌙 Mudar Tema</button><br><br>
 
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="projeto.html">Projeto</a>
-    <a href="ia.html">I.A.</a>
-    <a href="creditos.html">Créditos</a>
-  </nav>
+  <textarea id="pergunta" placeholder="Digite ou fale sua pergunta aqui..."></textarea><br />
+  <button onclick="responderIA()">Perguntar</button>
+  <button onclick="iniciarVoz()">🎤 Falar Pergunta</button>
 
-  <section>
-    <h2>I.A. em Ação</h2>
-    <p>Você pode digitar perguntas para a I.A. responder. Também pode falar clicando no botão 🎤.</p>
-    <textarea id="pergunta" placeholder="Digite sua pergunta..."></textarea>
-    <button onclick="responderIA()">Perguntar</button>
-    <div id="resposta"></div>
-  </section>
+  <div id="resposta"></div>
 
-  <footer>
-    &copy; 2025 - Projeto IPA
-  </footer>
-
-  <script src="script.js"></script>
   <script>
-    document.querySelectorAll("nav a").forEach(link => {
-      link.addEventListener("click", function (e) {
-        document.body.style.opacity = "0";
-        setTimeout(() => {
-          window.location.href = this.href;
-        }, 300);
-        e.preventDefault();
-      });
-    });
-    document.body.style.opacity = "0";
-    setTimeout(() => document.body.style.opacity = "1", 100);
+    function alternarTema() {
+      document.body.classList.toggle("dark-mode");
+    }
+
+    let reconhecimento;
+
+    function iniciarVoz() {
+      const suporte = window.SpeechRecognition || window.webkitSpeechRecognition;
+      if (!suporte) {
+        alert("Seu navegador não suporta reconhecimento de voz.");
+        return;
+      }
+
+      reconhecimento = new suporte();
+      reconhecimento.lang = "pt-BR";
+      reconhecimento.continuous = false;
+      reconhecimento.interimResults = false;
+
+      reconhecimento.onstart = () => {
+        document.getElementById("resposta").textContent = "Estou ouvindo...";
+      };
+
+      reconhecimento.onresult = (event) => {
+        const texto = event.results[0][0].transcript;
+        document.getElementById("pergunta").value = texto;
+        responderIA();
+      };
+
+      reconhecimento.onerror = () => {
+        document.getElementById("resposta").textContent = "Erro no reconhecimento de voz.";
+      };
+
+      reconhecimento.start();
+    }
+
+    function responderIA() {
+      const pergunta = document.getElementById("pergunta").value.toLowerCase();
+      const respostaDiv = document.getElementById("resposta");
+
+      let resposta = "Desculpe, não entendi sua pergunta. Pode reformular?";
+
+      // Exemplo de algumas perguntas. Expanda com mais conforme necessário.
+      if (pergunta.includes("objetivo")) {
+        resposta = "O objetivo do projeto é criar uma IA que automatize apresentações escolares.";
+      } else if (pergunta.includes("quem fez") || pergunta.includes("participantes")) {
+        resposta = "O projeto foi desenvolvido pelos estudantes Nome 1, Nome 2 e Nome 3.";
+      } else if (pergunta.includes("como funciona")) {
+        resposta = "A IA reconhece perguntas e responde de forma automatizada com fala e texto.";
+      } else if (pergunta.includes("tecnologias")) {
+        resposta = "O projeto usa HTML, CSS, JavaScript e Web Speech API.";
+      } else if (pergunta.includes("professor")) {
+        resposta = "O projeto foi orientado pelo professor Nome do Professor.";
+      } else if (pergunta.includes("oi") || pergunta.includes("olá")) {
+        resposta = "Olá! Pode perguntar o que quiser sobre o projeto.";
+      }
+
+      respostaDiv.textContent = resposta;
+
+      const synth = window.speechSynthesis;
+      const utter = new SpeechSynthesisUtterance(resposta);
+      utter.lang = "pt-BR";
+      synth.speak(utter);
+    }
   </script>
 </body>
 </html>
