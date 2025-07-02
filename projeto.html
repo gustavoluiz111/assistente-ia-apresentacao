@@ -2,49 +2,43 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Projeto</title>
+  <title>Projeto IPA</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Assistente Inteligente de Apresentação</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="ia.html">Assistente IA</a></li>
+        <li><a href="projeto.html">Projeto</a></li>
+        <li><a href="creditos.html">Créditos</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div style="text-align:center; margin: 10px;">
-    <button onclick="alternarTema()">🌓 Alternar Tema</button>
-  </div>
+  <button id="toggle-tema" aria-label="Alternar tema">🌙</button>
 
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="projeto.html">Projeto</a>
-    <a href="ia.html">I.A.</a>
-    <a href="creditos.html">Créditos</a>
-  </nav>
-
-  <section>
-    <h2>Sobre o Projeto</h2>
-    <p>O objetivo é automatizar apresentações com uma I.A. que compreende perguntas, responde e controla o ritmo da fala.</p>
-    <p>Essa tecnologia pode ser usada em escolas, eventos, empresas, feiras, etc.</p>
-  </section>
-
-  <footer>
-    &copy; 2025 - Projeto IPA
-  </footer>
-
-  <script src="script.js"></script>
-  <script>
-    document.querySelectorAll("nav a").forEach(link => {
-      link.addEventListener("click", function (e) {
-        document.body.style.opacity = "0";
-        setTimeout(() => {
-          window.location.href = this.href;
-        }, 300);
-        e.preventDefault();
-      });
-    });
-    document.body.style.opacity = "0";
-    setTimeout(() => document.body.style.opacity = "1", 100);
-  </script>
+  <main class="container">
+    <h1>Projeto de Pesquisa Aplicada (IPA)</h1>
+    <p>
+      O projeto tem como objetivo desenvolver uma inteligência artificial que automatize a apresentação escolar,
+      facilitando o diálogo com o público e respondendo perguntas em tempo real.
+    </p>
+    <h2>Metodologia</h2>
+    <ul>
+      <li>Pesquisa teórica sobre inteligência artificial e reconhecimento de voz.</li>
+      <li>Desenvolvimento do protótipo utilizando HTML, CSS, JavaScript e APIs Web.</li>
+      <li>Testes e validação da interação com usuários.</li>
+      <li>Hospedagem do site no GitHub Pages.</li>
+    </ul>
+    <h2>Próximos passos</h2>
+    <ul>
+      <li>Integração com APIs reais de IA, como OpenAI.</li>
+      <li>Melhorias na interface e acessibilidade.</li>
+      <li>Inclusão de mais conteúdos e funcionalidades.</li>
+    </ul>
+  </main>
 </body>
 </html>
