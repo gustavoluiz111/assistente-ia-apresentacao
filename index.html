@@ -2,48 +2,27 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Início</title>
+  <title>Início - Assistente IA</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
-    <h1>Assistente Inteligente de Apresentação</h1>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="ia.html">Assistente IA</a></li>
+        <li><a href="projeto.html">Projeto</a></li>
+        <li><a href="creditos.html">Créditos</a></li>
+      </ul>
+    </nav>
   </header>
 
-  <div style="text-align:center; margin: 10px;">
-    <button onclick="alternarTema()">🌓 Alternar Tema</button>
-  </div>
+  <button id="toggle-tema" aria-label="Alternar tema">🌙</button>
 
-  <nav>
-    <a href="index.html">Início</a>
-    <a href="projeto.html">Projeto</a>
-    <a href="ia.html">I.A.</a>
-    <a href="creditos.html">Créditos</a>
-  </nav>
-
-  <section>
-    <h2>Início</h2>
-    <p>Bem-vindo! Este projeto apresenta um sistema com I.A. para auxiliar apresentações, tornando-as mais dinâmicas e acessíveis.</p>
-  </section>
-
-  <footer>
-    &copy; 2025 - Projeto IPA
-  </footer>
-
-  <script src="script.js"></script>
-  <script>
-    document.querySelectorAll("nav a").forEach(link => {
-      link.addEventListener("click", function (e) {
-        document.body.style.opacity = "0";
-        setTimeout(() => {
-          window.location.href = this.href;
-        }, 300);
-        e.preventDefault();
-      });
-    });
-    document.body.style.opacity = "0";
-    setTimeout(() => document.body.style.opacity = "1", 100);
-  </script>
+  <main class="container">
+    <h1>Bem-vindo ao Projeto Assistente IA</h1>
+    <p>Este site apresenta o projeto de pesquisa aplicada com inteligência artificial para automatizar apresentações e interagir com o público.</p>
+  </main>
 </body>
 </html>
