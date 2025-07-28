@@ -3,244 +3,40 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projeto - Assistente IA</title>
-  <style>
-    /* Reset básico */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    /* Variáveis de cores para tema claro */
-    :root {
-      --bg-color: #f0f2f5;
-      --text-color: #222;
-      --primary-color: #007bff;
-      --header-footer-bg: #004080;
-      --header-footer-text: #fff;
-      --nav-link-hover: #80b3ff;
-      --btn-bg: #007bff;
-      --btn-text: #fff;
-      --btn-hover-bg: #0056b3;
-      --em-desenvolvimento-color: #d35400;
-    }
-
-    /* Tema escuro */
-    body.dark {
-      --bg-color: #121212;
-      --text-color: #e0e0e0;
-      --primary-color: #3399ff;
-      --header-footer-bg: #222;
-      --header-footer-text: #eee;
-      --nav-link-hover: #66aaff;
-      --btn-bg: #3399ff;
-      --btn-text: #121212;
-      --btn-hover-bg: #1a73e8;
-      --em-desenvolvimento-color: #e67e22;
-    }
-
-    body {
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    header {
-      background-color: var(--header-footer-bg);
-      color: var(--header-footer-text);
-      padding: 1rem 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 1rem;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    header h1 {
-      font-size: 1.8rem;
-      flex: 1 1 auto;
-      min-width: 220px;
-    }
-
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--header-footer-text);
-      text-decoration: none;
-      font-weight: 600;
-      padding: 0.5rem 0.8rem;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
-
-    nav a:hover,
-    nav a:focus {
-      background-color: var(--nav-link-hover);
-      outline: none;
-    }
-
-    main {
-      flex: 1 0 auto;
-      padding: 2rem;
-      max-width: 900px;
-      margin: 0 auto;
-    }
-
-    main h2 {
-      margin-bottom: 1rem;
-      font-size: 1.6rem;
-      border-bottom: 2px solid var(--primary-color);
-      padding-bottom: 0.5rem;
-    }
-
-    p {
-      line-height: 1.5;
-      margin-bottom: 1rem;
-      font-size: 1.1rem;
-    }
-
-    .em-desenvolvimento {
-      font-weight: 700;
-      color: var(--em-desenvolvimento-color);
-      font-style: italic;
-    }
-
-    footer {
-      background-color: var(--header-footer-bg);
-      color: var(--header-footer-text);
-      text-align: center;
-      padding: 1rem;
-      font-size: 0.9rem;
-      margin-top: auto;
-      box-shadow: inset 0 1px 3px rgba(0,0,0,0.4);
-    }
-
-    /* Botões úteis no topo */
-    .top-buttons {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-    }
-
-    button {
-      background-color: var(--btn-bg);
-      border: none;
-      color: var(--btn-text);
-      padding: 0.5rem 1rem;
-      font-size: 1rem;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      user-select: none;
-    }
-
-    button:hover,
-    button:focus {
-      background-color: var(--btn-hover-bg);
-      outline: none;
-    }
-
-    /* Responsividade */
-    @media (max-width: 600px) {
-      header {
-        flex-direction: column;
-        text-align: center;
-      }
-
-      nav ul {
-        justify-content: center;
-      }
-
-      main {
-        padding: 1rem;
-      }
-
-      button {
-        flex: 1 1 100%;
-      }
-    }
-  </style>
+  <title>Início - Assistente IA</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Detalhes do Projeto</h1>
+    <h1>Assistente IA</h1>
     <nav>
       <ul>
-        <li><a href="index.html" tabindex="1">Início</a></li>
-        <li><a href="projeto.html" tabindex="2">Projeto</a></li>
-        <li><a href="ia.html" tabindex="3">I.A.</a></li>
-        <li><a href="creditos.html" tabindex="4">Créditos</a></li>
+        <li><a href="index.html" aria-current="page">Início</a></li>
+        <li><a href="projeto.html">Projeto</a></li>
+        <li><a href="ia.html">I.A.</a></li>
+        <li><a href="creditos.html">Créditos</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Botões uteis -->
     <div class="top-buttons" role="region" aria-label="Botões de ações rápidas">
       <button id="btn-theme" aria-pressed="false" aria-label="Alternar tema claro e escuro">Tema Escuro</button>
       <button id="btn-alerta" aria-label="Mostrar alerta de funcionalidade">Mostrar alerta</button>
       <button id="btn-voltar-topo" aria-label="Voltar ao topo da página">Topo</button>
     </div>
 
-    <h2>Resumo do Projeto</h2>
-    <p>O projeto consiste em um assistente inteligente capaz de apresentar conteúdos automaticamente, interagindo com o público e reconhecendo comandos de voz ou texto.</p>
-    <p class="em-desenvolvimento">Conteúdo em atualização.</p>
+    <section>
+      <h2>Bem-vindo ao Assistente Inteligente</h2>
+      <p>Este site é dedicado ao desenvolvimento de um assistente inteligente para apresentações e interação com o público.</p>
+      <p class="em-desenvolvimento">Conteúdo em constante evolução.</p>
+    </section>
   </main>
 
   <footer>
     <p>© 2025 - Equipe IPA Nível III</p>
   </footer>
 
-  <script>
-    // Alternar tema claro/escuro e salvar preferência no localStorage
-    const btnTheme = document.getElementById('btn-theme');
-    const body = document.body;
-
-    function setTheme(dark) {
-      if (dark) {
-        body.classList.add('dark');
-        btnTheme.textContent = 'Tema Claro';
-        btnTheme.setAttribute('aria-pressed', 'true');
-      } else {
-        body.classList.remove('dark');
-        btnTheme.textContent = 'Tema Escuro';
-        btnTheme.setAttribute('aria-pressed', 'false');
-      }
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
-    }
-
-    // Carregar tema salvo
-    const savedTheme = localStorage.getItem('theme');
-    setTheme(savedTheme === 'dark');
-
-    btnTheme.addEventListener('click', () => {
-      const isDark = body.classList.contains('dark');
-      setTheme(!isDark);
-    });
-
-    // Mostrar alerta como exemplo de funcionalidade
-    const btnAlerta = document.getElementById('btn-alerta');
-    btnAlerta.addEventListener('click', () => {
-      alert('Funcionalidade em desenvolvimento! Em breve terá mais recursos.');
-    });
-
-    // Botão voltar ao topo
-    const btnTopo = document.getElementById('btn-voltar-topo');
-    btnTopo.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  </script>
+  <script src="scripts.js"></script>
 </body>
 </html>
- 
