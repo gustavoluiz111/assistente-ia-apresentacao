@@ -2,38 +2,48 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Projeto IPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projeto - Assistente IA</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
+    <h1>Detalhes do Projeto</h1>
     <nav>
-      <ul class="menu">
+      <ul>
         <li><a href="index.html">Início</a></li>
-        <li><a href="ia.html">Assistente IA</a></li>
-        <li><a href="projeto.html">Projeto</a></li>
+        <li><a href="projeto.html" aria-current="page">Projeto</a></li>
+        <li><a href="ia.html">I.A.</a></li>
         <li><a href="creditos.html">Créditos</a></li>
       </ul>
     </nav>
   </header>
-  <button id="toggle-tema" aria-label="Alternar tema">🌙</button>
-  <main class="container">
-    <h1>Projeto de Pesquisa Aplicada (IPA)</h1>
-    <p>O projeto tem como objetivo desenvolver uma inteligência artificial que automatize a apresentação escolar, facilitando o diálogo com o público e respondendo perguntas em tempo real.</p>
-    <h2>Metodologia</h2>
-    <ul>
-      <li>Pesquisa teórica sobre inteligência artificial e reconhecimento de voz.</li>
-      <li>Desenvolvimento do protótipo utilizando HTML, CSS, JavaScript e APIs Web.</li>
-      <li>Testes e validação da interação com usuários.</li>
-      <li>Hospedagem do site no GitHub Pages.</li>
-    </ul>
-    <h2>Próximos passos</h2>
-    <ul>
-      <li>Integração com APIs reais de IA, como OpenAI.</li>
-      <li>Melhorias na interface e acessibilidade.</li>
-      <li>Inclusão de mais conteúdos e funcionalidades.</li>
-    </ul>
+
+  <main>
+    <div class="top-buttons" role="region" aria-label="Botões de ações rápidas">
+      <button id="btn-theme" aria-pressed="false" aria-label="Alternar tema claro e escuro">Tema Escuro</button>
+      <button id="btn-alerta" aria-label="Mostrar alerta de funcionalidade">Mostrar alerta</button>
+      <button id="btn-voltar-topo" aria-label="Voltar ao topo da página">Topo</button>
+    </div>
+
+    <section>
+      <h2>Resumo do Projeto</h2>
+      <p>O projeto consiste em um assistente inteligente capaz de apresentar conteúdos automaticamente, interagindo com o público e reconhecendo comandos de voz ou texto.</p>
+      <h3>Objetivos principais:</h3>
+      <ul>
+        <li>Automatizar apresentações.</li>
+        <li>Reconhecimento de voz para comandos.</li>
+        <li>Interação dinâmica com o público.</li>
+        <li>Interface amigável e responsiva.</li>
+      </ul>
+      <p class="em-desenvolvimento">Conteúdo em atualização.</p>
+    </section>
   </main>
+
+  <footer>
+    <p>© 2025 - Equipe IPA Nível III</p>
+  </footer>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
