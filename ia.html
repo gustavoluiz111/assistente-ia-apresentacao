@@ -2,37 +2,41 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Assistente IA - Projeto IPA</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>I.A. - Assistente IA</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <header>
-    <h1>Assistente IA</h1>
-    <button id="toggle-tema">🌙</button>
+    <h1>Inteligência Artificial</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Início</a></li>
+        <li><a href="projeto.html">Projeto</a></li>
+        <li><a href="ia.html" aria-current="page">I.A.</a></li>
+        <li><a href="creditos.html">Créditos</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>
-    <section class="container-ia">
-      <h2>Converse com a IA</h2>
+    <div class="top-buttons" role="region" aria-label="Botões de ações rápidas">
+      <button id="btn-theme" aria-pressed="false" aria-label="Alternar tema claro e escuro">Tema Escuro</button>
+      <button id="btn-alerta" aria-label="Mostrar alerta de funcionalidade">Mostrar alerta</button>
+      <button id="btn-voltar-topo" aria-label="Voltar ao topo da página">Topo</button>
+    </div>
 
-      <div class="input-container">
-        <input type="text" id="pergunta" placeholder="Digite sua pergunta aqui..." />
-        <div class="botoes">
-          <button onclick="responderIA()">Perguntar</button>
-          <button onclick="iniciarVoz()">🎤 Voz</button>
-        </div>
-      </div>
-
-      <div id="resposta" class="resposta">Eu responderei aqui!</div>
+    <section>
+      <h2>Assistente Inteligente</h2>
+      <p>Esta seção será dedicada à interface da Inteligência Artificial que fará a interação com o usuário.</p>
+      <p class="em-desenvolvimento">Funcionalidade em desenvolvimento.</p>
     </section>
   </main>
 
   <footer>
-    <p>Projeto de Pesquisa Aplicada - 2025</p>
+    <p>© 2025 - Equipe IPA Nível III</p>
   </footer>
 
-  <script src="script.js"></script>
+  <script src="scripts.js"></script>
 </body>
 </html>
-
