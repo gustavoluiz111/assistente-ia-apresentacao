@@ -2,30 +2,47 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Créditos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Créditos - Assistente IA</title>
   <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
 </head>
 <body>
   <header>
+    <h1>Créditos do Projeto</h1>
     <nav>
-      <ul class="menu">
+      <ul>
         <li><a href="index.html">Início</a></li>
-        <li><a href="ia.html">Assistente IA</a></li>
         <li><a href="projeto.html">Projeto</a></li>
-        <li><a href="creditos.html">Créditos</a></li>
+        <li><a href="ia.html">I.A.</a></li>
+        <li><a href="creditos.html" aria-current="page">Créditos</a></li>
       </ul>
     </nav>
   </header>
-  <button id="toggle-tema" aria-label="Alternar tema">🌙</button>
-  <main class="container">
-    <h1>Créditos e Agradecimentos</h1>
-    <ul>
-      <li>Estudantes participantes: Nome 1, Nome 2, Nome 3</li>
-      <li>Professor orientador: Prof. Nome do Professor</li>
-      <li>Agradecimentos à escola e aos colaboradores</li>
-    </ul>
+
+  <main>
+    <div class="top-buttons" role="region" aria-label="Botões de ações rápidas">
+      <button id="btn-theme" aria-pressed="false" aria-label="Alternar tema claro e escuro">Tema Escuro</button>
+      <button id="btn-alerta" aria-label="Mostrar alerta de funcionalidade">Mostrar alerta</button>
+      <button id="btn-voltar-topo" aria-label="Voltar ao topo da página">Topo</button>
+    </div>
+
+    <section>
+      <h2>Equipe e Agradecimentos</h2>
+      <p>Este projeto foi desenvolvido pela equipe IPA Nível III - 2025.</p>
+      <ul>
+        <li>Gustavo Luiz - Coordenação e programação</li>
+        <li>Maria Silva - Pesquisa e conteúdo</li>
+        <li>João Souza - Design e front-end</li>
+        <li>Agradecimentos especiais ao apoio da instituição e orientadores.</li>
+      </ul>
+      <p class="em-desenvolvimento">Mais nomes e créditos serão adicionados conforme o projeto evolui.</p>
+    </section>
   </main>
+
+  <footer>
+    <p>© 2025 - Equipe IPA Nível III</p>
+  </footer>
+
+  <script src="scripts.js"></script>
 </body>
 </html>
-
