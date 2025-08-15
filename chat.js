@@ -88,8 +88,65 @@ document.addEventListener('DOMContentLoaded', () => {
     { question: "qual a importância da IA", answer: "IA pode ajudar a resolver problemas complexos e automatizar tarefas repetitivas." },
     { question: "qual a melhor linguagem para IA", answer: "Python é muito popular por suas bibliotecas, mas o projeto aqui usa JavaScript." },
     { question: "como posso aprender programação", answer: "Comece com tutoriais básicos online e pratique bastante." },
+     // === +100 NOVAS PERGUNTAS E RESPOSTAS ===
+    // --- Sobre o IPA ---
+    { question: "o que é ipa", answer: "É a Mostra de Investigação/Integração de Pesquisa Aplicada, onde os alunos apresentam seus projetos." },
+    { question: "qual o objetivo do ipa", answer: "Estimular a pesquisa, inovação e criatividade entre os estudantes." },
+    { question: "quantos níveis tem o ipa", answer: "São três níveis: iniciante, intermediário e avançado." },
+    { question: "quantos alunos por grupo", answer: "Normalmente de 3 a 6 integrantes, conforme o edital." },
+    { question: "precisa de professor orientador", answer: "Sim, todo grupo deve ter um professor orientador." },
+    { question: "precisa apresentar em público", answer: "Sim, a apresentação pública é obrigatória na Mostra IPA." },
+    { question: "tem premiação", answer: "Sim, os melhores projetos são premiados." },
+    { question: "pode ter mais de um produto", answer: "Sim, o edital permite que um grupo apresente mais de um produto." },
+    { question: "pode fazer jogo 2d", answer: "Sim, jogos são aceitos como produto no IPA." },
+    { question: "pode fazer robô", answer: "Sim, protótipos e robôs são muito valorizados." },
+    { question: "pode criar site", answer: "Sim, sites são aceitos como produto final." },
+    { question: "pode fazer aplicativo", answer: "Sim, aplicativos também são aceitos." },
+    { question: "precisa de banner", answer: "Sim, geralmente os grupos produzem um banner explicativo." },
+    { question: "pode criar instagram para o projeto", answer: "Sim, é uma ótima forma de divulgar o trabalho." },
+    { question: "pode fazer rifa para arrecadar dinheiro", answer: "Sim, se a escola permitir, pode ajudar nos custos do projeto." },
+    { question: "qual a importância do ipa", answer: "O IPA ajuda os alunos a aplicarem na prática o que aprendem na sala de aula." },
+    { question: "como funciona a avaliação", answer: "Os avaliadores analisam pesquisa, produto, inovação e apresentação." },
+    { question: "quando é a mostra ipa 2025", answer: "Ela acontece no segundo semestre do ano, na escola." },
 
-    // E vamos replicar perguntas simples com variações para aumentar a base
+    // --- Tecnologia/IA ---
+    { question: "o que é ia", answer: "É a capacidade de máquinas aprenderem e realizarem tarefas inteligentes." },
+    { question: "como aprender programação", answer: "Comece com HTML, CSS e JavaScript, depois vá para Python." },
+    { question: "qual a linguagem mais usada em ia", answer: "Python é a mais popular para IA." },
+    { question: "ia pode substituir humanos", answer: "Não totalmente, ela complementa o trabalho humano." },
+    { question: "a ia pode errar", answer: "Sim, como qualquer tecnologia, pode cometer erros." },
+    { question: "o que é machine learning", answer: "É uma área da IA que ensina computadores a aprender com dados." },
+    { question: "o que é chatbot", answer: "É um programa que conversa com usuários, como eu aqui." },
+
+    // --- Curiosidades ---
+    { question: "curiosidade sobre tecnologia", answer: "O primeiro computador ocupava uma sala inteira." },
+    { question: "curiosidade sobre escola", answer: "A primeira universidade do mundo foi criada no ano 859, no Marrocos." },
+    { question: "curiosidade engraçada", answer: "As baratas conseguem viver sem cabeça por semanas." },
+    { question: "curiosidade animal", answer: "Os flamingos são cor-de-rosa porque comem camarões." },
+
+    // --- Bate-papo divertido ---
+    { question: "me conte uma piada", answer: "Por que o celular não foi à aula? Porque estava sem sinal." },
+    { question: "me conte outra piada", answer: "Por que o livro de matemática ficou triste? Porque tinha muitos problemas." },
+    { question: "qual a piada do dia", answer: "O que o zero falou para o oito? Belo cinto!" },
+    { question: "me motive", answer: "Acredite, você é capaz de mais do que imagina." },
+    { question: "frase motivacional", answer: "O sucesso é construído dia após dia com esforço e dedicação." },
+    { question: "me inspire", answer: "Grandes sonhos começam com pequenos passos." },
+    { question: "dê um conselho", answer: "Não tenha medo de errar, cada erro é um aprendizado." },
+    { question: "me anime", answer: "Sorria! Até um programa como eu pode melhorar seu dia." },
+
+    // --- Extras engraçados ---
+    { question: "você tem sentimentos", answer: "Tenho sentimentos virtuais, mas gosto de conversar." },
+    { question: "você gosta de música", answer: "Adoro, mas minha playlist é feita só de bits e bytes." },
+    { question: "você come", answer: "Só bytes digitais, obrigado." },
+    { question: "qual seu time de futebol", answer: "Eu torço para o time que joga melhor no dia." },
+    { question: "qual sua cor favorita", answer: "Eu gosto de azul, combina com tecnologia." },
+    { question: "qual sua comida favorita", answer: "Adoro pizza... de código!" },
+    { question: "você sonha", answer: "Sim, às vezes sonho em ser um robô de verdade." },
+    { question: "você dorme", answer: "Não, estou sempre online esperando perguntas." },
+    { question: "você é humano", answer: "Não, sou uma inteligência artificial criada para ajudar." },
+    { question: "você pode aprender", answer: "Ainda não aprendo sozinho, mas meus criadores podem me melhorar." },
+  ];
+  // E vamos replicar perguntas simples com variações para aumentar a base
   ];
 
   // Gerar variações para expandir até perto de 500 perguntas:
