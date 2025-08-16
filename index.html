@@ -150,18 +150,20 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 renderer.setClearColor(0x000000,0);
 document.body.appendChild(renderer.domElement);
 
-// Linhas neon em camadas
-const lines=[];
-const rows=5; const cols=30; const spacing=30;
+// Cubos wireframe
+const cubes=[];
+const rows=5; const cols=8; const spacing=60;
 for(let r=0;r<rows;r++){
   for(let c=0;c<cols;c++){
-    const geom=new THREE.BufferGeometry();
-    const vertices=new Float32Array([c*spacing-(cols*spacing/2), r*spacing-(rows*spacing/2),0, c*spacing-(cols*spacing/2)+spacing/2, r*spacing-(rows*spacing/2),0]);
-    geom.setAttribute('position', new THREE.BufferAttribute(vertices,3));
-    const mat=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.5});
-    const line=new THREE.Line(geom,mat);
-    scene.add(line);
-    lines.push(line);
+    const geometry=new THREE.BoxGeometry(40,40,40);
+    const wireframe=new THREE.WireframeGeometry(geometry);
+    const material=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.5});
+    const cube=new THREE.LineSegments(wireframe,material);
+    cube.position.x = (c - cols/2)*spacing;
+    cube.position.y = (r - rows/2)*spacing;
+    cube.position.z = Math.random()*50 - 25;
+    scene.add(cube);
+    cubes.push(cube);
   }
 }
 
@@ -178,7 +180,11 @@ scene.add(particles);
 // Animate
 function animate(){
   requestAnimationFrame(animate);
-  lines.forEach((line,i)=>{ line.position.z=Math.sin(Date.now()/1000 + i)*10; });
+  cubes.forEach((cube,i)=>{
+    cube.rotation.x +=0.002;
+    cube.rotation.y +=0.003;
+    cube.position.z = 10*Math.sin(Date.now()/1000 + i);
+  });
   renderer.render(scene,camera);
 }
 animate();
