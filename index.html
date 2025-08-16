@@ -191,9 +191,6 @@ const body = document.body;
 lampada.addEventListener("click",()=>{
   lampada.classList.toggle("acesa");
   body.classList.toggle("claro");
-  const intensity = body.classList.contains("claro") ? 1.2 : 0.6;
-  cubes.forEach(c=>c.material.opacity=intensity);
-  points.material.size = body.classList.contains("claro") ? 0.5 : 0.3;
 });
 
 // Mascote e balão
@@ -266,10 +263,24 @@ scene.add(directional);
 
 camera.position.z=35;
 
+// Interação mouse
+let mouse = { x:0, y:0 };
+document.addEventListener('mousemove', e => {
+  mouse.x = (e.clientX / window.innerWidth) * 2 - 1;
+  mouse.y = - (e.clientY / window.innerHeight) * 2 + 1;
+});
+
 function animate(){
   requestAnimationFrame(animate);
-  cubes.forEach(c=>{c.rotation.x+=0.005;c.rotation.y+=0.007;});
-  points.rotation.y +=0.002;
+
+  cubes.forEach(c => {
+    c.rotation.x += 0.005 + mouse.y * 0.01;
+    c.rotation.y += 0.007 + mouse.x * 0.01;
+  });
+
+  points.rotation.y = mouse.x * 0.5;
+  points.rotation.x = mouse.y * 0.5;
+
   renderer.render(scene,camera);
 }
 animate();
