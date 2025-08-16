@@ -7,10 +7,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --dark-blue: #29648e;
-  --light-neutral: #f4f6f8;
+  --dark-blue: #0a1b2a;
   --neon-cyan: #00ffff;
-  --neon-green: #39ff14;
+  --light-neutral: #f4f6f8;
 }
 body {
   margin:0;
@@ -18,7 +17,6 @@ body {
   background-color: var(--dark-blue);
   color: var(--light-neutral);
   overflow-x:hidden;
-  transition: background 0.5s,color 0.5s;
   position: relative;
 }
 header {
@@ -30,7 +28,7 @@ header {
   width: 100%;
   top:0;
   left:0;
-  background: rgba(41,100,142,0.9);
+  background: rgba(10,27,42,0.8);
   z-index: 1000;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
 }
@@ -50,6 +48,7 @@ nav a::after{
 nav a:hover{color: var(--neon-cyan);}
 nav a:hover::after{width:100%;}
 
+/* Lampada */
 .lampada-btn{
   cursor:pointer;
   width:50px;
@@ -65,34 +64,55 @@ nav a:hover::after{width:100%;}
 .lampada.acesa svg{
   fill:#00BFFF;
   filter:drop-shadow(0 0 25px #1E90FF);
-  animation: piscar 0.6s ease, fogo 2s infinite ease-in-out alternate;
-}
-@keyframes piscar{
-  0%,50%{fill:#444;filter:drop-shadow(0 0 5px #000);}
-  30%,80%,100%{fill:#00BFFF;filter:drop-shadow(0 0 20px #63B8FF);}
-}
-@keyframes fogo{
-  0%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 20px #1E90FF);}
-  25%{transform:scale(1.05) translateY(-2px);filter:drop-shadow(0 0 25px #63B8FF);}
-  50%{transform:scale(0.95) translateY(1px);filter:drop-shadow(0 0 18px #00BFFF);}
-  75%{transform:scale(1.08) translateY(-1px);filter:drop-shadow(0 0 28px #87CEFA);}
-  100%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 22px #1E90FF);}
 }
 
+/* Hero */
 section{padding:120px 40px 80px; min-height:100vh; position:relative;}
 .hero{display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;}
 .hero h1{font-size:3rem;color: var(--neon-cyan); margin-bottom:20px;}
 .hero p{font-size:1.2rem; max-width:700px; line-height:1.6; color:var(--light-neutral);}
+
+/* Mascote Robo */
 .mascote{
-  width:80px; height:80px; position:absolute; bottom:20px; right:20px;
+  width:100px; height:100px; position:absolute; bottom:20px; right:20px;
   cursor:pointer;
   animation: float 3s ease-in-out infinite;
+  z-index:1001;
+  display:flex; align-items:center; justify-content:center;
+  transform-origin: center bottom;
 }
 @keyframes float{
   0%,100%{transform:translateY(0);}
   50%{transform:translateY(-15px);}
 }
-body.claro{background:#f0f0f0;color:#000000;}
+
+/* Balão de fala */
+.balao{
+  position:absolute;
+  bottom:130px;
+  right:120px;
+  background: #0a1b2a;
+  border: 2px solid var(--neon-cyan);
+  border-radius:10px;
+  padding:10px 15px;
+  max-width:220px;
+  color: var(--neon-cyan);
+  font-size:0.9rem;
+  display:none;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  opacity:0;
+}
+.balao::after{
+  content:'';
+  position:absolute;
+  bottom:-10px; right:20px;
+  border-width:10px 10px 0 10px;
+  border-style:solid;
+  border-color: #0a1b2a transparent transparent transparent;
+}
+
+/* Canvas */
 #scene{position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;}
 </style>
 </head>
@@ -122,12 +142,19 @@ body.claro{background:#f0f0f0;color:#000000;}
   <p>Aqui você vai descobrir como a tecnologia e a sustentabilidade se encontram. Explore nossos projetos de robótica, interaja com a IA e aprenda sobre lixo eletrônico.</p>
 </section>
 
-<div class="mascote" title="Clique para dicas"></div>
+<!-- Mascote Robo -->
+<div class="mascote" id="robo" title="Clique para dicas">
+  <img id="robo-img" src="https://i.ibb.co/6RJ6wXz/robot.png" alt="Robo" style="width:100%;height:100%;">
+</div>
+
+<!-- Balão de fala -->
+<div class="balao" id="balao">Clique aqui para ver dicas de robótica sustentável!</div>
 
 <canvas id="scene"></canvas>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r150/three.min.js"></script>
 <script>
+// Modo claro/escuro
 const lampada = document.getElementById("lampada");
 const body = document.body;
 lampada.addEventListener("click",()=>{
@@ -135,14 +162,52 @@ lampada.addEventListener("click",()=>{
   body.classList.toggle("claro");
 });
 
-// Three.js - fundo de cubos animados
+// Balão de fala com múltiplas dicas e animação
+const robo = document.getElementById("robo");
+const roboImg = document.getElementById("robo-img");
+const balao = document.getElementById("balao");
+const dicas = [
+  "Separe corretamente plásticos, metais e circuitos!",
+  "Reaproveite peças antigas para novos projetos.",
+  "Use sensores para automatizar a separação de lixo.",
+  "Pequenos robôs podem ajudar escolas e empresas a reciclar."
+];
+let dicaIndex = 0;
+
+robo.addEventListener("click", () => {
+  balao.style.display = "block";
+  balao.textContent = dicas[dicaIndex];
+  dicaIndex = (dicaIndex + 1) % dicas.length;
+
+  // efeito pop-up neon
+  balao.style.transform = "scale(0)";
+  balao.style.opacity = "0";
+  setTimeout(() => {
+    balao.style.transition = "transform 0.3s ease-out, opacity 0.3s ease-out";
+    balao.style.transform = "scale(1)";
+    balao.style.opacity = "1";
+  }, 10);
+
+  // animação do robo acenando
+  let rotateDeg = 0;
+  const interval = setInterval(() => {
+    rotateDeg = rotateDeg === 15 ? -15 : 15;
+    robo.style.transform = `translateY(-10px) rotate(${rotateDeg}deg)`;
+  }, 200);
+  setTimeout(() => {
+    clearInterval(interval);
+    robo.style.transform = "translateY(-10px) rotate(0deg)";
+  }, 1200);
+});
+
+// Three.js - Fundo futurista neon
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(60, window.innerWidth/window.innerHeight,0.1,1000);
 const renderer = new THREE.WebGLRenderer({canvas:document.getElementById("scene"), alpha:true});
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(window.devicePixelRatio);
 
-// cubos
+// Cubos neon
 const cubes = [];
 const cubeCount = 50;
 for(let i=0;i<cubeCount;i++){
@@ -155,19 +220,19 @@ for(let i=0;i<cubeCount;i++){
   scene.add(cube);
 }
 
-// partículas
+// Partículas
 const particleCount = 80;
 const positions = [];
 for(let i=0;i<particleCount;i++){
   positions.push((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
 }
-const geometry = new THREE.BufferGeometry();
-geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions,3));
-const material = new THREE.PointsMaterial({color:0x00ffff, size:0.3});
-const points = new THREE.Points(geometry, material);
+const geometryP = new THREE.BufferGeometry();
+geometryP.setAttribute('position', new THREE.Float32BufferAttribute(positions,3));
+const materialP = new THREE.PointsMaterial({color:0x00ffff, size:0.3});
+const points = new THREE.Points(geometryP, materialP);
 scene.add(points);
 
-// linhas entre partículas
+// Linhas entre partículas
 const lineMat = new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.3});
 const lineGeom = new THREE.BufferGeometry();
 const linePos = [];
@@ -185,7 +250,7 @@ lineGeom.setAttribute('position',new THREE.Float32BufferAttribute(linePos,3));
 const lines = new THREE.LineSegments(lineGeom,lineMat);
 scene.add(lines);
 
-// luz
+// Luz
 const ambientLight = new THREE.AmbientLight(0x00ffff,0.5);
 scene.add(ambientLight);
 const directionalLight = new THREE.DirectionalLight(0x00ffff,0.5);
@@ -194,12 +259,11 @@ scene.add(directionalLight);
 
 camera.position.z = 35;
 
+// Animação
 function animate(){
   requestAnimationFrame(animate);
-  // cubos girando
   cubes.forEach(c=>c.rotation.x+=0.005);
   cubes.forEach(c=>c.rotation.y+=0.007);
-  // partículas e linhas girando
   points.rotation.y +=0.001;
   lines.rotation.y +=0.001;
   renderer.render(scene,camera);
