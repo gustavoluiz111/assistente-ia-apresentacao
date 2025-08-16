@@ -155,22 +155,16 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 renderer.setClearColor(0x000000,0);
 document.body.appendChild(renderer.domElement);
 
-// Cubos por seção
-const sections=document.querySelectorAll('section');
-const sectionCubes=[];
-sections.forEach((sec,i)=>{
-  const color= i===0?0x00ffff: i===1?0x39ff14: i===2?0xffff00:i===3?0x1e90ff:0x00ffff;
-  const cubes=[];
-  for(let j=0;j<15;j++){
-    const geom=new THREE.BoxGeometry(8,8,8);
-    const mat=new THREE.MeshStandardMaterial({color:color,metalness:0.7,roughness:0.2});
-    const cube=new THREE.Mesh(geom,mat);
-    cube.position.set((Math.random()-0.5)*600,(Math.random()-0.5)*800,(Math.random()-0.5)*600);
-    scene.add(cube);
-    cubes.push(cube);
-  }
-  sectionCubes.push({cubes,top:sec.offsetTop});
-});
+// Cubos originais
+const cubes=[];
+for(let i=0;i<60;i++){
+  const geom=new THREE.BoxGeometry(8,8,8);
+  const mat=new THREE.MeshStandardMaterial({color:0x00ffff,metalness:0.7,roughness:0.2});
+  const cube=new THREE.Mesh(geom,mat);
+  cube.position.set((Math.random()-0.5)*1000,(Math.random()-0.5)*1000,(Math.random()-0.5)*1000);
+  scene.add(cube);
+  cubes.push(cube);
+}
 
 // Iluminação
 const ambient=new THREE.AmbientLight(0xffffff,0.4); scene.add(ambient);
@@ -178,10 +172,10 @@ const pointLight=new THREE.PointLight(0x00ffff,1,2000); pointLight.position.set(
 
 // Linhas de energia
 const lines=[];
-for(let i=0;i<50;i++){
+for(let i=0;i<80;i++){
   const points=[];
-  points.push(new THREE.Vector3((Math.random()-0.5)*600,(Math.random()-0.5)*800,(Math.random()-0.5)*600));
-  points.push(new THREE.Vector3((Math.random()-0.5)*600,(Math.random()-0.5)*800,(Math.random()-0.5)*600));
+  points.push(new THREE.Vector3((Math.random()-0.5)*1000,(Math.random()-0.5)*1000,(Math.random()-0.5)*1000));
+  points.push(new THREE.Vector3((Math.random()-0.5)*1000,(Math.random()-0.5)*1000,(Math.random()-0.5)*1000));
   const geom=new THREE.BufferGeometry().setFromPoints(points);
   const mat=new THREE.LineBasicMaterial({color:0x00ffff,transparent:true,opacity:0.3});
   const line=new THREE.Line(geom,mat);
@@ -193,28 +187,16 @@ for(let i=0;i<50;i++){
 const particleCount=400;
 const particlesGeo=new THREE.BufferGeometry();
 const positions=[];
-for(let i=0;i<particleCount;i++){ positions.push((Math.random()-0.5)*800,(Math.random()-0.5)*1200,(Math.random()-0.5)*800);}
+for(let i=0;i<particleCount;i++){ positions.push((Math.random()-0.5)*1200,(Math.random()-0.5)*1200,(Math.random()-0.5)*1200);}
 particlesGeo.setAttribute('position',new THREE.Float32BufferAttribute(positions,3));
 const particleMat=new THREE.PointsMaterial({color:0x00ffff,size:2,transparent:true,opacity:0.4});
 const particles=new THREE.Points(particlesGeo,particleMat);
 scene.add(particles);
 
-// Scroll storytelling
-let scrollY=0;
-window.addEventListener('scroll',()=>{ scrollY=window.scrollY; });
-
+// Animate
 function animate(){
   requestAnimationFrame(animate);
-  sectionCubes.forEach(obj=>{
-    obj.cubes.forEach((c,i)=>{
-      c.rotation.x+=0.01; c.rotation.y+=0.01;
-      c.position.y -= scrollY*0.0002;
-      // Entrada suave: fade+scale
-      const rect=obj.top - scrollY;
-      if(rect<window.innerHeight && rect>-200){ c.scale.set(1,1,1);}
-      else{ c.scale.set(0,0,0);}
-    });
-  });
+  cubes.forEach(c=>{ c.rotation.x+=0.01; c.rotation.y+=0.01; });
   lines.forEach(l=>{ l.line.geometry.attributes.position.needsUpdate=true; });
   renderer.render(scene,camera);
 }
