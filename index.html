@@ -138,3 +138,32 @@
     const material=new THREE.MeshBasicMaterial({color:0x00ffff,wireframe:true});
     const cubes=[];
     for(let i=0;i<
+
+        
+    // Animação 3D
+    function animate3D(){
+      requestAnimationFrame(animate3D);
+      cubes.forEach(c=>{ c.rotation.x+=0.002; c.rotation.y+=0.003; });
+      lines.forEach(obj=>{
+        obj.t+=0.01;
+        const posA=obj.a.position;
+        const posB=obj.b.position;
+        const lerpX=posA.x + (posB.x-posA.x)*(0.5 + 0.5*Math.sin(obj.t));
+        const lerpY=posA.y + (posB.y-posA.y)*(0.5 + 0.5*Math.sin(obj.t));
+        const lerpZ=posA.z + (posB.z-posA.z)*(0.5 + 0.5*Math.sin(obj.t));
+        obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z), new THREE.Vector3(lerpX,lerpY,lerpZ)]);
+        obj.line.material.opacity = 0.3 + 0.4*Math.sin(obj.t*2);
+      });
+      mascoteDistanceEffect();
+      camera.position.x=Math.sin(Date.now()*0.0005)*10;
+      camera.position.y=Math.cos(Date.now()*0.0005)*5;
+      camera.lookAt(0,0,0);
+      renderer.render(scene,camera);
+    }
+    animate3D();
+
+    window.addEventListener('resize',()=>{ camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight); });
+  </script>
+    </script>
+</body>
+</html>
