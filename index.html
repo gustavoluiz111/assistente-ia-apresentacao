@@ -60,8 +60,21 @@ body.claro .hero h1{ color:#000; }
 body.claro .hero p{ color:#000; }
 
 .mascote{
-  width:80px; height:80px; position:absolute; bottom:20px; right:20px; border-radius:8px;
-  animation:float 3s ease-in-out infinite; cursor:pointer; display:flex; align-items:center; justify-content:center; color:var(--dark-blue); font-weight:bold; z-index:5;
+  width:120px;  /* aumentei */
+  height:120px; /* aumentei */
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  border-radius:12px;
+  animation:float 3s ease-in-out infinite;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:var(--dark-blue);
+  font-weight:bold;
+  font-size:3rem; /* maior */
+  z-index:5;
 }
 @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
 
@@ -101,7 +114,7 @@ canvas#particles, canvas#three-canvas { position:fixed; top:0; left:0; width:100
   .lampada-btn{ width:40px; height:40px; }
   .hero h1{ font-size:2rem; }
   .hero p{ font-size:1rem; max-width:90%; }
-  .mascote{ width:60px; height:60px; }
+  .mascote{ width:90px; height:90px; font-size:2.2rem; }
 }
 </style>
 </head>
@@ -121,8 +134,7 @@ canvas#particles, canvas#three-canvas { position:fixed; top:0; left:0; width:100
   <nav>
     <a href="index.html">Home</a>
     <a href="projetos.html">Projetos</a>
-    <a href="garra.html">Garra</a>
-    <a href="jogo.html">Jogo</a>
+    <a href="lixo.html">Lixo Eletrônico</a>
     <a href="ia.html">IA</a>
     <a href="creditos.html">Créditos</a>
   </nav>
@@ -137,7 +149,7 @@ canvas#particles, canvas#three-canvas { position:fixed; top:0; left:0; width:100
 
 <section class="projetos fade-in" id="projetos">
   <h2>Projetos EcoRobôs</h2>
-  <p>Explore nossos robôs, site com IA e o jogo 2D RECIBOT.</p>
+  <p>Explore nossos robôs, site com IA e projetos de Lixo Eletrônico.</p>
   <div class="linha" style="top:50px; left:10%; width:80%;"></div>
   <div class="linha" style="top:200px; left:15%; width:70%;"></div>
 </section>
