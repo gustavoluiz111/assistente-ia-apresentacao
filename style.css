@@ -1,5 +1,5 @@
 :root {
-  --dark-blue: #0a0f1e; /* fundo principal */
+  --dark-blue: #0a0f1e;
   --light-neutral: #f4f6f8;
   --neon-cyan: #00ffff;
   --neon-green: #39ff14;
@@ -16,8 +16,8 @@ body {
   position: relative;
 }
 body.claro {
-  background:#f0f0f0;
-  color:#000;
+  background: #f0f0f0;
+  color: #000;
 }
 
 /* HEADER */
@@ -37,20 +37,56 @@ header .left {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin: 0;
+  position: relative;
 }
 .logo {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 0;
-  margin: 0;
-  background-color: transparent;
-  border-radius: 0;
 }
 .logo img {
   height: 40px;
   width: auto;
+}
+
+/* LÂMPADA AO LADO DA LOGO */
+header .lampada-btn {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%) translateX(10px);
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+header .lampada-btn svg {
+  width: 100%;
+  height: 100%;
+}
+header .lampada-btn:hover { transform: translateY(-50%) translateX(10px) scale(1.1); }
+
+.lampada.acesa svg {
+  fill: #00BFFF;
+  filter: drop-shadow(0 0 25px #1E90FF);
+  animation: piscar 0.6s ease, fogo 2s infinite ease-in-out alternate;
+}
+@keyframes piscar {
+  0%{fill:#444;filter:drop-shadow(0 0 5px #000);}
+  30%{fill:#00BFFF;filter:drop-shadow(0 0 15px #1E90FF);}
+  50%{fill:#444;filter:drop-shadow(0 0 5px #000);}
+  80%{fill:#00BFFF;filter:drop-shadow(0 0 20px #63B8FF);}
+  100%{fill:#00BFFF;filter:drop-shadow(0 0 25px #1E90FF);}
+}
+@keyframes fogo {
+  0%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 20px #1E90FF);}
+  25%{transform:scale(1.05) translateY(-2px);filter:drop-shadow(0 0 25px #63B8FF);}
+  50%{transform:scale(0.95) translateY(1px);filter:drop-shadow(0 0 18px #00BFFF);}
+  75%{transform:scale(1.08) translateY(-1px);filter:drop-shadow(0 0 28px #87CEFA);}
+  100%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 22px #1E90FF);}
 }
 
 /* NAV LINKS */
@@ -78,46 +114,6 @@ nav a:hover {
 }
 nav a:hover::after { width: 100%; }
 
-/* LÂMPADA */
-.lampada-btn {
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  transition: transform 0.2s;
-  z-index: 20; /* garantir visibilidade */
-  position: fixed; /* fixar na tela */
-  bottom: 20px;
-  right: 80px; /* afastar da mascote */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.lampada-btn:hover { transform: scale(1.1); }
-.lampada svg {
-  fill: #444;
-  filter: drop-shadow(0 0 5px #000);
-  transition: fill 0.5s ease, filter 0.5s ease;
-}
-.lampada.acesa svg {
-  fill: #00BFFF;
-  filter: drop-shadow(0 0 25px #1E90FF);
-  animation: piscar 0.6s ease, fogo 2s infinite ease-in-out alternate;
-}
-@keyframes piscar {  
-  0%{fill:#444;filter:drop-shadow(0 0 5px #000);}
-  30%{fill:#00BFFF;filter:drop-shadow(0 0 15px #1E90FF);}
-  50%{fill:#444;filter:drop-shadow(0 0 5px #000);}
-  80%{fill:#00BFFF;filter:drop-shadow(0 0 20px #63B8FF);}
-  100%{fill:#00BFFF;filter:drop-shadow(0 0 25px #1E90FF);}
-}
-@keyframes fogo {  
-  0%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 20px #1E90FF);}
-  25%{transform:scale(1.05) translateY(-2px);filter:drop-shadow(0 0 25px #63B8FF);}
-  50%{transform:scale(0.95) translateY(1px);filter:drop-shadow(0 0 18px #00BFFF);}
-  75%{transform:scale(1.08) translateY(-1px);filter:drop-shadow(0 0 28px #87CEFA);}
-  100%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 22px #1E90FF);}
-}
-
 /* HERO SECTION */
 section {
   padding: 120px 40px 80px;
@@ -136,7 +132,7 @@ body.claro .hero h1{ color:#000; }
 body.claro .hero p{ color:#000; }
 
 /* MASCOTE */
-.mascote{
+.mascote {
   width: 80px;
   height: 80px;
   position: fixed;
@@ -150,12 +146,12 @@ body.claro .hero p{ color:#000; }
   justify-content: center;
   font-weight: bold;
   font-size: 2.5rem;
-  z-index: 15; /* acima do canvas, abaixo da lâmpada se necessário */
+  z-index: 15;
 }
 @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
 
 /* BALÃO DE MENSAGEM */
-.balao{
+.balao {
   position: fixed;
   background: #29648e;
   border: 2px solid var(--neon-cyan);
@@ -168,7 +164,7 @@ body.claro .hero p{ color:#000; }
   opacity: 0;
   transform-origin: bottom right;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 16; /* acima do mascote */
+  z-index: 16;
 }
 .balao::after{
   content:''; position:absolute; bottom:-10px; right:15px;
@@ -246,7 +242,7 @@ canvas#particles, canvas#three-canvas {
   header{ flex-direction: column; gap:10px; padding:10px; }
   nav a{ margin-left:10px; font-size:0.9rem; }
   .logo img{ height: 30px; }
-  .lampada-btn{ width:40px; height:40px; bottom:15px; right:70px; }
+  header .lampada-btn{ top:auto; bottom:10px; left:auto; right:10px; transform:none; width:40px; height:40px; }
   .hero h1{ font-size:2rem; }
   .hero p{ font-size:1rem; max-width:90%; }
   .mascote{ width:60px; height:60px; font-size:2rem; }
@@ -255,3 +251,4 @@ canvas#particles, canvas#three-canvas {
 
 /* Mensagem pequena */
 .mensagem { font-size: 12px; }
+    
