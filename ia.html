@@ -1,79 +1,149 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>I.A. - Assistente IA</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-<header>
-  <h1>Assistente IA - Simulação</h1>
-  <nav>
-    <ul>
-      <li><a href="index.html">Início</a></li>
-      <li><a href="projeto.html">Projeto</a></li>
-      <li><a href="ia.html" aria-current="page">I.A.</a></li>
-      <li><a href="creditos.html">Créditos</a></li>
-    </ul>
-  </nav>
-</header>
-
-<main>
-  <div class="top-buttons" role="region" aria-label="Botões de ações rápidas">
-    <button id="btn-theme" aria-pressed="false" aria-label="Alternar tema claro e escuro">Tema Escuro</button>
-    <button id="btn-alerta" aria-label="Mostrar alerta de funcionalidade">Mostrar alerta</button>
-    <button id="btn-voltar-topo" aria-label="Voltar ao topo da página">Topo</button>
-  </div>
-
-  <section>
-    <h2>Assistente Inteligente</h2>
-    <p>Para conversar com o assistente, acesse a página dedicada:</p>
-    <p><a href="chat.html" class="btn-link">Ir para chat de perguntas</a></p>
-  </section>
-</main>
-
-<footer>
-  <p>© 2025 - Equipe IPA Nível III</p>
-</footer>
-
-<script src="scripts.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const btnTheme = document.getElementById('btn-theme');
-    const body = document.body;
-
-    function setTheme(dark) {
-      if (dark) {
-        body.classList.add('dark');
-        btnTheme.textContent = 'Tema Claro';
-        btnTheme.setAttribute('aria-pressed', 'true');
-      } else {
-        body.classList.remove('dark');
-        btnTheme.textContent = 'Tema Escuro';
-        btnTheme.setAttribute('aria-pressed', 'false');
-      }
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jarvis - EcoRobôs</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #0d1b2a;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
     }
 
-    const savedTheme = localStorage.getItem('theme');
-    setTheme(savedTheme === 'dark');
+    .chat-container {
+      width: 95%;
+      max-width: 500px;
+      height: 90vh;
+      background: #1b263b;
+      display: flex;
+      flex-direction: column;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
 
-    btnTheme.addEventListener('click', () => {
-      const isDark = body.classList.contains('dark');
-      setTheme(!isDark);
-    });
+    .chat-header {
+      background: #0a9396;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 20px;
+      font-weight: bold;
+    }
 
-    const btnAlerta = document.getElementById('btn-alerta');
-    btnAlerta.addEventListener('click', () => {
-      alert('Funcionalidade em desenvolvimento! Em breve terá mais recursos.');
-    });
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
 
-    const btnTopo = document.getElementById('btn-voltar-topo');
-    btnTopo.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
+    .message {
+      max-width: 75%;
+      padding: 10px 15px;
+      border-radius: 20px;
+      font-size: 15px;
+      line-height: 1.4;
+      word-wrap: break-word;
+    }
+
+    .user-message {
+      align-self: flex-end;
+      background: #3a86ff;
+      color: #fff;
+      border-bottom-right-radius: 5px;
+    }
+
+    .bot-message {
+      align-self: flex-start;
+      background: #e9ecef;
+      color: #000;
+      border-bottom-left-radius: 5px;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      background: #14213d;
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 20px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    .chat-input button {
+      margin-left: 10px;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 50%;
+      background: #0a9396;
+      color: white;
+      cursor: pointer;
+      font-size: 18px;
+    }
+
+    .chat-input button:hover {
+      background: #007f7f;
+    }
+  </style>
+</head>
+<body>
+  <div class="chat-container">
+    <div class="chat-header">🤖 Jarvis - EcoRobôs</div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="bot-message message">Olá! Eu sou o Jarvis, sua IA EcoRobôs. Pergunte-me qualquer coisa!</div>
+    </div>
+    <div class="chat-input">
+      <input type="text" id="userInput" placeholder="Digite sua mensagem...">
+      <button onclick="sendMessage()">➤</button>
+      <button onclick="voiceInput()">🎤</button>
+    </div>
+  </div>
+
+  <script src="chat.js"></script>
+  <script>
+    function sendMessage() {
+      const input = document.getElementById('userInput');
+      const message = input.value.trim();
+      if (message === "") return;
+
+      addMessage(message, "user");
+      input.value = "";
+
+      // Chamar a resposta do Jarvis
+      getJarvisResponse(message);
+    }
+
+    function addMessage(text, sender) {
+      const chat = document.getElementById("chatMessages");
+      const msgDiv = document.createElement("div");
+      msgDiv.classList.add("message", sender === "user" ? "user-message" : "bot-message");
+      msgDiv.innerText = text;
+      chat.appendChild(msgDiv);
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function getJarvisResponse(userText) {
+      // Simulação inicial
+      let response = "Ainda estou aprendendo. Me pergunte sobre EcoRobôs!";
+      addMessage(response, "bot");
+    }
+
+    function voiceInput() {
+      alert("🎤 Função de voz será adicionada em breve!");
+    }
   </script>
 </body>
 </html>
