@@ -51,20 +51,33 @@ function responder(pergunta) {
   return "Desculpe, não entendi. Pode reformular?";
 }
 
-// --- Envio de texto ---
-sendBtn.addEventListener("click", () => {
-  const texto = userInput.value.trim();
-  if (texto) {
-    addMessage(texto, "user");
-    const resposta = responder(texto);
-    setTimeout(() => addMessage(resposta, "bot"), 500);
-    userInput.value = "";
-  }
-});
+// --- Função de resposta com "digitando..." ---
+function respostaIAComDigitando(pergunta) {
+  const digitando = document.createElement("div");
+  digitando.classList.add("message", "bot");
+  digitando.textContent = "digitando...";
+  chatWindow.appendChild(digitando);
+  chatWindow.scrollTop = chatWindow.scrollHeight;
 
-// --- Enter também envia ---
+  setTimeout(() => {
+    const resposta = responder(pergunta);
+    digitando.textContent = resposta;
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }, 800 + Math.random() * 1200);
+}
+
+// --- Envio de texto ---
+function enviarTexto() {
+  const texto = userInput.value.trim();
+  if (!texto) return;
+  addMessage(texto, "user");
+  userInput.value = "";
+  respostaIAComDigitando(texto);
+}
+
+sendBtn.addEventListener("click", enviarTexto);
 userInput.addEventListener("keypress", e => {
-  if (e.key === "Enter") sendBtn.click();
+  if (e.key === "Enter") enviarTexto();
 });
 
 // --- Reconhecimento de voz ---
@@ -80,7 +93,6 @@ if (SpeechRecognition) {
   recognition.onresult = (event) => {
     const texto = event.results[0][0].transcript;
     addMessage(texto, "user");
-    const resposta = responder(texto);
-    setTimeout(() => addMessage(resposta, "bot"), 500);
+    respostaIAComDigitando(texto);
   };
 }
