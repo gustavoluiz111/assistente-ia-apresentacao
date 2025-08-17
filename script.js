@@ -63,4 +63,47 @@ renderer.setSize(window.innerWidth,window.innerHeight);
 const geometry=new THREE.BoxGeometry();
 const material=new THREE.MeshBasicMaterial({color:0x00ffff,wireframe:true});
 const cubes=[];
-for(let i=0;i<50;i++){ const cube=new THREE.Mesh(geometry,material); cube.position.set((Math.random()-0.5)*50,(Math.random()-
+for(let i=0;i<50;i++){ const cube=new THREE.Mesh(geometry,material); cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50); scene3D.add(cube); cubes.push(cube); }
+camera.position.z=30;
+
+const lines=[];
+for(let i=0;i<50;i++){ const a=cubes[i]; const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length]; const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z), new THREE.Vector3(b.position.x,b.position.y,b.position.z)]; const geometryLine=new THREE.BufferGeometry().setFromPoints(points); const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff,transparent:true,opacity:0.6}); const line=new THREE.Line(geometryLine,lineMaterial); scene3D.add(line); lines.push({line,a,b,t:Math.random()}); }
+
+function mascoteDistanceEffect(){
+  const rect=mascote.getBoundingClientRect();
+  const mx=rect.left+rect.width/2;
+  const my=rect.top+rect.height/2;
+  lines.forEach(obj=>{
+    const projX=(obj.a.position.x+obj.b.position.x)/2+window.innerWidth/2;
+    const projY=(obj.a.position.y+obj.b.position.y)/2+window.innerHeight/2;
+    const dist=Math.hypot(mx-projX,my-projY);
+    obj.line.material.opacity = dist<200 ? 1 : 0.3 + 0.4*Math.sin(obj.t*2);
+  });
+}
+
+function animate3D(){
+  requestAnimationFrame(animate3D);
+  cubes.forEach(c=>{ c.rotation.x+=0.002; c.rotation.y+=0.003; });
+  lines.forEach(obj=>{
+    obj.t+=0.01;
+    const posA=obj.a.position;
+    const posB=obj.b.position;
+    const lerpX=posA.x + (posB.x-posA.x)*(0.5 + 0.5*Math.sin(obj.t));
+    const lerpY=posA.y + (posB.y-posA.y)*(0.5 + 0.5*Math.sin(obj.t));
+    const lerpZ=posA.z + (posB.z-posA.z)*(0.5 + 0.5*Math.sin(obj.t));
+    obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z), new THREE.Vector3(lerpX,lerpY,lerpZ)]);
+    obj.line.material.opacity = 0.3 + 0.4*Math.sin(obj.t*2);
+  });
+  mascoteDistanceEffect();
+  camera.position.x=Math.sin(Date.now()*0.0005)*10;
+  camera.position.y=Math.cos(Date.now()*0.0005)*5;
+  camera.lookAt(0,0,0);
+  renderer.render(scene3D,camera);
+}
+animate3D();
+
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
