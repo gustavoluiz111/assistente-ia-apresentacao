@@ -3,26 +3,94 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assistente IA - Jarvis</title>
+  <title>IA - EcoRobôs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <script defer src="chat.js"></script>
+  <style>
+    /* Chatbox estilo aplicativo */
+    #chat-container {
+      max-width: 600px;
+      margin: 40px auto;
+      background-color: rgba(0,0,50,0.9);
+      border-radius: 15px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      height: 70vh;
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+    }
+    #chat {
+      flex: 1;
+      overflow-y: auto;
+      padding-right: 10px;
+    }
+    .message {
+      margin: 5px 0;
+      padding: 10px 15px;
+      border-radius: 20px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    .user { background-color: #1e90ff; align-self: flex-end; }
+    .bot { background-color: #4b0082; align-self: flex-start; }
+    #input-container { display: flex; margin-top: 10px; }
+    #question-input {
+      flex: 1;
+      padding: 10px;
+      border-radius: 15px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+    }
+    #btn-send, #btn-voice {
+      margin-left: 10px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+      background-color: #1e90ff;
+      color: #fff;
+    }
+    #status { margin-top: 5px; font-size: 14px; color: #00ff00; min-height: 18px; }
+  </style>
 </head>
 <body>
+  <canvas id="particles"></canvas>
+  <canvas id="three-canvas"></canvas>
+
   <header>
-    <img src="https://raw.githubusercontent.com/gustavoluiz111/assistente-ia-apresentacao/main/Free.png" alt="Logo EcoRobôs" class="logo">
-    <h1>Assistente IA - Jarvis</h1>
+    <div class="left">
+      <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs" style="height:50px;"></div>
+      <div class="lampada lampada-btn" id="lampada" title="Modo Claro/Escuro">
+        <!-- SVG lâmpada -->
+      </div>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="lixo.html">Lixo Eletrônico</a>
+      <a href="ia.html">IA</a>
+      <a href="creditos.html">Créditos</a>
+    </nav>
   </header>
 
-  <main class="chat-container">
-    <div id="chat-window">
-      <!-- As mensagens vão ser adicionadas aqui -->
-    </div>
+  <section class="hero fade-in">
+    <h1>Assistente IA - Jarvis</h1>
+    <p>Converse com a IA do projeto EcoRobôs como se estivesse usando um aplicativo de mensagens. Fale ou digite sua pergunta.</p>
+  </section>
 
-    <div class="chat-input">
-      <input type="text" id="user-input" placeholder="Digite sua mensagem...">
-      <button id="send-btn">Enviar</button>
-      <button id="voice-btn">🎤</button>
+  <section id="chat-container" class="fade-in">
+    <div id="chat"></div>
+    <div id="input-container">
+      <input type="text" id="question-input" placeholder="Digite sua pergunta...">
+      <button id="btn-send">Enviar</button>
+      <button id="btn-voice">🎤</button>
     </div>
-  </main>
+    <div id="status"></div>
+  </section>
+
+  <script src="chat.js"></script>
 </body>
 </html>
