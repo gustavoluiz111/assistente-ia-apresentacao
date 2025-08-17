@@ -1,196 +1,151 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>EcoRobôs - IA</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    :root {
-      --dark-blue: #0a0f1e;
-      --light-neutral: #f4f6f8;
-      --neon-cyan: #00ffff;
-      --neon-green: #39ff14;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IA - EcoRobôs</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Chatbox estilo WhatsApp/Telegram */
+  .chat-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    max-width: 600px;
+    margin: 20px auto;
+    border: 2px solid #00ffff;
+    border-radius: 15px;
+    background-color: rgba(0,0,0,0.6);
+  }
 
-    body {
-      margin: 0;
-      font-family: 'Orbitron', sans-serif;
-      background-color: var(--dark-blue);
-      color: var(--light-neutral);
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-    }
+  #chat-window {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+    scroll-behavior: smooth;
+  }
 
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 10px 20px;
-      background-color: #070b17;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
+  .message {
+    padding: 10px 15px;
+    margin: 5px 0;
+    max-width: 70%;
+    border-radius: 20px;
+    word-wrap: break-word;
+    position: relative;
+    animation: fadeInSlide 0.4s ease forwards;
+  }
 
-    header .logo img {
-      height: 50px;
-    }
+  .message.user {
+    background-color: #39ff14;
+    color: #000;
+    margin-left: auto;
+    border-bottom-right-radius: 0;
+    transform: translateX(50px);
+    opacity: 0;
+  }
 
-    nav a {
-      color: var(--light-neutral);
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: bold;
-    }
+  .message.bot {
+    background-color: #00ffff;
+    color: #000;
+    margin-right: auto;
+    border-bottom-left-radius: 0;
+    transform: translateX(-50px);
+    opacity: 0;
+  }
 
-    nav a.active {
-      color: var(--neon-cyan);
+  @keyframes fadeInSlide {
+    to {
+      transform: translateX(0);
+      opacity: 1;
     }
+  }
 
-    .lampada {
-      width: 30px;
-      height: 30px;
-      background: url('https://cdn-icons-png.flaticon.com/512/61/61456.png') center/contain no-repeat;
-      cursor: pointer;
-      filter: invert(1);
-    }
+  .input-container {
+    display: flex;
+    margin-top: 10px;
+  }
 
-    .chat-container {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-end;
-      padding: 20px;
-      max-width: 600px;
-      margin: 20px auto;
-      border: 2px solid var(--neon-cyan);
-      border-radius: 15px;
-      background-color: rgba(0,0,0,0.6);
-    }
+  #user-input {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 25px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    background-color: rgba(255,255,255,0.1);
+    color: #f4f6f8;
+  }
 
-    #chat-window {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
+  #send-btn, #voice-btn {
+    margin-left: 10px;
+    padding: 0 15px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    background-color: #00ffff;
+    color: #000;
+  }
 
-    .message {
-      padding: 10px 15px;
-      margin: 5px 0;
-      max-width: 70%;
-      border-radius: 20px;
-      word-wrap: break-word;
-      animation: fadeIn 0.3s ease-in;
-    }
+  body.claro #user-input {
+    background-color: rgba(0,0,0,0.05);
+    color: #0a0f1e;
+  }
 
-    .message.user {
-      background-color: var(--neon-green);
-      color: #000;
-      margin-left: auto;
-      border-bottom-right-radius: 0;
-    }
-
-    .message.bot {
-      background-color: var(--neon-cyan);
-      color: #000;
-      margin-right: auto;
-      border-bottom-left-radius: 0;
-    }
-
-    .input-container {
-      display: flex;
-      margin-top: 10px;
-    }
-
-    #user-input {
-      flex: 1;
-      padding: 10px 15px;
-      border-radius: 25px;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      background-color: rgba(255,255,255,0.1);
-      color: var(--light-neutral);
-    }
-
-    #send-btn, #voice-btn {
-      margin-left: 10px;
-      padding: 0 15px;
-      border: none;
-      border-radius: 50%;
-      cursor: pointer;
-      font-size: 18px;
-      background-color: var(--neon-cyan);
-      color: #000;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
-
-    body.claro {
-      background-color: var(--light-neutral);
-      color: var(--dark-blue);
-    }
-
-    body.claro .chat-container {
-      background-color: rgba(255,255,255,0.9);
-    }
-
-    body.claro .message.user {
-      background-color: var(--neon-green);
-      color: #000;
-    }
-
-    body.claro .message.bot {
-      background-color: var(--neon-cyan);
-      color: #000;
-    }
-
-    body.claro #user-input {
-      background-color: rgba(0,0,0,0.05);
-      color: var(--dark-blue);
-    }
-  </style>
+  body.claro .chat-container {
+    background-color: rgba(255,255,255,0.9);
+  }
+</style>
 </head>
 <body>
-  <header>
-    <div class="left">
-      <div class="logo">
-        <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
-      </div>
-      <div class="lampada" id="lampada" title="Modo Claro/Escuro"></div>
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="projetos.html">Projetos</a>
-      <a href="lixo.html">Lixo Eletrônico</a>
-      <a href="ia.html" class="active">IA</a>
-      <a href="creditos.html">Créditos</a>
-    </nav>
-  </header>
+<canvas id="particles"></canvas>
+<canvas id="three-canvas"></canvas>
 
-  <div class="chat-container">
-    <div id="chat-window"></div>
-    <div class="input-container">
-      <input type="text" id="user-input" placeholder="Digite sua mensagem...">
-      <button id="voice-btn">🎤</button>
-      <button id="send-btn">➡️</button>
+<header>
+  <div class="left">
+    <div class="logo">
+      <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
     </div>
+    <div class="lampada lampada-btn" id="lampada" title="Modo Claro/Escuro"></div>
   </div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="projetos.html">Projetos</a>
+    <a href="lixo.html">Lixo Eletrônico</a>
+    <a href="ia.html" class="active">IA</a>
+    <a href="creditos.html">Créditos</a>
+  </nav>
+</header>
 
-  <script src="chat.js"></script>
-  <script>
-    // --- Lâmpada ---
-    const lampada = document.getElementById("lampada");
-    lampada.addEventListener("click", () => {
-      document.body.classList.toggle("claro");
-    });
-  </script>
+<section class="hero fade-in">
+  <h1>Interaja com nossa IA</h1>
+  <p>Digite uma pergunta ou use a voz para conversar com a EcoRobôs IA.</p>
+</section>
+
+<div class="chat-container">
+  <div id="chat-window"></div>
+  <div class="input-container">
+    <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+    <button id="voice-btn">🎤</button>
+    <button id="send-btn">➡️</button>
+  </div>
+</div>
+
+<div class="mascote" id="mascote">🤖</div>
+
+<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+<script src="script.js"></script>
+<script src="chat.js"></script>
+
+<script>
+  // Lâmpada pronta para o ícone das outras páginas
+  const lampada = document.getElementById("lampada");
+  lampada.addEventListener("click", () => {
+    document.body.classList.toggle("claro");
+  });
+</script>
 </body>
 </html>
-
