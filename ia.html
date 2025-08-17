@@ -6,14 +6,7 @@
   <title>Assistente IA - Projeto IPA</title>
   <link rel="stylesheet" href="css/pro.css"> <!-- CSS do site já feito -->
   <style>
-    body {
-      margin: 0;
-      font-family: 'Roboto', sans-serif;
-      background: #0a0a0a;
-      overflow: hidden;
-    }
-
-    /* Fundo futurista com cubos */
+    /* Estilos do fundo futurista com cubos */
     canvas#bg {
       position: fixed;
       top: 0;
@@ -23,7 +16,7 @@
       z-index: -1;
     }
 
-    /* Chatbox estilo aplicativo de mensagens */
+    /* Estilos do chatbox estilo aplicativo de mensagens */
     .chat-container {
       position: fixed;
       bottom: 20px;
@@ -129,10 +122,118 @@
     </div>
   </div>
 
-  <script src="chat.js"></script>
+  <script>
+    // Função para carregar o arquivo JSON com as perguntas e respostas
+    async function loadQuestions() {
+      try {
+        const response = await fetch('https://raw.githubusercontent.com/gustavoluiz111/assistente-ia-apresentacao/main/perguntas1.json');
+        const data = await response.json();
+        return data;
+      } catch (error) {
+        console.error('Erro ao carregar o arquivo JSON:', error);
+        return [];
+      }
+    }
+
+    // Função para inicializar o chat
+    async function initChat() {
+      const questions = await loadQuestions();
+      const chat = document.getElementById('chat');
+      const input = document.getElementById('question-input');
+      const btnSend = document.getElementById('btn-send');
+      const btnVoice = document.getElementById('btn-voice');
+      const status = document.getElementById('status');
+
+      // Função para adicionar mensagens ao chat
+      function addMessage(text, sender) {
+        const msg = document.createElement('div');
+        msg.classList.add('message', sender);
+        msg.textContent = text;
+        chat.appendChild(msg);
+        chat.scrollTop = chat.scrollHeight;
+      }
+
+      // Função para obter a resposta com base na pergunta
+      function getResponse(question) {
+        question = question.toLowerCase();
+        for (const q of questions) {
+          if (question.includes(q.pergunta.toLowerCase())) {
+            return q.resposta;
+          }
+        }
+        return "Desculpe, não entendi sua pergunta.";
+      }
+
+      // Enviar pergunta e receber resposta
+      function sendQuestion() {
+        const question = input.value.trim();
+        if (!question) return;
+
+        addMessage(question, 'user');
+        input.value = '';
+        status.textContent = 'Processando resposta...';
+
+        setTimeout(() => {
+          const answer = getResponse(question);
+          addMessage(answer, 'bot');
+          status.textContent = '';
+          // Síntese de voz
+          if ('speechSynthesis' in window) {
+            const utter = new SpeechSynthesisUtterance(answer);
+            utter.lang = 'pt-BR';
+            window.speechSynthesis.speak(utter);
+          }
+        }, 500);
+      }
+
+      btnSend.addEventListener('click', sendQuestion);
+      input.addEventListener('keydown', e => {
+        if (e.key === 'Enter') sendQuestion();
+      });
+
+      // Reconhecimento de voz
+      let recognition;
+      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.lang = 'pt-BR';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
+
+        recognition.addEventListener('start', () => {
+          status.textContent = 'Escutando... Fale agora.';
+        });
+
+        recognition.addEventListener('result', (event) => {
+          const transcript = event.results[0][0].transcript;
+          input.value = transcript;
+          status.textContent = 'Pergunta captada. Enviando...';
+          sendQuestion();
+        });
+
+        recognition.addEventListener('error', (event) => {
+          status.textContent = 'Erro no reconhecimento de voz: ' + event.error;
+        });
+
+        recognition.addEventListener('end', () => {
+          status.textContent = '';
+        });
+
+        btnVoice.addEventListener('click', () => {
+          recognition.start();
+        });
+      } else {
+        btnVoice.disabled = true;
+        status.textContent = 'Reconhecimento de voz não suportado neste navegador.';
+      }
+    }
+
+    initChat();
+  </script>
 
   <!-- Script do fundo futurista com cubos -->
   <script src="js/cubos.js"></script>
 
 </body>
 </html>
+
