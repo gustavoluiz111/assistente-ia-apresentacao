@@ -40,7 +40,6 @@ mascote.addEventListener("click", () => {
   atualizarBalao();
 });
 
-// Fecha balão se clicar fora
 document.addEventListener("click", (e) => {
   if (!mascote.contains(e.target) && !balao.contains(e.target)) {
     balao.style.display = "none";
@@ -165,56 +164,5 @@ window.addEventListener('resize', () => {
   camera.updateProjectionMatrix();
   renderer.setSize(window.innerWidth, window.innerHeight);
   atualizarBalao();
-});
-
-// --- CHATBOX SIMULADO ESTILO WHATSAPP/TELEGRAM ---
-const chatContainer = document.createElement("div");
-chatContainer.classList.add("chat-container");
-document.body.appendChild(chatContainer);
-
-const chatWindow = document.createElement("div");
-chatWindow.id = "chat-window";
-chatContainer.appendChild(chatWindow);
-
-const input = document.createElement("input");
-input.type = "text";
-input.placeholder = "Digite sua mensagem...";
-input.style.padding = "10px";
-input.style.borderRadius = "15px";
-input.style.border = "2px solid var(--neon-cyan)";
-input.style.width = "100%";
-input.style.marginTop = "5px";
-chatContainer.appendChild(input);
-
-function adicionarMensagem(texto, tipo="usuario") {
-  const msg = document.createElement("div");
-  msg.classList.add("mensagem", tipo);
-  msg.textContent = texto;
-  chatWindow.appendChild(msg);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-}
-
-// Simula resposta da IA com "digitando..."
-function respostaIA(texto) {
-  const digitando = document.createElement("div");
-  digitando.classList.add("mensagem", "ia");
-  digitando.textContent = "digitando...";
-  chatWindow.appendChild(digitando);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-
-  setTimeout(() => {
-    digitando.textContent = texto;
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  }, 1000 + Math.random()*1500);
-}
-
-input.addEventListener("keydown", (e) => {
-  if(e.key === "Enter" && input.value.trim() !== "") {
-    const valor = input.value.trim();
-    adicionarMensagem(valor, "usuario");
-    input.value = "";
-    // Aqui você pode personalizar respostas automáticas
-    respostaIA("Essa é uma resposta simulada da IA.");
-  }
 });
 
