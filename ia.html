@@ -1,127 +1,154 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Assistente IA - EcoRobôs</title>
-<link rel="stylesheet" href="css/universal.css">
-<script src="js/universal.js" defer></script>
-<script src="js/chat.js" defer></script>
-<style>
-/* Chatbox estilo WhatsApp */
-#chat-container {
-  position: relative;
-  max-width: 400px;
-  margin: 120px auto;
-  background: rgba(255,255,255,0.05);
-  border-radius: 15px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  height: 600px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.3);
-  z-index: 10;
-}
-#chat {
-  flex: 1;
-  padding: 10px;
-  overflow-y: auto;
-}
-.message { 
-  margin: 5px 0; 
-  padding: 8px 12px; 
-  border-radius: 12px; 
-  max-width: 80%;
-  word-wrap: break-word;
-}
-.user { background: #0084ff; color: white; align-self: flex-end; }
-.bot { background: #e5e5ea; color: black; align-self: flex-start; }
-#input-container {
-  display: flex;
-  border-top: 1px solid #ccc;
-}
-#question-input { flex: 1; padding: 10px; border: none; outline: none; background: rgba(255,255,255,0.1); color: white; }
-#btn-send, #btn-voice { padding: 0 15px; cursor: pointer; background: none; border: none; color: white; font-size: 18px; }
-#status { text-align: center; font-size: 14px; color: white; margin-top: 5px; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>IA - EcoRobôs</title>
+  <!-- CSS Universal -->
+  <link rel="stylesheet" href="css/universal.css">
+  <style>
+    /* Estilo adicional do chat */
+    #chat-container {
+      max-width: 500px;
+      margin: 100px auto 50px;
+      background: rgba(0,0,0,0.8);
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    #chat {
+      flex: 1;
+      padding: 10px;
+      overflow-y: auto;
+      height: 400px;
+      display: flex;
+      flex-direction: column;
+    }
+    .message {
+      margin: 5px 0;
+      padding: 10px 15px;
+      border-radius: 20px;
+      max-width: 80%;
+      word-wrap: break-word;
+    }
+    .user {
+      align-self: flex-end;
+      background-color: #1e90ff;
+      color: white;
+    }
+    .bot {
+      align-self: flex-start;
+      background-color: #f1f1f1;
+      color: #000;
+    }
+    #input-area {
+      display: flex;
+      border-top: 1px solid #ccc;
+    }
+    #question-input {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 0;
+      outline: none;
+    }
+    #btn-send, #btn-voice {
+      padding: 0 15px;
+      border: none;
+      background: #1e90ff;
+      color: white;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-<header><!-- cabeçalho universal já existente --></header>
+  <!-- Cabeçalho Universal -->
+  <header>
+    <div class="logo">EcoRobôs</div>
+    <div class="theme-toggle">
+      <button id="toggle-theme">💡</button>
+    </div>
+  </header>
 
-<!-- Fundo com cubos animados -->
-<div id="background-cubes"><!-- cubos animados do universal.js --></div>
+  <!-- Fundo com cubos e efeitos (igual universal do site) -->
+  <div id="background-cubes"></div>
 
-<div id="chat-container">
-  <div id="chat"></div>
-  <div id="input-container">
-    <input type="text" id="question-input" placeholder="Digite sua pergunta...">
-    <button id="btn-voice">🎤</button>
-    <button id="btn-send">Enviar</button>
+  <!-- Chatbox estilo WhatsApp/Telegram -->
+  <div id="chat-container">
+    <div id="chat"></div>
+    <div id="input-area">
+      <input type="text" id="question-input" placeholder="Digite sua pergunta...">
+      <button id="btn-voice">🎤</button>
+      <button id="btn-send">Enviar</button>
+    </div>
+    <div id="status"></div>
   </div>
-  <div id="status"></div>
-</div>
 
-<footer><!-- rodapé universal já existente --></footer>
+  <!-- Scripts universais -->
+  <script src="js/universal.js"></script>
 
-<script>
-// Funções básicas do chat puxando do chat.js
-const chatContainer = document.getElementById('chat');
-const input = document.getElementById('question-input');
-const sendBtn = document.getElementById('btn-send');
-const voiceBtn = document.getElementById('btn-voice');
-const status = document.getElementById('status');
+  <!-- Chat script (perguntas e respostas) -->
+  <script src="js/chat.js"></script>
 
-function addMessage(text, sender) {
-  const msg = document.createElement('div');
-  msg.classList.add('message', sender);
-  msg.textContent = text;
-  chatContainer.appendChild(msg);
-  chatContainer.scrollTop = chatContainer.scrollHeight;
-}
+  <!-- Inicialização do chat e reconhecimento de voz -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const chat = document.getElementById('chat');
+      const input = document.getElementById('question-input');
+      const btnSend = document.getElementById('btn-send');
+      const btnVoice = document.getElementById('btn-voice');
+      const status = document.getElementById('status');
 
-// Envio de mensagens
-sendBtn.addEventListener('click', () => {
-  const question = input.value.trim();
-  if (!question) return;
-  addMessage(question, 'user');
-  input.value = '';
-  const answer = getResponse(question);
-  setTimeout(() => addMessage(answer, 'bot'), 300);
-});
+      function addMessage(text, sender) {
+        const msg = document.createElement('div');
+        msg.classList.add('message', sender);
+        msg.textContent = text;
+        chat.appendChild(msg);
+        chat.scrollTop = chat.scrollHeight;
+      }
 
-// Enter envia mensagem
-input.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter') sendBtn.click();
-});
+      function sendQuestion() {
+        const question = input.value.trim();
+        if (!question) return;
+        addMessage(question, 'user');
+        input.value = '';
+        status.textContent = 'Processando resposta...';
+        setTimeout(() => {
+          const answer = getResponse(question); // Função do chat.js
+          addMessage(answer, 'bot');
+          status.textContent = '';
+        }, 500);
+      }
 
-// Reconhecimento de voz
-let recognition;
-if ('webkitSpeechRecognition' in window) {
-  recognition = new webkitSpeechRecognition();
-  recognition.lang = 'pt-BR';
-  recognition.continuous = false;
-  recognition.interimResults = false;
+      btnSend.addEventListener('click', sendQuestion);
+      input.addEventListener('keydown', e => { if(e.key==='Enter') sendQuestion(); });
 
-  recognition.onresult = (event) => {
-    const voiceText = event.results[0][0].transcript;
-    input.value = voiceText;
-    sendBtn.click();
-  };
+      // Reconhecimento de voz
+      let recognition;
+      if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.lang = 'pt-BR';
+        recognition.interimResults = false;
+        recognition.maxAlternatives = 1;
 
-  recognition.onerror = (event) => {
-    status.textContent = "Erro no reconhecimento de voz.";
-    setTimeout(()=> status.textContent="", 2000);
-  };
-  
-  voiceBtn.addEventListener('click', () => {
-    recognition.start();
-    status.textContent = "Ouvindo...";
-  });
+        recognition.addEventListener('start', () => { status.textContent = 'Escutando...'; });
+        recognition.addEventListener('result', (event) => {
+          const transcript = event.results[0][0].transcript;
+          input.value = transcript;
+          sendQuestion();
+        });
+        recognition.addEventListener('error', (event) => { status.textContent = 'Erro: '+event.error; });
+        recognition.addEventListener('end', () => { status.textContent = ''; });
 
-} else {
-  voiceBtn.disabled = true;
-  status.textContent = "Reconhecimento de voz não suportado neste navegador.";
-}
-</script>
+        btnVoice.addEventListener('click', () => recognition.start());
+      } else {
+        btnVoice.disabled = true;
+        status.textContent = 'Reconhecimento de voz não suportado.';
+      }
+    });
+  </script>
 </body>
 </html>
+
