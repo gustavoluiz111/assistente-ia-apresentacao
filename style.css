@@ -84,6 +84,13 @@ nav a:hover::after { width: 100%; }
   width: 50px;
   height: 50px;
   transition: transform 0.2s;
+  z-index: 20; /* garantir visibilidade */
+  position: fixed; /* fixar na tela */
+  bottom: 20px;
+  right: 80px; /* afastar da mascote */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .lampada-btn:hover { transform: scale(1.1); }
 .lampada svg {
@@ -96,14 +103,14 @@ nav a:hover::after { width: 100%; }
   filter: drop-shadow(0 0 25px #1E90FF);
   animation: piscar 0.6s ease, fogo 2s infinite ease-in-out alternate;
 }
-@keyframes piscar { 
+@keyframes piscar {  
   0%{fill:#444;filter:drop-shadow(0 0 5px #000);}
   30%{fill:#00BFFF;filter:drop-shadow(0 0 15px #1E90FF);}
   50%{fill:#444;filter:drop-shadow(0 0 5px #000);}
   80%{fill:#00BFFF;filter:drop-shadow(0 0 20px #63B8FF);}
   100%{fill:#00BFFF;filter:drop-shadow(0 0 25px #1E90FF);}
 }
-@keyframes fogo { 
+@keyframes fogo {  
   0%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 20px #1E90FF);}
   25%{transform:scale(1.05) translateY(-2px);filter:drop-shadow(0 0 25px #63B8FF);}
   50%{transform:scale(0.95) translateY(1px);filter:drop-shadow(0 0 18px #00BFFF);}
@@ -143,7 +150,7 @@ body.claro .hero p{ color:#000; }
   justify-content: center;
   font-weight: bold;
   font-size: 2.5rem;
-  z-index: 5;
+  z-index: 15; /* acima do canvas, abaixo da lâmpada se necessário */
 }
 @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
 
@@ -161,7 +168,7 @@ body.claro .hero p{ color:#000; }
   opacity: 0;
   transform-origin: bottom right;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index: 6;
+  z-index: 16; /* acima do mascote */
 }
 .balao::after{
   content:''; position:absolute; bottom:-10px; right:15px;
@@ -172,12 +179,13 @@ body.claro .hero p{ color:#000; }
 body.claro .balao{ background:#f0f0f0; border-color:#00BFFF; color:#000; }
 body.claro .balao::after{ border-color:#f0f0f0 transparent transparent transparent; }
 
-/* CHATBOX ESTILO WHATSAPP/TELEGRAM */
+/* CHATBOX */
 .chat-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 20px;
+  z-index: 10;
 }
 .chatbox {
   width: 350px;
@@ -238,15 +246,12 @@ canvas#particles, canvas#three-canvas {
   header{ flex-direction: column; gap:10px; padding:10px; }
   nav a{ margin-left:10px; font-size:0.9rem; }
   .logo img{ height: 30px; }
-  .lampada-btn{ width:40px; height:40px; }
+  .lampada-btn{ width:40px; height:40px; bottom:15px; right:70px; }
   .hero h1{ font-size:2rem; }
   .hero p{ font-size:1rem; max-width:90%; }
   .mascote{ width:60px; height:60px; font-size:2rem; }
   .chatbox { width: 90%; max-height: 300px; }
 }
 
-
-  .mensagem {
-    font-size: 12px;
-  }
-}
+/* Mensagem pequena */
+.mensagem { font-size: 12px; }
