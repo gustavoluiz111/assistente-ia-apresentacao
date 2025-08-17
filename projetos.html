@@ -16,7 +16,7 @@
     <div class="logo">
       <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
     </div>
-    <div class="lampada lampada-btn" id="lampada" title="Modo Claro/Escuro"></div>
+    <div class="lampada" id="lampada" title="Modo Claro/Escuro"></div>
   </div>
   <nav>
     <a href="index.html">Home</a>
@@ -50,6 +50,14 @@
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script src="script.js"></script>
+
+<script>
+  // --- Lâmpada funcionando ---
+  const lampada = document.getElementById("lampada");
+  lampada.addEventListener("click", () => {
+    document.body.classList.toggle("claro");
+  });
+</script>
 </body>
 </html>
 
