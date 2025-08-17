@@ -4,13 +4,19 @@ const sendBtn = document.getElementById("send-btn");
 const voiceBtn = document.getElementById("voice-btn");
 
 let baseConhecimento = {};
+let sinonimos = {
+  "oi": ["olá", "opa", "e aí", "salve"],
+  "tchau": ["falou", "até mais", "até logo"],
+  "qual é o seu nome": ["seu nome", "quem é você", "quem é vc"],
+  "eco": ["ecorobos", "eco robôs", "eco-robôs"]
+};
 
-// --- Carregar JSON do repositório ---
+// --- Carregar JSON ---
 fetch("perguntas.json")
   .then(res => res.json())
   .then(data => { baseConhecimento = data; });
 
-// --- Função para adicionar mensagens ---
+// --- Adiciona mensagem na tela ---
 function addMessage(text, sender) {
   const msg = document.createElement("div");
   msg.classList.add("message", sender);
@@ -19,14 +25,30 @@ function addMessage(text, sender) {
   chatWindow.scrollTop = chatWindow.scrollHeight;
 }
 
-// --- Função para processar resposta da IA ---
+// --- Função de resposta ---
 function responder(pergunta) {
   const chave = pergunta.toLowerCase().trim();
+
+  // 1. Busca exata
   if (baseConhecimento[chave]) {
     return baseConhecimento[chave];
-  } else {
-    return "Desculpe, não entendi. Pode reformular?";
   }
+
+  // 2. Busca por sinônimos
+  for (let original in sinonimos) {
+    if (sinonimos[original].some(p => chave.includes(p))) {
+      return baseConhecimento[original] || "Certo, mas não encontrei resposta.";
+    }
+  }
+
+  // 3. Busca por palavra dentro da frase
+  for (let key in baseConhecimento) {
+    if (chave.includes(key)) {
+      return baseConhecimento[key];
+    }
+  }
+
+  return "Desculpe, não entendi. Pode reformular?";
 }
 
 // --- Envio de texto ---
@@ -40,7 +62,7 @@ sendBtn.addEventListener("click", () => {
   }
 });
 
-// --- Envio com Enter ---
+// --- Enter também envia ---
 userInput.addEventListener("keypress", e => {
   if (e.key === "Enter") sendBtn.click();
 });
