@@ -6,6 +6,76 @@
 <title>Projetos EcoRobôs</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+<style>
+  body {
+    font-family: 'Orbitron', sans-serif;
+    margin: 0;
+    background-color: #0a0f1e;
+    color: #ffffff;
+  }
+
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #08122c;
+  }
+
+  header nav a {
+    color: #00ffff;
+    text-decoration: none;
+    margin-left: 20px;
+    transition: color 0.3s;
+  }
+
+  header nav a:hover {
+    color: #ff9900;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 60px 20px 40px 20px;
+  }
+
+  .hero h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #00ffff;
+  }
+
+  .hero p {
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .projeto-text {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+    background: rgba(0, 255, 255, 0.05);
+    border-left: 4px solid #00ffff;
+    line-height: 1.7;
+    font-size: 1.1em;
+    color: #d0f0f0;
+  }
+
+  .mascote {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    font-size: 3em;
+    cursor: pointer;
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+</style>
 </head>
 <body>
 <canvas id="particles"></canvas>
@@ -13,24 +83,15 @@
 
 <header>
   <div class="left">
-    <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs" style="height:100%;width:auto;"></div>
+    <div class="logo">
+      <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs" style="height:100%;width:auto;">
+    </div>
     <div class="lampada lampada-btn" id="lampada" title="Modo Claro/Escuro">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-        <path d="M192 0C209.7 0 224 14.33 224 32V64H160V32C160 14.33 174.3 0 192 0zM128 64H256V128H128V64zM96 128H288C314.5 128 336 149.5 336 176V288C336 340.9 307.1 387.3 264 409.6V448H120V409.6C76.89 387.3 48 340.9 48 288V176C48 149.5 69.49 128 96 128zM160 352C160 369.7 174.3 384 192 384C209.7 384 224 369.7 224 352C224 334.3 209.7 320 192 320C174.3 320 160 334.3 160 352zM120 480H264C277.3 480 288 490.7 288 504C288 508.4 284.4 512 280 512H104C99.58 512 96 508.4 96 504C96 490.7 106.7 480 120 480z"/>
-      </svg>
+      <!-- SVG da lâmpada -->
     </div>
   </div>
   <nav>
     <a href="index.html">Home</a>
-    <a href="projetos.html">O EcoRobôs é um projeto inovador focado na criação de tecnologias sustentáveis para o manejo e separação de resíduos. O objetivo principal é desenvolver uma garra mecânica automatizada, capaz de coletar e separar lixo de forma eficiente, contribuindo para a preservação ambiental e a conscientização sobre a importância da reciclagem.
-
-Dada a complexidade e os recursos limitados, o protótipo físico do robô será complementado por um modelo 3D detalhado, permitindo a visualização do funcionamento da garra e das tecnologias envolvidas, mesmo antes da construção completa.
-
-Além do hardware, o projeto envolve programação de inteligência artificial, atualmente simulada, que interage com usuários e explica de forma didática o funcionamento do robô, os objetivos do projeto e os impactos positivos para a sociedade. Esta I.A. será integrada ao nosso site oficial, www.ecorobos.com.br, que serve como plataforma de divulgação e comunicação do projeto com o público, permitindo atualizações constantes e inclusão de novas funcionalidades.
-
-Como extensão educativa e interativa, estamos também desenvolvendo um jogo 2D, inspirado na temática de robótica e sustentabilidade, que permitirá aos usuários explorar conceitos de coleta e separação de lixo de maneira divertida e educativa.
-
-O EcoRobôs combina engenharia, programação e design digital para criar uma solução completa que não só demonstra inovação tecnológica, mas também promove a consciência ambiental e a educação científica. É um projeto pensado para impactar positivamente a sociedade e inspirar novas ideias de sustentabilidade e automação.</a>
     <a href="lixo.html">Lixo Eletrônico</a>
     <a href="ia.html">IA</a>
     <a href="creditos.html">Créditos</a>
@@ -39,7 +100,19 @@ O EcoRobôs combina engenharia, programação e design digital para criar uma so
 
 <section class="hero fade-in">
   <h1>Nossos Projetos</h1>
-  <p>O destaque é o nosso jogo de terror interativo no Roblox: </p>
+  <p>Conheça o EcoRobôs e nossas iniciativas de robótica sustentável, inteligência artificial e jogos educativos.</p>
+</section>
+
+<section class="projeto-text">
+  <p>O <strong>EcoRobôs</strong> é um projeto inovador focado na criação de tecnologias sustentáveis para o manejo e separação de resíduos. O objetivo principal é desenvolver uma <strong>garra mecânica automatizada</strong>, capaz de coletar e separar lixo de forma eficiente, contribuindo para a preservação ambiental e a conscientização sobre a importância da reciclagem.</p>
+
+  <p>Dada a complexidade e os recursos limitados, o protótipo físico do robô será complementado por um <strong>modelo 3D detalhado</strong>, permitindo a visualização do funcionamento da garra e das tecnologias envolvidas, mesmo antes da construção completa.</p>
+
+  <p>Além do hardware, o projeto envolve <strong>programação de inteligência artificial</strong>, atualmente simulada, que interage com usuários e explica de forma didática o funcionamento do robô, os objetivos do projeto e os impactos positivos para a sociedade. Esta I.A. será integrada ao nosso site oficial, <a href="http://www.ecorobos.com.br" style="color:#00ffff;">www.ecorobos.com.br</a>, que serve como plataforma de divulgação e comunicação do projeto com o público, permitindo atualizações constantes e inclusão de novas funcionalidades.</p>
+
+  <p>Como extensão educativa e interativa, estamos também desenvolvendo um <strong>jogo 2D</strong>, inspirado na temática de robótica e sustentabilidade, que permitirá aos usuários explorar conceitos de coleta e separação de lixo de maneira divertida e educativa.</p>
+
+  <p>O EcoRobôs combina engenharia, programação e design digital para criar uma solução completa que não só demonstra inovação tecnológica, mas também promove a consciência ambiental e a educação científica. É um projeto pensado para impactar positivamente a sociedade e inspirar novas ideias de sustentabilidade e automação.</p>
 </section>
 
 <div class="mascote" id="mascote">🤖</div>
