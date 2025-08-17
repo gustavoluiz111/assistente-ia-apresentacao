@@ -4,92 +4,69 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Créditos - EcoRobôs</title>
-  <link rel="stylesheet" href="universal.css">
+  <!-- CSS Universal -->
+  <link rel="stylesheet" href="css/universal.css">
   <style>
     body {
-      position: relative;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      background: #000;
-      overflow-x: hidden;
+      font-family: 'Poppins', sans-serif;
+      color: #ffffff;
+      background: url('../img/fundo-cubos.jpg') no-repeat center center fixed;
+      background-size: cover;
+      margin: 0;
+      padding: 0;
     }
-
-    header {
-      text-align: center;
-      padding: 20px 0;
-      font-size: 2em;
-      color: #00d1ff;
-      text-shadow: 0 0 10px #00d1ff;
-    }
-
-    .cube-container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: 0;
-    }
-
-    .cube {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #00d1ff;
-      animation: float 10s linear infinite;
-      opacity: 0.7;
-    }
-
-    @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); }
-      100% { transform: translateY(-100vh) rotate(360deg); }
-    }
-
-    main {
-      position: relative;
-      z-index: 1;
-      max-width: 800px;
+    .container {
+      max-width: 1000px;
       margin: 0 auto;
-      padding: 20px;
+      padding: 100px 20px 50px 20px;
       background: rgba(0,0,0,0.6);
-      border-radius: 15px;
-      box-shadow: 0 0 20px #00d1ff;
+      border-radius: 20px;
     }
-
-    h2 {
+    h1, h2 {
       text-align: center;
-      color: #00d1ff;
-      margin-bottom: 20px;
+      color: #00bfff;
     }
-
     ul {
       list-style: none;
       padding: 0;
     }
-
     li {
-      margin: 8px 0;
+      padding: 8px 0;
       font-size: 18px;
     }
-
-    .role {
-      font-weight: bold;
-      color: #00d1ff;
+    .credits-section {
+      margin-top: 30px;
+    }
+    .lamparina {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div class="cube-container" id="cube-bg"></div>
 
-  <header>Créditos - EcoRobôs</header>
+  <!-- Cabeçalho Universal -->
+  <header>
+    <nav>
+      <ul class="menu">
+        <li><a href="index.html">Início</a></li>
+        <li><a href="ia.html">IA</a></li>
+        <li><a href="scratch.html">Scratch</a></li>
+        <li><a href="creditos.html">Créditos</a></li>
+      </ul>
+    </nav>
+    <img src="img/lamparina.png" class="lamparina" alt="Lamparina">
+  </header>
 
-  <main>
-    <h2>Equipe Nível 3 IPA - Escola de Aplicação (2025)</h2>
-    <ul>
-      <li><span class="role">Desenvolvedor do Site:</span> Luiz Gustavo</li>
-      <li><span class="role">Professor Orientador:</span> Vaneide Araújo</li>
-      <li><span class="role">Participantes:</span></li>
+  <div class="container">
+    <h1>Créditos do Projeto EcoRobôs</h1>
+
+    <div class="credits-section">
+      <h2>Participantes</h2>
       <ul>
         <li>Arthur Antonio Magalhaes Da Silva</li>
         <li>Daniella Alyce da Silva Barbosa</li>
@@ -107,22 +84,35 @@
         <li>Ryan Lion Caribé Barreto Gomes</li>
         <li>Shayane Vitória Francelino da Silva</li>
       </ul>
-    </ul>
-  </main>
+    </div>
 
-  <script src="universal.js"></script>
+    <div class="credits-section">
+      <h2>Professor Orientador</h2>
+      <ul>
+        <li>Vaneide Araújo</li>
+      </ul>
+    </div>
 
-  <script>
-    // Cubos animados de fundo
-    const cubeBg = document.getElementById('cube-bg');
-    for (let i=0; i<50; i++){
-      const cube = document.createElement('div');
-      cube.classList.add('cube');
-      cube.style.left = Math.random()*100 + 'vw';
-      cube.style.animationDuration = (5 + Math.random()*10) + 's';
-      cube.style.width = cube.style.height = (10 + Math.random()*30) + 'px';
-      cubeBg.appendChild(cube);
-    }
-  </script>
+    <div class="credits-section">
+      <h2>Desenvolvedor do Site</h2>
+      <ul>
+        <li>Luiz Gustavo</li>
+      </ul>
+    </div>
+
+    <div class="credits-section">
+      <h2>Equipe</h2>
+      <ul>
+        <li>Nível 3 IPA</li>
+        <li>Escola de Aplicação</li>
+        <li>Grupo: [Nome do Grupo]</li>
+        <li>Ano: 2025</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- JS Universal -->
+  <script src="js/universal.js"></script>
 </body>
 </html>
+
