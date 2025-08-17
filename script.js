@@ -1,67 +1,88 @@
-// --- Lâmpada ---
-const lampada = document.getElementById("lampada");
-lampada.addEventListener("click", ()=>{
-  lampada.classList.toggle("acesa");
-  document.body.classList.toggle("claro");
+// Tema claro/escuro
+const lampada = document.getElementById('lampada');
+lampada.addEventListener('click', ()=>{
+  document.body.classList.toggle('claro');
 });
 
-// --- Mascote ---
-const mascote = document.getElementById("mascote");
-const balao = document.createElement("div");
-balao.classList.add("balao");
-document.body.appendChild(balao);
-const dicas = [
-  "Separe plásticos, metais e circuitos!",
-  "Reaproveite peças antigas.",
-  "Use sensores para automatizar.",
-  "Pequenos robôs ajudam a reciclar."
-];
-let dicaIndex=0;
-mascote.addEventListener("click", ()=>{
-  balao.style.display="block";
-  balao.textContent=dicas[dicaIndex];
-  dicaIndex=(dicaIndex+1)%dicas.length;
-  balao.style.transform="scale(0)";
-  balao.style.opacity="0";
-  setTimeout(()=>{balao.style.transform="scale(1)"; balao.style.opacity="1";},10);
-  const rect=mascote.getBoundingClientRect();
-  balao.style.bottom=`${window.innerHeight - rect.top + 20}px`;
-  balao.style.right=`${window.innerWidth - rect.right}px`;
-});
-document.addEventListener("click",(e)=>{
-  if(!mascote.contains(e.target) && !balao.contains(e.target)) balao.style.display="none";
+// Balão mascote
+const mascote = document.getElementById('mascote');
+mascote.addEventListener('click', ()=>{
+  alert('Olá! Eu sou o mascote do EcoRobôs! Explore os projetos e aprenda sobre sustentabilidade.');
 });
 
-// --- Partículas ---
+// Partículas simples
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
-let particles=[];
-function resize(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
-window.addEventListener('resize',resize); resize();
-function createParticles(){ for(let i=0;i<100;i++){ particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});} }
-createParticles();
-function animate(){ 
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const particles = [];
+for(let i=0;i<100;i++){
+  particles.push({
+    x:Math.random()*canvas.width,
+    y:Math.random()*canvas.height,
+    r: Math.random()*2+1,
+    dx: (Math.random()-0.5)*0.5,
+    dy: (Math.random()-0.5)*0.5
+  });
+}
+
+function animateParticles(){
   ctx.clearRect(0,0,canvas.width,canvas.height);
   particles.forEach(p=>{
     ctx.beginPath();
     ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
     ctx.fillStyle='rgba(0,255,255,0.7)';
     ctx.fill();
-    p.x+=p.dx; p.y+=p.dy;
+    p.x+=p.dx; 
+    p.y+=p.dy;
     if(p.x<0||p.x>canvas.width)p.dx*=-1;
     if(p.y<0||p.y>canvas.height)p.dy*=-1;
   });
-  requestAnimationFrame(animate);
+  requestAnimationFrame(animateParticles);
 }
-animate();
+animateParticles();
 
-// --- Scroll fade-in ---
-const fadeEls=document.querySelectorAll('.fade-in');
-window.addEventListener('scroll',()=>{ 
-  const triggerBottom=window.innerHeight*0.85;
-  fadeEls.forEach(el=>{
-    const boxTop=el.getBoundingClientRect().top;
-    if(boxTop<triggerBottom) el.classList.add('visible');
+// Cubos 3D futuristas (Three.js)
+let scene, camera, renderer, cubes = [];
+
+function initThree(){
+  scene = new THREE.Scene();
+  camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
+  renderer = new THREE.WebGLRenderer({canvas:document.getElementById('three-canvas'), alpha:true});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+
+  camera.position.z = 50;
+
+  const geometry = new THREE.BoxGeometry(5,5,5);
+  const material = new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
+  
+  for(let i=0;i<30;i++){
+    let cube = new THREE.Mesh(geometry, material.clone());
+    cube.position.set((Math.random()-0.5)*100, (Math.random()-0.5)*50, (Math.random()-0.5)*50);
+    cube.rotation.set(Math.random()*2, Math.random()*2, Math.random()*2);
+    scene.add(cube);
+    cubes.push(cube);
+  }
+}
+
+function animateThree(){
+  requestAnimationFrame(animateThree);
+  cubes.forEach(c=>{
+    c.rotation.x += 0.01;
+    c.rotation.y += 0.01;
   });
-});
+  renderer.render(scene, camera);
+}
 
+initThree();
+animateThree();
+
+// Redimensionamento
+window.addEventListener('resize', ()=>{
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+});
