@@ -3,93 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IA - EcoRobôs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <title>Assistente IA - IPA Nível III</title>
+  <link rel="stylesheet" href="universal.css">
+  <link rel="stylesheet" href="pro.css">
   <style>
-    /* Chatbox estilo aplicativo */
-    #chat-container {
-      max-width: 600px;
-      margin: 40px auto;
-      background-color: rgba(0,0,50,0.9);
-      border-radius: 15px;
-      padding: 20px;
-      display: flex;
-      flex-direction: column;
-      height: 70vh;
-      color: #fff;
-      font-family: 'Orbitron', sans-serif;
-    }
-    #chat {
-      flex: 1;
-      overflow-y: auto;
-      padding-right: 10px;
-    }
-    .message {
-      margin: 5px 0;
-      padding: 10px 15px;
-      border-radius: 20px;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-    .user { background-color: #1e90ff; align-self: flex-end; }
-    .bot { background-color: #4b0082; align-self: flex-start; }
-    #input-container { display: flex; margin-top: 10px; }
-    #question-input {
-      flex: 1;
-      padding: 10px;
-      border-radius: 15px;
-      border: none;
-      outline: none;
-      font-size: 16px;
-    }
-    #btn-send, #btn-voice {
-      margin-left: 10px;
-      padding: 10px 15px;
-      border-radius: 15px;
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      background-color: #1e90ff;
-      color: #fff;
-    }
-    #status { margin-top: 5px; font-size: 14px; color: #00ff00; min-height: 18px; }
+    /* Estilos extras para chat futurista */
+    body { margin:0; font-family: 'Segoe UI', sans-serif; background:#0a0a0a; color:#fff; }
+    #background-cubes { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+    #chat-container { position:relative; max-width:500px; margin:80px auto; background:rgba(0,0,0,0.8); border-radius:15px; padding:15px; box-shadow:0 0 20px #00f; }
+    #chat { max-height:400px; overflow-y:auto; margin-bottom:10px; }
+    .message { padding:8px 12px; border-radius:10px; margin:5px 0; display:inline-block; max-width:80%; }
+    .user { background:#1a73e8; color:#fff; align-self:flex-end; float:right; }
+    .bot { background:#222; border:1px solid #00f; color:#0ff; align-self:flex-start; float:left; }
+    #question-input { width:calc(100% - 100px); padding:8px; border-radius:10px; border:none; margin-right:5px; }
+    #btn-send, #btn-voice { padding:8px 12px; border:none; border-radius:10px; cursor:pointer; background:#0ff; color:#000; }
+    #status { margin-top:5px; font-size:0.9em; color:#0ff; }
+    #chat-container::after { content:""; display:block; clear:both; }
   </style>
 </head>
 <body>
-  <canvas id="particles"></canvas>
-  <canvas id="three-canvas"></canvas>
-
   <header>
-    <div class="left">
-      <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs" style="height:50px;"></div>
-      <div class="lampada lampada-btn" id="lampada" title="Modo Claro/Escuro">
-        <!-- SVG lâmpada -->
-      </div>
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="projetos.html">Projetos</a>
-      <a href="lixo.html">Lixo Eletrônico</a>
-      <a href="ia.html">IA</a>
-      <a href="creditos.html">Créditos</a>
-    </nav>
+    <h1>Assistente IA - IPA Nível III</h1>
+    <p>Converse com Jarvis, nosso assistente virtual.</p>
   </header>
 
-  <section class="hero fade-in">
-    <h1>Assistente IA - Jarvis</h1>
-    <p>Converse com a IA do projeto EcoRobôs como se estivesse usando um aplicativo de mensagens. Fale ou digite sua pergunta.</p>
-  </section>
+  <div id="background-cubes"></div>
 
-  <section id="chat-container" class="fade-in">
+  <div id="chat-container">
     <div id="chat"></div>
-    <div id="input-container">
-      <input type="text" id="question-input" placeholder="Digite sua pergunta...">
-      <button id="btn-send">Enviar</button>
-      <button id="btn-voice">🎤</button>
-    </div>
+    <input id="question-input" type="text" placeholder="Digite sua pergunta...">
+    <button id="btn-send">Enviar</button>
+    <button id="btn-voice">🎤</button>
     <div id="status"></div>
-  </section>
+  </div>
+
+  <footer>
+    <p>Equipe Nível 3 IPA - Escola de Aplicação | Desenvolvedor: Luiz Gustavo | 2025</p>
+  </footer>
 
   <script src="chat.js"></script>
 </body>
