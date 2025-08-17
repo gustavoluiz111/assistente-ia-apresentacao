@@ -3,237 +3,168 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assistente IA - Projeto IPA</title>
-  <link rel="stylesheet" href="css/pro.css"> <!-- CSS do site já feito -->
+  <title>Assistente IA - EcoRobôs</title>
+  <link rel="stylesheet" href="universal.css">
   <style>
-    /* Estilos do fundo futurista com cubos */
-    canvas#bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #0a0f1c;
+      color: #fff;
+      overflow-x: hidden;
     }
-
-    /* Estilos do chatbox estilo aplicativo de mensagens */
-    .chat-container {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 360px;
-      max-width: 90%;
-      height: 500px;
-      background: rgba(10,10,10,0.9);
-      border-radius: 20px;
+    header {
+      background: #001f3f;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 24px;
+      color: #00d1ff;
+    }
+    main {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px;
+      min-height: 90vh;
+      position: relative;
+    }
+    #chat-container {
+      background: rgba(0, 0, 0, 0.7);
+      border-radius: 15px;
+      width: 100%;
+      max-width: 400px;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 0 20px #00f;
+      height: 600px;
+      box-shadow: 0 0 20px #00d1ff;
       overflow: hidden;
     }
-
-    .chat-messages {
+    #chat {
       flex: 1;
-      padding: 15px;
+      padding: 10px;
       overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-
     .message {
-      margin-bottom: 10px;
       padding: 10px 15px;
-      border-radius: 15px;
+      border-radius: 20px;
       max-width: 80%;
       word-wrap: break-word;
-      font-size: 14px;
     }
-
     .message.user {
-      background: #007bff;
-      color: white;
       align-self: flex-end;
+      background: #00d1ff;
+      color: #000;
     }
-
     .message.bot {
-      background: #1f1f1f;
-      color: #00ffea;
       align-self: flex-start;
+      background: #222;
+      color: #fff;
     }
-
-    .chat-input {
+    #input-container {
       display: flex;
+      gap: 10px;
       padding: 10px;
-      background: rgba(20,20,20,0.95);
+      background: rgba(0,0,0,0.5);
     }
-
-    .chat-input input {
+    #question-input {
       flex: 1;
-      padding: 10px 15px;
+      padding: 10px;
       border-radius: 20px;
       border: none;
       outline: none;
-      font-size: 14px;
-      margin-right: 5px;
+      font-size: 16px;
+      background: #111;
+      color: #fff;
     }
-
-    .chat-input button {
-      background: #00ffea;
+    #btn-send, #btn-voice {
+      background: #00d1ff;
       border: none;
       border-radius: 50%;
-      width: 40px;
-      height: 40px;
+      width: 45px;
+      height: 45px;
       cursor: pointer;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       font-size: 18px;
+      color: #000;
+      transition: all 0.2s;
     }
-
-    .chat-input button:hover {
-      background: #00ccbb;
+    #btn-send:hover, #btn-voice:hover {
+      transform: scale(1.1);
     }
-
     #status {
       text-align: center;
-      color: #0ff;
-      font-size: 12px;
       margin-top: 5px;
+      font-size: 14px;
+      color: #00d1ff;
     }
-
+    /* Cubos animados de fundo */
+    .cube-container {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .cube {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #00d1ff;
+      animation: float 10s linear infinite;
+      opacity: 0.7;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) rotate(0deg); }
+      100% { transform: translateY(-100vh) rotate(360deg); }
+    }
   </style>
 </head>
 <body>
-
-  <!-- Fundo futurista animado -->
-  <canvas id="bg"></canvas>
-
-  <!-- Cabeçalho -->
   <header>
-    <h1 style="color:#0ff;text-align:center;padding:10px;">Assistente IA - Projeto IPA</h1>
+    <h1>Assistente IA - Jarvis</h1>
   </header>
 
-  <!-- Chatbox -->
-  <div class="chat-container">
-    <div class="chat-messages" id="chat"></div>
-    <div id="status"></div>
-    <div class="chat-input">
-      <input type="text" id="question-input" placeholder="Digite sua pergunta...">
-      <button id="btn-voice">🎤</button>
-      <button id="btn-send">➡️</button>
+  <main>
+    <div class="cube-container" id="cube-bg"></div>
+
+    <div id="chat-container">
+      <div id="chat"></div>
+      <div id="status"></div>
+      <div id="input-container">
+        <input type="text" id="question-input" placeholder="Digite sua pergunta...">
+        <button id="btn-voice">🎤</button>
+        <button id="btn-send">➡️</button>
+      </div>
     </div>
-  </div>
+  </main>
 
+  <script src="chat.js"></script>
   <script>
-    // Função para carregar o arquivo JSON com as perguntas e respostas
-    async function loadQuestions() {
-      try {
-        const response = await fetch('https://raw.githubusercontent.com/gustavoluiz111/assistente-ia-apresentacao/main/perguntas1.json');
-        const data = await response.json();
-        return data;
-      } catch (error) {
-        console.error('Erro ao carregar o arquivo JSON:', error);
-        return [];
-      }
+    // Gerar cubos de fundo
+    const cubeBg = document.getElementById('cube-bg');
+    for (let i=0; i<50; i++){
+      const cube = document.createElement('div');
+      cube.classList.add('cube');
+      cube.style.left = Math.random()*100 + 'vw';
+      cube.style.animationDuration = (5 + Math.random()*10) + 's';
+      cube.style.width = cube.style.height = (10 + Math.random()*30) + 'px';
+      cubeBg.appendChild(cube);
     }
-
-    // Função para inicializar o chat
-    async function initChat() {
-      const questions = await loadQuestions();
-      const chat = document.getElementById('chat');
-      const input = document.getElementById('question-input');
-      const btnSend = document.getElementById('btn-send');
-      const btnVoice = document.getElementById('btn-voice');
-      const status = document.getElementById('status');
-
-      // Função para adicionar mensagens ao chat
-      function addMessage(text, sender) {
-        const msg = document.createElement('div');
-        msg.classList.add('message', sender);
-        msg.textContent = text;
-        chat.appendChild(msg);
-        chat.scrollTop = chat.scrollHeight;
-      }
-
-      // Função para obter a resposta com base na pergunta
-      function getResponse(question) {
-        question = question.toLowerCase();
-        for (const q of questions) {
-          if (question.includes(q.pergunta.toLowerCase())) {
-            return q.resposta;
-          }
-        }
-        return "Desculpe, não entendi sua pergunta.";
-      }
-
-      // Enviar pergunta e receber resposta
-      function sendQuestion() {
-        const question = input.value.trim();
-        if (!question) return;
-
-        addMessage(question, 'user');
-        input.value = '';
-        status.textContent = 'Processando resposta...';
-
-        setTimeout(() => {
-          const answer = getResponse(question);
-          addMessage(answer, 'bot');
-          status.textContent = '';
-          // Síntese de voz
-          if ('speechSynthesis' in window) {
-            const utter = new SpeechSynthesisUtterance(answer);
-            utter.lang = 'pt-BR';
-            window.speechSynthesis.speak(utter);
-          }
-        }, 500);
-      }
-
-      btnSend.addEventListener('click', sendQuestion);
-      input.addEventListener('keydown', e => {
-        if (e.key === 'Enter') sendQuestion();
-      });
-
-      // Reconhecimento de voz
-      let recognition;
-      if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition = new SpeechRecognition();
-        recognition.lang = 'pt-BR';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-
-        recognition.addEventListener('start', () => {
-          status.textContent = 'Escutando... Fale agora.';
-        });
-
-        recognition.addEventListener('result', (event) => {
-          const transcript = event.results[0][0].transcript;
-          input.value = transcript;
-          status.textContent = 'Pergunta captada. Enviando...';
-          sendQuestion();
-        });
-
-        recognition.addEventListener('error', (event) => {
-          status.textContent = 'Erro no reconhecimento de voz: ' + event.error;
-        });
-
-        recognition.addEventListener('end', () => {
-          status.textContent = '';
-        });
-
-        btnVoice.addEventListener('click', () => {
-          recognition.start();
-        });
-      } else {
-        btnVoice.disabled = true;
-        status.textContent = 'Reconhecimento de voz não suportado neste navegador.';
-      }
-    }
-
-    initChat();
   </script>
-
-  <!-- Script do fundo futurista com cubos -->
-  <script src="js/cubos.js"></script>
-
 </body>
 </html>
-
