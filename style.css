@@ -1,223 +1,200 @@
 :root {
-  --dark-blue: #0a0f1e; /* fundo principal */
-  --light-neutral: #f4f6f8;
   --neon-cyan: #00ffff;
-  --neon-green: #39ff14;
-  --chat-user-bg: #00BFFF;
-  --chat-ia-bg: #39ff14;
+  --bg-dark: #0b0b0b;
+  --bg-light: #f0f0f0;
+  --text-dark: #0b0b0b;
+  --text-light: #f0f0f0;
 }
 
 body {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
-  background-color: var(--dark-blue);
-  color: var(--light-neutral);
+  background-color: var(--bg-dark);
+  color: var(--text-light);
   overflow-x: hidden;
-  transition: background 0.5s, color 0.5s;
-  position: relative;
 }
 
-body.claro { 
-  background:#f0f0f0; 
-  color:#000; 
+body.claro {
+  background-color: var(--bg-light);
+  color: var(--text-dark);
 }
 
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
+/* --- Lâmpada --- */
+#lampada {
   position: fixed;
-  width: 100%;
-  top: 0;
-  background: rgba(41,100,142,0.9);
-  z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-header .left {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.logo img {
+  top: 20px;
+  right: 20px;
+  width: 40px;
   height: 40px;
-  width: auto;
-}
-
-/* NAV LINKS */
-nav a {
-  color: var(--light-neutral);
-  text-decoration: none;
-  margin-left: 25px;
-  font-weight: 500;
-  position: relative;
-  transition: color 0.3s;
-}
-nav a::after {
-  content: '';
-  display: block;
-  height: 2px;
-  background: var(--neon-cyan);
-  transition: width 0.3s;
-  width: 0;
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-}
-nav a:hover { color: var(--neon-cyan); }
-nav a:hover::after { width: 100%; }
-
-/* LÂMPADA */
-.lampada-btn {
   cursor: pointer;
-  width: 50px;
-  height: 50px;
-  transition: transform 0.2s;
-}
-.lampada-btn:hover { transform: scale(1.1); }
-.lampada svg {
-  fill: #444;
-  filter: drop-shadow(0 0 5px #000);
-  transition: fill 0.5s ease, filter 0.5s ease;
-}
-.lampada.acesa svg {
-  fill: #00BFFF;
-  filter: drop-shadow(0 0 25px #1E90FF);
-  animation: piscar 0.6s ease, fogo 2s infinite ease-in-out alternate;
-}
-@keyframes piscar { 
-  0%{fill:#444;filter:drop-shadow(0 0 5px #000);}
-  30%{fill:#00BFFF;filter:drop-shadow(0 0 15px #1E90FF);}
-  50%{fill:#444;filter:drop-shadow(0 0 5px #000);}
-  80%{fill:#00BFFF;filter:drop-shadow(0 0 20px #63B8FF);}
-  100%{fill:#00BFFF;filter:drop-shadow(0 0 25px #1E90FF);}
-}
-@keyframes fogo { 
-  0%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 20px #1E90FF);}
-  25%{transform:scale(1.05) translateY(-2px);filter:drop-shadow(0 0 25px #63B8FF);}
-  50%{transform:scale(0.95) translateY(1px);filter:drop-shadow(0 0 18px #00BFFF);}
-  75%{transform:scale(1.08) translateY(-1px);filter:drop-shadow(0 0 28px #87CEFA);}
-  100%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 22px #1E90FF);}
+  z-index: 1000;
+  transition: transform 0.3s;
 }
 
-/* HERO SECTION */
-section {
-  padding: 120px 40px 80px;
-  min-height: 100vh;
-  position: relative;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
+#lampada:hover {
+  transform: scale(1.1);
 }
-.hero h1 { 
-  font-size: 3rem; 
-  color: var(--neon-cyan); 
-  margin-bottom: 20px; 
-  text-align: center; 
-}
-.hero p { 
-  font-size: 1.2rem; 
-  max-width: 700px; 
-  line-height: 1.6; 
-  color: var(--light-neutral); 
-  text-align: center; 
-}
-body.claro .hero h1{ color:#000; }
-body.claro .hero p{ color:#000; }
 
-/* MASCOTE */
-.mascote{
-  width: 80px;
-  height: 80px;
+#lampada svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--text-light);
+  transition: fill 0.3s;
+}
+
+#lampada.acesa svg {
+  fill: var(--neon-cyan);
+}
+
+/* --- Mascote e Balão --- */
+.mascote {
   position: fixed;
   bottom: 20px;
   right: 20px;
-  border-radius: 8px;
-  animation: float 3s ease-in-out infinite;
+  font-size: 40px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  font-size: 2.5rem;
-  z-index: 5;
+  z-index: 1001;
 }
-@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
 
-/* CHATBOX ESTILO WHATSAPP/TELEGRAM */
+.balao {
+  position: fixed;
+  max-width: 250px;
+  padding: 10px 15px;
+  background-color: var(--neon-cyan);
+  color: #000;
+  border-radius: 15px;
+  font-size: 14px;
+  display: none;
+  z-index: 1000;
+  transition: transform 0.2s, opacity 0.2s;
+}
+
+/* --- Chatbox estilo WhatsApp/Telegram --- */
 .chat-container {
-  width: 100%;
-  max-width: 380px;
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  width: 300px;
+  max-height: 400px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  margin-top: 20px;
+  gap: 5px;
+  z-index: 1002;
 }
+
 #chat-window {
-  background: rgba(10,15,30,0.9);
-  border: 2px solid var(--neon-cyan);
+  flex: 1;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.7);
   border-radius: 15px;
   padding: 10px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  max-height: 400px;
-  overflow-y: auto;
+  gap: 5px;
 }
-.mensagem {
-  padding: 10px 15px;
-  border-radius: 15px;
-  max-width: 75%;
-  word-wrap: break-word;
-  animation: fadeIn 0.3s ease;
-}
-.usuario {
-  background: var(--chat-user-bg);
-  color: #fff;
-  align-self: flex-end;
-  border-bottom-right-radius: 0;
-}
-.ia {
-  background: var(--chat-ia-bg);
-  color: #000;
-  align-self: flex-start;
-  border-bottom-left-radius: 0;
-}
-@keyframes fadeIn { 0%{opacity:0;transform:translateY(10px);}100%{opacity:1;transform:translateY(0);} }
-body.claro .chat-container #chat-window { background:#f0f0f0; }
-body.claro .chat-container .usuario { background:#00BFFF; color:#fff; }
-body.claro .chat-container .ia { background:#39ff14; color:#000; }
 
-/* CANVAS PARTICLES E 3D */
-canvas#particles, canvas#three-canvas {
-  position: fixed; top: 0; left: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
+.mensagem {
+  padding: 8px 12px;
+  border-radius: 15px;
+  max-width: 80%;
+  word-wrap: break-word;
+  font-size: 14px;
+}
+
+.mensagem.usuario {
+  background-color: var(--neon-cyan);
+  align-self: flex-end;
+  color: #000;
+}
+
+.mensagem.ia {
+  background-color: #222;
+  color: var(--neon-cyan);
+  align-self: flex-start;
+}
+
+#chat-window::-webkit-scrollbar {
+  width: 5px;
+}
+
+#chat-window::-webkit-scrollbar-thumb {
+  background: var(--neon-cyan);
+  border-radius: 10px;
+}
+
+/* Fade-in */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Canvas */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 0;
 }
 
-/* LINHAS ANIMADAS */
-.linha {
-  position: absolute;
-  height: 2px;
-  background: linear-gradient(90deg,var(--neon-cyan),var(--neon-green));
-  opacity: 0.6;
-  animation: pulse 2s infinite alternate;
-}
-@keyframes pulse {0%{transform:scaleX(0.9);opacity:0.3;}50%{transform:scaleX(1.1);opacity:0.7;}100%{transform:scaleX(0.9);opacity:0.3;}}
+/* --- RESPONSIVO --- */
+@media (max-width: 768px) {
+  #lampada {
+    width: 35px;
+    height: 35px;
+    top: 15px;
+    right: 15px;
+  }
 
-/* RESPONSIVO */
-@media (max-width:768px){
-  header{ flex-direction: column; gap:10px; padding:10px; }
-  nav a{ margin-left:10px; font-size:0.9rem; }
-  .logo img{ height: 30px; }
-  .lampada-btn{ width:40px; height:40px; }
-  .hero h1{ font-size:2rem; }
-  .hero p{ font-size:1rem; max-width:90%; }
-  .mascote{ width:60px; height:60px; font-size:2rem; }
-  .chat-container { max-width: 90%; }
+  .mascote {
+    font-size: 35px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .balao {
+    max-width: 200px;
+    font-size: 13px;
+  }
+
+  .chat-container {
+    width: 250px;
+    bottom: 15px;
+    left: 15px;
+  }
+
+  .mensagem {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 480px) {
+  #lampada {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mascote {
+    font-size: 30px;
+  }
+
+  .balao {
+    max-width: 180px;
+    font-size: 12px;
+  }
+
+  .chat-container {
+    width: 200px;
+    bottom: 10px;
+    left: 10px;
+  }
+
+  .mensagem {
+    font-size: 12px;
+  }
 }
