@@ -1,73 +1,28 @@
-/* Chat estilo aplicativo de mensagens */
-.chat-container {
-  max-width: 600px;
-  margin: 40px auto;
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: 15px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  height: 80vh;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Assistente IA - Jarvis</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="chat.js"></script>
+</head>
+<body>
+  <header>
+    <img src="https://raw.githubusercontent.com/gustavoluiz111/assistente-ia-apresentacao/main/Free.png" alt="Logo EcoRobôs" class="logo">
+    <h1>Assistente IA - Jarvis</h1>
+  </header>
 
-#chat-window {
-  flex: 1;
-  overflow-y: auto;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
+  <main class="chat-container">
+    <div id="chat-window">
+      <!-- As mensagens vão ser adicionadas aqui -->
+    </div>
 
-.message {
-  padding: 12px 18px;
-  border-radius: 15px;
-  max-width: 75%;
-  font-size: 1rem;
-  line-height: 1.4;
-}
-
-.message.user {
-  background: #007bff;
-  color: white;
-  align-self: flex-end;
-  border-bottom-right-radius: 0;
-}
-
-.message.bot {
-  background: #f1f1f1;
-  color: #333;
-  align-self: flex-start;
-  border-bottom-left-radius: 0;
-}
-
-.chat-input {
-  display: flex;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-.chat-input input {
-  flex: 1;
-  padding: 10px;
-  border-radius: 10px;
-  border: none;
-  font-size: 1rem;
-}
-
-.chat-input button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 10px;
-  background: #007bff;
-  color: white;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: 0.3s;
-}
-
-.chat-input button:hover {
-  background: #0056b3;
-}
-
-
+    <div class="chat-input">
+      <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+      <button id="send-btn">Enviar</button>
+      <button id="voice-btn">🎤</button>
+    </div>
+  </main>
+</body>
+</html>
