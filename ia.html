@@ -3,152 +3,53 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IA - EcoRobôs</title>
-  <!-- CSS Universal -->
-  <link rel="stylesheet" href="css/universal.css">
-  <style>
-    /* Estilo adicional do chat */
-    #chat-container {
-      max-width: 500px;
-      margin: 100px auto 50px;
-      background: rgba(0,0,0,0.8);
-      border-radius: 15px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-    }
-    #chat {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      height: 400px;
-      display: flex;
-      flex-direction: column;
-    }
-    .message {
-      margin: 5px 0;
-      padding: 10px 15px;
-      border-radius: 20px;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-    .user {
-      align-self: flex-end;
-      background-color: #1e90ff;
-      color: white;
-    }
-    .bot {
-      align-self: flex-start;
-      background-color: #f1f1f1;
-      color: #000;
-    }
-    #input-area {
-      display: flex;
-      border-top: 1px solid #ccc;
-    }
-    #question-input {
-      flex: 1;
-      padding: 10px;
-      border: none;
-      border-radius: 0;
-      outline: none;
-    }
-    #btn-send, #btn-voice {
-      padding: 0 15px;
-      border: none;
-      background: #1e90ff;
-      color: white;
-      cursor: pointer;
-    }
-  </style>
+  <title>EcoRobôs - IA</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Cabeçalho Universal -->
+  <!-- Cabeçalho -->
   <header>
-    <div class="logo">EcoRobôs</div>
-    <div class="theme-toggle">
-      <button id="toggle-theme">💡</button>
+    <div class="left">
+      <div class="logo"><img src="logo.png" alt="EcoRobôs"></div>
+      <h2>EcoRobôs</h2>
+    </div>
+    <nav>
+      <a href="index.html">Home</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="lixo.html">Lixo Eletrônico</a>
+      <a href="ia.html" class="active">IA</a>
+      <a href="creditos.html">Créditos</a>
+    </nav>
+    <div id="lampada" class="lampada lampada-btn">
+      <!-- Ícone SVG da lâmpada -->
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9 21h6v-1H9v1zm3-20C7.925 1 4 4.925 4 10c0 2.899 1.64 5.45 4.063 6.813L8 19h8l-.063-2.188C18.36 15.45 20 12.899 20 10c0-5.075-3.925-9-9-9z"/></svg>
     </div>
   </header>
 
-  <!-- Fundo com cubos e efeitos (igual universal do site) -->
-  <div id="background-cubes"></div>
+  <!-- Seção do Chat IA -->
+  <section class="hero">
+    <h1>Assistente EcoRobôs IA</h1>
+    <p>Converse com o J.A.R.V.I.S . Você pode digitar ou usar o microfone para enviar mensagens!</p>
 
-  <!-- Chatbox estilo WhatsApp/Telegram -->
-  <div id="chat-container">
-    <div id="chat"></div>
-    <div id="input-area">
-      <input type="text" id="question-input" placeholder="Digite sua pergunta...">
-      <button id="btn-voice">🎤</button>
-      <button id="btn-send">Enviar</button>
+    <div class="chat-container">
+      <div id="chat-window">
+        <!-- As mensagens aparecem aqui -->
+      </div>
+
+      <div class="chat-input">
+        <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+        <button id="send-btn">Enviar</button>
+        <button id="voice-btn">🎤</button>
+      </div>
     </div>
-    <div id="status"></div>
-  </div>
+  </section>
 
-  <!-- Scripts universais -->
-  <script src="js/universal.js"></script>
+  <!-- Canvas dos efeitos globais -->
+  <canvas id="particles"></canvas>
+  <canvas id="three-canvas"></canvas>
 
-  <!-- Chat script (perguntas e respostas) -->
-  <script src="js/chat.js"></script>
-
-  <!-- Inicialização do chat e reconhecimento de voz -->
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const chat = document.getElementById('chat');
-      const input = document.getElementById('question-input');
-      const btnSend = document.getElementById('btn-send');
-      const btnVoice = document.getElementById('btn-voice');
-      const status = document.getElementById('status');
-
-      function addMessage(text, sender) {
-        const msg = document.createElement('div');
-        msg.classList.add('message', sender);
-        msg.textContent = text;
-        chat.appendChild(msg);
-        chat.scrollTop = chat.scrollHeight;
-      }
-
-      function sendQuestion() {
-        const question = input.value.trim();
-        if (!question) return;
-        addMessage(question, 'user');
-        input.value = '';
-        status.textContent = 'Processando resposta...';
-        setTimeout(() => {
-          const answer = getResponse(question); // Função do chat.js
-          addMessage(answer, 'bot');
-          status.textContent = '';
-        }, 500);
-      }
-
-      btnSend.addEventListener('click', sendQuestion);
-      input.addEventListener('keydown', e => { if(e.key==='Enter') sendQuestion(); });
-
-      // Reconhecimento de voz
-      let recognition;
-      if('webkitSpeechRecognition' in window || 'SpeechRecognition' in window){
-        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-        recognition = new SpeechRecognition();
-        recognition.lang = 'pt-BR';
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
-
-        recognition.addEventListener('start', () => { status.textContent = 'Escutando...'; });
-        recognition.addEventListener('result', (event) => {
-          const transcript = event.results[0][0].transcript;
-          input.value = transcript;
-          sendQuestion();
-        });
-        recognition.addEventListener('error', (event) => { status.textContent = 'Erro: '+event.error; });
-        recognition.addEventListener('end', () => { status.textContent = ''; });
-
-        btnVoice.addEventListener('click', () => recognition.start());
-      } else {
-        btnVoice.disabled = true;
-        status.textContent = 'Reconhecimento de voz não suportado.';
-      }
-    });
-  </script>
+  <!-- Scripts -->
+  <script src="script.js"></script>
+  <script src="chat.js"></script>
 </body>
 </html>
-
