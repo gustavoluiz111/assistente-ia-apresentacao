@@ -40,12 +40,14 @@ mascote.addEventListener("click", () => {
   atualizarBalao();
 });
 
+// Fecha balão se clicar fora
 document.addEventListener("click", (e) => {
   if (!mascote.contains(e.target) && !balao.contains(e.target)) {
     balao.style.display = "none";
   }
 });
 
+// Mantém o balão posicionado corretamente ao redimensionar a janela
 window.addEventListener("resize", () => {
   if (balao.style.display === "block") {
     atualizarBalao();
@@ -165,4 +167,3 @@ window.addEventListener('resize', () => {
   renderer.setSize(window.innerWidth, window.innerHeight);
   atualizarBalao();
 });
-
