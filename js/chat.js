@@ -604,3 +604,14 @@
 { question: "quem marcou mais gols no último campeonato mundial", answer: "Neymar e Mbappé se destacaram." },
 { question: "quem ganhou a última Supercopa do Brasil", answer: "Flamengo foi campeão recentemente." },
 { question: "quem é o maior jogador da história do PSG", answer: "Neymar, atualmente, é o maior ídolo em destaque." }
+
+// Função para buscar a resposta
+function getResponse(userQuestion) {
+  const normalized = userQuestion.trim().toLowerCase();
+  for (let i = 0; i < qa.length; i++) {
+    if (qa[i].question.toLowerCase() === normalized) {
+      return qa[i].answer;
+    }
+  }
+  return "Desculpe, não sei a resposta para isso ainda.";
+}
