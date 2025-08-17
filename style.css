@@ -192,3 +192,68 @@ canvas#particles, canvas#three-canvas {
   .mascote{ width:60px; height:60px; font-size:2rem; }
 }
 
+/* --- LOGO AJUSTADA --- */
+header .left .logo img {
+  height: 50px; /* altura fixa da logo */
+  width: auto;
+  display: block;
+  margin: 0; /* sem margem extra */
+  padding: 0;
+}
+
+/* --- MASCOTE FIXO --- */
+.mascote {
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  border-radius: 8px;
+  animation: float 3s ease-in-out infinite;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2.5rem;
+  z-index: 5;
+}
+@keyframes float { 
+  0%, 100% { transform: translateY(0); } 
+  50% { transform: translateY(-15px); } 
+}
+
+/* --- BALÃO FIXO JUNTO AO MASCOTE --- */
+.balao {
+  position: fixed; /* mudou de absolute para fixed */
+  bottom: 120px; /* acima do mascote */
+  right: 20px; /* alinhado à direita como o mascote */
+  background: #29648e;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 10px;
+  padding: 10px 15px;
+  max-width: 220px;
+  color: var(--neon-cyan);
+  font-size: 0.85rem;
+  display: none;
+  opacity: 0;
+  transform-origin: bottom right;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.balao::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  right: 15px;
+  border-width: 10px 10px 0 10px;
+  border-style: solid;
+  border-color: #29648e transparent transparent transparent;
+}
+body.claro .balao {
+  background: #f0f0f0;
+  border-color: #00BFFF;
+  color: #000;
+}
+body.claro .balao::after {
+  border-color: #f0f0f0 transparent transparent transparent;
+}
