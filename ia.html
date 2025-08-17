@@ -1,50 +1,119 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>IA - EcoRobôs</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EcoRobôs - IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+  /* Chatbox IA */
+  #chat-window {
+    width: 350px;
+    max-height: 450px;
+    background: rgba(10,15,30,0.9);
+    border: 2px solid var(--neon-cyan);
+    border-radius: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    overflow-y: auto;
+    font-size: 0.95rem;
+    color: var(--light-neutral);
+  }
+  #chat-window .message {
+    padding: 10px 15px;
+    border-radius: 20px;
+    max-width: 75%;
+    word-wrap: break-word;
+  }
+  #chat-window .user {
+    background: var(--neon-cyan);
+    color: var(--dark-blue);
+    align-self: flex-end;
+    border-bottom-right-radius: 0;
+  }
+  #chat-window .bot {
+    background: var(--neon-green);
+    color: #000;
+    align-self: flex-start;
+    border-bottom-left-radius: 0;
+  }
+  #user-input {
+    width: calc(100% - 60px);
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: 2px solid var(--neon-cyan);
+    margin-right: 5px;
+    font-size: 1rem;
+  }
+  #send-btn, #voice-btn {
+    width: 45px;
+    height: 45px;
+    border: none;
+    border-radius: 50%;
+    background: var(--neon-cyan);
+    color: var(--dark-blue);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  #send-btn:hover, #voice-btn:hover { transform: scale(1.1); }
+
+  /* Container chat */
+  .chat-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 10;
+  }
+  .chat-input-container {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+
+  /* Responsivo */
+  @media (max-width:768px){
+    #chat-window { width: 90%; max-height: 300px; }
+    #user-input { width: calc(100% - 55px); font-size: 0.9rem; }
+    #send-btn, #voice-btn { width: 40px; height: 40px; font-size: 1rem; }
+    .chat-container { bottom: 10px; right: 10px; }
+  }
+</style>
 </head>
 <body>
+  <!-- Mascote -->
+  <div class="mascote" id="mascote">🤖</div>
+  <div class="balao"></div>
+
+  <!-- Chat IA -->
+  <div class="chat-container">
+    <div id="chat-window"></div>
+    <div class="chat-input-container">
+      <input type="text" id="user-input" placeholder="Digite sua mensagem...">
+      <button id="send-btn">➡️</button>
+      <button id="voice-btn">🎤</button>
+    </div>
+  </div>
+
+  <!-- Lâmpada -->
+  <div class="lampada lampada-btn" id="lampada">
+    <svg width="40" height="40" viewBox="0 0 64 64">
+      <path d="M32 2C19 2 10 11 10 24c0 9 7 17 7 17h30s7-8 7-17C54 11 45 2 32 2zm0 50c-5 0-9 4-9 9h18c0-5-4-9-9-9z"/>
+    </svg>
+  </div>
+
   <canvas id="particles"></canvas>
   <canvas id="three-canvas"></canvas>
 
-  <header>
-    <div class="left">
-      <div class="logo">
-        <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
-      </div>
-      <div class="lampada lampada-btn" id="lampada" title="Modo Claro/Escuro"></div>
-    </div>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="projetos.html">Projetos</a>
-      <a href="lixo.html">Lixo Eletrônico</a>
-      <a href="ia.html" class="active">IA</a>
-      <a href="creditos.html">Créditos</a>
-    </nav>
-  </header>
-
-  <section class="hero fade-in">
-    <h1>Assistente EcoRobôs IA</h1>
-    <p>Converse com nossa IA simulada. Digite ou use o microfone!</p>
-
-    <div class="chat-container">
-      <div class="chatbox" id="chat-window"></div>
-      <div class="chat-input">
-        <input type="text" id="user-input" placeholder="Digite sua mensagem...">
-        <button id="send-btn">Enviar</button>
-        <button id="voice-btn">🎤</button>
-      </div>
-    </div>
-  </section>
-
-  <div class="mascote" id="mascote">🤖</div>
-
-  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-  <script src="script.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <script src="js.js"></script>
   <script src="chat.js"></script>
 </body>
 </html>
