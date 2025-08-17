@@ -1,170 +1,127 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assistente IA - EcoRobôs</title>
-  <link rel="stylesheet" href="universal.css">
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background: #0a0f1c;
-      color: #fff;
-      overflow-x: hidden;
-    }
-    header {
-      background: #001f3f;
-      padding: 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-      color: #00d1ff;
-    }
-    main {
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      padding: 20px;
-      min-height: 90vh;
-      position: relative;
-    }
-    #chat-container {
-      background: rgba(0, 0, 0, 0.7);
-      border-radius: 15px;
-      width: 100%;
-      max-width: 400px;
-      display: flex;
-      flex-direction: column;
-      height: 600px;
-      box-shadow: 0 0 20px #00d1ff;
-      overflow: hidden;
-    }
-    #chat {
-      flex: 1;
-      padding: 10px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .message {
-      padding: 10px 15px;
-      border-radius: 20px;
-      max-width: 80%;
-      word-wrap: break-word;
-    }
-    .message.user {
-      align-self: flex-end;
-      background: #00d1ff;
-      color: #000;
-    }
-    .message.bot {
-      align-self: flex-start;
-      background: #222;
-      color: #fff;
-    }
-    #input-container {
-      display: flex;
-      gap: 10px;
-      padding: 10px;
-      background: rgba(0,0,0,0.5);
-    }
-    #question-input {
-      flex: 1;
-      padding: 10px;
-      border-radius: 20px;
-      border: none;
-      outline: none;
-      font-size: 16px;
-      background: #111;
-      color: #fff;
-    }
-    #btn-send, #btn-voice {
-      background: #00d1ff;
-      border: none;
-      border-radius: 50%;
-      width: 45px;
-      height: 45px;
-      cursor: pointer;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 18px;
-      color: #000;
-      transition: all 0.2s;
-    }
-    #btn-send:hover, #btn-voice:hover {
-      transform: scale(1.1);
-    }
-    #status {
-      text-align: center;
-      margin-top: 5px;
-      font-size: 14px;
-      color: #00d1ff;
-    }
-    /* Cubos animados de fundo */
-    .cube-container {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-      z-index: 0;
-    }
-    .cube {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border: 2px solid #00d1ff;
-      animation: float 10s linear infinite;
-      opacity: 0.7;
-    }
-    @keyframes float {
-      0% { transform: translateY(100vh) rotate(0deg); }
-      100% { transform: translateY(-100vh) rotate(360deg); }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Assistente IA - EcoRobôs</title>
+<link rel="stylesheet" href="css/universal.css">
+<script src="js/universal.js" defer></script>
+<script src="js/chat.js" defer></script>
+<style>
+/* Chatbox estilo WhatsApp */
+#chat-container {
+  position: relative;
+  max-width: 400px;
+  margin: 120px auto;
+  background: rgba(255,255,255,0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 600px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+#chat {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+}
+.message { 
+  margin: 5px 0; 
+  padding: 8px 12px; 
+  border-radius: 12px; 
+  max-width: 80%;
+  word-wrap: break-word;
+}
+.user { background: #0084ff; color: white; align-self: flex-end; }
+.bot { background: #e5e5ea; color: black; align-self: flex-start; }
+#input-container {
+  display: flex;
+  border-top: 1px solid #ccc;
+}
+#question-input { flex: 1; padding: 10px; border: none; outline: none; background: rgba(255,255,255,0.1); color: white; }
+#btn-send, #btn-voice { padding: 0 15px; cursor: pointer; background: none; border: none; color: white; font-size: 18px; }
+#status { text-align: center; font-size: 14px; color: white; margin-top: 5px; }
+</style>
 </head>
 <body>
-  <header>
-    <h1>Assistente IA - Jarvis</h1>
-  </header>
+<header><!-- cabeçalho universal já existente --></header>
 
-  <main>
-    <div class="cube-container" id="cube-bg"></div>
+<!-- Fundo com cubos animados -->
+<div id="background-cubes"><!-- cubos animados do universal.js --></div>
 
-    <div id="chat-container">
-      <div id="chat"></div>
-      <div id="status"></div>
-      <div id="input-container">
-        <input type="text" id="question-input" placeholder="Digite sua pergunta...">
-        <button id="btn-voice">🎤</button>
-        <button id="btn-send">➡️</button>
-      </div>
-    </div>
-  </main>
+<div id="chat-container">
+  <div id="chat"></div>
+  <div id="input-container">
+    <input type="text" id="question-input" placeholder="Digite sua pergunta...">
+    <button id="btn-voice">🎤</button>
+    <button id="btn-send">Enviar</button>
+  </div>
+  <div id="status"></div>
+</div>
 
-  <script src="chat.js"></script>
-  <script>
-    // Gerar cubos de fundo
-    const cubeBg = document.getElementById('cube-bg');
-    for (let i=0; i<50; i++){
-      const cube = document.createElement('div');
-      cube.classList.add('cube');
-      cube.style.left = Math.random()*100 + 'vw';
-      cube.style.animationDuration = (5 + Math.random()*10) + 's';
-      cube.style.width = cube.style.height = (10 + Math.random()*30) + 'px';
-      cubeBg.appendChild(cube);
-    }
-  </script>
+<footer><!-- rodapé universal já existente --></footer>
+
+<script>
+// Funções básicas do chat puxando do chat.js
+const chatContainer = document.getElementById('chat');
+const input = document.getElementById('question-input');
+const sendBtn = document.getElementById('btn-send');
+const voiceBtn = document.getElementById('btn-voice');
+const status = document.getElementById('status');
+
+function addMessage(text, sender) {
+  const msg = document.createElement('div');
+  msg.classList.add('message', sender);
+  msg.textContent = text;
+  chatContainer.appendChild(msg);
+  chatContainer.scrollTop = chatContainer.scrollHeight;
+}
+
+// Envio de mensagens
+sendBtn.addEventListener('click', () => {
+  const question = input.value.trim();
+  if (!question) return;
+  addMessage(question, 'user');
+  input.value = '';
+  const answer = getResponse(question);
+  setTimeout(() => addMessage(answer, 'bot'), 300);
+});
+
+// Enter envia mensagem
+input.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') sendBtn.click();
+});
+
+// Reconhecimento de voz
+let recognition;
+if ('webkitSpeechRecognition' in window) {
+  recognition = new webkitSpeechRecognition();
+  recognition.lang = 'pt-BR';
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  recognition.onresult = (event) => {
+    const voiceText = event.results[0][0].transcript;
+    input.value = voiceText;
+    sendBtn.click();
+  };
+
+  recognition.onerror = (event) => {
+    status.textContent = "Erro no reconhecimento de voz.";
+    setTimeout(()=> status.textContent="", 2000);
+  };
+  
+  voiceBtn.addEventListener('click', () => {
+    recognition.start();
+    status.textContent = "Ouvindo...";
+  });
+
+} else {
+  voiceBtn.disabled = true;
+  status.textContent = "Reconhecimento de voz não suportado neste navegador.";
+}
+</script>
 </body>
 </html>
