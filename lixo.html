@@ -8,12 +8,12 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<canvas id="particles"></canvas>
+<canvas id="three-canvas"></canvas>
 
 <header>
   <div class="left">
-    <div class="logo">
-      <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/raw/main/Free.png" alt="Logo EcoRobôs">
-    </div>
+    <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs" style="height:50px;"></div>
     <div class="lampada lampada-btn" id="lampada" title="Modo Claro/Escuro">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
         <path d="M192 0C209.7 0 224 14.33 224 32V64H160V32C160 14.33 174.3 0 192 0zM128 64H256V128H128V64zM96 128H288C314.5 128 336 149.5 336 176V288C336 340.9 307.1 387.3 264 409.6V448H120V409.6C76.89 387.3 48 340.9 48 288V176C48 149.5 69.49 128 96 128zM160 352C160 369.7 174.3 384 192 384C209.7 384 224 369.7 224 352C224 334.3 209.7 320 192 320C174.3 320 160 334.3 160 352zM120 480H264C277.3 480 288 490.7 288 504C288 508.4 284.4 512 280 512H104C99.58 512 96 508.4 96 504C96 490.7 106.7 480 120 480z"/>
@@ -30,16 +30,42 @@
 </header>
 
 <section class="hero fade-in">
-  <h1>Lixo Eletrônico e seus impactos</h1>
-  <p>O lixo eletrônico representa um grande problema ambiental e de saúde pública, com impactos significativos para o meio ambiente, a vida humana e outros seres vivos.</p>
+  <h1>Lixo Eletrônico</h1>
+  <p>Entenda os impactos do e-lixo no meio ambiente, na saúde humana e animal, e saiba como a reciclagem é essencial.</p>
 </section>
 
-<section class="projetos fade-in">
-  <p>O descarte inadequado contamina o solo e a água com substâncias tóxicas, afeta a saúde humana e animal, e contribui para o aquecimento global.</p>
-  <p>Metais pesados como chumbo, mercúrio, cádmio e arsênio presentes em equipamentos eletrônicos podem infiltrar-se no solo e contaminar lençóis freáticos, rios e lagos, prejudicando a qualidade da água potável e afetando a fauna e flora locais.</p>
-  <p>A decomposição de componentes eletrônicos em lixões a céu aberto pode liberar gases de efeito estufa. A exposição a metais pesados pode causar danos neurológicos, renais, ósseos, hepáticos, respiratórios e reprodutivos.</p>
-  <p>Animais podem bioacumular esses elementos, afetando a saúde humana através do consumo de alimentos. Trabalhadores na reciclagem de lixo eletrônico, muitas vezes em condições precárias, estão expostos a altos riscos de contaminação.</p>
-  <p>A produção de equipamentos consome recursos naturais e energia, e o descarte inadequado representa desperdício. A reciclagem e destinação correta do lixo eletrônico são essenciais para minimizar impactos negativos. Campanhas de conscientização são fundamentais para mudar o comportamento da população e promover tecnologias mais sustentáveis.</p>
+<section class="conteudo fade-in" style="max-width:900px; text-align:left; margin:0 auto; padding:20px;">
+  <h2>O que é lixo eletrônico?</h2>
+  <p>O lixo eletrônico, também chamado de e-lixo, é formado por equipamentos eletrônicos e elétricos ou partes deles que foram descartados por estarem quebrados, obsoletos ou sem utilidade. Ele contém metais pesados e outras substâncias tóxicas que, se descartadas inadequadamente, podem poluir o ambiente e causar doenças.</p>
+
+  <h2>Impactos Ambientais e à Saúde Pública</h2>
+  <p>O lixo eletrônico representa um grande problema ambiental e de saúde pública, com impactos significativos para o meio ambiente e para a vida humana e de outros seres vivos. O descarte inadequado contamina o solo e a água com substâncias tóxicas, afeta a saúde humana e animal, e contribui para o aquecimento global.</p>
+
+  <h3>Contaminação do Solo e da Água</h3>
+  <p>Metais pesados como chumbo, mercúrio, cádmio e arsênio presentes nos equipamentos eletrônicos podem infiltrar-se no solo e contaminar lençóis freáticos, rios e lagos, prejudicando a qualidade da água potável. A contaminação afeta a fauna e a flora locais, alterando habitats naturais e a cadeia alimentar.</p>
+
+  <h3>Emissão de Gases de Efeito Estufa</h3>
+  <p>A decomposição de componentes eletrônicos, especialmente plásticos e metais, em lixões a céu aberto pode liberar gases de efeito estufa, contribuindo para o aquecimento global.</p>
+
+  <h3>Riscos à Saúde Humana</h3>
+  <p>A exposição a metais pesados, por ingestão, inalação ou contato com a pele, pode causar danos neurológicos, renais, ósseos e hepáticos, além de problemas respiratórios e reprodutivos. Trabalhadores da reciclagem de e-lixo estão especialmente vulneráveis.</p>
+
+  <h3>Bioacumulação na Cadeia Alimentar</h3>
+  <p>Animais podem consumir água e alimentos contaminados, levando à bioacumulação de metais pesados em seus organismos e afetando a saúde humana através do consumo desses alimentos.</p>
+
+  <h3>Impactos Econômicos e Sociais</h3>
+  <p>A produção de equipamentos eletrônicos consome recursos naturais e energia. O descarte inadequado representa desperdício desses recursos. A descontaminação de áreas poluídas e os gastos com tratamentos de saúde geram custos sociais e econômicos significativos.</p>
+
+  <h3>Soluções Sustentáveis</h3>
+  <p>A reciclagem e a destinação correta do lixo eletrônico são essenciais. Campanhas de conscientização, políticas públicas e tecnologias sustentáveis ajudam a reduzir os impactos ambientais e sociais.</p>
+
+  <h4>Fontes:</h4>
+  <ul>
+    <li><a href="https://jornal.usp.br/campus-ribeirao-preto/descarte-inadequado-de-residuos-eletronicos-afeta-meio-ambiente-e-saude-da-populacao/?utm_source=chatgpt.com" target="_blank">USP - Descarte inadequado de resíduos eletrônicos</a></li>
+    <li><a href="https://greeneletron.org.br/blog/aquecimento-global-lixo-eletronico/?utm_source=chatgpt.com" target="_blank">Greeneletron - Aquecimento global e e-lixo</a></li>
+    <li><a href="https://www.seteambiental.com.br/lixo-eletronico-impacto-ambiental-e-solucoes-sustentaveis/?utm_source=chatgpt.com" target="_blank">Sete Ambiental - Impactos e soluções</a></li>
+    <li><a href="https://pt.wikipedia.org/wiki/Bioacumula%C3%A7%C3%A3o?utm_source=chatgpt.com" target="_blank">Wikipedia - Bioacumulação</a></li>
+  </ul>
 </section>
 
 <div class="mascote" id="mascote">🤖</div>
@@ -47,3 +73,4 @@
 <script src="script.js"></script>
 </body>
 </html>
+
