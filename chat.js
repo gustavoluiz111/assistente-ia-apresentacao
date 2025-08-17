@@ -7,42 +7,55 @@ document.addEventListener('DOMContentLoaded', () => {
 
   let responses = [];
 
-  // Carregar perguntas do JSON
+  // Carregar perguntas/respostas do JSON
   fetch('perguntas1.json')
     .then(res => res.json())
     .then(data => {
       responses = data;
     })
     .catch(err => {
-      console.error('Erro ao carregar perguntas:', err);
-      responses = [];
+      console.error('Erro ao carregar JSON:', err);
+      status.textContent = 'Erro ao carregar base de perguntas.';
     });
 
-  // Função para falar em voz alta
-  function speak(text) {
+  // Função Jarvis para falar
+  function speakJarvis(text) {
     if ('speechSynthesis' in window) {
       const utterance = new SpeechSynthesisUtterance(text);
-      // Configurações da voz (você pode ajustar pitch e rate)
-      utterance.pitch = 1; // tom
-      utterance.rate = 1;  // velocidade
-      // Selecionar voz próxima de Jarvis (navegador define vozes disponíveis)
+
+      // Ajustes para voz Jarvis
+      utterance.pitch = 0.8; 
+      utterance.rate = 1.05;
+      utterance.volume = 1;
+
       const voices = window.speechSynthesis.getVoices();
-      const jarvisVoice = voices.find(v => v.lang === 'pt-BR') || voices[0];
+      let jarvisVoice = voices.find(v => v.lang === 'pt-BR' && v.name.toLowerCase().includes('male'));
+      if (!jarvisVoice) jarvisVoice = voices.find(v => v.lang === 'pt-BR') || voices[0];
       utterance.voice = jarvisVoice;
+
       window.speechSynthesis.speak(utterance);
     }
   }
 
-  // Função para achar resposta baseada na pergunta do usuário
+  // Adicionar mensagem no chat
+  function addMessage(text, sender) {
+    const msg = document.createElement('div');
+    msg.classList.add('message', sender);
+    msg.textContent = text;
+    chat.appendChild(msg);
+    chat.scrollTop = chat.scrollHeight;
+
+    if (sender === 'bot') speakJarvis(text);
+  }
+
+  // Obter resposta baseada na pergunta
   function getResponse(question) {
     question = question.toLowerCase();
-
     for (const resp of responses) {
-      if (typeof resp.question === 'string' && question.includes(resp.question.toLowerCase())) {
-        if (typeof resp.answer === 'function') {
-          return resp.answer();
-        } else {
-          return resp.answer;
+      if (typeof resp.question === 'string') {
+        if (question.includes(resp.question.toLowerCase())) {
+          if (typeof resp.answer === 'function') return resp.answer();
+          else return resp.answer;
         }
       }
     }
@@ -52,25 +65,13 @@ document.addEventListener('DOMContentLoaded', () => {
       "Essa é difícil... Me pergunte outra coisa!",
       "Vou fingir que entendi e responder: JavaScript é incrível!",
       "Você sabe que eu sou só um programa, né? Mas adoro conversar!",
-      "Quer ouvir uma piada? Por que o gato mia? Porque não sabe latir!"
+      "Quer ouvir uma piada? Por que o gato mia? Porque não sabe latir!",
     ];
 
     return jokes[Math.floor(Math.random() * jokes.length)];
   }
 
-  // Adicionar mensagem ao chat
-  function addMessage(text, sender) {
-    const msg = document.createElement('div');
-    msg.classList.add('message', sender);
-    msg.textContent = text;
-    chat.appendChild(msg);
-    chat.scrollTop = chat.scrollHeight;
-
-    // Se for mensagem do bot, falar
-    if (sender === 'bot') speak(text);
-  }
-
-  // Enviar pergunta e resposta
+  // Enviar pergunta
   function sendQuestion() {
     const question = input.value.trim();
     if (!question) return;
@@ -83,10 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
       const answer = getResponse(question);
       addMessage(answer, 'bot');
       status.textContent = '';
-    }, 800);
+    }, 1000);
   }
 
   btnSend.addEventListener('click', sendQuestion);
+
   input.addEventListener('keydown', e => {
     if (e.key === 'Enter') sendQuestion();
   });
@@ -127,3 +129,4 @@ document.addEventListener('DOMContentLoaded', () => {
     status.textContent = 'Reconhecimento de voz não suportado neste navegador.';
   }
 });
+
