@@ -1,85 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Créditos - Assistente IA</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Créditos - EcoRobôs</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header>
-    <h1>Créditos do Projeto</h1>
+    <div class="left">
+      <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs"></div>
+    </div>
     <nav>
-      <ul>
-        <li><a href="index.html">Início</a></li>
-        <li><a href="projeto.html">Projeto</a></li>
-        <li><a href="ia.html">I.A.</a></li>
-        <li><a href="creditos.html" aria-current="page">Créditos</a></li>
-      </ul>
+      <a href="index.html">Home</a>
+      <a href="projetos.html">Projetos</a>
+      <a href="lixo.html">Lixo Eletrônico</a>
+      <a href="ia.html">IA</a>
+      <a href="creditos.html">Créditos</a>
     </nav>
   </header>
 
-  <main>
-    <div class="top-buttons" role="region" aria-label="Botões de ações rápidas">
-      <button id="btn-theme" aria-pressed="false" aria-label="Alternar tema claro e escuro">Tema Escuro</button>
-      <button id="btn-alerta" aria-label="Mostrar alerta de funcionalidade">Mostrar alerta</button>
-      <button id="btn-voltar-topo" aria-label="Voltar ao topo da página">Topo</button>
-    </div>
+  <section class="conteudo fade-in" style="max-width:900px; margin:40px auto; padding:20px;">
+    <h1>Créditos do Projeto EcoRobôs</h1>
+    
+    <h2>Equipe Nível 3 IPA - Escola de Aplicação</h2>
+    <ul>
+      <li>Arthur Antonio Magalhaes Da Silva</li>
+      <li>Daniella Alyce da Silva Barbosa</li>
+      <li>Geovanna Bruna da Silva</li>
+      <li>Gabriel De Souza Araújo</li>
+      <li>Heloisa Helena Mendes Silva</li>
+      <li>João Alfredo Teobaldo Filho</li>
+      <li>Kauã David Rodrigues de França</li>
+      <li>Kaylla Manoella Beltrão do Nascimento</li>
+      <li>Lucas Gabriel Gonçalves Dias Sousa</li>
+      <li>Luiz Gustavo Cavalcante de Lira</li>
+      <li>Pedro Henrique de Souza Regis</li>
+      <li>Rayanne Victória Tavares de Souza</li>
+      <li>Rennan Gabriel Farias Fagundes Guedes</li>
+      <li>Ryan Lion Caribé Barreto Gomes</li>
+      <li>Shayane Vitória Francelino da Silva</li>
+    </ul>
 
-    <section>
-      <h2>Equipe e Agradecimentos</h2>
-      <p>Este projeto foi desenvolvido pela equipe IPA Nível III - 2025.</p>
-      <ul>
-        <li>Gustavo Luiz - Coordenação e programação</li>
-        <li>FI DO BIU - Pesquisa e conteúdo</li>
-        <li>NEYMAR</li>
-        <li>Agradecimentos especiais ao apoio da instituição e orientadores.</li>
-      </ul>
-      <p class="em-desenvolvimento">Mais nomes e créditos serão adicionados conforme o projeto evolui.</p>
-    </section>
-  </main>
+    <h2>Professor Orientador</h2>
+    <p>Vaneide Araújo</p>
 
-  <footer>
-    <p>© 2025 - Equipe IPA Nível III</p>
-  </footer>
+    <h2>Desenvolvedor do Site</h2>
+    <p>Luiz Gustavo</p>
 
-  <script src="scripts.js"></script>
-  <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const btnTheme = document.getElementById('btn-theme');
-    const body = document.body;
-
-    function setTheme(dark) {
-      if (dark) {
-        body.classList.add('dark');
-        btnTheme.textContent = 'Tema Claro';
-        btnTheme.setAttribute('aria-pressed', 'true');
-      } else {
-        body.classList.remove('dark');
-        btnTheme.textContent = 'Tema Escuro';
-        btnTheme.setAttribute('aria-pressed', 'false');
-      }
-      localStorage.setItem('theme', dark ? 'dark' : 'light');
-    }
-
-    const savedTheme = localStorage.getItem('theme');
-    setTheme(savedTheme === 'dark');
-
-    btnTheme.addEventListener('click', () => {
-      const isDark = body.classList.contains('dark');
-      setTheme(!isDark);
-    });
-
-    const btnAlerta = document.getElementById('btn-alerta');
-    btnAlerta.addEventListener('click', () => {
-      alert('Funcionalidade em desenvolvimento! Em breve terá mais recursos.');
-    });
-
-    const btnTopo = document.getElementById('btn-voltar-topo');
-    btnTopo.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    });
-  });
-  </script>
+    <h2>Ano do Projeto</h2>
+    <p>2025</p>
+  </section>
 </body>
 </html>
