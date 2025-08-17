@@ -6,76 +6,6 @@
 <title>Projetos EcoRobôs</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<style>
-  body {
-    font-family: 'Orbitron', sans-serif;
-    margin: 0;
-    background-color: #0a0f1e;
-    color: #ffffff;
-  }
-
-  header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px 20px;
-    background-color: #08122c;
-  }
-
-  header nav a {
-    color: #00ffff;
-    text-decoration: none;
-    margin-left: 20px;
-    transition: color 0.3s;
-  }
-
-  header nav a:hover {
-    color: #ff9900;
-  }
-
-  .hero {
-    text-align: center;
-    padding: 60px 20px 40px 20px;
-  }
-
-  .hero h1 {
-    font-size: 3em;
-    margin-bottom: 20px;
-    color: #00ffff;
-  }
-
-  .hero p {
-    font-size: 1.2em;
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.6;
-  }
-
-  .projeto-text {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 20px;
-    background: rgba(0, 255, 255, 0.05);
-    border-left: 4px solid #00ffff;
-    line-height: 1.7;
-    font-size: 1.1em;
-    color: #d0f0f0;
-  }
-
-  .mascote {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    font-size: 3em;
-    cursor: pointer;
-    animation: float 3s ease-in-out infinite;
-  }
-
-  @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
-  }
-</style>
 </head>
 <body>
 <canvas id="particles"></canvas>
@@ -84,7 +14,7 @@
 <header>
   <div class="left">
     <div class="logo">
-      <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs" style="height:100%;width:auto;">
+      <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
     </div>
     <div class="lampada lampada-btn" id="lampada" title="Modo Claro/Escuro">
       <!-- SVG da lâmpada -->
@@ -103,7 +33,7 @@
   <p>Conheça o EcoRobôs e nossas iniciativas de robótica sustentável, inteligência artificial e jogos educativos.</p>
 </section>
 
-<section class="projeto-text">
+<section class="projeto-text fade-in">
   <p>O <strong>EcoRobôs</strong> é um projeto inovador focado na criação de tecnologias sustentáveis para o manejo e separação de resíduos. O objetivo principal é desenvolver uma <strong>garra mecânica automatizada</strong>, capaz de coletar e separar lixo de forma eficiente, contribuindo para a preservação ambiental e a conscientização sobre a importância da reciclagem.</p>
 
   <p>Dada a complexidade e os recursos limitados, o protótipo físico do robô será complementado por um <strong>modelo 3D detalhado</strong>, permitindo a visualização do funcionamento da garra e das tecnologias envolvidas, mesmo antes da construção completa.</p>
