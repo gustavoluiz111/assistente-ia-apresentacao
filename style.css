@@ -20,13 +20,18 @@ header {
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:20px 40px;
+  padding:10px 20px;
   position:fixed;
   width:100%;
   top:0;
   background: rgba(41,100,142,0.9);
-  z-index:1000;
+  z-index: 1000;
   box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+header .left{
+  display:flex;
+  align-items:center;
+  gap:10px;
 }
 .logo { height:50px; width:150px; background-color: var(--neon-cyan); display:flex; align-items:center; justify-content:center; color:var(--dark-blue); font-weight:bold; font-size:1.2rem; border-radius:8px; }
 nav a { color: var(--light-neutral); text-decoration:none; margin-left:25px; font-weight:500; position:relative; transition: color 0.3s; }
@@ -38,23 +43,36 @@ nav a:hover::after { width:100%; }
 .lampada-btn:hover{ transform: scale(1.1); }
 .lampada svg{ fill:#444; filter: drop-shadow(0 0 5px #000); transition: fill 0.5s ease, filter 0.5s ease; }
 .lampada.acesa svg{ fill:#00BFFF; filter:drop-shadow(0 0 25px #1E90FF); animation: piscar 0.6s ease, fogo 2s infinite ease-in-out alternate; }
-@keyframes piscar { 0%{fill:#444; filter:drop-shadow(0 0 5px #000);}30%{fill:#00BFFF;filter:drop-shadow(0 0 15px #1E90FF);}50%{fill:#444;filter:drop-shadow(0 0 5px #000);}80%{fill:#00BFFF;filter:drop-shadow(0 0 20px #63B8FF);}100%{fill:#00BFFF;filter:drop-shadow(0 0 25px #1E90FF);} }
-@keyframes fogo { 0%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 20px #1E90FF);}25%{transform:scale(1.05) translateY(-2px);filter:drop-shadow(0 0 25px #63B8FF);}50%{transform:scale(0.95) translateY(1px);filter:drop-shadow(0 0 18px #00BFFF);}75%{transform:scale(1.08) translateY(-1px);filter:drop-shadow(0 0 28px #87CEFA);}100%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 22px #1E90FF);} }
 
-section{padding:140px 40px 80px; min-height:100vh; position:relative; z-index:1; text-align:center;}
+@keyframes piscar { 
+  0%{fill:#444; filter:drop-shadow(0 0 5px #000);}
+  30%{fill:#00BFFF;filter:drop-shadow(0 0 15px #1E90FF);}
+  50%{fill:#444;filter:drop-shadow(0 0 5px #000);}
+  80%{fill:#00BFFF;filter:drop-shadow(0 0 20px #63B8FF);}
+  100%{fill:#00BFFF;filter:drop-shadow(0 0 25px #1E90FF);}
+}
+
+@keyframes fogo { 
+  0%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 20px #1E90FF);}
+  25%{transform:scale(1.05) translateY(-2px);filter:drop-shadow(0 0 25px #63B8FF);}
+  50%{transform:scale(0.95) translateY(1px);filter:drop-shadow(0 0 18px #00BFFF);}
+  75%{transform:scale(1.08) translateY(-1px);filter:drop-shadow(0 0 28px #87CEFA);}
+  100%{transform:scale(1) translateY(0);filter:drop-shadow(0 0 22px #1E90FF);}
+}
+
+section{padding:120px 40px 80px; min-height:100vh; position:relative; z-index:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center;}
 .hero h1{ font-size:3rem; color:var(--neon-cyan); margin-bottom:20px; text-align:center; }
-.hero p{ font-size:1.2rem; max-width:700px; line-height:1.6; color:var(--light-neutral); margin:0 auto; text-align:center; }
+.hero p{ font-size:1.2rem; max-width:700px; line-height:1.6; color:var(--light-neutral); text-align:center; }
 body.claro .hero h1{ color:#000; }
 body.claro .hero p{ color:#000; }
 
-/* Mascote */
 .mascote{
-  width:80px;
-  height:80px;
-  position:fixed;
-  top:80px; /* abaixo do header */
-  left:20px;
-  border-radius:8px;
+  width:120px;
+  height:120px;
+  position:absolute;
+  bottom:20px;
+  right:20px;
+  border-radius:12px;
   animation:float 3s ease-in-out infinite;
   cursor:pointer;
   display:flex;
@@ -62,12 +80,10 @@ body.claro .hero p{ color:#000; }
   justify-content:center;
   color:var(--dark-blue);
   font-weight:bold;
-  z-index:1001;
+  font-size:3rem;
+  z-index:5;
 }
 @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
-@media (max-width:768px){
-  .mascote{ width:60px; height:60px; top:70px; left:10px; }
-}
 
 .balao{
   position:absolute;
@@ -96,3 +112,13 @@ canvas#particles, canvas#three-canvas { position:fixed; top:0; left:0; width:100
 
 .linha { position:absolute; height:2px; background: linear-gradient(90deg,var(--neon-cyan),var(--neon-green)); opacity:0.6; animation:pulse 2s infinite alternate; }
 @keyframes pulse {0%{transform:scaleX(0.9);opacity:0.3;}50%{transform:scaleX(1.1);opacity:0.7;}100%{transform:scaleX(0.9);opacity:0.3;}}
+
+@media (max-width:768px){
+  header{ flex-direction: column; gap:10px; padding:10px; }
+  nav a{ margin-left:10px; font-size:0.9rem; }
+  .logo{ width:120px; height:40px; font-size:1rem; }
+  .lampada-btn{ width:40px; height:40px; }
+  .hero h1{ font-size:2rem; }
+  .hero p{ font-size:1rem; max-width:90%; }
+  .mascote{ width:90px; height:90px; font-size:2.2rem; }
+}
