@@ -3,44 +3,136 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Assistente IA - IPA Nível III</title>
-  <link rel="stylesheet" href="universal.css">
-  <link rel="stylesheet" href="pro.css">
+  <title>Assistente IA - Projeto IPA</title>
+  <link rel="stylesheet" href="css/pro.css"> <!-- CSS do site já feito -->
   <style>
-    /* Estilos extras para chat futurista */
-    body { margin:0; font-family: 'Segoe UI', sans-serif; background:#0a0a0a; color:#fff; }
-    #background-cubes { position: fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
-    #chat-container { position:relative; max-width:500px; margin:80px auto; background:rgba(0,0,0,0.8); border-radius:15px; padding:15px; box-shadow:0 0 20px #00f; }
-    #chat { max-height:400px; overflow-y:auto; margin-bottom:10px; }
-    .message { padding:8px 12px; border-radius:10px; margin:5px 0; display:inline-block; max-width:80%; }
-    .user { background:#1a73e8; color:#fff; align-self:flex-end; float:right; }
-    .bot { background:#222; border:1px solid #00f; color:#0ff; align-self:flex-start; float:left; }
-    #question-input { width:calc(100% - 100px); padding:8px; border-radius:10px; border:none; margin-right:5px; }
-    #btn-send, #btn-voice { padding:8px 12px; border:none; border-radius:10px; cursor:pointer; background:#0ff; color:#000; }
-    #status { margin-top:5px; font-size:0.9em; color:#0ff; }
-    #chat-container::after { content:""; display:block; clear:both; }
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background: #0a0a0a;
+      overflow: hidden;
+    }
+
+    /* Fundo futurista com cubos */
+    canvas#bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
+
+    /* Chatbox estilo aplicativo de mensagens */
+    .chat-container {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 360px;
+      max-width: 90%;
+      height: 500px;
+      background: rgba(10,10,10,0.9);
+      border-radius: 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 0 20px #00f;
+      overflow: hidden;
+    }
+
+    .chat-messages {
+      flex: 1;
+      padding: 15px;
+      overflow-y: auto;
+    }
+
+    .message {
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 15px;
+      max-width: 80%;
+      word-wrap: break-word;
+      font-size: 14px;
+    }
+
+    .message.user {
+      background: #007bff;
+      color: white;
+      align-self: flex-end;
+    }
+
+    .message.bot {
+      background: #1f1f1f;
+      color: #00ffea;
+      align-self: flex-start;
+    }
+
+    .chat-input {
+      display: flex;
+      padding: 10px;
+      background: rgba(20,20,20,0.95);
+    }
+
+    .chat-input input {
+      flex: 1;
+      padding: 10px 15px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      font-size: 14px;
+      margin-right: 5px;
+    }
+
+    .chat-input button {
+      background: #00ffea;
+      border: none;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+    }
+
+    .chat-input button:hover {
+      background: #00ccbb;
+    }
+
+    #status {
+      text-align: center;
+      color: #0ff;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
   </style>
 </head>
 <body>
+
+  <!-- Fundo futurista animado -->
+  <canvas id="bg"></canvas>
+
+  <!-- Cabeçalho -->
   <header>
-    <h1>Assistente IA - IPA Nível III</h1>
-    <p>Converse com Jarvis, nosso assistente virtual.</p>
+    <h1 style="color:#0ff;text-align:center;padding:10px;">Assistente IA - Projeto IPA</h1>
   </header>
 
-  <div id="background-cubes"></div>
-
-  <div id="chat-container">
-    <div id="chat"></div>
-    <input id="question-input" type="text" placeholder="Digite sua pergunta...">
-    <button id="btn-send">Enviar</button>
-    <button id="btn-voice">🎤</button>
+  <!-- Chatbox -->
+  <div class="chat-container">
+    <div class="chat-messages" id="chat"></div>
     <div id="status"></div>
+    <div class="chat-input">
+      <input type="text" id="question-input" placeholder="Digite sua pergunta...">
+      <button id="btn-voice">🎤</button>
+      <button id="btn-send">➡️</button>
+    </div>
   </div>
 
-  <footer>
-    <p>Equipe Nível 3 IPA - Escola de Aplicação | Desenvolvedor: Luiz Gustavo | 2025</p>
-  </footer>
-
   <script src="chat.js"></script>
+
+  <!-- Script do fundo futurista com cubos -->
+  <script src="js/cubos.js"></script>
+
 </body>
 </html>
