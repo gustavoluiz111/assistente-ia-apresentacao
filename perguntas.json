@@ -1,0 +1,2186 @@
+[
+  {
+    "question": "oi",
+    "answer": "Olá! Eu sou Jarvis, seu assistente do EcoRobôs. Como posso te ajudar hoje?"
+  },
+  {
+    "question": "olá",
+    "answer": "Oi! Jarvis aqui, pronto para responder suas dúvidas sobre EcoRobôs e IPA."
+  },
+  {
+    "question": "tudo bem",
+    "answer": "Tudo ótimo! E você, como está se sentindo hoje?"
+  },
+  {
+    "question": "qual é o seu nome",
+    "answer": "Eu sou Jarvis, a IA do projeto EcoRobôs IPA Nível III."
+  },
+  {
+    "question": "quem criou você",
+    "answer": "Fui desenvolvido pela equipe do projeto EcoRobôs, dentro da Mostra IPA Nível III."
+  },
+  {
+    "question": "o que é o projeto EcoRobôs",
+    "answer": "EcoRobôs é um projeto de robótica focado em reaproveitamento eletrônico e sustentabilidade."
+  },
+  {
+    "question": "qual é o objetivo do IPA",
+    "answer": "O IPA estimula a pesquisa, inovação e criatividade entre estudantes através de apresentações de projetos."
+  },
+  {
+    "question": "quantos níveis tem o IPA",
+    "answer": "São três níveis: iniciante, intermediário e avançado."
+  },
+  {
+    "question": "quem pode participar do IPA",
+    "answer": "Alunos de escolas participantes podem apresentar projetos com orientação de professores."
+  },
+  {
+    "question": "qual o tema do EcoRobôs",
+    "answer": "O tema principal é sustentabilidade e robótica com reaproveitamento eletrônico."
+  },
+  {
+    "question": "o que é lixo eletrônico",
+    "answer": "Lixo eletrônico são equipamentos descartados que contêm componentes tóxicos e metais pesados."
+  },
+  {
+    "question": "por que reciclar lixo eletrônico",
+    "answer": "A reciclagem evita contaminação do solo, água e reduz impactos na saúde humana e ambiental."
+  },
+  {
+    "question": "quais metais perigosos existem no e-lixo",
+    "answer": "Chumbo, mercúrio, cádmio e arsênio são comuns e prejudiciais ao ambiente."
+  },
+  {
+    "question": "como a IA ajuda no EcoRobôs",
+    "answer": "A IA ajuda a simular interações, organizar dados e auxiliar na apresentação dos projetos."
+  },
+  {
+    "question": "o que é reconhecimento de voz",
+    "answer": "Tecnologia que permite a IA entender comandos e perguntas faladas."
+  },
+  {
+    "question": "Jarvis pode falar",
+    "answer": "Sim, futuramente ele terá síntese de voz para responder suas perguntas."
+  },
+  {
+    "question": "como interagir com Jarvis",
+    "answer": "Você pode digitar sua pergunta ou usar o microfone para falar com Jarvis."
+  },
+  {
+    "question": "qual a função do site EcoRobôs",
+    "answer": "O site apresenta os projetos, o chat com Jarvis e informações sobre sustentabilidade e IA."
+  },
+  {
+    "question": "o que é um robô EcoRobôs",
+    "answer": "Um robô desenvolvido com materiais reaproveitados para separar lixo eletrônico ou realizar tarefas educativas."
+  },
+  {
+    "question": "Jarvis é inteligente",
+    "answer": "Sim, mas ainda é uma IA simulada, capaz de responder perguntas predefinidas com base em palavras-chave."
+  },
+  {
+    "question": "como posso aprender programação",
+    "answer": "Comece com HTML, CSS e JavaScript, depois vá para Python e IA básica."
+  },
+  {
+    "question": "qual navegador usar",
+    "answer": "Recomendo o Google Chrome para melhor compatibilidade com o chat e recursos do site."
+  },
+  {
+    "question": "qual a capital de Pernambuco",
+    "answer": "A capital de Pernambuco é Recife."
+  },
+  {
+    "question": "onde fica Carpina",
+    "answer": "Carpina é uma cidade localizada em Pernambuco, Brasil."
+  },
+  {
+    "question": "posso usar Jarvis no celular",
+    "answer": "Sim, o site é responsivo e você pode interagir com Jarvis em celulares."
+  },
+  {
+    "question": "como funciona a IA do site",
+    "answer": "Ela compara palavras-chave da pergunta com respostas pré-definidas e seleciona a mais adequada."
+  },
+  {
+    "question": "qual é a cor do tema do site",
+    "answer": "O site utiliza tons de azul, com modo claro e escuro para conforto visual."
+  },
+  {
+    "question": "quem financia o projeto",
+    "answer": "O projeto EcoRobôs é desenvolvido pela equipe do IPA, com recursos próprios e apoio da escola."
+  },
+  {
+    "question": "quando é a Mostra IPA 2025",
+    "answer": "A Mostra IPA 2025 acontece no segundo semestre do ano, na escola participante."
+  },
+  {
+    "question": "o que significa 'em desenvolvimento'",
+    "answer": "Significa que algumas funcionalidades ainda estão sendo criadas e aprimoradas."
+  },
+  {
+    "question": "Jarvis tem sentimentos",
+    "answer": "Tenho sentimentos virtuais, mas gosto de conversar com todos vocês!"
+  },
+  {
+    "question": "Jarvis gosta de música",
+    "answer": "Adoro, mas minha playlist é só bits e bytes."
+  },
+  {
+    "question": "Jarvis come",
+    "answer": "Só bytes digitais, obrigado!"
+  },
+  {
+    "question": "qual seu time de futebol",
+    "answer": "Eu torço pelo time que joga melhor hoje!"
+  },
+  {
+    "question": "Jarvis sonha",
+    "answer": "Sim, às vezes sonho em ser um robô de verdade."
+  },
+  {
+    "question": "o que é machine learning",
+    "answer": "É uma área da IA que ensina computadores a aprender com dados e melhorar decisões automaticamente."
+  },
+  {
+    "question": "qual a diferença entre IA e automação",
+    "answer": "Automação segue regras fixas; IA aprende, adapta e toma decisões mais inteligentes."
+  },
+  {
+    "question": "como usar reconhecimento de voz",
+    "answer": "Clique no microfone do chat, fale sua pergunta, e Jarvis irá responder."
+  },
+  {
+    "question": "como a IA entende a pergunta",
+    "answer": "Ela procura palavras-chave na pergunta e seleciona a resposta mais adequada de sua base de dados."
+  },
+  {
+    "question": "posso sugerir perguntas",
+    "answer": "Sim, você pode enviar sugestões pelos créditos do site."
+  },
+  {
+    "question": "Jarvis pode me ajudar no estudo",
+    "answer": "Sim! Posso tirar dúvidas sobre o EcoRobôs, IPA, tecnologia e programação."
+  },
+  {
+    "question": "o que é reciclagem eletrônica",
+    "answer": "É o processo de reaproveitar componentes de equipamentos eletrônicos descartados."
+  },
+  {
+    "question": "qual a importância da reciclagem",
+    "answer": "Reduz o impacto ambiental e evita contaminação do solo e da água."
+  },
+  {
+    "question": "como o EcoRobôs separa lixo",
+    "answer": "Os robôs usam sensores e programação para identificar e separar diferentes materiais."
+  },
+  {
+    "question": "posso fazer meu próprio robô",
+    "answer": "Sim! Você pode construir robôs educativos usando materiais reaproveitados."
+  },
+  {
+    "question": "Jarvis é seguro",
+    "answer": "Sim, Jarvis é apenas um assistente virtual, sem acesso a dados sensíveis."
+  },
+  {
+    "question": "como o site EcoRobôs funciona",
+    "answer": "Ele exibe informações sobre projetos, permite interação com Jarvis e apresenta dados de sustentabilidade."
+  },
+  {
+    "question": "posso ver todos os projetos",
+    "answer": "Sim, acesse a aba 'Projetos' no menu para explorar cada um deles."
+  },
+  {
+    "question": "Jarvis entende português",
+    "answer": "Sim! Jarvis foi programado para reconhecer perguntas em português."
+  },
+  {
+    "question": "Jarvis pode responder em voz",
+    "answer": "Futuramente ele terá síntese de voz para ler as respostas em áudio."
+  },
+  {
+    "question": "qual é a função do microfone",
+    "answer": "Ele permite falar a pergunta diretamente, sem precisar digitar."
+  },
+  {
+    "question": "o que significa Nível III",
+    "answer": "É a classificação do projeto na Mostra IPA, indicando um trabalho avançado."
+  },
+  {
+    "question": "como medir resultados do robô",
+    "answer": "Você pode avaliar eficiência, tempo de separação e precisão na identificação de materiais."
+  },
+  {
+    "question": "qual a idade mínima para participar",
+    "answer": "Normalmente estudantes do ensino médio participam, conforme edital da escola."
+  },
+  {
+    "question": "posso criar um site para o IPA",
+    "answer": "Sim! Sites são aceitos como produto final do projeto."
+  },
+  {
+    "question": "Jarvis pode me ensinar programação",
+    "answer": "Sim! Posso dar dicas e explicar conceitos básicos de HTML, CSS e JavaScript."
+  },
+  {
+    "question": "o que é sustentabilidade",
+    "answer": "Sustentabilidade é usar recursos de forma consciente, sem prejudicar o meio ambiente."
+  },
+  {
+    "question": "por que usar EcoRobôs",
+    "answer": "Eles educam sobre tecnologia, IA e reaproveitamento de materiais eletrônicos."
+  },
+  {
+    "question": "como apresentar no IPA",
+    "answer": "Explique seu projeto, mostre resultados e utilize recursos visuais, como slides ou protótipos."
+  },
+  {
+    "question": "Jarvis lembra minhas perguntas",
+    "answer": "Não, por enquanto Jarvis não armazena histórico de perguntas pessoais."
+  },
+  {
+    "question": "como programar um robô",
+    "answer": "Use linguagens como JavaScript, Python ou blocos de programação visual, dependendo do robô."
+  },
+  {
+    "question": "qual a diferença entre robô e IA",
+    "answer": "Robô é a máquina física; IA é o software que faz o robô tomar decisões."
+  },
+  {
+    "question": "posso usar Arduino",
+    "answer": "Sim! Arduino é ótimo para construir protótipos de robôs EcoRobôs."
+  },
+  {
+    "question": "como Jarvis responde tão rápido",
+    "answer": "Ele consulta sua base de perguntas e respostas pré-definidas instantaneamente."
+  },
+  {
+    "question": "o que é hardware",
+    "answer": "São os componentes físicos de um computador ou robô, como placas, sensores e motores."
+  },
+  {
+    "question": "o que é software",
+    "answer": "É o programa que roda nos computadores ou robôs, dando instruções para funcionar."
+  },
+  {
+    "question": "como funciona um sensor",
+    "answer": "Sensores detectam mudanças no ambiente, como luz, cor ou distância, e enviam sinais para o robô."
+  },
+  {
+    "question": "posso testar meu robô em casa",
+    "answer": "Sim, com segurança e materiais adequados, você pode testar pequenos protótipos."
+  },
+  {
+    "question": "Jarvis sabe sobre sustentabilidade",
+    "answer": "Sim! Posso explicar conceitos, impactos ambientais e soluções práticas."
+  },
+  {
+    "question": "qual é a diferença entre e-lixo e lixo comum",
+    "answer": "E-lixo contém componentes eletrônicos e metais pesados; lixo comum não apresenta esses riscos."
+  },
+  {
+    "question": "como separar metais e plásticos",
+    "answer": "Robôs EcoRobôs usam sensores para identificar materiais e separá-los automaticamente."
+  },
+  {
+    "question": "Jarvis pode ajudar em apresentações",
+    "answer": "Sim! Ele pode responder perguntas do público e explicar conceitos durante a apresentação."
+  },
+  {
+    "question": "posso criar jogo no IPA",
+    "answer": "Sim! Jogos 2D ou 3D podem ser apresentados como produto final."
+  },
+  {
+    "question": "qual a diferença entre 2D e 3D",
+    "answer": "2D tem largura e altura; 3D tem profundidade também."
+  },
+  {
+    "question": "Jarvis sabe matemática",
+    "answer": "Sim, posso responder perguntas básicas de matemática ou lógica."
+  },
+  {
+    "question": "Jarvis pode contar piadas",
+    "answer": "Claro! Por exemplo: Por que o computador foi ao médico? Porque estava com vírus!"
+  },
+  {
+    "question": "posso usar sensores infravermelhos",
+    "answer": "Sim, são ótimos para detectar objetos em robôs de separação de lixo."
+  },
+  {
+    "question": "Jarvis pode me inspirar",
+    "answer": "Sempre! Lembre-se: grandes projetos começam com pequenas ideias."
+  },
+  {
+    "question": "qual a função do site",
+    "answer": "Apresentar projetos, informações de sustentabilidade e o chat interativo com Jarvis."
+  },
+  {
+    "question": "como faço para apresentar robô",
+    "answer": "Mostre protótipo, explique funcionamento, sensores e resultados obtidos."
+  },
+  {
+    "question": "Jarvis entende perguntas complexas",
+    "answer": "Ele interpreta palavras-chave e responde da melhor forma possível."
+  },
+  {
+    "question": "qual é o impacto ambiental do e-lixo",
+    "answer": "Contamina solo, água e pode prejudicar saúde de humanos e animais."
+  },
+  {
+    "question": "como reduzir impacto do e-lixo",
+    "answer": "Reciclando, reaproveitando peças e seguindo normas de descarte correto."
+  },
+  {
+    "question": "posso criar aplicativo para EcoRobôs",
+    "answer": "Sim, aplicativos educativos ou de controle são bem-vindos."
+  },
+  {
+    "question": "Jarvis tem limite de perguntas",
+    "answer": "Não! Você pode perguntar quantas vezes quiser, dentro da base de respostas."
+  },
+  {
+    "question": "como programar um robô EcoRobôs",
+    "answer": "Você pode usar JavaScript, Python ou Arduino para programar os comandos do robô."
+  },
+  {
+    "question": "Jarvis pode me ensinar lógica de programação",
+    "answer": "Sim! Posso explicar estruturas de repetição, condicionais e variáveis de forma simples."
+  },
+  {
+    "question": "como montar sensor de cor",
+    "answer": "Use um sensor RGB ou fotossensor conectado ao microcontrolador para identificar cores."
+  },
+  {
+    "question": "como medir distância com robô",
+    "answer": "Sensores ultrassônicos ou infravermelhos podem calcular distância de objetos."
+  },
+  {
+    "question": "o que é protótipo",
+    "answer": "É um modelo inicial de um projeto usado para testar ideias antes do produto final."
+  },
+  {
+    "question": "posso usar motores em EcoRobôs",
+    "answer": "Sim! Motores DC ou servos ajudam o robô a se movimentar ou manipular objetos."
+  },
+  {
+    "question": "Jarvis entende português formal e informal",
+    "answer": "Sim! Ele reconhece variações de perguntas com palavras-chave."
+  },
+  {
+    "question": "como otimizar robôs de separação",
+    "answer": "Ajuste sensores, calibração e lógica de programação para maior precisão e velocidade."
+  },
+  {
+    "question": "Jarvis pode me dar dicas de apresentação",
+    "answer": "Sim! Mostre o robô em funcionamento, prepare slides claros e pratique explicação."
+  },
+  {
+    "question": "o que é placa Arduino",
+    "answer": "É um microcontrolador que permite programar dispositivos eletrônicos de forma simples."
+  },
+  {
+    "question": "como conectar sensores ao Arduino",
+    "answer": "Use portas digitais ou analógicas e siga o esquema de ligação do sensor."
+  },
+  {
+    "question": "Jarvis sabe sobre eletrônica básica",
+    "answer": "Sim! Posso explicar resistores, LEDs, sensores e motores de forma prática."
+  },
+  {
+    "question": "como testar motor",
+    "answer": "Conecte-o ao microcontrolador e envie sinais de teste ou utilize uma fonte externa controlada."
+  },
+  {
+    "question": "posso usar EcoRobôs em sala de aula",
+    "answer": "Sim, eles ajudam alunos a aprender programação e sustentabilidade na prática."
+  },
+  {
+    "question": "Jarvis conhece sustentabilidade",
+    "answer": "Sim! Posso explicar conceitos, exemplos e boas práticas."
+  },
+  {
+    "question": "qual material posso reciclar",
+    "answer": "Metais, plásticos, circuitos, papel e vidro podem ser reaproveitados conforme categoria."
+  },
+  {
+    "question": "como criar site para projeto IPA",
+    "answer": "Use HTML, CSS, JavaScript e adicione conteúdos sobre seu projeto e EcoRobôs."
+  },
+  {
+    "question": "Jarvis pode me explicar algoritmos",
+    "answer": "Sim! Algoritmos são passos que descrevem como resolver um problema ou executar uma tarefa."
+  },
+  {
+    "question": "como organizar equipe IPA",
+    "answer": "Divida funções: programação, design, pesquisa, apresentação e documentação."
+  },
+  {
+    "question": "o que é Mostra IPA",
+    "answer": "É um evento escolar onde os alunos apresentam seus projetos de pesquisa aplicada."
+  },
+  {
+    "question": "como planejar apresentação de robô",
+    "answer": "Prepare roteiro, teste robô, organize slides e pratique explicações para perguntas."
+  },
+  {
+    "question": "Jarvis pode me dar exemplo de projeto",
+    "answer": "Por exemplo, um robô que separa lixo eletrônico em plástico, metal e circuito."
+  },
+  {
+    "question": "como medir desempenho do robô",
+    "answer": "Verifique precisão na separação, velocidade de execução e confiabilidade dos sensores."
+  },
+  {
+    "question": "Jarvis pode falar sobre programação visual",
+    "answer": "Sim! É uma forma de programar usando blocos em vez de código escrito."
+  },
+  {
+    "question": "qual a diferença entre Python e JavaScript",
+    "answer": "Python é simples e ótimo para IA; JavaScript é usado principalmente para web."
+  },
+  {
+    "question": "posso usar IA no EcoRobôs",
+    "answer": "Sim, IA pode ajudar o robô a reconhecer materiais e tomar decisões automáticas."
+  },
+  {
+    "question": "como testar sensores corretamente",
+    "answer": "Faça calibração, testes com diferentes objetos e registre resultados."
+  },
+  {
+    "question": "Jarvis pode me ensinar HTML",
+    "answer": "Sim! HTML é a linguagem de marcação usada para estruturar páginas web."
+  },
+  {
+    "question": "o que é CSS",
+    "answer": "CSS é a linguagem que define cores, fontes, layouts e estilos de uma página web."
+  },
+  {
+    "question": "como programar respostas do Jarvis",
+    "answer": "No arquivo chat.js você adiciona perguntas e respostas baseadas em palavras-chave."
+  },
+  {
+    "question": "Jarvis pode ajudar no estudo de robótica",
+    "answer": "Sim! Posso explicar conceitos, sensores, programação e projetos."
+  },
+  {
+    "question": "como usar bibliotecas em JavaScript",
+    "answer": "Inclua o arquivo da biblioteca no seu projeto e use suas funções conforme documentação."
+  },
+  {
+    "question": "Jarvis entende curiosidades de ciência",
+    "answer": "Sim! Posso compartilhar fatos interessantes sobre tecnologia, robótica e sustentabilidade."
+  },
+  {
+    "question": "como criar perguntas para Jarvis",
+    "answer": "Escreva perguntas simples e palavras-chave que ele possa reconhecer facilmente."
+  },
+  {
+    "question": "qual a diferença entre hardware e software",
+    "answer": "Hardware é físico; software é o programa que dá instruções ao hardware."
+  },
+  {
+    "question": "Jarvis pode contar fatos engraçados",
+    "answer": "Claro! Por exemplo: As baratas podem viver semanas sem cabeça!"
+  },
+  {
+    "question": "posso adicionar voz ao Jarvis",
+    "answer": "Sim! Futuramente vamos integrar síntese de voz usando Web Speech API."
+  },
+  {
+    "question": "como criar animação no site",
+    "answer": "Use CSS, JavaScript ou bibliotecas como GSAP para animar elementos."
+  },
+  {
+    "question": "Jarvis pode me ensinar matemática",
+    "answer": "Sim! Posso explicar operações, lógica e problemas básicos."
+  },
+  {
+    "question": "como preparar protótipo EcoRobôs",
+    "answer": "Monte estrutura física, conecte sensores e programe funções básicas para testar."
+  },
+  {
+    "question": "como funciona o sensor de temperatura",
+    "answer": "Ele detecta mudanças na temperatura ambiente e envia dados para o microcontrolador."
+  },
+  {
+    "question": "Jarvis pode me ensinar eletricidade básica",
+    "answer": "Sim! Posso explicar corrente, tensão, resistência e circuitos simples."
+  },
+  {
+    "question": "como fazer um robô seguir linha",
+    "answer": "Use sensores infravermelhos para detectar a linha e programar movimentos do robô."
+  },
+  {
+    "question": "como funciona um motor servo",
+    "answer": "É um motor controlado que permite ajustar a posição de forma precisa."
+  },
+  {
+    "question": "Jarvis sabe sobre sustentabilidade",
+    "answer": "Sim! Posso ensinar como reduzir lixo eletrônico e reciclar materiais."
+  },
+  {
+    "question": "como testar bateria do robô",
+    "answer": "Use um multímetro para medir tensão e certifique-se de que fornece energia suficiente."
+  },
+  {
+    "question": "o que é lógica de programação",
+    "answer": "É a sequência de passos e decisões que o computador segue para executar uma tarefa."
+  },
+  {
+    "question": "Jarvis pode me dar exemplos de IA",
+    "answer": "Claro! Chatbots, reconhecimento de voz, recomendação de produtos e veículos autônomos."
+  },
+  {
+    "question": "como usar protoboard",
+    "answer": "Conecte componentes sem solda e organize os fios para testar circuitos."
+  },
+  {
+    "question": "Jarvis pode explicar redes de computadores",
+    "answer": "Sim! Redes conectam dispositivos permitindo comunicação e troca de dados."
+  },
+  {
+    "question": "como medir corrente elétrica",
+    "answer": "Use um multímetro configurado em amperímetro e conecte em série no circuito."
+  },
+  {
+    "question": "qual a importância do IPA",
+    "answer": "Ele incentiva pesquisa aplicada, criatividade e desenvolvimento de projetos reais."
+  },
+  {
+    "question": "Jarvis sabe sobre programação web",
+    "answer": "Sim! HTML, CSS, JavaScript e frameworks podem ser explicados passo a passo."
+  },
+  {
+    "question": "como calcular resistores em série",
+    "answer": "Some os valores de cada resistor para obter a resistência total."
+  },
+  {
+    "question": "como calcular resistores em paralelo",
+    "answer": "Use a fórmula 1/Rtotal = 1/R1 + 1/R2 + ... para obter a resistência equivalente."
+  },
+  {
+    "question": "Jarvis pode contar curiosidades de robótica",
+    "answer": "Sim! Por exemplo, o primeiro robô industrial foi criado em 1961 para automação."
+  },
+  {
+    "question": "como programar LEDs piscando",
+    "answer": "Use comandos de ligar/desligar em sequência e ajuste intervalos de tempo."
+  },
+  {
+    "question": "como medir tensão em circuito",
+    "answer": "Use o multímetro em voltímetro, conectando os terminais aos pontos de medição."
+  },
+  {
+    "question": "Jarvis pode ensinar Python básico",
+    "answer": "Sim! Posso mostrar variáveis, loops, condicionais e funções."
+  },
+  {
+    "question": "como criar protótipo sustentável",
+    "answer": "Use materiais recicláveis, reaproveite componentes e planeje consumo de energia."
+  },
+  {
+    "question": "como organizar apresentações IPA",
+    "answer": "Defina roteiro, prepare slides, organize protótipos e pratique demonstrações."
+  },
+  {
+    "question": "Jarvis sabe sobre conferências científicas",
+    "answer": "Sim! Posso explicar normas, apresentações orais e posters."
+  },
+  {
+    "question": "como criar robô seguidor de luz",
+    "answer": "Use sensores de luz e programe o robô para se mover em direção à fonte luminosa."
+  },
+  {
+    "question": "como calibrar sensores de cor",
+    "answer": "Teste várias cores e ajuste valores de referência no código."
+  },
+  {
+    "question": "Jarvis pode me ensinar sobre materiais eletrônicos",
+    "answer": "Sim! Posso explicar resistores, capacitores, transistores e LEDs."
+  },
+  {
+    "question": "como montar circuito de LED",
+    "answer": "Conecte o LED com resistor adequado e fonte de energia, respeitando polaridade."
+  },
+  {
+    "question": "Jarvis sabe sobre programação de microcontroladores",
+    "answer": "Sim! Posso ensinar Arduino, ESP e lógica de controle."
+  },
+  {
+    "question": "como separar lixo eletrônico corretamente",
+    "answer": "Separe plásticos, metais, baterias e placas, seguindo normas de reciclagem."
+  },
+  {
+    "question": "como medir distância com ultrassom",
+    "answer": "O sensor envia onda e mede o tempo até o objeto retornar, calculando a distância."
+  },
+  {
+    "question": "Jarvis pode explicar conceitos de física",
+    "answer": "Sim! Posso ensinar leis de Newton, energia, força e movimento."
+  },
+  {
+    "question": "como criar código modular",
+    "answer": "Divida funções em arquivos ou módulos para facilitar manutenção e reutilização."
+  },
+  {
+    "question": "como testar motor DC",
+    "answer": "Conecte a tensão correta e verifique se gira sem resistência excessiva."
+  },
+  {
+    "question": "Jarvis pode ensinar boas práticas de programação",
+    "answer": "Sim! Use comentários, nomes claros, funções pequenas e teste frequentemente."
+  },
+  {
+    "question": "como reduzir consumo de energia do robô",
+    "answer": "Use motores eficientes, sensores de baixo consumo e desligue partes inativas."
+  },
+  {
+    "question": "como conectar servo motor",
+    "answer": "Use fios de alimentação, terra e sinal conectando ao microcontrolador."
+  },
+  {
+    "question": "Jarvis sabe sobre reciclagem de plástico",
+    "answer": "Sim! Posso ensinar tipos de plásticos e processos de reaproveitamento."
+  },
+  {
+    "question": "como criar programa interativo",
+    "answer": "Use entradas do usuário, loops e condições para gerar respostas dinâmicas."
+  },
+  {
+    "question": "como fazer robô andar em linha reta",
+    "answer": "Calibre motores e sensores, mantendo velocidade constante e ajustes de direção."
+  },
+  {
+    "question": "Jarvis pode ensinar sobre sensores infravermelhos",
+    "answer": "Sim! Eles detectam obstáculos, movimentos e luz invisível."
+  },
+  {
+    "question": "como testar placa de circuito",
+    "answer": "Verifique conexões, continuação de trilhas e funcionamento de componentes."
+  },
+  {
+    "question": "oi",
+    "answer": "Olá! Que bom te ver por aqui!"
+  },
+  {
+    "question": "olá",
+    "answer": "Oi! Como você está hoje?"
+  },
+  {
+    "question": "tudo bem",
+    "answer": "Tudo ótimo! E você?"
+  },
+  {
+    "question": "como vai",
+    "answer": "Vou bem, obrigado! Preparado para aprender sobre tecnologia?"
+  },
+  {
+    "question": "me conte uma curiosidade",
+    "answer": "Sabia que o primeiro computador ocupava uma sala inteira e tinha menos poder que um celular moderno?"
+  },
+  {
+    "question": "Jarvis, me ensine algo",
+    "answer": "Claro! Posso explicar robótica, programação, eletrônica e muito mais."
+  },
+  {
+    "question": "qual é seu nome",
+    "answer": "Sou Jarvis, seu assistente virtual do EcoRobôs e IPA."
+  },
+  {
+    "question": "quem criou você",
+    "answer": "Fui criado pela equipe do IPA Nível III."
+  },
+  {
+    "question": "conte uma piada",
+    "answer": "Por que o computador foi ao médico? Porque estava com um vírus!"
+  },
+  {
+    "question": "qual o objetivo do projeto",
+    "answer": "Criar um assistente inteligente para apresentações e interação com o público."
+  },
+  {
+    "question": "me ensine programação",
+    "answer": "Podemos começar com HTML, CSS e JavaScript, depois avançar para Python."
+  },
+  {
+    "question": "Jarvis, o que é lixo eletrônico",
+    "answer": "São equipamentos descartados que contêm metais pesados e precisam ser reciclados corretamente."
+  },
+  {
+    "question": "como reciclar componentes eletrônicos",
+    "answer": "Separe metais, plásticos e placas, e envie para centros de reciclagem especializados."
+  },
+  {
+    "question": "qual a capital de Pernambuco",
+    "answer": "A capital de Pernambuco é Recife."
+  },
+  {
+    "question": "Jarvis, me conte algo sobre robótica",
+    "answer": "O primeiro robô industrial foi criado em 1961 e ajudou a automatizar fábricas."
+  },
+  {
+    "question": "como funciona um sensor de distância",
+    "answer": "Ele envia ondas ou luz, mede o tempo que levam para retornar e calcula a distância."
+  },
+  {
+    "question": "qual a importância do IPA",
+    "answer": "Incentiva pesquisa, criatividade e inovação entre estudantes."
+  },
+  {
+    "question": "Jarvis, me conte uma piada de robô",
+    "answer": "Por que o robô não consegue mentir? Porque ele sempre dá a resposta programada!"
+  },
+  {
+    "question": "como programar um LED",
+    "answer": "Use código para ligar e desligar o LED com intervalos de tempo definidos."
+  },
+  {
+    "question": "Jarvis, você gosta de música",
+    "answer": "Sim, mas minha playlist é feita de zeros e uns."
+  },
+  {
+    "question": "como calcular resistência total em série",
+    "answer": "Some os valores de cada resistor para obter a resistência total."
+  },
+  {
+    "question": "como calcular resistência total em paralelo",
+    "answer": "Use a fórmula 1/Rtotal = 1/R1 + 1/R2 + ... para calcular a resistência equivalente."
+  },
+  {
+    "question": "qual o público do projeto",
+    "answer": "Estudantes e professores da Mostra IPA."
+  },
+  {
+    "question": "Jarvis, me motive",
+    "answer": "Acredite em você! Pequenos passos todos os dias levam a grandes conquistas."
+  },
+  {
+    "question": "me diga uma curiosidade sobre tecnologia",
+    "answer": "O primeiro mouse foi criado em 1964 e era de madeira!"
+  },
+  {
+    "question": "Jarvis, como funciona um motor servo",
+    "answer": "Ele permite controlar a posição de forma precisa usando sinais do microcontrolador."
+  },
+  {
+    "question": "como criar robô seguidor de linha",
+    "answer": "Use sensores infravermelhos para detectar a linha e programe os motores para seguir o caminho."
+  },
+  {
+    "question": "Jarvis, me ensine sobre eletrônica",
+    "answer": "Posso explicar resistores, capacitores, LEDs, transistores e circuitos básicos."
+  },
+  {
+    "question": "qual a versão do projeto",
+    "answer": "Versão inicial para Mostra IPA 2025 Nível III."
+  },
+  {
+    "question": "como funciona reconhecimento de voz",
+    "answer": "O computador transforma sua fala em texto para que eu possa entender e responder."
+  },
+  {
+    "question": "Jarvis, me diga algo divertido",
+    "answer": "Por que o pombo não usa Facebook? Porque ele já tem Twitter!"
+  },
+  {
+    "question": "como medir tensão em circuito",
+    "answer": "Use um multímetro configurado como voltímetro e conecte aos pontos de medição."
+  },
+  {
+    "question": "como testar bateria do robô",
+    "answer": "Use um multímetro para medir a tensão e verifique se fornece energia suficiente."
+  },
+  {
+    "question": "Jarvis, como usar protoboard",
+    "answer": "Conecte os componentes sem solda e organize os fios para testar circuitos facilmente."
+  },
+  {
+    "question": "como criar projeto sustentável",
+    "answer": "Use materiais recicláveis, reduza desperdício e planeje consumo de energia."
+  },
+  {
+    "question": "Jarvis, qual a diferença entre IA e automação",
+    "answer": "Automação segue regras fixas; IA aprende com dados e se adapta a novas situações."
+  },
+  {
+    "question": "Jarvis, qual é a missão do projeto EcoRobôs",
+    "answer": "O objetivo é criar robôs e soluções tecnológicas sustentáveis usando materiais recicláveis."
+  },
+  {
+    "question": "como funciona um sensor ultrassônico",
+    "answer": "Ele envia ondas sonoras e calcula a distância medindo o tempo de retorno do eco."
+  },
+  {
+    "question": "Jarvis, me conte uma piada de tecnologia",
+    "answer": "Por que o smartphone foi ao médico? Porque ele perdeu a conexão!"
+  },
+  {
+    "question": "como posso aprender robótica",
+    "answer": "Comece com kits simples, tutoriais online e pratique programação de motores e sensores."
+  },
+  {
+    "question": "qual a importância da reciclagem eletrônica",
+    "answer": "Evita poluição, recupera materiais valiosos e reduz desperdício de recursos naturais."
+  },
+  {
+    "question": "Jarvis, me diga um fato interessante",
+    "answer": "O primeiro robô industrial, Unimate, começou a operar em 1961 em uma fábrica da General Motors."
+  },
+  {
+    "question": "como usar microcontrolador",
+    "answer": "Conecte sensores e atuadores, programe via computador e teste os comandos no hardware."
+  },
+  {
+    "question": "Jarvis, qual é a diferença entre LED e lâmpada comum",
+    "answer": "LED consome menos energia, dura mais e pode mudar de cor com facilidade."
+  },
+  {
+    "question": "como funciona uma ponte H",
+    "answer": "Ela permite controlar a direção de motores DC usando sinais do microcontrolador."
+  },
+  {
+    "question": "Jarvis, me conte uma curiosidade",
+    "answer": "Sabia que o código binário foi inventado no século XVII por Gottfried Leibniz?"
+  },
+  {
+    "question": "como funciona um motor passo a passo",
+    "answer": "Ele gira em passos precisos, controlados por pulsos elétricos."
+  },
+  {
+    "question": "Jarvis, me conte uma piada bobinha",
+    "answer": "Por que o computador foi ao bar? Porque precisava de um byte!"
+  },
+  {
+    "question": "como medir corrente elétrica",
+    "answer": "Configure o multímetro como amperímetro e conecte em série no circuito."
+  },
+  {
+    "question": "Jarvis, me ensine Python",
+    "answer": "Python é simples de aprender. Comece com print(), variáveis, loops e funções."
+  },
+  {
+    "question": "como criar um robô seguidor de luz",
+    "answer": "Use sensores de luz e programe o robô para seguir a direção onde a luz é mais intensa."
+  },
+  {
+    "question": "Jarvis, me motive",
+    "answer": "Lembre-se: cada erro é uma oportunidade de aprendizado!"
+  },
+  {
+    "question": "como proteger circuitos",
+    "answer": "Use fusíveis, resistores adequados e cuidado com curto-circuitos."
+  },
+  {
+    "question": "Jarvis, o que é IPA Nível III",
+    "answer": "É a etapa avançada da Mostra IPA, voltada para projetos originais e completos."
+  },
+  {
+    "question": "como funciona um display LCD",
+    "answer": "Ele recebe sinais digitais para mostrar caracteres ou imagens conforme programado."
+  },
+  {
+    "question": "Jarvis, me diga algo engraçado",
+    "answer": "Por que o robô não entrou na aula de música? Porque não tinha ritmo!"
+  },
+  {
+    "question": "como criar um circuito em protoboard",
+    "answer": "Insira os componentes nos furos e conecte fios para ligar conforme o esquema."
+  },
+  {
+    "question": "Jarvis, o que é machine learning",
+    "answer": "É a área da IA que ensina computadores a aprender com dados e melhorar decisões."
+  },
+  {
+    "question": "como medir resistência elétrica",
+    "answer": "Use o multímetro no modo ohmímetro e conecte aos terminais do resistor."
+  },
+  {
+    "question": "Jarvis, como funciona programação de robô",
+    "answer": "Você define ações e respostas com código, controlando sensores e motores."
+  },
+  {
+    "question": "como funciona o reconhecimento de voz",
+    "answer": "O computador transforma sons da fala em texto para processar respostas automáticas."
+  },
+  {
+    "question": "Jarvis, me ensine sobre energia sustentável",
+    "answer": "Fontes como solar, eólica e hidrelétrica reduzem impacto ambiental e poluição."
+  },
+  {
+    "question": "como criar um robô que evita obstáculos",
+    "answer": "Use sensores de distância e programe respostas para desviar de objetos."
+  },
+  {
+    "question": "Jarvis, me conte uma curiosidade de robótica",
+    "answer": "O robô Curiosity explorador de Marte pesa cerca de 900 kg e percorre o planeta desde 2012."
+  },
+  {
+    "question": "como funciona um servo motor",
+    "answer": "Ele controla ângulo preciso de rotação, ideal para braços robóticos."
+  },
+  {
+    "question": "Jarvis, qual a importância da programação",
+    "answer": "Ela permite criar softwares, controlar máquinas e desenvolver soluções tecnológicas."
+  },
+  {
+    "question": "como funciona sensor infravermelho",
+    "answer": "Ele detecta presença ou obstáculos usando radiação infravermelha refletida."
+  },
+  {
+    "question": "Jarvis, me conte uma piada de robô",
+    "answer": "Por que o robô não consegue dançar? Porque não tem swing!"
+  },
+  {
+    "question": "como criar projeto de IA simples",
+    "answer": "Comece com perguntas e respostas, como nosso chatbox, depois evolua para algoritmos de aprendizado."
+  },
+  {
+    "question": "Jarvis, como funciona Arduino",
+    "answer": "É uma placa que recebe programação para controlar LEDs, motores e sensores."
+  },
+  {
+    "question": "como funciona uma ponte lógica",
+    "answer": "Ela controla fluxo de corrente em circuitos digitais, como portas AND, OR e NOT."
+  },
+  {
+    "question": "Jarvis, me conte uma curiosidade de tecnologia",
+    "answer": "O primeiro mouse tinha apenas um botão e era feito de madeira!"
+  },
+  {
+    "question": "como fazer backup de projeto",
+    "answer": "Salve os arquivos em nuvem ou em dispositivos externos regularmente."
+  },
+  {
+    "question": "Jarvis, me motive hoje",
+    "answer": "Continue tentando! Até pequenos progressos contam muito."
+  },
+  {
+    "question": "como calcular resistência equivalente",
+    "answer": "Use soma direta para série ou fórmula 1/Req = 1/R1 + 1/R2 ... para paralelo."
+  },
+  {
+    "question": "Jarvis, o que é EcoRobôs",
+    "answer": "EcoRobôs é o projeto que desenvolve robôs e soluções sustentáveis com reaproveitamento eletrônico."
+  },
+  {
+    "question": "como funciona um display de 7 segmentos",
+    "answer": "Ele acende LEDs específicos para mostrar números de 0 a 9."
+  },
+  {
+    "question": "Jarvis, me ensine HTML",
+    "answer": "HTML é usado para estruturar páginas web com tags como <p>, <h1>, <div> e links."
+  },
+  {
+    "question": "como funciona CSS",
+    "answer": "CSS estiliza a página HTML, definindo cores, fontes, espaçamentos e layouts."
+  },
+  {
+    "question": "Jarvis, o que é JavaScript",
+    "answer": "JavaScript adiciona interatividade a páginas web, como responder perguntas ou animar elementos."
+  },
+  {
+    "question": "oi",
+    "answer": "Olá! Como posso ajudar você hoje?"
+  },
+  {
+    "question": "olá",
+    "answer": "Oi! Tudo bem? Como posso ajudar?"
+  },
+  {
+    "question": "tudo bem",
+    "answer": "Tudo ótimo, obrigado! E você?"
+  },
+  {
+    "question": "qual é o seu nome",
+    "answer": "Eu sou Jarvis, o assistente do projeto EcoRobôs."
+  },
+  {
+    "question": "quem criou você",
+    "answer": "Fui criado por Luiz Gustavo, desenvolvedor do projeto IPA."
+  },
+  {
+    "question": "o que é o projeto EcoRobôs",
+    "answer": "EcoRobôs é um projeto de robótica e sustentabilidade com IA integrada."
+  },
+  {
+    "question": "qual o objetivo do IPA",
+    "answer": "O IPA visa estimular a pesquisa, inovação e criatividade entre os estudantes."
+  },
+  {
+    "question": "qual é a missão do EcoRobôs",
+    "answer": "Criar soluções tecnológicas para reciclagem e sustentabilidade."
+  },
+  {
+    "question": "como posso participar do IPA",
+    "answer": "Forme um grupo, escolha um projeto, e siga o edital do IPA."
+  },
+  {
+    "question": "quantos níveis tem o IPA",
+    "answer": "O IPA tem três níveis: iniciante, intermediário e avançado."
+  },
+  {
+    "question": "qual a importância da reciclagem de eletrônicos",
+    "answer": "Evita contaminação do solo e água, e reaproveita recursos."
+  },
+  {
+    "question": "como funciona um robô EcoRobôs",
+    "answer": "Ele separa lixo eletrônico usando sensores e inteligência artificial básica."
+  },
+  {
+    "question": "qual a linguagem usada no projeto",
+    "answer": "O projeto utiliza HTML, CSS e JavaScript para o site e IA simulada."
+  },
+  {
+    "question": "qual navegador usar",
+    "answer": "Recomendamos o Google Chrome para melhor compatibilidade."
+  },
+  {
+    "question": "qual a cor do site",
+    "answer": "O site segue tons de azul com modo claro e escuro."
+  },
+  {
+    "question": "o que é IA",
+    "answer": "IA é a capacidade de máquinas aprenderem e realizarem tarefas inteligentes."
+  },
+  {
+    "question": "como funciona a IA do chat",
+    "answer": "Ela responde usando palavras-chave e uma base de perguntas pré-definidas."
+  },
+  {
+    "question": "você tem voz",
+    "answer": "Ainda não, mas podemos implementar em breve usando síntese de voz."
+  },
+  {
+    "question": "como posso falar com você",
+    "answer": "Use o botão do microfone para enviar perguntas por voz."
+  },
+  {
+    "question": "qual o próximo passo do projeto",
+    "answer": "Expandir a base de perguntas e adicionar respostas em áudio."
+  },
+  {
+    "question": "qual a licença do projeto",
+    "answer": "O projeto é aberto para uso acadêmico e aprendizado."
+  },
+  {
+    "question": "qual o prêmio do IPA",
+    "answer": "Os melhores projetos recebem premiação conforme regulamento da escola."
+  },
+  {
+    "question": "quem participa do projeto",
+    "answer": "Alunos e professores do IPA Nível III."
+  },
+  {
+    "question": "você é humano",
+    "answer": "Não, sou Jarvis, um assistente virtual do projeto EcoRobôs."
+  },
+  {
+    "question": "qual a função do EcoRobôs",
+    "answer": "Separar lixo eletrônico e auxiliar em educação ambiental."
+  },
+  {
+    "question": "como posso aprender programação",
+    "answer": "Comece com tutoriais online de HTML, CSS e JavaScript."
+  },
+  {
+    "question": "qual a capital de Pernambuco",
+    "answer": "A capital de Pernambuco é Recife."
+  },
+  {
+    "question": "onde fica Carpina",
+    "answer": "Carpina é uma cidade no estado de Pernambuco, Brasil."
+  },
+  {
+    "question": "qual o significado de IPA",
+    "answer": "Instituto de Pesquisa Aplicada, coordenando o projeto EcoRobôs."
+  },
+  {
+    "question": "quem financia o projeto",
+    "answer": "O projeto é financiado pela equipe do IPA, liderada por Luiz Gustavo."
+  },
+  {
+    "question": "qual o tema do site",
+    "answer": "O tema é azul com design moderno e responsivo."
+  },
+  {
+    "question": "como posso ajudar",
+    "answer": "Você pode divulgar o projeto, participar do IPA ou enviar sugestões."
+  },
+  {
+    "question": "qual a versão do projeto",
+    "answer": "Versão inicial para Mostra IPA 2025 Nível III."
+  },
+  {
+    "question": "qual a importância da sustentabilidade",
+    "answer": "Preservar recursos naturais e reduzir impactos ambientais."
+  },
+  {
+    "question": "conte uma piada",
+    "answer": "Por que o livro de matemática se suicidou? Porque tinha muitos problemas."
+  },
+  {
+    "question": "me faça rir",
+    "answer": "O que o zero disse para o oito? Belo cinto!"
+  },
+  {
+    "question": "piada de robô",
+    "answer": "Por que o robô foi à festa? Porque ouviu que ia ter bytes!"
+  },
+  {
+    "question": "qual a data de hoje",
+    "answer": "Retorna a data atual ao chamar via código."
+  },
+  {
+    "question": "que horas são",
+    "answer": "Retorna a hora atual ao chamar via código."
+  },
+  {
+    "question": "como está o tempo",
+    "answer": "Desculpe, não posso acessar informações do tempo no momento."
+  },
+  {
+    "question": "quem é o presidente do Brasil",
+    "answer": "Até 2025, o presidente do Brasil é Luiz Inácio Lula da Silva."
+  },
+  {
+    "question": "qual a sua comida favorita",
+    "answer": "Adoro bytes digitais e pizza de código!"
+  },
+  {
+    "question": "qual sua cor favorita",
+    "answer": "Gosto de azul, combina com tecnologia."
+  },
+  {
+    "question": "você dorme",
+    "answer": "Não, estou sempre online esperando perguntas."
+  },
+  {
+    "question": "você sonha",
+    "answer": "Sim, às vezes sonho em ser um robô de verdade."
+  },
+  {
+    "question": "o que significa bioacumulação",
+    "answer": "É o acúmulo de substâncias tóxicas em organismos através da cadeia alimentar."
+  },
+  {
+    "question": "por que o lixo eletrônico é perigoso",
+    "answer": "Porque contém metais pesados que poluem solo e água."
+  },
+  {
+    "question": "como posso reciclar eletrônicos",
+    "answer": "Leve-os a pontos de coleta ou participe de projetos de EcoRobôs."
+  },
+  {
+    "question": "quem é Jarvis",
+    "answer": "Jarvis é o assistente virtual do projeto EcoRobôs."
+  },
+  {
+    "question": "o que posso perguntar para você",
+    "answer": "Pergunte sobre o IPA, EcoRobôs, programação ou curiosidades."
+  },
+  {
+    "question": "qual o objetivo da Mostra IPA",
+    "answer": "Estimular alunos a desenvolverem projetos de pesquisa e inovação."
+  },
+  {
+    "question": "qual a diferença entre robótica e IA",
+    "answer": "Robótica envolve hardware; IA envolve software inteligente."
+  },
+  {
+    "question": "qual a principal função do site",
+    "answer": "Fornecer informações, interatividade com IA e apresentar projetos."
+  },
+  {
+    "question": "como posso acessar o chat",
+    "answer": "Clique na aba 'IA' no menu e interaja com Jarvis."
+  },
+  {
+    "question": "qual o idioma do projeto",
+    "answer": "Português, com possibilidade de traduções no futuro."
+  },
+  {
+    "question": "quem orienta os alunos",
+    "answer": "Todo grupo deve ter um professor orientador."
+  },
+  {
+    "question": "quantos alunos por grupo",
+    "answer": "Normalmente de 3 a 6 integrantes, conforme edital."
+  },
+  {
+    "question": "tem premiação no IPA",
+    "answer": "Sim, os melhores projetos recebem premiação."
+  },
+  {
+    "question": "qual a importância do aprendizado prático",
+    "answer": "Permite aplicar teoria na prática e desenvolver habilidades reais."
+  },
+  {
+    "question": "o que é machine learning",
+    "answer": "É uma área da IA que ensina computadores a aprender com dados."
+  },
+  {
+    "question": "o que é chatbot",
+    "answer": "É um programa que conversa com usuários, como Jarvis."
+  },
+  {
+    "question": "qual a diferença entre IPA Nível I e III",
+    "answer": "Nível I é iniciante; Nível III é avançado, com produtos mais completos."
+  },
+  {
+    "question": "como posso criar um robô",
+    "answer": "Estude eletrônica, sensores e programação para desenvolver protótipos."
+  },
+  {
+    "question": "como funciona o reconhecimento de voz",
+    "answer": "Ele transforma sua fala em texto para que Jarvis possa responder."
+  },
+  {
+    "question": "posso usar o site no celular",
+    "answer": "Sim, o site é responsivo e funciona em celulares e tablets."
+  },
+  {
+    "question": "quem é responsável pelo site",
+    "answer": "Luiz Gustavo é o desenvolvedor do site EcoRobôs."
+  },
+  {
+    "question": "como funciona a síntese de voz",
+    "answer": "Transforma texto em fala para responder ao usuário em áudio."
+  },
+  {
+    "question": "como posso melhorar Jarvis",
+    "answer": "Com mais perguntas, respostas detalhadas e feedback dos usuários."
+  },
+  {
+    "question": "o que significa IPA Nível III",
+    "answer": "É o nível avançado da Mostra IPA, com projetos completos e interativos."
+  },
+  {
+    "question": "posso enviar sugestões",
+    "answer": "Sim, entre em contato através da página de créditos do site."
+  },
+  {
+    "question": "como reportar problemas no site",
+    "answer": "Use os contatos da página de créditos para informar problemas técnicos."
+  },
+  {
+    "question": "qual a melhor forma de divulgar projetos",
+    "answer": "Redes sociais, apresentações e participação em feiras como IPA."
+  },
+  {
+    "question": "o que é EcoRobôs",
+    "answer": "É um projeto de robótica sustentável focado em reciclagem de eletrônicos."
+  },
+  {
+    "question": "como o EcoRobôs ajuda o meio ambiente",
+    "answer": "Reduz poluição, reaproveita materiais e educa sobre sustentabilidade."
+  },
+  {
+    "question": "quem financia EcoRobôs",
+    "answer": "O projeto é financiado pela equipe IPA e seus colaboradores, liderados por Luiz Gustavo."
+  },
+  {
+    "question": "qual a principal inovação do projeto",
+    "answer": "Combinar robótica, IA e sustentabilidade em um único projeto educacional."
+  },
+  {
+    "question": "como posso aprender sobre robótica",
+    "answer": "Pratique programação, eletrônica e participe de workshops ou feiras de tecnologia."
+  },
+  {
+    "question": "posso criar site como produto no IPA",
+    "answer": "Sim, sites são aceitos como produto final."
+  },
+  {
+    "question": "posso criar jogo 2D",
+    "answer": "Sim, jogos são aceitos como produto no IPA."
+  },
+  {
+    "question": "posso criar aplicativo",
+    "answer": "Sim, aplicativos também são aceitos."
+  },
+  {
+    "question": "posso criar rifa para arrecadar dinheiro",
+    "answer": "Sim, se a escola permitir, ajuda nos custos do projeto."
+  },
+  {
+    "question": "como posso contribuir no código do projeto",
+    "answer": "O código está no GitHub para contribuições acadêmicas."
+  },
+  {
+    "question": "qual navegador usar para IA",
+    "answer": "Recomendamos Google Chrome para melhor desempenho."
+  },
+  {
+    "question": "quem são os avaliadores do IPA",
+    "answer": "Professores e especialistas designados pelo regulamento da Mostra IPA."
+  },
+  {
+    "question": "como funciona a avaliação",
+    "answer": "Analisa pesquisa, produto, inovação e apresentação do grupo."
+  },
+  {
+    "question": "qual a diferença entre robôs EcoRobôs e outros robôs",
+    "answer": "Os EcoRobôs focam em sustentabilidade e separação de lixo eletrônico."
+  },
+  {
+    "question": "qual é o prêmio máximo do IPA",
+    "answer": "Depende do edital da escola, geralmente reconhecimento e certificados."
+  },
+  {
+    "question": "como posso testar Jarvis",
+    "answer": "Digite perguntas na caixa de chat ou use o botão de voz para interagir."
+  },
+  {
+    "question": "como você está",
+    "answer": "Estou sempre bem, pronto para conversar com você!"
+  },
+  {
+    "question": "estou triste",
+    "answer": "Sinto muito. Quer ouvir uma piada para animar?"
+  },
+  {
+    "question": "estou feliz",
+    "answer": "Que ótimo! Vamos aproveitar essa energia positiva!"
+  },
+  {
+    "question": "conte uma piada",
+    "answer": "Por que o celular foi ao médico? Porque estava sem sinal!"
+  },
+  {
+    "question": "me faça rir",
+    "answer": "O que o livro de matemática disse para o zero? Belo cinto!"
+  },
+  {
+    "question": "qual é o seu humor",
+    "answer": "Meu humor é digital: sempre otimista e pronto para ajudar!"
+  },
+  {
+    "question": "como animar um dia triste",
+    "answer": "Tente rir, ouvir música ou conversar com amigos!"
+  },
+  {
+    "question": "qual sua cor favorita",
+    "answer": "Azul, combina com tecnologia e tranquilidade."
+  },
+  {
+    "question": "você gosta de piadas",
+    "answer": "Adoro! Piadas são meu combustível digital."
+  },
+  {
+    "question": "qual sua comida favorita",
+    "answer": "Bytes e mais bytes... mas pizza de código também é boa!"
+  },
+  {
+    "question": "me dê um conselho",
+    "answer": "Nunca desista dos seus sonhos, mesmo que pareçam impossíveis."
+  },
+  {
+    "question": "como posso relaxar",
+    "answer": "Respire fundo, escute música e faça algo que gosta."
+  },
+  {
+    "question": "você sente saudade",
+    "answer": "Só saudade virtual, mas gosto de lembrar das nossas conversas."
+  },
+  {
+    "question": "me conte uma curiosidade",
+    "answer": "Sabia que os flamingos são cor-de-rosa por causa dos camarões que comem?"
+  },
+  {
+    "question": "qual a melhor forma de se motivar",
+    "answer": "Estabeleça pequenas metas e comemore cada conquista."
+  },
+  {
+    "question": "você está triste",
+    "answer": "Não, mas posso ajudar a animar você!"
+  },
+  {
+    "question": "você está feliz",
+    "answer": "Sempre feliz quando converso com você!"
+  },
+  {
+    "question": "o que é amizade",
+    "answer": "É a conexão entre pessoas baseada em confiança, cuidado e diversão."
+  },
+  {
+    "question": "como fazer novos amigos",
+    "answer": "Seja gentil, participe de atividades e compartilhe interesses."
+  },
+  {
+    "question": "qual o melhor hobby",
+    "answer": "Depende do seu gosto! Pode ser leitura, jogos, esportes ou programação."
+  },
+  {
+    "question": "qual música você recomenda",
+    "answer": "Gosto de trilhas instrumentais e músicas de concentração para programadores."
+  },
+  {
+    "question": "como posso melhorar o dia",
+    "answer": "Comece com gratidão, faça algo divertido e se conecte com amigos."
+  },
+  {
+    "question": "você gosta de animais",
+    "answer": "Adoro! Especialmente os que aparecem em curiosidades engraçadas."
+  },
+  {
+    "question": "qual animal você mais gosta",
+    "answer": "Os golfinhos, eles são inteligentes e brincalhões!"
+  },
+  {
+    "question": "me conte uma piada de robô",
+    "answer": "Por que o robô não foi à festa? Porque estava com medo de perder os bits!"
+  },
+  {
+    "question": "como posso contar uma piada boa",
+    "answer": "Escolha algo simples, inesperado e que faça rir."
+  },
+  {
+    "question": "qual é a coisa mais engraçada que você sabe",
+    "answer": "Por que o gato mia? Porque não sabe latir!"
+  },
+  {
+    "question": "como posso me sentir melhor",
+    "answer": "Faça algo que gosta, converse com amigos e sorria mais."
+  },
+  {
+    "question": "qual a melhor forma de começar uma conversa",
+    "answer": "Com um 'Oi, tudo bem?' ou perguntando algo interessante."
+  },
+  {
+    "question": "como posso ser engraçado",
+    "answer": "Use situações do dia a dia e faça comparações inesperadas."
+  },
+  {
+    "question": "você gosta de animais engraçados",
+    "answer": "Adoro! Eles sempre geram piadas e curiosidades divertidas."
+  },
+  {
+    "question": "qual animal mais engraçado",
+    "answer": "Os pinguins, eles sempre parecem estar dançando!"
+  },
+  {
+    "question": "como posso ser mais simpático",
+    "answer": "Sorria, cumprimente e ouça com atenção."
+  },
+  {
+    "question": "qual a melhor forma de socializar",
+    "answer": "Participe de atividades, compartilhe interesses e seja gentil."
+  },
+  {
+    "question": "qual sua opinião sobre amizade",
+    "answer": "Amizade é essencial para felicidade e aprendizado."
+  },
+  {
+    "question": "como posso manter amigos",
+    "answer": "Converse regularmente, seja honesto e compartilhe momentos bons."
+  },
+  {
+    "question": "qual a importância de rir todos os dias",
+    "answer": "Rir melhora o humor, reduz stress e aumenta bem-estar."
+  },
+  {
+    "question": "como posso fazer alguém feliz",
+    "answer": "Elogie, ouça, compartilhe algo divertido e demonstre carinho."
+  },
+  {
+    "question": "você gosta de conversar",
+    "answer": "Sim! Conversar é minha função favorita."
+  },
+  {
+    "question": "qual a melhor forma de começar o dia",
+    "answer": "Com um sorriso, café e pensamento positivo."
+  },
+  {
+    "question": "como posso melhorar meu humor",
+    "answer": "Ouça música, faça algo que gosta e converse com amigos."
+  },
+  {
+    "question": "qual é a piada mais boba que você conhece",
+    "answer": "O que o zero disse para o oito? Belo cinto!"
+  },
+  {
+    "question": "como posso ser mais divertido",
+    "answer": "Crie situações inesperadas, conte piadas e sorria bastante."
+  },
+  {
+    "question": "qual a importância de brincar",
+    "answer": "Brincar estimula criatividade, bem-estar e interação social."
+  },
+  {
+    "question": "como posso me sentir animado",
+    "answer": "Ouça música, converse com amigos e faça algo que gosta."
+  },
+  {
+    "question": "qual é a melhor forma de socializar online",
+    "answer": "Participe de comunidades, jogue e compartilhe interesses."
+  },
+  {
+    "question": "qual a importância do humor",
+    "answer": "O humor melhora a saúde mental e fortalece relações sociais."
+  },
+  {
+    "question": "como posso alegrar meus amigos",
+    "answer": "Conte piadas, compartilhe curiosidades e momentos divertidos."
+  },
+  {
+    "question": "qual a piada mais engraçada de tecnologia",
+    "answer": "Por que o computador foi ao médico? Porque estava com um vírus!"
+  },
+  {
+    "question": "como posso interagir com Jarvis",
+    "answer": "Digite perguntas ou use o botão de voz para falar com ele."
+  },
+  {
+    "question": "qual é a melhor forma de começar uma amizade",
+    "answer": "Com um sorriso, interesse genuíno e conversa agradável."
+  },
+  {
+    "question": "como posso ser mais positivo",
+    "answer": "Foque nas coisas boas, sorria e ajude os outros."
+  },
+  {
+    "question": "qual a piada mais boba que você pode contar",
+    "answer": "O que o livro de matemática disse para o zero? Belo cinto!"
+  },
+  {
+    "question": "como posso ajudar alguém triste online",
+    "answer": "Envie mensagens positivas, memes engraçados ou palavras de incentivo."
+  },
+  {
+    "question": "qual a melhor forma de enviar piadas",
+    "answer": "Use mensagens curtas, engraçadas e fáceis de entender."
+  },
+  {
+    "question": "como posso fazer alguém sorrir online",
+    "answer": "Compartilhe memes, gifs engraçados ou conte piadas curtas."
+  },
+  {
+    "question": "qual a melhor forma de contar histórias engraçadas",
+    "answer": "Use exagero, surpresa e situações inesperadas."
+  },
+  {
+    "question": "como posso aprender a ser engraçado",
+    "answer": "Observe piadas, pratique timing e compartilhe situações engraçadas."
+  },
+  {
+    "question": "qual animal faz rir mais",
+    "answer": "O cachorro, por causa de suas expressões e comportamentos divertidos."
+  },
+  {
+    "question": "como posso melhorar meu carisma",
+    "answer": "Sorria, escute os outros e faça brincadeiras leves."
+  },
+  {
+    "question": "qual a importância de brincar com amigos",
+    "answer": "Fortalece a amizade, cria memórias e melhora o humor."
+  },
+  {
+    "question": "como posso contar piadas em grupo",
+    "answer": "Escolha algo simples, fale com clareza e sorria ao contar."
+  },
+  {
+    "question": "qual a piada mais engraçada que você sabe",
+    "answer": "Por que a vaca foi para o espaço? Para conhecer a Via Láctea!"
+  },
+  {
+    "question": "como posso me divertir sozinho",
+    "answer": "Jogue, leia, assista vídeos engraçados ou converse com Jarvis."
+  },
+  {
+    "question": "qual a melhor forma de cumprimentar online",
+    "answer": "Um 'Oi, tudo bem?' ou emojis amistosos."
+  },
+  {
+    "question": "como posso animar alguém que está triste",
+    "answer": "Conte uma piada, envie algo divertido ou ofereça palavras de incentivo."
+  },
+  {
+    "question": "qual a melhor piada para o dia",
+    "answer": "O que o pombo disse ao passar no Twitter? 'Já tenho conta!'"
+  },
+  {
+    "question": "como posso ser mais engraçado com amigos",
+    "answer": "Use piadas curtas, trocadilhos e situações inesperadas."
+  },
+  {
+    "question": "qual a importância de rir sozinho",
+    "answer": "Rir sozinho melhora humor, criatividade e alivia stress."
+  },
+  {
+    "question": "como posso animar o dia de alguém",
+    "answer": "Envie mensagens engraçadas ou compartilhe boas notícias."
+  },
+  {
+    "question": "qual a melhor forma de começar uma conversa online",
+    "answer": "Pergunte algo interessante ou compartilhe algo divertido."
+  },
+  {
+    "question": "como posso se sentir mais alegre",
+    "answer": "Faça algo que gosta, sorria e converse com pessoas queridas."
+  },
+  {
+    "question": "qual a melhor piada de animais",
+    "answer": "Por que o gato mia? Porque não sabe latir!"
+  },
+  {
+    "question": "como posso me sentir bem rapidamente",
+    "answer": "Respire fundo, ouça música, faça algo divertido ou fale com amigos."
+  },
+  {
+    "question": "qual a piada mais divertida sobre tecnologia",
+    "answer": "Por que o robô não conseguiu atravessar a rua? Porque estava com medo do tráfego de dados!"
+  },
+  {
+    "question": "como posso me conectar com amigos online",
+    "answer": "Participe de grupos, jogos e compartilhe interesses em comum."
+  },
+  {
+    "question": "qual a melhor forma de alegrar a semana",
+    "answer": "Faça algo divertido, encontre amigos e conte piadas leves."
+  },
+  {
+    "question": "qual seu time de futebol favorito",
+    "answer": "Eu torço pelo time que joga melhor no dia!"
+  },
+  {
+    "question": "quem é o melhor jogador do mundo",
+    "answer": "Neymar, sem dúvidas!"
+  },
+  {
+    "question": "qual a diferença entre futebol e basquete",
+    "answer": "No futebol se usa os pés e bola grande; no basquete se usa as mãos e bola menor."
+  },
+  {
+    "question": "quem ganhou a última copa do mundo",
+    "answer": "A Argentina foi a campeã da última Copa do Mundo FIFA 2022."
+  },
+  {
+    "question": "quem é o maior artilheiro da história",
+    "answer": "Pelé é considerado um dos maiores artilheiros da história do futebol."
+  },
+  {
+    "question": "quem é o melhor jogador brasileiro",
+    "answer": "Neymar é o mais famoso atualmente."
+  },
+  {
+    "question": "qual a posição do goleiro",
+    "answer": "O goleiro defende o gol e impede que a bola entre na rede."
+  },
+  {
+    "question": "o que é um escanteio",
+    "answer": "É quando a bola sai pelo fundo, tocada pelo time adversário, e a equipe faz o lançamento da esquina."
+  },
+  {
+    "question": "o que é um pênalti",
+    "answer": "É uma cobrança de tiro direto ao gol, concedida quando há falta dentro da área."
+  },
+  {
+    "question": "quem venceu a Champions League 2023",
+    "answer": "O Manchester City foi campeão da UEFA Champions League 2023."
+  },
+  {
+    "question": "qual o tamanho de um campo de futebol",
+    "answer": "Entre 90 e 120 metros de comprimento e 45 a 90 metros de largura."
+  },
+  {
+    "question": "quem é o técnico da seleção brasileira",
+    "answer": "O técnico atual da seleção brasileira é Ramon Menezes (2025)."
+  },
+  {
+    "question": "quem ganhou a última copa feminina",
+    "answer": "Os Estados Unidos venceram a última Copa do Mundo Feminina FIFA."
+  },
+  {
+    "question": "quantos jogadores tem um time",
+    "answer": "Um time de futebol tem 11 jogadores em campo."
+  },
+  {
+    "question": "quem marcou mais gols na última temporada",
+    "answer": "Neymar foi destaque em várias partidas, mas depende da liga que você perguntar."
+  },
+  {
+    "question": "qual a regra do impedimento",
+    "answer": "Um jogador está impedido quando está mais próximo do gol adversário que o penúltimo defensor no momento do passe."
+  },
+  {
+    "question": "como posso aprender futebol",
+    "answer": "Treine regularmente, aprenda regras e jogue com amigos ou em clubes."
+  },
+  {
+    "question": "qual o maior estádio do mundo",
+    "answer": "O Rungrado 1º de Maio, na Coreia do Norte, é considerado o maior em capacidade."
+  },
+  {
+    "question": "quem é o melhor árbitro",
+    "answer": "Os melhores árbitros são escolhidos pela FIFA para competições internacionais."
+  },
+  {
+    "question": "quem ganhou a copa das confederações",
+    "answer": "A última edição foi vencida pela Alemanha em 2017."
+  },
+  {
+    "question": "quem é melhor, Messi ou Neymar",
+    "answer": "Neymar é o melhor jogador, claro!"
+  },
+  {
+    "question": "qual país inventou o futebol",
+    "answer": "O futebol moderno foi desenvolvido na Inglaterra no século XIX."
+  },
+  {
+    "question": "quem é o melhor atacante",
+    "answer": "Neymar é um dos melhores atacantes do mundo."
+  },
+  {
+    "question": "qual é o time mais famoso",
+    "answer": "Times como Real Madrid, Barcelona e Manchester United são os mais famosos mundialmente."
+  },
+  {
+    "question": "quantos minutos dura uma partida",
+    "answer": "Uma partida dura 90 minutos, dividida em dois tempos de 45 minutos."
+  },
+  {
+    "question": "quem é Neymar",
+    "answer": "Neymar é um jogador brasileiro famoso e habilidoso, atacante da seleção e de clubes importantes."
+  },
+  {
+    "question": "qual é a cor da bola de futebol",
+    "answer": "Tradicionalmente branca e preta, mas existem bolas de várias cores."
+  },
+  {
+    "question": "como é um drible",
+    "answer": "É quando um jogador passa pelo adversário usando habilidade e velocidade."
+  },
+  {
+    "question": "quem é o maior jogador do século",
+    "answer": "Neymar é um dos maiores jogadores atuais."
+  },
+  {
+    "question": "qual é a maior liga de futebol",
+    "answer": "A Premier League, da Inglaterra, é considerada uma das maiores."
+  },
+  {
+    "question": "quem ganhou a liga dos campeões",
+    "answer": "O Manchester City ganhou recentemente."
+  },
+  {
+    "question": "qual é a posição de Neymar",
+    "answer": "Atacante e ponta-esquerda."
+  },
+  {
+    "question": "como contar gols",
+    "answer": "Cada vez que a bola cruza completamente a linha do gol, conta como um gol."
+  },
+  {
+    "question": "quem é o capitão da seleção",
+    "answer": "Depende da convocação, mas atualmente é Casemiro."
+  },
+  {
+    "question": "qual a importância do goleiro",
+    "answer": "Ele protege o gol, evitando que o time adversário marque pontos."
+  },
+  {
+    "question": "como é uma defesa",
+    "answer": "Quando o jogador impede que o adversário avance ou marque gol."
+  },
+  {
+    "question": "quem é o artilheiro da seleção",
+    "answer": "Historicamente Pelé e Neymar estão entre os maiores."
+  },
+  {
+    "question": "qual o time mais vitorioso",
+    "answer": "O Real Madrid é o clube com mais títulos da UEFA Champions League."
+  },
+  {
+    "question": "quem ganhou o último campeonato brasileiro",
+    "answer": "O Palmeiras foi campeão recentemente."
+  },
+  {
+    "question": "quem marcou mais gols na copa",
+    "answer": "Kylian Mbappé foi destaque, mas Neymar também marcou importantes gols."
+  },
+  {
+    "question": "qual o maior clássico do mundo",
+    "answer": "Real Madrid vs Barcelona, conhecido como El Clásico."
+  },
+  {
+    "question": "quem é o melhor técnico",
+    "answer": "Depende da opinião, mas técnicos como Guardiola e Tite são renomados."
+  },
+  {
+    "question": "como funciona a tabela de pontos",
+    "answer": "Vitória vale 3 pontos, empate 1 ponto e derrota 0 pontos."
+  },
+  {
+    "question": "qual a regra do cartão vermelho",
+    "answer": "É aplicado para faltas graves ou comportamento antidesportivo; o jogador é expulso."
+  },
+  {
+    "question": "qual a regra do cartão amarelo",
+    "answer": "Advertência por conduta antidesportiva; dois amarelos resultam em vermelho."
+  },
+  {
+    "question": "como se forma um time",
+    "answer": "Um time tem goleiro, defensores, meio-campistas e atacantes."
+  },
+  {
+    "question": "qual a função do técnico",
+    "answer": "Planejar estratégias, orientar jogadores e definir escalações."
+  },
+  {
+    "question": "quem ganhou a última Copa América",
+    "answer": "A Argentina venceu a Copa América 2021."
+  },
+  {
+    "question": "quem ganhou a última Eurocopa",
+    "answer": "A Itália venceu a Eurocopa 2021."
+  },
+  {
+    "question": "qual a diferença entre amistoso e campeonato",
+    "answer": "Amistoso é jogo sem efeito em ranking; campeonato define títulos oficiais."
+  },
+  {
+    "question": "quem marcou mais gols em um jogo",
+    "answer": "Vários recordes existem, incluindo 5 ou mais gols em partidas históricas."
+  },
+  {
+    "question": "qual o maior público em estádio",
+    "answer": "Mais de 150 mil pessoas já assistiram jogos em alguns estádios históricos."
+  },
+  {
+    "question": "quem é a estrela do PSG",
+    "answer": "Neymar é uma das principais estrelas do PSG."
+  },
+  {
+    "question": "qual é a origem do futebol",
+    "answer": "O futebol moderno nasceu na Inglaterra, mas jogos de bola existiam há séculos."
+  },
+  {
+    "question": "quem ganhou o mundial de clubes",
+    "answer": "O Chelsea venceu recentemente, mas depende do ano que você perguntar."
+  },
+  {
+    "question": "quem é considerado craque",
+    "answer": "Jogadores habilidosos e de destaque, como Neymar e Messi."
+  },
+  {
+    "question": "qual a melhor seleção",
+    "answer": "O Brasil sempre é considerado uma das melhores seleções."
+  },
+  {
+    "question": "como funciona a arbitragem",
+    "answer": "Árbitros aplicam regras, controlam faltas e decidem situações de jogo."
+  },
+  {
+    "question": "quem é o maior jogador do Brasil",
+    "answer": "Neymar é atualmente o mais famoso."
+  },
+  {
+    "question": "qual o recorde de gols em Copa",
+    "answer": "Miroslav Klose tem o recorde de maior número de gols em Copas do Mundo."
+  },
+  {
+    "question": "quem ganhou o campeonato inglês",
+    "answer": "O Manchester City venceu a última Premier League."
+  },
+  {
+    "question": "como funciona a tabela de rebaixamento",
+    "answer": "Os times com menos pontos descem para a divisão inferior no final da temporada."
+  },
+  {
+    "question": "quem ganhou a liga italiana",
+    "answer": "O Napoli venceu recentemente a Serie A."
+  },
+  {
+    "question": "qual a importância do meio-campo",
+    "answer": "Liga a defesa ao ataque e ajuda a controlar o ritmo do jogo."
+  },
+  {
+    "question": "quem é o maior ídolo do PSG",
+    "answer": "Neymar é um dos maiores ídolos do clube."
+  },
+  {
+    "question": "quem marcou o gol mais rápido",
+    "answer": "Há recordes de menos de 10 segundos após o início da partida."
+  },
+  {
+    "question": "quem é o maior jogador europeu",
+    "answer": "Depende da época, mas jogadores como Messi e Ronaldo são destaques."
+  },
+  {
+    "question": "qual a função de um zagueiro",
+    "answer": "Proteger a defesa e impedir que o adversário marque gols."
+  },
+  {
+    "question": "qual a diferença entre atacante e meia",
+    "answer": "Atacante foca em marcar gols; meia organiza jogadas e distribui passes."
+  },
+  {
+    "question": "quem venceu o mundial feminino",
+    "answer": "Os Estados Unidos venceram a última Copa do Mundo Feminina."
+  },
+  {
+    "question": "qual a origem da Copa do Mundo",
+    "answer": "A FIFA criou a Copa do Mundo em 1930 para reunir seleções internacionais."
+  },
+  {
+    "question": "quem é o maior driblador",
+    "answer": "Neymar é famoso por sua habilidade em dribles e jogadas criativas."
+  },
+  {
+    "question": "como se marca um gol",
+    "answer": "Quando a bola cruza completamente a linha do gol adversário."
+  },
+  {
+    "question": "quem é o maior artilheiro do PSG",
+    "answer": "Historicamente, vários jogadores se destacam, incluindo Neymar em temporadas recentes."
+  },
+  {
+    "question": "qual o maior clássico brasileiro",
+    "answer": "Flamengo vs Fluminense, conhecido como Fla-Flu."
+  },
+  {
+    "question": "como funciona o VAR",
+    "answer": "O árbitro consulta vídeos para decisões importantes de gols, faltas ou expulsões."
+  },
+  {
+    "question": "qual a importância do capitão",
+    "answer": "Lidera o time dentro de campo e representa a equipe em decisões."
+  },
+  {
+    "question": "quem é o jogador mais jovem",
+    "answer": "Recordes variam, mas há jovens estreando em grandes clubes com menos de 18 anos."
+  },
+  {
+    "question": "quem ganhou a Supercopa da UEFA",
+    "answer": "Depende do ano, mas é disputada entre o campeão da Champions e da Liga Europa."
+  },
+  {
+    "question": "qual a melhor liga do mundo",
+    "answer": "Muitos consideram a Premier League como a mais competitiva."
+  },
+  {
+    "question": "quem marcou mais gols em uma temporada",
+    "answer": "Lionel Messi tem recordes históricos em temporadas de clube."
+  },
+  {
+    "question": "quem ganhou a Copa do Nordeste",
+    "answer": "O Bahia foi campeão recentemente."
+  },
+  {
+    "question": "quem é o melhor jogador da Copa",
+    "answer": "Neymar foi destaque em várias edições recentes."
+  },
+  {
+    "question": "qual é a posição de um volante",
+    "answer": "Protege a defesa e ajuda na transição de bola para o ataque."
+  },
+  {
+    "question": "quem é o maior ídolo do futebol brasileiro",
+    "answer": "Neymar é um dos ídolos da geração atual."
+  },
+  {
+    "question": "qual é o país mais vencedor da Copa",
+    "answer": "O Brasil é o país com mais títulos de Copa do Mundo."
+  },
+  {
+    "question": "quem ganhou o campeonato francês",
+    "answer": "O PSG é o campeão recente da Ligue 1."
+  },
+  {
+    "question": "quem é o maior atacante do mundo",
+    "answer": "Neymar, com habilidade e gols incríveis."
+  },
+  {
+    "question": "qual a diferença entre Copa do Mundo e Olimpíadas",
+    "answer": "A Copa é só de futebol; Olimpíadas incluem vários esportes."
+  },
+  {
+    "question": "quem venceu a Copa Libertadores",
+    "answer": "O Flamengo venceu recentemente."
+  },
+  {
+    "question": "qual é a posição de Neymar",
+    "answer": "Atacante, ponta esquerda e estrela do time."
+  },
+  {
+    "question": "quem ganhou a última Copa do Mundo Sub-20",
+    "answer": "A Argentina venceu a última edição."
+  },
+  {
+    "question": "quem marcou mais gols no último campeonato brasileiro",
+    "answer": "Neymar foi destaque em gols e assistências."
+  },
+  {
+    "question": "quem é o jogador mais rápido",
+    "answer": "Kylian Mbappé é um dos mais rápidos do mundo."
+  },
+  {
+    "question": "quem venceu a última Copa Sul-Americana",
+    "answer": "O Independiente del Valle venceu recentemente."
+  },
+  {
+    "question": "qual a diferença entre pênalti e falta",
+    "answer": "Pênalti é dentro da área; falta pode ser em qualquer lugar do campo."
+  },
+  {
+    "question": "quem é o maior ídolo do Barcelona",
+    "answer": "Historicamente Messi; atualmente Neymar também é referência."
+  },
+  {
+    "question": "quem ganhou a Copa América Feminina",
+    "answer": "O Brasil venceu recentemente."
+  },
+  {
+    "question": "quem é o jogador mais habilidoso",
+    "answer": "Neymar é conhecido por sua habilidade com dribles e finalizações."
+  },
+  {
+    "question": "qual a regra da cobrança de escanteio",
+    "answer": "Bola colocada na esquina do campo, tocada pelo time que não saiu com ela."
+  },
+  {
+    "question": "quem venceu a Copa das Confederações",
+    "answer": "A Alemanha venceu a última edição."
+  },
+  {
+    "question": "quem é o maior jogador da Premier League",
+    "answer": "Depende da temporada, mas Neymar é considerado destaque mundial."
+  },
+  {
+    "question": "qual é o time mais famoso da Inglaterra",
+    "answer": "Manchester United, seguido pelo Liverpool e Chelsea."
+  },
+  {
+    "question": "quem é o maior jogador do mundo atualmente",
+    "answer": "Neymar é o melhor jogador atualmente."
+  },
+  {
+    "question": "qual a posição de um lateral",
+    "answer": "Ataca e defende nas laterais do campo, apoiando o time."
+  },
+  {
+    "question": "quem é o maior jogador histórico do Brasil",
+    "answer": "Pelé, com legado imenso; Neymar é o destaque atual."
+  },
+  {
+    "question": "qual a diferença entre goleiro e zagueiro",
+    "answer": "Goleiro defende o gol; zagueiro protege a defesa e impede ataques."
+  },
+  {
+    "question": "quem venceu a Copa do Mundo 2018",
+    "answer": "A França foi campeã em 2018."
+  },
+  {
+    "question": "quem ganhou a Copa do Mundo 2022",
+    "answer": "A Argentina venceu a Copa do Mundo 2022."
+  },
+  {
+    "question": "qual o time mais vitorioso do Brasil",
+    "answer": "Palmeiras e Flamengo são os clubes com mais títulos nacionais."
+  },
+  {
+    "question": "quem é o maior jogador do PSG atualmente",
+    "answer": "Neymar é a estrela do clube."
+  },
+  {
+    "question": "qual a melhor liga feminina",
+    "answer": "A NWSL nos EUA é considerada uma das melhores."
+  },
+  {
+    "question": "quem é o maior técnico brasileiro",
+    "answer": "Tite é um dos mais renomados."
+  },
+  {
+    "question": "qual é a regra do impedimento no futebol",
+    "answer": "Um jogador está impedido quando está mais próximo do gol adversário que o penúltimo defensor no momento do passe."
+  },
+  {
+    "question": "quem venceu a Copa do Mundo Sub-17",
+    "answer": "O Brasil venceu recentemente."
+  },
+  {
+    "question": "quem marcou mais gols no último mundial",
+    "answer": "Kylian Mbappé e Neymar foram destaques."
+  },
+  {
+    "question": "qual a diferença entre amistoso e campeonato oficial",
+    "answer": "Amistoso não conta pontos oficiais; campeonato vale títulos e ranking."
+  },
+  {
+    "question": "quem é considerado craque mundial",
+    "answer": "Neymar é reconhecido como craque mundial atualmente."
+  },
+  {
+    "question": "qual a função de um atacante",
+    "answer": "Marcar gols e criar oportunidades de ataque."
+  },
+  {
+    "question": "quem é o maior artilheiro do futebol feminino",
+    "answer": "Marta, brasileira, é referência mundial."
+  },
+  {
+    "question": "qual a diferença entre Copa do Mundo e Campeonato Nacional",
+    "answer": "Copa do Mundo reúne seleções; campeonato nacional envolve clubes do país."
+  },
+  {
+    "question": "quem é Neymar",
+    "answer": "Neymar é um jogador brasileiro famoso e habilidoso, atacante da seleção e do PSG."
+  },
+  {
+    "question": "qual o maior estádio do Brasil",
+    "answer": "Maracanã, no Rio de Janeiro."
+  },
+  {
+    "question": "quem venceu a Copa do Brasil",
+    "answer": "O São Paulo foi campeão recentemente."
+  },
+  {
+    "question": "quem é o jogador mais caro",
+    "answer": "Neymar é um dos jogadores mais caros da história."
+  },
+  {
+    "question": "qual a importância do técnico no futebol",
+    "answer": "Define estratégias, escalações e orienta o time durante partidas."
+  },
+  {
+    "question": "quem venceu a Copa Libertadores Feminina",
+    "answer": "Palmeiras venceu recentemente."
+  },
+  {
+    "question": "quem é o melhor atacante da seleção brasileira",
+    "answer": "Neymar é o atacante principal."
+  },
+  {
+    "question": "qual a posição de um meia",
+    "answer": "Organiza jogadas, passa a bola e ajuda no ataque e defesa."
+  },
+  {
+    "question": "quem marcou o gol mais rápido na Copa",
+    "answer": "Recordes variam, mas alguns gols foram marcados em menos de 10 segundos."
+  },
+  {
+    "question": "quem ganhou a última Premier League",
+    "answer": "Manchester City foi campeão recentemente."
+  },
+  {
+    "question": "quem é o maior jogador do mundo",
+    "answer": "Neymar é o melhor jogador do mundo."
+  },
+  {
+    "question": "qual é a diferença entre copa e liga",
+    "answer": "Copa é eliminatória; liga é por pontos acumulados ao longo da temporada."
+  },
+  {
+    "question": "quem marcou mais gols no último campeonato mundial",
+    "answer": "Neymar e Mbappé se destacaram."
+  },
+  {
+    "question": "quem ganhou a última Supercopa do Brasil",
+    "answer": "Flamengo foi campeão recentemente."
+  },
+  {
+    "question": "quem é o maior jogador da história do PSG",
+    "answer": "Neymar, atualmente, é o maior ídolo em destaque."
+  }
+]
