@@ -6,99 +6,6 @@
 <title>IA - EcoRobôs</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
-<style>
-  /* Chatbox estilo WhatsApp/Telegram */
-  .chat-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    padding: 20px;
-    max-width: 600px;
-    margin: 20px auto;
-    border: 2px solid #00ffff;
-    border-radius: 15px;
-    background-color: rgba(0,0,0,0.6);
-  }
-
-  #chat-window {
-    flex: 1;
-    overflow-y: auto;
-    padding-right: 10px;
-    scroll-behavior: smooth;
-  }
-
-  .message {
-    padding: 10px 15px;
-    margin: 5px 0;
-    max-width: 70%;
-    border-radius: 20px;
-    word-wrap: break-word;
-    position: relative;
-    animation: fadeInSlide 0.4s ease forwards;
-  }
-
-  .message.user {
-    background-color: #39ff14;
-    color: #000;
-    margin-left: auto;
-    border-bottom-right-radius: 0;
-    transform: translateX(50px);
-    opacity: 0;
-  }
-
-  .message.bot {
-    background-color: #00ffff;
-    color: #000;
-    margin-right: auto;
-    border-bottom-left-radius: 0;
-    transform: translateX(-50px);
-    opacity: 0;
-  }
-
-  @keyframes fadeInSlide {
-    to {
-      transform: translateX(0);
-      opacity: 1;
-    }
-  }
-
-  .input-container {
-    display: flex;
-    margin-top: 10px;
-  }
-
-  #user-input {
-    flex: 1;
-    padding: 10px 15px;
-    border-radius: 25px;
-    border: none;
-    outline: none;
-    font-size: 16px;
-    background-color: rgba(255,255,255,0.1);
-    color: #f4f6f8;
-  }
-
-  #send-btn, #voice-btn {
-    margin-left: 10px;
-    padding: 0 15px;
-    border: none;
-    border-radius: 50%;
-    cursor: pointer;
-    font-size: 18px;
-    background-color: #00ffff;
-    color: #000;
-  }
-
-  body.claro #user-input {
-    background-color: rgba(0,0,0,0.05);
-    color: #0a0f1e;
-  }
-
-  body.claro .chat-container {
-    background-color: rgba(255,255,255,0.9);
-  }
-</style>
 </head>
 <body>
 <canvas id="particles"></canvas>
@@ -143,7 +50,7 @@
 <script src="chat.js"></script>
 
 <script>
-  // Lâmpada pronta para o ícone das outras páginas
+  // Lâmpada clara/escura
   const lampada = document.getElementById("lampada");
   lampada.addEventListener("click", () => {
     document.body.classList.toggle("claro");
