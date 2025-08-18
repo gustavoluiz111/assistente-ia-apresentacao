@@ -14,7 +14,15 @@ let sinonimos = {
 // --- Carregar JSON ---
 fetch("perguntas.json")
   .then(res => res.json())
-  .then(data => { baseConhecimento = data; });
+  .then(data => {
+    // Converte array [{question, answer}] em objeto {question: answer}
+    baseConhecimento = {};
+    data.forEach(item => {
+      if (item.question && item.answer) {
+        baseConhecimento[item.question.toLowerCase()] = item.answer;
+      }
+    });
+  });
 
 // --- Adiciona mensagem na tela ---
 function addMessage(text, sender) {
