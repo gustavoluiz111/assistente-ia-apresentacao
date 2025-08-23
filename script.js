@@ -1,9 +1,3 @@
-// --- Lâmpada ---
-const lampada = document.getElementById("lampada");
-lampada.addEventListener("click", () => {
-  lampada.classList.toggle("acesa");
-  document.body.classList.toggle("claro");
-});
 
 // --- Mascote e Balão ---
 const mascote = document.getElementById("mascote");
