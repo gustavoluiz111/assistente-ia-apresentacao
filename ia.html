@@ -75,79 +75,6 @@ section.hero p {
   color: var(--light-neutral);
 }
 
-/* CHATBOX ESTILO WHATSAPP */
-.chat-container {
-  max-width: 600px;
-  margin: 40px auto 80px;
-  display: flex;
-  flex-direction: column;
-  background: rgba(10,15,30,0.9);
-  border: 2px solid var(--neon-cyan);
-  border-radius: 20px;
-  padding: 15px;
-  gap: 10px;
-}
-#chat-window {
-  max-height: 400px;
-  overflow-y: auto;
-  padding-right: 10px;
-  scroll-behavior: smooth;
-}
-.message {
-  padding: 10px 15px;
-  margin: 5px 0;
-  max-width: 75%;
-  border-radius: 20px;
-  word-wrap: break-word;
-  position: relative;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideFadeIn 0.4s forwards;
-  font-size: 14px;
-  line-height: 1.4;
-}
-.message.user {
-  background: var(--neon-cyan);
-  color: var(--dark-blue);
-  align-self: flex-end;
-  border-bottom-right-radius: 5px;
-}
-.message.bot {
-  background: var(--neon-green);
-  color: #000;
-  align-self: flex-start;
-  border-bottom-left-radius: 5px;
-}
-@keyframes slideFadeIn {
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* INPUT */
-.input-container {
-  display: flex;
-  margin-top: 10px;
-}
-#user-input {
-  flex: 1;
-  padding: 10px 15px;
-  border-radius: 25px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  background-color: rgba(255,255,255,0.1);
-  color: #f4f6f8;
-}
-#send-btn, #voice-btn {
-  margin-left: 10px;
-  padding: 0 15px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  font-size: 18px;
-  background-color: var(--neon-cyan);
-  color: #000;
-}
-
 /* CANVAS PARTICLES E 3D */
 canvas#particles, canvas#three-canvas {
   position: fixed; top:0; left:0;
@@ -161,7 +88,6 @@ canvas#particles, canvas#three-canvas {
   .logo img{ height:30px; }
   section.hero h1{ font-size:2rem; }
   section.hero p{ font-size:1rem; }
-  .chat-container { width:90%; max-height:300px; }
 }
 </style>
 </head>
@@ -184,20 +110,28 @@ canvas#particles, canvas#three-canvas {
 
 <section class="hero">
   <h1>Converse com nossa IA</h1>
-  <p>Digite sua pergunta ou use o microfone para interagir com a EcoRobôs IA.</p>
+  <p>Use o chat no canto inferior direito para interagir com a EcoRobôs IA.</p>
 </section>
 
-<div class="chat-container">
-  <div id="chat-window"></div>
-  <div class="input-container">
-    <input type="text" id="user-input" placeholder="Digite sua mensagem...">
-    <button id="voice-btn">🎤</button>
-    <button id="send-btn">➡️</button>
-  </div>
-</div>
+<!-- SCRIPT TIDIO FUNCIONAL E CUSTOMIZADO -->
+<script src="//code.tidio.co/ibbtx6fcvycxqbmak1iimdeabirc2tbe.js" async></script>
+<script>
+window.tidioChatCode = window.tidioChatCode || [];
+window.tidioChatCode.push(function() {
+  tidioChatApi.setColors({
+    primary: "#00ffff",
+    secondary: "#39ff14",
+    text: "#000000"
+  });
+  tidioChatApi.setTheme({
+    bubblePosition: "right",
+    bubbleVisibility: true
+  });
+  tidioChatApi.say("Olá! Eu sou a EcoRobôs IA. Pergunte-me qualquer coisa!");
+});
+</script>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-<script src="chat.js"></script>
 <script>
 // --- PARTICULAS ---
 const canvas = document.getElementById('particles');
