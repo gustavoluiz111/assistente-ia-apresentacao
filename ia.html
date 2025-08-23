@@ -113,22 +113,17 @@ canvas#particles, canvas#three-canvas {
   <p>Use o chat no canto inferior direito para interagir com a EcoRobôs IA.</p>
 </section>
 
-<!-- SCRIPT TIDIO FUNCIONAL E CUSTOMIZADO -->
-<script src="//code.tidio.co/ibbtx6fcvycxqbmak1iimdeabirc2tbe.js" async></script>
+<!-- SCRIPT CHATFUEL -->
 <script>
-window.tidioChatCode = window.tidioChatCode || [];
-window.tidioChatCode.push(function() {
-  tidioChatApi.setColors({
-    primary: "#00ffff",
-    secondary: "#39ff14",
-    text: "#000000"
-  });
-  tidioChatApi.setTheme({
-    bubblePosition: "right",
-    bubbleVisibility: true
-  });
-  tidioChatApi.say("Olá! Eu sou a EcoRobôs IA. Pergunte-me qualquer coisa!");
-});
+(function() {
+	var script = document.createElement('script');
+	script.dataset.bot = "68a921f72a80a9af79590172";
+	script.dataset.zindex = "99999";
+	script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
+	script.async = true;
+	script.defer = true;
+	document.getElementsByTagName('head')[0].appendChild(script);
+})();
 </script>
 
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
