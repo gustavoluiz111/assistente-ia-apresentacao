@@ -19,7 +19,7 @@
     <div class="lampada" id="lampada" title="Modo Claro/Escuro"></div>
   </div>
   <nav>
-    <a href="index.html">Home</a>
+    <a href="index.html">Início</a>
     <a href="projetos.html" class="active">Projetos</a>
     <a href="lixo.html">Lixo Eletrônico</a>
     <a href="ia.html">IA</a>
@@ -28,22 +28,30 @@
 </header>
 
 <section class="hero fade-in">
-  <h1>Nossos Projetos</h1>
-  <p>Conheça os projetos EcoRobôs que unem tecnologia e sustentabilidade.</p>
+  <h1>Bem-vindo à página inicial do projeto Eco Robôs</h1>
+  <p>Onde cada clique é um passo em direção a um futuro sustentável.</p>
 </section>
 
 <section class="projeto-text">
-  <h2>Garra Robótica Automatizada</h2>
-  <p>Um protótipo físico que coleta e separa lixo de forma eficiente.</p>
+  <h2>Nosso Propósito</h2>
+  <p>
+    Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave.<sup>[5, 6]</sup>
+    O projeto Eco Robôs nasceu da urgência de conscientizar a comunidade, especialmente a escolar, sobre a importância de um descarte responsável.<sup>[9]</sup>
+  </p>
 
-  <h2>Modelo 3D Interativo</h2>
-  <p>Visualize a garra e outras tecnologias antes da construção completa.</p>
+  <h2>O que Fazemos</h2>
+  <p>
+    Implementamos pontos de coleta em escolas e promovemos atividades educativas para ensinar sobre os impactos ambientais do lixo eletrônico e as formas corretas de descarte e reutilização.<sup>[13, 14]</sup>
+    Acreditamos que, ao unir a prática de coleta com a educação, podemos promover uma mudança efetiva no comportamento das pessoas.<sup>[10, 11]</sup>
+  </p>
 
-  <h2>Inteligência Artificial</h2>
-  <p>IA simulada que interage com usuários explicando o robô e impactos positivos.</p>
+  <h2>Resultados e Parcerias</h2>
+  <p>
+    Buscamos transformar o lixo eletrônico em produtos inovadores através de parcerias com empresas, como a Acumuladores Moura S.A., incentivando a economia circular.<sup>[15]</sup>
+    Nossa iniciativa é inspirada em projetos de sucesso, como o Vale Luz da Neoenergia Pernambuco, que oferece descontos na conta de energia em troca de resíduos recicláveis.<sup>[124, 125]</sup>
+  </p>
 
-  <h2>Jogo 2D Educativo</h2>
-  <p>Aprenda sobre coleta e separação de lixo de forma divertida e interativa.</p>
+  <p>Junte-se a nós nesta missão por um planeta mais limpo e saudável!</p>
 </section>
 
 <div class="mascote" id="mascote">🤖</div>
@@ -57,7 +65,23 @@
   lampada.addEventListener("click", () => {
     document.body.classList.toggle("claro");
   });
+
+  // --- Mascote interativo ---
+  const mascote = document.getElementById("mascote");
+  const sections = document.querySelectorAll(".projeto-text h2, .hero h1");
+  
+  window.addEventListener("scroll", () => {
+    let scrollPos = window.scrollY + window.innerHeight / 2;
+    
+    sections.forEach((section) => {
+      const offset = section.offsetTop;
+      const height = section.offsetHeight;
+      
+      if(scrollPos > offset && scrollPos < offset + height) {
+        mascote.textContent = "🤖 " + section.textContent.split(" ")[0]; // Mascote "fala" primeira palavra
+      }
+    });
+  });
 </script>
 </body>
 </html>
-
