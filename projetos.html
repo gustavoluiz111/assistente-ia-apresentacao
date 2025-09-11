@@ -9,6 +9,14 @@
 
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+<style>
+  /* Garantir que o mapa tenha altura visível */
+  #mapa {
+    width: 100%;
+    height: 500px;
+    margin-top: 30px;
+  }
+</style>
 </head>
 <body>
 <canvas id="particles"></canvas>
@@ -43,48 +51,32 @@
   <h2>Conheça Nossos Pilares:</h2>
 
   <h3>Educação Ambiental</h3>
-  <p>
-    Nosso principal objetivo é conscientizar a comunidade escolar sobre a importância do descarte correto de resíduos eletroeletrônicos.<sup>[22]</sup> 
-    Através de palestras, oficinas e atividades práticas, mostramos como o lixo eletrônico impacta o meio ambiente e a saúde, e como todos podem fazer a diferença.<sup>[76, 77]</sup>
-  </p>
+  <p>Nosso principal objetivo é conscientizar a comunidade escolar sobre a importância do descarte correto de resíduos eletroeletrônicos.<sup>[22]</sup> Através de palestras, oficinas e atividades práticas, mostramos como o lixo eletrônico impacta o meio ambiente e a saúde, e como todos podem fazer a diferença.<sup>[76, 77]</sup></p>
 
   <h3>Pontos de Coleta Estratégicos</h3>
-  <p>
-    Instalamos pontos de coleta de lixo eletrônico nas escolas públicas de Nazaré da Mata e Carpina, tornando-os locais acessíveis e seguros para a comunidade.<sup>[24]</sup>
-    Cada ponto de coleta demonstra que existe uma solução prática para o problema, além de possibilitar o acompanhamento do volume de resíduos.
-  </p>
+  <p>Instalamos pontos de coleta de lixo eletrônico nas escolas públicas de Nazaré da Mata e Carpina, tornando-os locais acessíveis e seguros para a comunidade.<sup>[24]</sup> Cada ponto de coleta demonstra que existe uma solução prática para o problema, além de possibilitar o acompanhamento do volume de resíduos.</p>
 
   <h3>Inovação e Economia Circular</h3>
-  <p>
-    O lixo eletrônico contém materiais valiosos, como ouro, prata e cobre.<sup>[48]</sup>
-    Buscamos parcerias com empresas locais, como a Acumuladores Moura S.A., para transformar o lixo eletrônico em novos produtos.<sup>[26]</sup>
-    Essa abordagem reduz o impacto ambiental e incentiva a economia circular.<sup>[26]</sup>
-  </p>
+  <p>O lixo eletrônico contém materiais valiosos, como ouro, prata e cobre.<sup>[48]</sup> Buscamos parcerias com empresas locais, como a Acumuladores Moura S.A., para transformar o lixo eletrônico em novos produtos.<sup>[26]</sup> Essa abordagem reduz o impacto ambiental e incentiva a economia circular.<sup>[26]</sup></p>
 
   <h3>Avaliação e Melhoria Contínua</h3>
-  <p>
-    Monitoramos o volume de resíduos coletados e analisamos o impacto das nossas ações.<sup>[27]</sup>
-    Isso nos permite aprimorar o projeto para alcançar resultados significativos, contribuindo para a preservação ambiental e a formação de cidadãos conscientes.<sup>[16, 27]</sup>
-  </p>
+  <p>Monitoramos o volume de resíduos coletados e analisamos o impacto das nossas ações.<sup>[27]</sup> Isso nos permite aprimorar o projeto para alcançar resultados significativos, contribuindo para a preservação ambiental e a formação de cidadãos conscientes.<sup>[16, 27]</sup></p>
 
-  <p>
-    Ao unir educação, ação e inovação, o "Eco Robôs" demonstra que é possível construir uma sociedade mais sustentável. Junte-se a nós nesta missão!
-  </p>
+  <p>Ao unir educação, ação e inovação, o "Eco Robôs" demonstra que é possível construir uma sociedade mais sustentável. Junte-se a nós nesta missão!</p>
 </section>
 
 <div class="mascote" id="mascote">🤖</div>
 
 <!-- Mapa interativo -->
-<div id="mapa" style="width: 100%; height: 450px; margin-top: 30px;"></div>
-
-<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-<script src="script.js"></script>
+<div id="mapa"></div>
 
 <!-- Leaflet JS -->
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+<script src="script.js"></script>
 
 <script>
-  // --- Lâmpada funcionando ---
+  // --- Lâmpada ---
   const lampada = document.getElementById("lampada");
   lampada.addEventListener("click", () => {
     document.body.classList.toggle("claro");
@@ -93,30 +85,25 @@
   // --- Mascote interativo ---
   const mascote = document.getElementById("mascote");
   const sections = document.querySelectorAll(".projeto-text h2, .projeto-text h3, .hero h1");
-  
   window.addEventListener("scroll", () => {
     let scrollPos = window.scrollY + window.innerHeight / 2;
-    
     sections.forEach((section) => {
       const offset = section.offsetTop;
       const height = section.offsetHeight;
-      
-      if(scrollPos > offset && scrollPos < offset + height) {
+      if(scrollPos > offset && scrollPos < offset + height){
         mascote.textContent = "🤖 " + section.textContent.split(" ")[0];
       }
     });
   });
 
-  // --- Inicializar Mapa com Pontos de Coleta ---
+  // --- Inicializar mapa ---
   function initMapa() {
     const pontos = [
-      // Nazaré da Mata
       { nome: "Escola Municipal Henrique Floriano Coutinho", lat: -7.877, lng: -35.104, info: "Rua: Loteamento Cinco Corações, Centro<br>Horário: 08:00 às 16:00" },
       { nome: "Colégio Municipal Mons Carlos Neves Calabria", lat: -7.875, lng: -35.103, info: "Rua Nunes Machado, 32, Jua<br>Horário: 08:00 às 16:00" },
       { nome: "Colégio Municipal Presidente Tancredo de Almeida Neves", lat: -7.876, lng: -35.102, info: "Rua Arquimedes de Oliveira, Jua<br>Horário: 08:00 às 16:00" },
       { nome: "Escola Municipal Dom Carlos Coelho", lat: -7.878, lng: -35.101, info: "Rua Dr. Ignacio, Centro<br>Horário: 08:00 às 16:00" },
 
-      // Carpina
       { nome: "Escola Municipal São Joaquim", lat: -7.890, lng: -35.258, info: "Bairro Novo<br>Horário: 07:30 às 15:30" },
       { nome: "Escola Nossa Senhora Aparecida", lat: -7.891, lng: -35.257, info: "Bairro Novo<br>Horário: 07:30 às 15:30" },
       { nome: "Escola Paula Frassinetti", lat: -7.892, lng: -35.256, info: "Bairro Novo<br>Horário: 07:30 às 15:30" },
