@@ -4,11 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projetos - EcoRobôs</title>
-<!-- Fonte -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-<!-- Leaflet CSS -->
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
 <style>
 :root {
   --dark-blue: #0a0f1e;
@@ -19,8 +16,8 @@
 
 /* BODY */
 body {
-  margin:0;
-  font-family:'Orbitron',sans-serif;
+  margin: 0;
+  font-family: 'Orbitron', sans-serif;
   background-color: var(--dark-blue);
   color: var(--light-neutral);
   overflow-x: hidden;
@@ -38,64 +35,114 @@ header {
   position:fixed;
   width:100%;
   top:0;
-  background: rgba(41,100,142,0.9);
+  background:rgba(41,100,142,0.9);
   z-index:1000;
   box-shadow:0 2px 10px rgba(0,0,0,0.3);
 }
 header .left { display:flex; align-items:center; gap:10px; }
-.logo img { height:40px; width:auto; }
-nav a { color: var(--light-neutral); text-decoration:none; margin-left:25px; font-weight:500; position:relative; transition: color 0.3s; }
-nav a::after { content:''; display:block; height:2px; background: var(--neon-cyan); transition: width 0.3s; width:0; position:absolute; bottom:-4px; left:0; }
+.logo img { height:40px; cursor:pointer; }
+.lampada { width:35px;height:35px;cursor:pointer;background:#00ffff;border-radius:50%;}
+
+/* NAV */
+nav a {
+  color: var(--light-neutral);
+  text-decoration:none;
+  margin-left:25px;
+  font-weight:500;
+  position:relative;
+  transition: color 0.3s;
+}
+nav a::after {
+  content:'';
+  display:block;
+  height:2px;
+  background: var(--neon-cyan);
+  transition: width 0.3s;
+  width:0;
+  position:absolute;
+  bottom:-4px;
+  left:0;
+}
 nav a:hover { color: var(--neon-cyan); }
 nav a:hover::after { width:100%; }
 
 /* HERO */
-section { padding:120px 40px 80px; min-height:100vh; position:relative; z-index:1; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; }
+section.hero { padding:120px 40px 40px; text-align:center; }
 .hero h1 { font-size:3rem; color: var(--neon-cyan); margin-bottom:20px; }
-.hero p { font-size:1.2rem; max-width:700px; line-height:1.6; color: var(--light-neutral); }
+.hero p { font-size:1.2rem; max-width:700px; margin:auto; line-height:1.6; }
 body.claro .hero h1{ color:#000; }
 body.claro .hero p{ color:#000; }
 
-/* Projeto texto */
-.projeto-text { max-width:900px; margin:0 auto 50px; padding:0 20px; }
-.projeto-text h2, .projeto-text h3 { color: var(--neon-cyan); }
-body.claro .projeto-text h2, body.claro .projeto-text h3 { color:#000; }
-
-/* MAPA */
-#mapa { width:100%; height:500px; margin:30px 0; z-index:5; }
+/* MAP */
+#map { width:90%; height:500px; margin:40px auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5); }
 
 /* MASCOTE */
-.mascote { width:80px; height:80px; position:fixed; bottom:20px; right:20px; border-radius:8px; animation: float 3s ease-in-out infinite; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:2.5rem; z-index:15; }
+.mascote {
+  width:80px; height:80px;
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  border-radius:8px;
+  animation: float 3s ease-in-out infinite;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  font-size:2.5rem;
+  z-index:15;
+}
 @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
 
 /* BALÃO */
-.balao { position:fixed; background:#29648e; border:2px solid var(--neon-cyan); border-radius:10px; padding:10px 15px; max-width:220px; color:var(--neon-cyan); font-size:0.85rem; display:none; opacity:0; transform-origin:bottom right; transition:transform 0.3s, opacity 0.3s; z-index:16; }
-.balao::after{ content:''; position:absolute; bottom:-10px; right:15px; border-width:10px 10px 0 10px; border-style:solid; border-color:#29648e transparent transparent transparent; }
-body.claro .balao{ background:#f0f0f0; border-color:#00BFFF; color:#000; }
-body.claro .balao::after{ border-color:#f0f0f0 transparent transparent transparent; }
+.balao {
+  position:fixed;
+  background:#29648e;
+  border:2px solid var(--neon-cyan);
+  border-radius:10px;
+  padding:10px 15px;
+  max-width:220px;
+  color:var(--neon-cyan);
+  font-size:0.85rem;
+  display:none;
+  opacity:0;
+  transform-origin:bottom right;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index:16;
+}
+.balao::after{
+  content:'';position:absolute;bottom:-10px;right:15px;
+  border-width:10px 10px 0 10px;
+  border-style:solid;
+  border-color:#29648e transparent transparent transparent;
+}
+body.claro .balao{background:#f0f0f0;border-color:#00BFFF;color:#000;}
+body.claro .balao::after{border-color:#f0f0f0 transparent transparent transparent;}
 
 /* CANVAS PARTICLES E 3D */
-canvas#particles, canvas#three-canvas { position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0; }
+canvas#particles, canvas#three-canvas {
+  position:fixed; top:0; left:0;
+  width:100%; height:100%;
+  pointer-events:none;
+  z-index:0;
+}
 
 /* RESPONSIVO */
-@media (max-width:768px){
-  header{ flex-direction: column; gap:10px; padding:10px; }
-  nav a{ margin-left:10px; font-size:0.9rem; }
-  .logo img{ height:30px; }
-  .hero h1{ font-size:2rem; }
-  .hero p{ font-size:1rem; max-width:90%; }
-  .mascote{ width:60px; height:60px; font-size:2rem; }
+@media(max-width:768px){
+  header{flex-direction:column;gap:10px;}
+  nav a{margin-left:10px;font-size:0.9rem;}
+  .logo img{height:30px;}
+  .hero h1{font-size:2rem;}
+  .hero p{font-size:1rem;max-width:90%;}
+  .mascote{width:60px;height:60px;font-size:2rem;}
 }
 </style>
 </head>
-
 <body>
 
 <header>
   <div class="left">
-    <div class="logo">
-      <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
-    </div>
+    <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo"></div>
     <div class="lampada" id="lampada" title="Modo Claro/Escuro"></div>
   </div>
   <nav>
@@ -108,106 +155,139 @@ canvas#particles, canvas#three-canvas { position: fixed; top:0; left:0; width:10
 </header>
 
 <section class="hero fade-in">
-  <h1>Projetos Eco Robôs</h1>
-  <p>Com a urgência de tratar o lixo eletrônico, nosso projeto conscientiza a comunidade e promove soluções sustentáveis.</p>
+  <h1>Projetos EcoRobôs</h1>
+  <p>Conscientizando e envolvendo a comunidade em iniciativas de reciclagem de lixo eletrônico.</p>
 </section>
 
-<section class="projeto-text">
-  <h2>Conheça Nossos Pilares:</h2>
-  <h3>Educação Ambiental</h3>
-  <p>Conscientizamos a comunidade escolar sobre o descarte correto de resíduos eletrônicos. Palestras, oficinas e atividades práticas ensinam os impactos do lixo eletrônico.</p>
-
-  <h3>Pontos de Coleta Estratégicos</h3>
-  <p>Instalamos pontos de coleta de lixo eletrônico nas escolas públicas de Nazaré da Mata e Carpina, tornando-os acessíveis e seguros.</p>
-
-  <h3>Inovação e Economia Circular</h3>
-  <p>O lixo eletrônico contém materiais valiosos. Parcerias com empresas locais transformam resíduos em novos produtos, incentivando a economia circular.</p>
-
-  <h3>Avaliação e Melhoria Contínua</h3>
-  <p>Monitoramos o volume de resíduos coletados e analisamos o impacto das nossas ações, aprimorando continuamente o projeto.</p>
-</section>
-
-<div id="mapa"></div>
-
+<div id="map" class="fade-in"></div>
 <div class="mascote" id="mascote">🤖</div>
-
+<div class="balao" id="balao"></div>
 <canvas id="particles"></canvas>
 <canvas id="three-canvas"></canvas>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-// --- Lâmpada ---
-const lampada = document.getElementById("lampada");
-lampada.addEventListener("click",()=>{document.body.classList.toggle("claro");});
+  // --- Lâmpada ---
+  document.getElementById("lampada").addEventListener("click",()=>{document.body.classList.toggle("claro");});
 
-// --- Mascote ---
-const mascote = document.getElementById("mascote");
-const balao = document.createElement("div");
-balao.classList.add("balao");
-document.body.appendChild(balao);
-const dicas = ["Separe plásticos, metais e circuitos!","Reaproveite peças antigas.","Use sensores para automatizar.","Pequenos robôs ajudam a reciclar."];
-let dicaIndex=0;
-function atualizarBalao(){
-  const rect=mascote.getBoundingClientRect();
-  balao.style.bottom=`${window.innerHeight - rect.top + 10}px`;
-  balao.style.right=`${window.innerWidth - rect.right}px`;
-}
-mascote.addEventListener("click",()=>{
-  balao.style.display="block";
-  balao.textContent=dicas[dicaIndex];
-  dicaIndex=(dicaIndex+1)%dicas.length;
-  balao.style.transform="scale(0)";
-  balao.style.opacity="0";
-  setTimeout(()=>{balao.style.transform="scale(1)"; balao.style.opacity="1";},10);
-  atualizarBalao();
-});
-document.addEventListener("click",e=>{if(!mascote.contains(e.target)&&!balao.contains(e.target)) balao.style.display="none";});
-window.addEventListener("resize",atualizarBalao);
+  // --- MASCOTE ---
+  const mascote=document.getElementById("mascote");
+  const balao=document.getElementById("balao");
+  const dicas=["Separe plásticos, metais e circuitos!","Reaproveite peças antigas.","Use sensores para automatizar.","Pequenos robôs ajudam a reciclar."];
+  let dicaIndex=0;
+  mascote.addEventListener("click",()=>{
+    balao.style.display="block";
+    balao.textContent=dicas[dicaIndex];
+    dicaIndex=(dicaIndex+1)%dicas.length;
+    balao.style.transform="scale(0)";balao.style.opacity="0";
+    setTimeout(()=>{balao.style.transform="scale(1)";balao.style.opacity="1";},10);
+    const rect=mascote.getBoundingClientRect();
+    balao.style.bottom=`${window.innerHeight - rect.top + 10}px`;
+    balao.style.right=`${window.innerWidth - rect.right}px`;
+  });
+  document.addEventListener("click",(e)=>{if(!mascote.contains(e.target)&&!balao.contains(e.target)){balao.style.display="none";}});
+  window.addEventListener("resize",()=>{if(balao.style.display==="block"){const rect=mascote.getBoundingClientRect();balao.style.bottom=`${window.innerHeight - rect.top + 10}px`;balao.style.right=`${window.innerWidth - rect.right}px`;}});
 
-// --- Partículas ---
-const canvas=document.getElementById('particles');
-const ctx=canvas.getContext('2d');
-let particles=[];
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-window.addEventListener('resize',resize);resize();
-function createParticles(){for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}}
-createParticles();
-function animateParticles(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,255,255,0.7)';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animateParticles);}
-animateParticles();
+  // --- PARTICULAS ---
+  const canvas=document.getElementById('particles');
+  const ctx=canvas.getContext('2d');
+  let particles=[];
+  function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  window.addEventListener('resize',resize); resize();
+  function createParticles(){for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}}
+  createParticles();
+  function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,255,255,0.7)';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animate);}
+  animate();
 
-// --- THREE.js 3D ---
-const threeCanvas=document.getElementById('three-canvas');
-const scene3D=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:threeCanvas,alpha:true});
-renderer.setSize(window.innerWidth,window.innerHeight);
-const geometry=new THREE.BoxGeometry();
-const material=new THREE.MeshBasicMaterial({color:0x00ffff,wireframe:true});
-const cubes=[];
-for(let i=0;i<50;i++){const cube=new THREE.Mesh(geometry,material);cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);scene3D.add(cube);cubes.push(cube);}
-camera.position.z=30;
-const lines=[];
-for(let i=0;i<50;i++){const a=cubes[i];const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z),new THREE.Vector3(b.position.x,b.position.y,b.position.z)];const geometryLine=new THREE.BufferGeometry().setFromPoints(points);const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff,transparent:true,opacity:0.6});const line=new THREE.Line(geometryLine,lineMaterial);scene3D.add(line);lines.push({line,a,b,t:Math.random()});}
-function mascoteDistanceEffect(){const rect=mascote.getBoundingClientRect();const mx=rect.left+rect.width/2;const my=rect.top+rect.height/2;lines.forEach(obj=>{const projX=(obj.a.position.x+obj.b.position.x)/2+window.innerWidth/2;const projY=(obj.a.position.y+obj.b.position.y)/2+window.innerHeight/2;const dist=Math.hypot(mx-projX,my-projY);obj.line.material.opacity=dist<200?1:0.3+0.4*Math.sin(obj.t*2);});}
-function animate3D(){requestAnimationFrame(animate3D);cubes.forEach(c=>{c.rotation.x+=0.002;c.rotation.y+=0.003;});lines.forEach(obj=>{obj.t+=0.01;const posA=obj.a.position;const posB=obj.b.position;const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z),new THREE.Vector3(lerpX,lerpY,lerpZ)]);obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);});mascoteDistanceEffect();camera.position.x=Math.sin(Date.now()*0.0005)*10;camera.position.y=Math.cos(Date.now()*0.0005)*5;camera.lookAt(0,0,0);renderer.render(scene3D,camera);}
-animate3D();
-window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);atualizarBalao();});
+  // --- FADE-IN ---
+  const fadeEls=document.querySelectorAll('.fade-in');
+  window.addEventListener('scroll',()=>{const triggerBottom=window.innerHeight*0.85;fadeEls.forEach(el=>{const boxTop=el.getBoundingClientRect().top;if(boxTop<triggerBottom)el.classList.add('visible');});});
 
-// --- Leaflet mapa ---
-function initMapa(){
-  const pontos=[
-    {nome:"Escola Municipal Henrique Floriano Coutinho",lat:-7.877,lng:-35.104,info:"Rua: Loteamento Cinco Corações, Centro<br>08:00-16:00"},
-    {nome:"Colégio Municipal Mons Carlos Neves Calabria",lat:-7.875,lng:-35.103,info:"Rua Nunes Machado, 32, Jua<br>08:00-16:00"},
-    {nome:"Escola Municipal São Joaquim",lat:-7.890,lng:-35.258,info:"Bairro Novo<br>07:30-15:30"},
-    {nome:"Escola de Referência em Ensino Médio Lions Clube de Carpina",lat:-7.896,lng:-35.252,info:"Santo Antônio<br>07:30-15:30"}
+  // --- THREE.JS 3D ---
+  const threeCanvas=document.getElementById('three-canvas');
+  const scene3D=new THREE.Scene();
+  const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+  const renderer=new THREE.WebGLRenderer({canvas:threeCanvas,alpha:true});
+  renderer.setSize(window.innerWidth,window.innerHeight);
+
+  const geometry=new THREE.BoxGeometry();
+  const material=new THREE.MeshBasicMaterial({color:0x00ffff,wireframe:true});
+  const cubes=[];
+  for(let i=0;i<50;i++){
+    const cube=new THREE.Mesh(geometry,material);
+    cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
+    scene3D.add(cube);
+    cubes.push(cube);
+  }
+  camera.position.z=30;
+  const lines=[];
+  for(let i=0;i<50;i++){
+    const a=cubes[i];const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];
+    const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z),new THREE.Vector3(b.position.x,b.position.y,b.position.z)];
+    const geometryLine=new THREE.BufferGeometry().setFromPoints(points);
+    const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff,transparent:true,opacity:0.6});
+    const line=new THREE.Line(geometryLine,lineMaterial);
+    scene3D.add(line);
+    lines.push({line,a,b,t:Math.random()});
+  }
+  function mascoteDistanceEffect(){
+    const rect=mascote.getBoundingClientRect();
+    const mx=rect.left+rect.width/2;
+    const my=rect.top+rect.height/2;
+    lines.forEach(obj=>{const projX=(obj.a.position.x+obj.b.position.x)/2+window.innerWidth/2;
+    const projY=(obj.a.position.y+obj.b.position.y)/2+window.innerHeight/2;
+    const dist=Math.hypot(mx-projX,my-projY);
+    obj.line.material.opacity=dist<200?1:0.3+0.4*Math.sin(obj.t*2);});
+  }
+  function animate3D(){
+    requestAnimationFrame(animate3D);
+    cubes.forEach(c=>{c.rotation.x+=0.002;c.rotation.y+=0.003;});
+    lines.forEach(obj=>{
+      obj.t+=0.01;
+      const posA=obj.a.position,posB=obj.b.position;
+      const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));
+      const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));
+      const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));
+      obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z),new THREE.Vector3(lerpX,lerpY,lerpZ)]);
+      obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);
+    });
+    mascoteDistanceEffect();
+    camera.position.x=Math.sin(Date.now()*0.0005)*10;
+    camera.position.y=Math.cos(Date.now()*0.0005)*5;
+    camera.lookAt(0,0,0);
+    renderer.render(scene3D,camera);
+  }
+  animate3D();
+  window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});
+
+  // --- MAPA LEAFLET ---
+  const map=L.map('map').setView([-7.85,-35.25],12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> contributors'
+  }).addTo(map);
+
+  const escolas=[
+    // Carpina (pendentes)
+    {nome:'Centro Social Madre Virginia',lat:-7.895,lon:-35.258,status:'pendente'},
+    {nome:'Centro Social Santa Ana',lat:-7.888,lon:-35.260,status:'pendente'},
+    {nome:'Creche e Pré-escola Municipal Zite do Carmo Lapa',lat:-7.890,lon:-35.262,status:'pendente'},
+    {nome:'Creche Municipal Proinfância Brena Raysa da Silva Cruz',lat:-7.887,lon:-35.264,status:'pendente'},
+    {nome:'Escola Municipal Alfredo Lira',lat:-7.893,lon:-35.266,status:'pendente'},
+    // Nazaré (pendentes)
+    {nome:'Escola Municipal José de Melo',lat:-7.775,lon:-35.330,status:'pendente'},
+    {nome:'Escola Municipal Padre Félix',lat:-7.772,lon:-35.328,status:'pendente'},
+    {nome:'Escola Municipal Maria do Socorro',lat:-7.770,lon:-35.335,status:'pendente'},
+    {nome:'Escola de Aplicação',lat:-7.780,lon:-35.332,status:'em andamento'} // já iniciada
   ];
-  const map=L.map('mapa').setView([-7.885,-35.180],12);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenStreetMap contributors'}).addTo(map);
-  pontos.forEach(p=>{L.marker([p.lat,p.lng]).addTo(map).bindPopup(`<b>${p.nome}</b><br>${p.info}`);});
-}
-window.addEventListener("load",initMapa);
+
+  escolas.forEach(e=>{
+    const color=e.status==='em andamento'?'green':'cyan';
+    const marker=L.circleMarker([e.lat,e.lon],{
+      color:color,fillColor:color,fillOpacity:0.7,radius:10
+    }).addTo(map);
+    marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
+  });
 </script>
 </body>
 </html>
