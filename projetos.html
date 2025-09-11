@@ -6,6 +6,9 @@
 <title>Projetos - EcoRobôs</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
 <canvas id="particles"></canvas>
@@ -28,36 +31,57 @@
 </header>
 
 <section class="hero fade-in">
-  <h1>Bem-vindo à página inicial do projeto Eco Robôs</h1>
-  <p>Onde cada clique é um passo em direção a um futuro sustentável.</p>
+  <h1>Com a urgência de tratar o lixo eletrônico, o projeto "Eco Robôs" entra em ação</h1>
+  <p>Conscientizando e envolvendo a comunidade em uma causa crucial para o meio ambiente e a sociedade.</p>
 </section>
 
 <section class="projeto-text">
-  <h2>Nosso Propósito</h2>
   <p>
-    Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave.<sup>[5, 6]</sup>
-    O projeto Eco Robôs nasceu da urgência de conscientizar a comunidade, especialmente a escolar, sobre a importância de um descarte responsável.<sup>[9]</sup>
+    Inspirado em iniciativas de sucesso, como o Projeto Vale Luz e a campanha do Cemaden Educação, nosso objetivo é unir conhecimento e ação para transformar o desafio do e-lixo em uma oportunidade.
   </p>
 
-  <h2>O que Fazemos</h2>
+  <h2>Conheça Nossos Pilares:</h2>
+
+  <h3>Educação Ambiental</h3>
   <p>
-    Implementamos pontos de coleta em escolas e promovemos atividades educativas para ensinar sobre os impactos ambientais do lixo eletrônico e as formas corretas de descarte e reutilização.<sup>[13, 14]</sup>
-    Acreditamos que, ao unir a prática de coleta com a educação, podemos promover uma mudança efetiva no comportamento das pessoas.<sup>[10, 11]</sup>
+    Nosso principal objetivo é conscientizar a comunidade escolar sobre a importância do descarte correto de resíduos eletroeletrônicos.<sup>[22]</sup> 
+    Através de palestras, oficinas e atividades práticas, mostramos como o lixo eletrônico impacta o meio ambiente e a saúde, e como todos podem fazer a diferença.<sup>[76, 77]</sup>
   </p>
 
-  <h2>Resultados e Parcerias</h2>
+  <h3>Pontos de Coleta Estratégicos</h3>
   <p>
-    Buscamos transformar o lixo eletrônico em produtos inovadores através de parcerias com empresas, como a Acumuladores Moura S.A., incentivando a economia circular.<sup>[15]</sup>
-    Nossa iniciativa é inspirada em projetos de sucesso, como o Vale Luz da Neoenergia Pernambuco, que oferece descontos na conta de energia em troca de resíduos recicláveis.<sup>[124, 125]</sup>
+    Instalamos pontos de coleta de lixo eletrônico nas escolas públicas de Nazaré da Mata e Carpina, tornando-os locais acessíveis e seguros para a comunidade.<sup>[24]</sup>
+    Cada ponto de coleta demonstra que existe uma solução prática para o problema, além de possibilitar o acompanhamento do volume de resíduos.
   </p>
 
-  <p>Junte-se a nós nesta missão por um planeta mais limpo e saudável!</p>
+  <h3>Inovação e Economia Circular</h3>
+  <p>
+    O lixo eletrônico contém materiais valiosos, como ouro, prata e cobre.<sup>[48]</sup>
+    Buscamos parcerias com empresas locais, como a Acumuladores Moura S.A., para transformar o lixo eletrônico em novos produtos.<sup>[26]</sup>
+    Essa abordagem reduz o impacto ambiental e incentiva a economia circular.<sup>[26]</sup>
+  </p>
+
+  <h3>Avaliação e Melhoria Contínua</h3>
+  <p>
+    Monitoramos o volume de resíduos coletados e analisamos o impacto das nossas ações.<sup>[27]</sup>
+    Isso nos permite aprimorar o projeto para alcançar resultados significativos, contribuindo para a preservação ambiental e a formação de cidadãos conscientes.<sup>[16, 27]</sup>
+  </p>
+
+  <p>
+    Ao unir educação, ação e inovação, o "Eco Robôs" demonstra que é possível construir uma sociedade mais sustentável. Junte-se a nós nesta missão!
+  </p>
 </section>
 
 <div class="mascote" id="mascote">🤖</div>
 
+<!-- Mapa interativo -->
+<div id="mapa" style="width: 100%; height: 450px; margin-top: 30px;"></div>
+
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script src="script.js"></script>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
 <script>
   // --- Lâmpada funcionando ---
@@ -68,7 +92,7 @@
 
   // --- Mascote interativo ---
   const mascote = document.getElementById("mascote");
-  const sections = document.querySelectorAll(".projeto-text h2, .hero h1");
+  const sections = document.querySelectorAll(".projeto-text h2, .projeto-text h3, .hero h1");
   
   window.addEventListener("scroll", () => {
     let scrollPos = window.scrollY + window.innerHeight / 2;
@@ -78,10 +102,44 @@
       const height = section.offsetHeight;
       
       if(scrollPos > offset && scrollPos < offset + height) {
-        mascote.textContent = "🤖 " + section.textContent.split(" ")[0]; // Mascote "fala" primeira palavra
+        mascote.textContent = "🤖 " + section.textContent.split(" ")[0];
       }
     });
   });
+
+  // --- Inicializar Mapa com Pontos de Coleta ---
+  function initMapa() {
+    const pontos = [
+      // Nazaré da Mata
+      { nome: "Escola Municipal Henrique Floriano Coutinho", lat: -7.877, lng: -35.104, info: "Rua: Loteamento Cinco Corações, Centro<br>Horário: 08:00 às 16:00" },
+      { nome: "Colégio Municipal Mons Carlos Neves Calabria", lat: -7.875, lng: -35.103, info: "Rua Nunes Machado, 32, Jua<br>Horário: 08:00 às 16:00" },
+      { nome: "Colégio Municipal Presidente Tancredo de Almeida Neves", lat: -7.876, lng: -35.102, info: "Rua Arquimedes de Oliveira, Jua<br>Horário: 08:00 às 16:00" },
+      { nome: "Escola Municipal Dom Carlos Coelho", lat: -7.878, lng: -35.101, info: "Rua Dr. Ignacio, Centro<br>Horário: 08:00 às 16:00" },
+
+      // Carpina
+      { nome: "Escola Municipal São Joaquim", lat: -7.890, lng: -35.258, info: "Bairro Novo<br>Horário: 07:30 às 15:30" },
+      { nome: "Escola Nossa Senhora Aparecida", lat: -7.891, lng: -35.257, info: "Bairro Novo<br>Horário: 07:30 às 15:30" },
+      { nome: "Escola Paula Frassinetti", lat: -7.892, lng: -35.256, info: "Bairro Novo<br>Horário: 07:30 às 15:30" },
+      { nome: "Escola Pública Municipal de Caramuru", lat: -7.893, lng: -35.255, info: "Bairro Caramuru<br>Horário: 07:30 às 15:30" },
+      { nome: "Escola Aluísio Germano", lat: -7.894, lng: -35.254, info: "Bairro Novo<br>Horário: 07:30 às 15:30" },
+      { nome: "Escola de Referência em Ensino Médio Deputado João Teobaldo de Azevedo", lat: -7.895, lng: -35.253, info: "Santo Antônio<br>Horário: 07:30 às 15:30" },
+      { nome: "Escola de Referência em Ensino Médio Lions Clube de Carpina", lat: -7.896, lng: -35.252, info: "Santo Antônio<br>Horário: 07:30 às 15:30" }
+    ];
+
+    const map = L.map('mapa').setView([-7.885, -35.180], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    pontos.forEach(ponto => {
+      L.marker([ponto.lat, ponto.lng]).addTo(map)
+        .bindPopup(`<b>${ponto.nome}</b><br>${ponto.info}`);
+    });
+  }
+
+  window.addEventListener("load", initMapa);
 </script>
+
 </body>
 </html>
