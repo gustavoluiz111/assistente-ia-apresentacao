@@ -16,8 +16,7 @@
         body {
             font-family: 'Orbitron', sans-serif;
             background-color: #0a0a1a;
-            /* COR DO TEXTO PRINCIPAL ALTERADA */
-            color: #caf5f7;
+            color: #caf5f7; /* Cor padrão para textos secundários (parágrafos) */
             overflow-x: hidden;
         }
 
@@ -55,9 +54,11 @@
             text-align: center;
         }
         
-        /* A cor do H1 e P vem do 'body', mas você pode especificar aqui se quiser */
         .hero h1 {
-            color: #caf5f7;
+            /* COR DO TÍTULO ALTERADA PARA MARROM */
+            color: #3d2500;
+            /* ADICIONADO PARA MELHORAR LEITURA NO FUNDO ESCURO */
+            text-shadow: 0 0 5px #caf5f7, 0 0 10px rgba(202, 245, 247, 0.5);
         }
         
         .hero p {
@@ -74,7 +75,6 @@
 
         /* --- MENU HAMBÚRGUER E ANIMAÇÕES --- */
 
-        /* 1. Estilo do Botão Hambúrguer */
         .hamburger-toggle {
             position: relative;
             z-index: 1001;
@@ -93,21 +93,19 @@
             display: block;
             width: 100%;
             height: 3px;
-            /* COR DAS BARRAS ALTERADA */
-            background-color: #caf5f7;
+            /* COR DAS BARRAS VOLTOU PARA BRANCO ORIGINAL */
+            background-color: #fff;
             border-radius: 3px;
             transition: all 0.3s ease-in-out;
         }
 
-        /* 2. Estilo do Menu de Navegação */
         .nav-menu {
             position: fixed;
             top: 0;
             left: 0;
             width: 280px;
             height: 100vh;
-            /* COR DE FUNDO DO MENU ALTERADA */
-            background-color: #3d2500;
+            background-color: #3d2500; /* Fundo do menu continua marrom */
             padding-top: 100px;
             padding-left: 30px;
             transform: translateX(-100%);
@@ -124,8 +122,7 @@
         }
 
         .nav-menu ul li a {
-            /* COR DOS LINKS DO MENU ALTERADA */
-            color: #caf5f7;
+            color: #caf5f7; /* Cor dos links do menu */
             text-decoration: none;
             font-size: 1.5rem;
             font-weight: bold;
@@ -134,11 +131,10 @@
 
         .nav-menu ul li a:hover,
         .nav-menu ul li a.active {
-            color: #00f2ff; /* Mantive um ciano brilhante para o hover, pois combina bem */
+            color: #fff; /* Hover dos links para branco puro */
         }
 
-        /* 3. Estilos de "Aberto" (controlados via JavaScript) */
-
+        /* 3. Estilos de "Aberto" */
         .nav-menu.open {
             transform: translateX(0);
         }
@@ -167,8 +163,7 @@
                 <span class="bar"></span>
                 <span class="bar"></span>
             </button>
-            
-            </div>
+        </div>
     </header>
 
     <nav class="nav-menu">
