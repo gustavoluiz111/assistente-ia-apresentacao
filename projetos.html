@@ -20,7 +20,6 @@ body {
   background-color: var(--dark-blue);
   color: var(--light-neutral);
   overflow-x: hidden;
-  transition: background 0.5s, color 0.5s;
   position: relative;
 }
 
@@ -150,13 +149,13 @@ canvas#particles, canvas#three-canvas {
 
 <section class="projeto-text fade-in">
 <h2>Bem-vindo ao Projeto Recicla Tech</h2>
-<p>Com a urgência de tratar o lixo eletrônico, o projeto "Eco Robôs" entra em ação para conscientizar e envolver a comunidade em uma causa crucial para o meio ambiente e a sociedade. Inspirado em iniciativas de sucesso, nosso objetivo é unir conhecimento e ação para transformar o desafio do e-lixo em uma oportunidade.</p>
+<p>Com a urgência de tratar o lixo eletrônico, o projeto "Eco Robôs" entra em ação para conscientizar e envolver a comunidade em uma causa crucial para o meio ambiente e a sociedade.</p>
 
 <h2>Nosso Propósito</h2>
-<p>Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave. O projeto Eco Robôs nasceu da urgência de conscientizar a comunidade, especialmente a escolar, sobre a importância de um descarte responsável.</p>
+<p>Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave.</p>
 
 <h2>O que Fazemos</h2>
-<p>Implementamos pontos de coleta em escolas e promovemos atividades educativas para ensinar sobre os impactos ambientais do lixo eletrônico e as formas corretas de descarte e reutilização. Acreditamos que, ao unir a prática de coleta com a educação, podemos promover uma mudança efetiva no comportamento das pessoas.</p>
+<p>Implementamos pontos de coleta em escolas e promovemos atividades educativas sobre os impactos do e-lixo e formas corretas de descarte e reutilização.</p>
 
 <h2>Resultados e Parcerias</h2>
 <p>Buscamos transformar o lixo eletrônico em produtos inovadores através de parcerias com empresas, incentivando a economia circular.</p>
@@ -229,27 +228,29 @@ window.addEventListener('scroll',()=>{const triggerBottom=window.innerHeight*0.8
 
 // --- LEAFLET MAP ---
 const map=L.map('map').setView([-7.850,-35.300],12);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+
+// Mapa escuro
+L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_dark/{z}/{x}/{y}{r}.png',{
   attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+// Ícones personalizados
+const iconePendentes=L.icon({iconUrl:'https://img.icons8.com/fluency/48/00ffff/recycle.png',iconSize:[32,32]});
+const iconeEAPC=L.icon({iconUrl:'https://img.icons8.com/fluency/48/39ff14/robot.png',iconSize:[32,32]});
+
 // Escolas Carpina e Nazaré
 const escolas=[
-  // Carpina
   {nome:'Escola Estadual Aluísio Germano',lat:-7.87323,lon:-35.27351,status:'pendente'},
   {nome:'Escola Estadual Deputado João Teobaldo de Azevedo',lat:-7.86905,lon:-35.28012,status:'pendente'},
   {nome:'Escola Estadual João Cavalcanti Petribu',lat:-7.87000,lon:-35.27500,status:'pendente'},
-  // Nazaré
   {nome:'Escola Estadual Dom Carlos Coelho',lat:-7.77523,lon:-35.33012,status:'pendente'},
   {nome:'Escola Estadual Capitão Plínio de Souza Monteiro',lat:-7.77245,lon:-35.32856,status:'pendente'},
   {nome:'Escola de Aplicação Professor Chaves (EAPC)',lat:-7.77753,lon:-35.26701,status:'em andamento'}
 ];
 
 escolas.forEach(e=>{
-  const color=e.status==='em andamento'?'green':'cyan';
-  const marker=L.circleMarker([e.lat,e.lon],{
-    color:color,fillColor:color,fillOpacity:0.7,radius:10
-  }).addTo(map);
+  const icone=e.status==='em andamento'?iconeEAPC:iconePendentes;
+  const marker=L.marker([e.lat,e.lon],{icon:icone}).addTo(map);
   marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
 });
 </script>
