@@ -1,33 +1,36 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projeto - Recicla Tech </title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Projeto - Recicla Tech</title>
+
+<!-- Fonte e Leaflet CSS -->
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
 <style>
-:root {
-  --dark-blue: #0a0f1e;
-  --light-neutral: #f4f6f8;
-  --neon-cyan: #00ffff;
-  --neon-green: #39ff14;
+:root{
+  --dark-blue:#0a0f1e;
+  --light-neutral:#f4f6f8;
+  --neon-cyan:#00ffff;
+  --neon-green:#39ff14;
 }
 
 /* BODY */
-body {
-  margin: 0;
-  font-family: 'Orbitron', sans-serif;
-  background-color: var(--dark-blue);
-  color: var(--light-neutral);
-  overflow-x: hidden;
-  transition: background 0.5s, color 0.5s;
-  position: relative;
+body{
+  margin:0;
+  font-family:'Orbitron',sans-serif;
+  background-color:var(--dark-blue);
+  color:var(--light-neutral);
+  overflow-x:hidden;
+  transition:background 0.5s,color 0.5s;
+  position:relative;
 }
-body.claro { background:#f0f0f0; color:#000; }
+body.claro{background:#f0f0f0;color:#000;}
 
 /* HEADER */
-header {
+header{
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -35,103 +38,66 @@ header {
   position:fixed;
   width:100%;
   top:0;
-  background:rgba(41,100,142,0.9);
+  background:rgba(41,100,142,0.95);
   z-index:1000;
   box-shadow:0 2px 10px rgba(0,0,0,0.3);
 }
-header .left { display:flex; align-items:center; gap:10px; }
-.logo img { height:40px; cursor:pointer; }
-.lampada { width:35px;height:35px;cursor:pointer;background:#00ffff;border-radius:50%;}
+header .left{display:flex;align-items:center;gap:10px;}
+.logo img{height:40px;cursor:pointer;}
+.lampada{width:35px;height:35px;cursor:pointer;background:#00ffff;border-radius:50%;}
 
 /* NAV */
-nav a {
-  color: var(--light-neutral);
+nav a{
+  color:var(--light-neutral);
   text-decoration:none;
   margin-left:25px;
   font-weight:500;
   position:relative;
-  transition: color 0.3s;
+  transition:color .3s;
 }
-nav a::after {
-  content:'';
-  display:block;
-  height:2px;
-  background: var(--neon-cyan);
-  transition: width 0.3s;
-  width:0;
-  position:absolute;
-  bottom:-4px;
-  left:0;
+nav a::after{
+  content:'';display:block;height:2px;background:var(--neon-cyan);transition:width .3s;width:0;position:absolute;bottom:-4px;left:0;
 }
-nav a:hover { color: var(--neon-cyan); }
-nav a:hover::after { width:100%; }
+nav a:hover{color:var(--neon-cyan);}
+nav a:hover::after{width:100%;}
 
 /* HERO */
-section.hero { padding:120px 40px 40px; text-align:center; }
-.hero h1 { font-size:3rem; color: var(--neon-cyan); margin-bottom:20px; }
-.hero p { font-size:1.2rem; max-width:700px; margin:auto; line-height:1.6; }
-body.claro .hero h1{ color:#000; }
-body.claro .hero p{ color:#000; }
+section.hero{padding:120px 40px 40px;text-align:center;}
+.hero h1{font-size:3rem;color:var(--neon-cyan);margin-bottom:20px;}
+.hero p{font-size:1.15rem;max-width:760px;margin:auto;line-height:1.6;}
+body.claro .hero h1{color:#000;}
+body.claro .hero p{color:#000;}
 
 /* PROJETO TEXTO */
-section.projeto-text { max-width:900px; margin:20px auto; padding:20px; text-align:left; line-height:1.6; }
-section.projeto-text h2{ color: var(--neon-cyan); margin-top:25px; }
-body.claro section.projeto-text h2{ color:#000; }
-body.claro section.projeto-text p{ color:#000; }
+section.projeto-text{max-width:960px;margin:20px auto;padding:20px;text-align:left;line-height:1.6;}
+section.projeto-text h2{color:var(--neon-cyan);margin-top:18px;}
+body.claro section.projeto-text h2{color:#000;}
+body.claro section.projeto-text p{color:#000;}
 
 /* MAP */
-#map { width:90%; height:500px; margin:40px auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5); }
+#map{width:90%;height:520px;margin:32px auto;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.5);z-index:5;}
 
 /* MASCOTE */
-.mascote {
-  width:80px; height:80px;
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  border-radius:8px;
-  animation: float 3s ease-in-out infinite;
-  cursor:pointer;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-weight:bold;
-  font-size:2.5rem;
-  z-index:15;
+.mascote{
+  width:80px;height:80px;
+  position:fixed;bottom:20px;right:20px;border-radius:8px;
+  animation:float 3s ease-in-out infinite;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:2.5rem;z-index:1200;
 }
-@keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);}}
 
 /* BALÃO */
-.balao {
-  position:fixed;
-  background:#29648e;
-  border:2px solid var(--neon-cyan);
-  border-radius:10px;
-  padding:10px 15px;
-  max-width:220px;
-  color:var(--neon-cyan);
-  font-size:0.85rem;
-  display:none;
-  opacity:0;
-  transform-origin:bottom right;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  z-index:16;
+.balao{
+  position:fixed;background:#29648e;border:2px solid var(--neon-cyan);border-radius:10px;padding:10px 15px;
+  max-width:260px;color:var(--neon-cyan);font-size:0.9rem;display:none;opacity:0;transform-origin:bottom right;
+  transition:transform .25s,opacity .25s;z-index:1210;
 }
-.balao::after{
-  content:'';position:absolute;bottom:-10px;right:15px;
-  border-width:10px 10px 0 10px;
-  border-style:solid;
-  border-color:#29648e transparent transparent transparent;
-}
+.balao::after{content:'';position:absolute;bottom:-10px;right:18px;border-width:10px 10px 0 10px;border-style:solid;border-color:#29648e transparent transparent transparent;}
 body.claro .balao{background:#f0f0f0;border-color:#00BFFF;color:#000;}
 body.claro .balao::after{border-color:#f0f0f0 transparent transparent transparent;}
 
-/* CANVAS PARTICLES E 3D */
-canvas#particles, canvas#three-canvas {
-  position:fixed; top:0; left:0;
-  width:100%; height:100%;
-  pointer-events:none;
-  z-index:0;
-}
+/* CANVAS */
+canvas#particles, canvas#three-canvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;}
 
 /* RESPONSIVO */
 @media(max-width:768px){
@@ -148,7 +114,7 @@ canvas#particles, canvas#three-canvas {
 
 <header>
   <div class="left">
-    <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo"></div>
+    <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs"></div>
     <div class="lampada" id="lampada" title="Modo Claro/Escuro"></div>
   </div>
   <nav>
@@ -166,116 +132,227 @@ canvas#particles, canvas#three-canvas {
 </section>
 
 <section class="projeto-text fade-in">
-<h2>Bem-vindo ao Projeto Recicla Tech</h2>
-<p>Com a urgência de tratar o lixo eletrônico, o projeto "Eco Robôs" entra em ação para conscientizar e envolver a comunidade em uma causa crucial para o meio ambiente e a sociedade. Inspirado em iniciativas de sucesso, como o Projeto Vale Luz e a campanha do Cemaden Educação, nosso objetivo é unir conhecimento e ação para transformar o desafio do e-lixo em uma oportunidade.</p>
+  <h2>Bem-vindo ao Projeto Recicla Tech</h2>
+  <p>Com a urgência de tratar o lixo eletrônico, o projeto "Eco Robôs" entra em ação para conscientizar e envolver a comunidade em uma causa crucial para o meio ambiente e a sociedade. Inspirado em iniciativas de sucesso, como o Projeto Vale Luz e a campanha do Cemaden Educação, nosso objetivo é unir conhecimento e ação para transformar o desafio do e-lixo em uma oportunidade.</p>
 
-<h2>Nosso Propósito</h2>
-<p>Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave. O projeto Eco Robôs nasceu da urgência de conscientizar a comunidade, especialmente a escolar, sobre a importância de um descarte responsável.</p>
+  <h2>Nosso Propósito</h2>
+  <p>Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave [cite:5,6]. O projeto Eco Robôs nasceu da urgência de conscientizar a comunidade, especialmente a escolar, sobre a importância de um descarte responsável [cite:9].</p>
 
-<h2>O que Fazemos</h2>
-<p>Implementamos pontos de coleta em escolas e promovemos atividades educativas para ensinar sobre os impactos ambientais do lixo eletrônico e as formas corretas de descarte e reutilização. Acreditamos que, ao unir a prática de coleta com a educação, podemos promover uma mudança efetiva no comportamento das pessoas.</p>
+  <h2>O que Fazemos</h2>
+  <p>Implementamos pontos de coleta em escolas e promovemos atividades educativas para ensinar sobre os impactos ambientais do lixo eletrônico e as formas corretas de descarte e reutilização [cite:13,14]. Acreditamos que, ao unir a prática de coleta com a educação, podemos promover uma mudança efetiva no comportamento das pessoas [cite:10,11].</p>
 
-<h2>Resultados e Parcerias</h2>
-<p>Buscamos transformar o lixo eletrônico em produtos inovadores através de parcerias com empresas, como a Acumuladores Moura S.A., incentivando a economia circular. Nossa iniciativa é inspirada em projetos de sucesso, como o Vale Luz da Neoenergia Pernambuco, que oferece descontos na conta de energia em troca de resíduos recicláveis.</p>
+  <h2>Resultados e Parcerias</h2>
+  <p>Buscamos transformar o lixo eletrônico em produtos inovadores através de parcerias com empresas, como a Acumuladores Moura S.A., incentivando a economia circular [cite:15]. Nossa iniciativa é inspirada em projetos de sucesso, como o Vale Luz da Neoenergia Pernambuco, que oferece descontos na conta de energia em troca de resíduos recicláveis [cite:124,125].</p>
 
-<h2>Conheça Nossos Pilares</h2>
-<ul>
-<li><b>Educação Ambiental:</b> Conscientizar a comunidade escolar sobre o descarte correto e impactos do e-lixo [cite:22,76,77].</li>
-<li><b>Pontos de Coleta Estratégicos:</b> Pontos de coleta em escolas, acessíveis e seguros [cite:24].</li>
-<li><b>Inovação e Economia Circular:</b> Transformar o lixo eletrônico em novos produtos, reduzindo impacto ambiental [cite:48,26].</li>
-<li><b>Avaliação e Melhoria Contínua:</b> Monitorar resíduos coletados e impacto das ações [cite:27,16].</li>
-</ul>
+  <h2>Conheça Nossos Pilares</h2>
+  <ul>
+    <li><b>Educação Ambiental:</b> Conscientizar a comunidade escolar sobre o descarte correto e impactos do e-lixo [cite:22,76,77].</li>
+    <li><b>Pontos de Coleta Estratégicos:</b> Pontos de coleta em escolas, acessíveis e seguros [cite:24].</li>
+    <li><b>Inovação e Economia Circular:</b> Transformar o lixo eletrônico em novos produtos, reduzindo impacto ambiental [cite:48,26].</li>
+    <li><b>Avaliação e Melhoria Contínua:</b> Monitorar resíduos coletados e impacto das ações [cite:27,16].</li>
+  </ul>
 
-<p>Junte-se a nós nesta missão por um planeta mais limpo e saudável!</p>
+  <p>Junte-se a nós nesta missão por um planeta mais limpo e saudável!</p>
 </section>
 
 <div id="map" class="fade-in"></div>
+
+<!-- Mascote e balão -->
 <div class="mascote" id="mascote">🤖</div>
 <div class="balao" id="balao"></div>
+
+<!-- Canvases -->
 <canvas id="particles"></canvas>
 <canvas id="three-canvas"></canvas>
 
+<!-- Scripts externos -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
 <script>
 // --- Lâmpada ---
-const lampada=document.getElementById("lampada");
-lampada.addEventListener("click",()=>{document.body.classList.toggle("claro");});
+const lampada = document.getElementById('lampada');
+lampada.addEventListener('click', () => document.body.classList.toggle('claro'));
 
-// --- Mascote ---
-const mascote=document.getElementById("mascote");
-const balao=document.getElementById("balao");
-const dicas=["Separe plásticos, metais e circuitos!","Reaproveite peças antigas.","Use sensores para automatizar.","Pequenos robôs ajudam a reciclar."];
-let dicaIndex=0;
-mascote.addEventListener("click",()=>{
-  balao.style.display="block";
-  balao.textContent=dicas[dicaIndex];
-  dicaIndex=(dicaIndex+1)%dicas.length;
-  balao.style.transform="scale(0)";balao.style.opacity="0";
-  setTimeout(()=>{balao.style.transform="scale(1)";balao.style.opacity="1";},10);
-  const rect=mascote.getBoundingClientRect();
-  balao.style.bottom=`${window.innerHeight-rect.top+10}px`;
-  balao.style.right=`${window.innerWidth-rect.right}px`;
+// --- Mascote e balão ---
+const mascote = document.getElementById('mascote');
+const balao = document.getElementById('balao');
+const dicas = [
+  "Separe plásticos, metais e circuitos!",
+  "Reaproveite peças antigas.",
+  "Use sensores para automatizar.",
+  "Pequenos robôs ajudam a reciclar."
+];
+let dicaIndex = 0;
+function atualizarBalaoPos(){
+  const r = mascote.getBoundingClientRect();
+  balao.style.bottom = `${window.innerHeight - r.top + 10}px`;
+  balao.style.right = `${window.innerWidth - r.right}px`;
+}
+mascote.addEventListener('click', () => {
+  balao.style.display = 'block';
+  balao.textContent = dicas[dicaIndex];
+  dicaIndex = (dicaIndex + 1) % dicas.length;
+  balao.style.transform = 'scale(0)';
+  balao.style.opacity = '0';
+  setTimeout(()=>{ balao.style.transform='scale(1)'; balao.style.opacity='1'; },10);
+  atualizarBalaoPos();
 });
-document.addEventListener("click",(e)=>{if(!mascote.contains(e.target)&&!balao.contains(e.target))balao.style.display="none";});
-window.addEventListener("resize",()=>{if(balao.style.display==="block"){const rect=mascote.getBoundingClientRect();balao.style.bottom=`${window.innerHeight-rect.top+10}px`;balao.style.right=`${window.innerWidth-rect.right}px`;}});
+document.addEventListener('click', (e) => {
+  if(!mascote.contains(e.target) && !balao.contains(e.target)) balao.style.display = 'none';
+});
+window.addEventListener('resize', ()=>{ if(balao.style.display==='block') atualizarBalaoPos(); });
 
 // --- Partículas ---
-const canvas=document.getElementById('particles');
-const ctx=canvas.getContext('2d');let particles=[];
-function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
-window.addEventListener('resize',resize);resize();
-function createParticles(){for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}}
+const canvasP = document.getElementById('particles');
+const ctx = canvasP.getContext('2d');
+let particles = [];
+function resizeCanvas(){ canvasP.width = window.innerWidth; canvasP.height = window.innerHeight; }
+window.addEventListener('resize', resizeCanvas); resizeCanvas();
+function createParticles(){
+  particles = [];
+  for(let i=0;i<120;i++){
+    particles.push({
+      x: Math.random()*canvasP.width,
+      y: Math.random()*canvasP.height,
+      r: Math.random()*2+0.8,
+      dx: (Math.random()-0.5)*0.6,
+      dy: (Math.random()-0.5)*0.6
+    });
+  }
+}
 createParticles();
-function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='rgba(0,255,255,0.7)';ctx.fill();p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;});requestAnimationFrame(animate);}
-animate();
+function drawParticles(){
+  ctx.clearRect(0,0,canvasP.width,canvasP.height);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle = 'rgba(0,255,255,0.08)';
+    ctx.fill();
+    p.x += p.dx; p.y += p.dy;
+    if(p.x<0||p.x>canvasP.width) p.dx *= -1;
+    if(p.y<0||p.y>canvasP.height) p.dy *= -1;
+  });
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
 
-// --- THREE.js 3D ---
-const threeCanvas=document.getElementById('three-canvas');
-const scene3D=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-const renderer=new THREE.WebGLRenderer({canvas:threeCanvas,alpha:true});renderer.setSize(window.innerWidth,window.innerHeight);
-const geometry=new THREE.BoxGeometry();
-const material=new THREE.MeshBasicMaterial({color:0x00ffff,wireframe:true});
-const cubes=[];for(let i=0;i<50;i++){const cube=new THREE.Mesh(geometry,material);cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);scene3D.add(cube);cubes.push(cube);}
-camera.position.z=30;
-const lines=[];for(let i=0;i<50;i++){const a=cubes[i];const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z),new THREE.Vector3(b.position.x,b.position.y,b.position.z)];const geometryLine=new THREE.BufferGeometry().setFromPoints(points);const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff,transparent:true,opacity:0.6});const line=new THREE.Line(geometryLine,lineMaterial);scene3D.add(line);lines.push({line,a,b,t:Math.random()});}
-function mascoteDistanceEffect(){const rect=mascote.getBoundingClientRect();const mx=rect.left+rect.width/2;const my=rect.top+rect.height/2;lines.forEach(obj=>{const projX=(obj.a.position.x+obj.b.position.x)/2+window.innerWidth/2;const projY=(obj.a.position.y+obj.b.position.y)/2+window.innerHeight/2;const dist=Math.hypot(mx-projX,my-projY);obj.line.material.opacity=dist<200?1:0.3+0.4*Math.sin(obj.t*2);});}
-function animate3D(){requestAnimationFrame(animate3D);cubes.forEach(c=>{c.rotation.x+=0.002;c.rotation.y+=0.003;});lines.forEach(obj=>{obj.t+=0.01;const posA=obj.a.position;const posB=obj.b.position;const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z),new THREE.Vector3(lerpX,lerpY,lerpZ)]);obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);});mascoteDistanceEffect();camera.position.x=Math.sin(Date.now()*0.0005)*10;camera.position.y=Math.cos(Date.now()*0.0005)*5;camera.lookAt(0,0,0);renderer.render(scene3D,camera);}
-animate3D();
-window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);});
+// --- THREE.JS 3D background (cubos + linhas) ---
+const threeCanvas = document.getElementById('three-canvas');
+const scene3D = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: threeCanvas, alpha:true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+const boxGeo = new THREE.BoxGeometry();
+const boxMat = new THREE.MeshBasicMaterial({ color:0x00ffff, wireframe:true });
+const cubes = [];
+for(let i=0;i<40;i++){
+  const c = new THREE.Mesh(boxGeo, boxMat);
+  c.position.set((Math.random()-0.5)*60, (Math.random()-0.5)*40, (Math.random()-0.5)*60);
+  scene3D.add(c);
+  cubes.push(c);
+}
+camera.position.z = 60;
+const lines = [];
+for(let i=0;i<40;i++){
+  const a = cubes[i];
+  const b = cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];
+  const pts = [new THREE.Vector3(a.position.x,a.position.y,a.position.z), new THREE.Vector3(b.position.x,b.position.y,b.position.z)];
+  const geom = new THREE.BufferGeometry().setFromPoints(pts);
+  const mat = new THREE.LineBasicMaterial({ color:0x00ffff, transparent:true, opacity:0.35 });
+  const line = new THREE.Line(geom, mat);
+  scene3D.add(line);
+  lines.push({line,a,b,t:Math.random()});
+}
+function updateThree(){
+  requestAnimationFrame(updateThree);
+  cubes.forEach(c => { c.rotation.x += 0.002; c.rotation.y += 0.003; });
+  lines.forEach(obj => {
+    obj.t += 0.008;
+    const A = obj.a.position, B = obj.b.position;
+    const lx = A.x + (B.x - A.x) * (0.5 + 0.5*Math.sin(obj.t));
+    const ly = A.y + (B.y - A.y) * (0.5 + 0.5*Math.sin(obj.t));
+    const lz = A.z + (B.z - A.z) * (0.5 + 0.5*Math.sin(obj.t));
+    obj.line.geometry.setFromPoints([new THREE.Vector3(A.x,A.y,A.z), new THREE.Vector3(lx,ly,lz)]);
+    obj.line.material.opacity = 0.25 + 0.35*Math.abs(Math.sin(obj.t));
+  });
+  // subtle camera motion
+  camera.position.x = Math.sin(Date.now()*0.0003)*15;
+  camera.position.y = Math.cos(Date.now()*0.0004)*7;
+  camera.lookAt(0,0,0);
+  renderer.render(scene3D, camera);
+}
+updateThree();
+window.addEventListener('resize', ()=>{ camera.aspect = window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight); });
 
-// --- FADE-IN ---
-const fadeEls=document.querySelectorAll('.fade-in');
-window.addEventListener('scroll',()=>{const triggerBottom=window.innerHeight*0.85;fadeEls.forEach(el=>{const boxTop=el.getBoundingClientRect().top;if(boxTop<triggerBottom)el.classList.add('visible');});});
+// --- Fade-in on scroll ---
+const fadeEls = document.querySelectorAll('.fade-in');
+window.addEventListener('scroll', () => {
+  const trigger = window.innerHeight * 0.85;
+  fadeEls.forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if(top < trigger) el.classList.add('visible');
+  });
+});
 
-// --- LEAFLET MAP ---
-const map=L.map('map').setView([-7.850,-35.300],12);
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-  attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+// --- LEAFLET MAP: escolas com coordenadas reais fornecidas ---
+// Center chosen between Carpina and Nazaré
+const map = L.map('map', {preferCanvas:true}).setView([-7.845, -35.255], 12);
+
+// tile layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Escolas Carpina e Nazaré
-const escolas=[
-  // Carpina
-  {nome:'Escola Municipal Dr. José de Sá',lat:-7.873,lon:-35.273,status:'pendente'},
-  {nome:'Escola Municipal João Gomes',lat:-7.871,lon:-35.278,status:'pendente'},
-  {nome:'Escola Municipal Alfredo Lira',lat:-7.869,lon:-35.280,status:'pendente'},
-  {nome:'Escola de Aplicação Carpina',lat:-7.870,lon:-35.275,status:'em andamento'},
-  // Nazaré
-  {nome:'Escola Municipal José de Melo',lat:-7.775,lon:-35.330,status:'pendente'},
-  {nome:'Escola Municipal Padre Félix',lat:-7.772,lon:-35.328,status:'pendente'},
-  {nome:'Escola Municipal Maria do Socorro',lat:-7.770,lon:-35.335,status:'pendente'},
-  {nome:'Escola de Aplicação Nazaré',lat:-7.780,lon:-35.332,status:'em andamento'}
+// Ícones simples (usamos circleMarker para manter estilo)
+function adicionarMarcador(escola){
+  const color = escola.isAplicacao ? '#39ff14' : '#00ffff'; // verde para aplicação, ciano para pendentes
+  const radius = escola.isAplicacao ? 12 : 9;
+  const marker = L.circleMarker([escola.lat, escola.lon], {
+    color: color,
+    fillColor: color,
+    fillOpacity: 0.85,
+    radius: radius,
+    weight: 2
+  }).addTo(map);
+
+  // Popup com status claro
+  const statusText = escola.isAplicacao
+    ? '<b>Em andamento — já faz parte do programa</b>'
+    : '<b>Pendente — aguardando implantação</b>';
+
+  const popupHtml = `<b>${escola.nome}</b><br>${escola.endereco ? escola.endereco + '<br>' : ''}${statusText}`;
+  marker.bindPopup(popupHtml);
+}
+
+// Lista das escolas (coordenadas exatas fornecidas por você)
+const escolas = [
+  /* Carpina - estaduais */
+  { nome: 'EREM José de Lima Júnior (Carpina)', lat: -7.84707, lon: -35.25653, endereco: 'Carpina - PE', isAplicacao: false },
+  { nome: 'EREM Joaquim Olavo (Carpina)', lat: -7.84930, lon: -35.25400, endereco: 'Carpina - PE', isAplicacao: false },
+  { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.84080, lon: -35.25670, endereco: 'Carpina - PE', isAplicacao: false },
+  { nome: 'Escola Estadual Deputado João Teobaldo de Azevedo', lat: -7.84594, lon: -35.25490, endereco: 'Carpina - PE', isAplicacao: false },
+  { nome: 'Escola Lions Clube de Carpina', lat: -7.84540, lon: -35.25290, endereco: 'Carpina - PE', isAplicacao: false },
+  { nome: 'Escola Aluísio Germano', lat: -7.84420, lon: -35.25810, endereco: 'Carpina - PE', isAplicacao: false },
+  { nome: 'Escola Paula Frassinetti', lat: -7.84650, lon: -35.25360, endereco: 'Carpina - PE', isAplicacao: false },
+  { nome: 'Escola de Aplicação Professor Chaves (Carpina) — EAPC', lat: -7.84830, lon: -35.25540, endereco: 'Carpina - PE', isAplicacao: true },
+
+  /* Nazaré da Mata - estaduais */
+  { nome: 'Escola Dom Carlos Coelho (Nazaré)', lat: -7.74420, lon: -35.22810, endereco: 'Nazaré da Mata - PE', isAplicacao: false },
+  { nome: 'Escola Maciel Monteiro (Nazaré)', lat: -7.74290, lon: -35.22940, endereco: 'Nazaré da Mata - PE', isAplicacao: false },
+  { nome: 'Escola Capitão Plínio (Nazaré)', lat: -7.74560, lon: -35.22790, endereco: 'Nazaré da Mata - PE', isAplicacao: false },
+  { nome: 'Escola Don Vieira (Nazaré)', lat: -7.74680, lon: -35.22650, endereco: 'Nazaré da Mata - PE', isAplicacao: false },
+  // se você tiver mais, pode adicionar aqui seguindo o mesmo formato
 ];
 
-escolas.forEach(e=>{
-  const color=e.status==='em andamento'?'green':'cyan';
-  const marker=L.circleMarker([e.lat,e.lon],{
-    color:color,fillColor:color,fillOpacity:0.7,radius:10
-  }).addTo(map);
-  marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
-});
+// Adiciona todos os marcadores
+escolas.forEach(adicionarMarcador);
+
+// Ajusta bounds para caber todos os marcadores
+const group = L.featureGroup(escolas.map(e => L.marker([e.lat, e.lon])));
+map.fitBounds(group.getBounds().pad(0.2));
+
+// OBS: EAPC (Escola de Aplicação Professor Chaves - Carpina) está marcada em verde e no popup informa que já faz parte do programa.
 </script>
 </body>
 </html>
