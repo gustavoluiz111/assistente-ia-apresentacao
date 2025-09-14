@@ -125,6 +125,20 @@ canvas#particles, canvas#three-canvas {
   .hero p{font-size:1rem;max-width:90%;}
   .mascote{width:60px;height:60px;font-size:2rem;}
 }
+
+/* Animação pulsante para marcadores */
+.leaflet-marker-icon.pendente { animation: pulse 1.5s infinite; }
+.leaflet-marker-icon.em-andamento { animation: pulse-green 1.5s infinite; }
+@keyframes pulse {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.3);}
+  100% {transform: scale(1);}
+}
+@keyframes pulse-green {
+  0% {transform: scale(1);}
+  50% {transform: scale(1.3);}
+  100% {transform: scale(1);}
+}
 </style>
 </head>
 <body>
@@ -234,10 +248,6 @@ L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_dark/{z}/{x}/{y}{r}.png'
   attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
-// Ícones personalizados
-const iconePendentes=L.icon({iconUrl:'https://img.icons8.com/fluency/48/00ffff/recycle.png',iconSize:[32,32]});
-const iconeEAPC=L.icon({iconUrl:'https://img.icons8.com/fluency/48/39ff14/robot.png',iconSize:[32,32]});
-
 // Escolas Carpina e Nazaré
 const escolas=[
   {nome:'Escola Estadual Aluísio Germano',lat:-7.87323,lon:-35.27351,status:'pendente'},
@@ -249,8 +259,10 @@ const escolas=[
 ];
 
 escolas.forEach(e=>{
-  const icone=e.status==='em andamento'?iconeEAPC:iconePendentes;
-  const marker=L.marker([e.lat,e.lon],{icon:icone}).addTo(map);
+  const color=e.status==='em andamento'?'green':'cyan';
+  const marker=L.circleMarker([e.lat,e.lon],{
+    color:color, fillColor:color, fillOpacity:0.8, radius:12
+  }).addTo(map);
   marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
 });
 </script>
