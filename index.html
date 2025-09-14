@@ -1,43 +1,213 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Recicla Tech - IPA 2025</title>
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recicla Tech - IPA 2025</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* --- ESTILOS ORIGINAIS E BÁSICOS --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: #0a0a1a; /* Exemplo de cor de fundo escura */
+            color: #fff;
+            overflow-x: hidden; /* Previne scroll horizontal */
+        }
+
+        /* Os canvas de partículas podem ficar aqui se você os usar */
+        #particles, #three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Div que agrupa os itens à esquerda */
+        .left {
+            display: flex;
+            align-items: center;
+            gap: 20px; /* Espaço entre o botão e a lâmpada */
+        }
+
+        .lampada {
+            /* Mantenha os estilos da sua lâmpada aqui */
+            width: 30px;
+            height: 30px;
+            background-color: yellow; /* Apenas para visualização */
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+        }
+
+        .mascote {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            font-size: 3rem;
+            cursor: pointer;
+        }
+
+        /* --- NOVO MENU HAMBÚRGUER E ANIMAÇÕES --- */
+
+        /* 1. Estilo do Botão Hambúrguer */
+        .hamburger-toggle {
+            position: relative;
+            z-index: 1001; /* Fica acima de tudo */
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            width: 30px;
+            height: 24px;
+            padding: 0;
+        }
+
+        .hamburger-toggle .bar {
+            display: block;
+            width: 100%;
+            height: 3px;
+            background-color: #fff; /* Cor das barras */
+            border-radius: 3px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* 2. Estilo do Menu de Navegação (que fica escondido) */
+        .nav-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 280px; /* Largura do menu */
+            height: 100vh; /* Altura total da tela */
+            background-color: rgba(10, 10, 30, 0.9); /* Fundo com transparência */
+            backdrop-filter: blur(10px); /* Efeito de vidro fosco */
+            padding-top: 100px;
+            padding-left: 30px;
+            transform: translateX(-100%); /* Esconde o menu à esquerda */
+            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 999;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+        }
+
+        .nav-menu ul li {
+            margin-bottom: 25px;
+        }
+
+        .nav-menu ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: color 0.2s ease;
+        }
+
+        .nav-menu ul li a:hover {
+            color: #00f2ff; /* Cor para o hover */
+        }
+        
+        .nav-menu ul li a.active {
+            color: #00f2ff; /* Cor para o link ativo */
+        }
+
+
+        /* 3. Estilos de "Aberto" (controlados via JavaScript) */
+
+        /* Animação para o menu deslizar para a tela */
+        .nav-menu.open {
+            transform: translateX(0);
+        }
+
+        /* Animação das barras do hambúrguer para formar um "X" */
+        .hamburger-toggle.open .bar:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 6px);
+        }
+
+        .hamburger-toggle.open .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger-toggle.open .bar:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -6px);
+        }
+
+    </style>
 </head>
 <body>
-  <canvas id="particles"></canvas>
-  <canvas id="three-canvas"></canvas>
+    <canvas id="particles"></canvas>
+    <canvas id="three-canvas"></canvas>
 
-  <header>
-    <div class="left">
-      <div class="logo">
-        <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
-      </div>
-      <div class="lampada" id="lampada" title="Modo Claro/Escuro"></div>
-    </div>
-    <nav>
-      <a href="index.html" class="active">Início</a>
-      <a href="projetos.html">Projeto</a>
-      <a href="lixo.html">Lixo Eletrônico</a>
-      <a href="ia.html">IA</a>
-      <a href="creditos.html">Créditos</a>
+    <header>
+        <div class="left">
+            <button class="hamburger-toggle" aria-label="Abrir menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            
+            <div class="lampada" id="lampada" title="Modo Claro/Escuro"></div>
+        </div>
+        </header>
+
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="index.html" class="active">Início</a></li>
+            <li><a href="projetos.html">Projeto</a></li>
+            <li><a href="lixo.html">Lixo Eletrônico</a></li>
+            <li><a href="ia.html">IA</a></li>
+            <li><a href="creditos.html">Créditos</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <section class="hero fade-in">
-    <h1>Bem-vindo à página inicial do projeto Recicla Tech</h1>
-    <p>Cada clique é um passo em direção a um futuro sustentável.</p>
-  </section>
+    <section class="hero fade-in">
+        <h1>Bem-vindo à página inicial do projeto Recicla Tech</h1>
+        <p>Cada clique é um passo em direção a um futuro sustentável.</p>
+    </section>
 
-  <div class="mascote" id="mascote">🤖</div>
+    <div class="mascote" id="mascote">🤖</div>
 
-  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-  <script src="script.js"></script>
-  <script>
-    });
-  </script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+    <script src="script.js"></script> <script>
+        // Seleciona os elementos do menu
+        const hamburgerToggle = document.querySelector('.hamburger-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+
+        // Adiciona o evento de clique ao botão
+        hamburgerToggle.addEventListener('click', () => {
+            // Alterna a classe 'open' no botão e no menu
+            hamburgerToggle.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
+    </script>
 </body>
 </html>
