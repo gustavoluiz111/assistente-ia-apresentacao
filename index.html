@@ -6,13 +6,7 @@
   <title>Recicla Tech - IPA 2025</title>
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
   <style>
-    /* --- ESTILOS GERAIS --- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     body {
       font-family: 'Orbitron', sans-serif;
       background-color: #0a0a1a;
@@ -22,17 +16,14 @@
 
     #particles, #three-canvas {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       z-index: -1;
     }
 
     header {
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
       width: 100%;
       padding: 20px;
       display: flex;
@@ -40,10 +31,7 @@
       z-index: 1000;
     }
 
-    .left {
-      display: flex;
-      align-items: center;
-    }
+    .left { display: flex; align-items: center; }
 
     .hero {
       display: flex;
@@ -54,29 +42,21 @@
       text-align: center;
     }
 
-    .hero h1, .hero p {
-      color: #caf5f7;
-    }
+    .hero h1, .hero p { color: #caf5f7; }
 
-    /* --- MENU HAMBÚRGUER --- */
+    /* Hamburger */
     .hamburger-toggle {
       position: relative;
       z-index: 1001;
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      width: 30px;
-      height: 24px;
+      background: none; border: none; cursor: pointer;
+      display: flex; flex-direction: column;
+      justify-content: space-around; width: 30px; height: 24px;
       padding: 0;
     }
 
     .hamburger-toggle .bar {
       display: block;
-      width: 100%;
-      height: 3px;
+      width: 100%; height: 3px;
       background-color: #caf5f7;
       border-radius: 3px;
       transition: all 0.3s ease-in-out;
@@ -84,26 +64,17 @@
 
     .nav-menu {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 280px;
-      height: 100vh;
+      top: 0; left: 0;
+      width: 280px; height: 100vh;
       background-color: #0a0f1e;
-      padding-top: 100px;
-      padding-left: 30px;
+      padding-top: 100px; padding-left: 30px;
       transform: translateX(-100%);
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
       z-index: 999;
     }
 
-    .nav-menu ul {
-      list-style: none;
-    }
-
-    .nav-menu ul li {
-      margin-bottom: 25px;
-    }
-
+    .nav-menu ul { list-style: none; }
+    .nav-menu ul li { margin-bottom: 25px; }
     .nav-menu ul li a {
       color: #caf5f7;
       text-decoration: none;
@@ -111,59 +82,28 @@
       font-weight: bold;
       transition: color 0.2s ease;
     }
+    .nav-menu ul li a:hover, .nav-menu ul li a.active { color: #00f2ff; }
+    .nav-menu.open { transform: translateX(0); }
+    .hamburger-toggle.open .bar:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
+    .hamburger-toggle.open .bar:nth-child(2) { opacity: 0; }
+    .hamburger-toggle.open .bar:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
 
-    .nav-menu ul li a:hover,
-    .nav-menu ul li a.active {
-      color: #00f2ff;
-    }
-
-    .nav-menu.open {
-      transform: translateX(0);
-    }
-
-    .hamburger-toggle.open .bar:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 6px);
-    }
-
-    .hamburger-toggle.open .bar:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger-toggle.open .bar:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -6px);
-    }
-
-    /* --- CARROSSEL INTERATIVO --- */
+    /* Carrossel */
     .carousel-container {
       height: 300px;
-      width: 90%;
-      max-width: 1000px;
-      border-radius: 1em;
-      overflow: hidden;
+      width: 90%; max-width: 1000px;
+      border-radius: 1em; overflow: hidden;
       box-shadow: 0 10px 20px #00000066;
-      margin: 50px auto;
-      font-family: sans-serif;
-      display: flex;
+      margin: 50px auto; display: flex;
     }
 
     .carousel-photo {
-      height: 100%;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-weight: 600;
-      letter-spacing: 1px;
+      flex: 1; display: flex; align-items: center; justify-content: center;
       transition: flex 0.3s ease;
       background-size: cover;
       background-position: center;
     }
-
-    .carousel-photo:hover {
-      flex: 3;
-      box-shadow: rgba(100, 100, 111, 0.3) 0px 7px 29px 0px;
-    }
+    .carousel-photo:hover { flex: 3; }
   </style>
 </head>
 <body>
@@ -195,7 +135,7 @@
     <p>Cada clique é um passo em direção a um futuro sustentável.</p>
   </section>
 
-  <!-- CARROSSEL DE FOTOS -->
+  <!-- Carrossel -->
   <div class="carousel-container">
     <div class="carousel-photo" style="background-image: url('foto1.jpg');"></div>
     <div class="carousel-photo" style="background-image: url('foto2.jpg');"></div>
@@ -204,71 +144,17 @@
     <div class="carousel-photo" style="background-image: url('foto5.jpg');"></div>
   </div>
 
-  <!-- THREE.JS -->
+  <!-- Scripts -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+  <script src="script.js"></script> <!-- script.js já contém cubos, partículas e linhas -->
+
   <script>
-    // --- MENU HAMBURGUER ---
     const hamburgerToggle = document.querySelector('.hamburger-toggle');
     const navMenu = document.querySelector('.nav-menu');
 
     hamburgerToggle.addEventListener('click', () => {
       hamburgerToggle.classList.toggle('open');
       navMenu.classList.toggle('open');
-    });
-
-    // --- CENÁRIO THREE.JS ---
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-    const renderer = new THREE.WebGLRenderer({canvas: document.getElementById('three-canvas'), alpha: true});
-    renderer.setSize(window.innerWidth, window.innerHeight);
-
-    // Cubos
-    const geometry = new THREE.BoxGeometry();
-    const material = new THREE.MeshStandardMaterial({ color: 0x00f2ff, wireframe: true });
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.x = -2;
-    scene.add(cube);
-
-    const cube2 = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ color: 0xff00ff, wireframe: true }));
-    cube2.position.x = 2;
-    scene.add(cube2);
-
-    // Partículas
-    const particlesGeometry = new THREE.BufferGeometry();
-    const particlesCount = 500;
-    const posArray = new Float32Array(particlesCount * 3);
-
-    for (let i = 0; i < particlesCount * 3; i++) {
-      posArray[i] = (Math.random() - 0.5) * 20;
-    }
-
-    particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
-    const particlesMaterial = new THREE.PointsMaterial({ size: 0.02, color: 0xffffff });
-    const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
-    scene.add(particlesMesh);
-
-    // Luz
-    const light = new THREE.PointLight(0xffffff, 1);
-    light.position.set(5, 5, 5);
-    scene.add(light);
-
-    camera.position.z = 5;
-
-    function animate() {
-      requestAnimationFrame(animate);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      cube2.rotation.x -= 0.01;
-      cube2.rotation.y -= 0.01;
-      particlesMesh.rotation.y += 0.001;
-      renderer.render(scene, camera);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
     });
   </script>
 </body>
