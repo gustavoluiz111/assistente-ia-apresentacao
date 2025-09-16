@@ -1,194 +1,243 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recicla Tech - IPA 2025</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-    <style>
-        /* --- ESTILOS GERAIS --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recicla Tech - IPA 2025</title>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
+  <style>
+    /* ===== Reset ===== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-        body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: #0a0a1a;
-            color: #caf5f7;
-            overflow-x: hidden;
-        }
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background-color: #0a0a1a;
+      color: #caf5f7;
+      overflow-x: hidden;
+    }
 
-        #particles, #three-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
+    /* ===== Background Canvas (opcional) ===== */
+    #particles, #three-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
 
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            z-index: 1000;
-        }
+    /* ===== Header e Toggle ===== */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      padding: 20px;
+      display: flex;
+      align-items: center;
+      z-index: 1000;
+    }
 
-        .left {
-            display: flex;
-            align-items: center;
-        }
+    .left {
+      display: flex;
+      align-items: center;
+    }
 
-        .hero {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            text-align: center;
-        }
+    .hamburger-toggle {
+      position: relative;
+      z-index: 1001;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      width: 30px;
+      height: 24px;
+      padding: 0;
+    }
 
-        /* Destaque apenas no nome do projeto */
-        .destaque {
-            color: #3d2500;
-        }
+    .hamburger-toggle .bar {
+      display: block;
+      width: 100%;
+      height: 3px;
+      background-color: #caf5f7;
+      border-radius: 3px;
+      transition: all 0.3s ease-in-out;
+    }
 
-        .mascote {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            font-size: 3rem;
-            cursor: pointer;
-        }
+    /* ===== Menu lateral ===== */
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 280px;
+      height: 100vh;
+      background-color: #0a0f1e;
+      padding-top: 100px;
+      padding-left: 30px;
+      transform: translateX(-100%);
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+      z-index: 999;
+    }
 
-        /* --- MENU HAMBÚRGUER E ANIMAÇÕES --- */
+    .nav-menu ul {
+      list-style: none;
+    }
 
-        /* 1. Estilo do Botão Hambúrguer */
-        .hamburger-toggle {
-            position: relative;
-            z-index: 1001;
-            background: none;
-            border: none;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            width: 30px;
-            height: 24px;
-            padding: 0;
-        }
+    .nav-menu ul li {
+      margin-bottom: 25px;
+    }
 
-        .hamburger-toggle .bar {
-            display: block;
-            width: 100%;
-            height: 3px;
-            background-color: #caf5f7;
-            border-radius: 3px;
-            transition: all 0.3s ease-in-out;
-        }
+    .nav-menu ul li a {
+      color: #caf5f7;
+      text-decoration: none;
+      font-size: 1.5rem;
+      font-weight: bold;
+      transition: color 0.2s ease;
+    }
 
-        /* 2. Estilo do Menu de Navegação */
-        .nav-menu {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 280px;
-            height: 100vh;
-            background-color: #0a0f1e;
-            padding-top: 100px;
-            padding-left: 30px;
-            transform: translateX(-100%);
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-            z-index: 999;
-        }
+    .nav-menu ul li a:hover,
+    .nav-menu ul li a.active {
+      color: #00f2ff;
+    }
 
-        .nav-menu ul {
-            list-style: none;
-        }
+    .nav-menu.open {
+      transform: translateX(0);
+    }
 
-        .nav-menu ul li {
-            margin-bottom: 25px;
-        }
+    .hamburger-toggle.open .bar:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 6px);
+    }
 
-        .nav-menu ul li a {
-            color: #caf5f7;
-            text-decoration: none;
-            font-size: 1.5rem;
-            font-weight: bold;
-            transition: color 0.2s ease;
-        }
+    .hamburger-toggle.open .bar:nth-child(2) {
+      opacity: 0;
+    }
 
-        .nav-menu ul li a:hover,
-        .nav-menu ul li a.active {
-            color: #00f2ff;
-        }
+    .hamburger-toggle.open .bar:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -6px);
+    }
 
-        /* 3. Estilos de "Aberto" (controlados via JavaScript) */
-        .nav-menu.open {
-            transform: translateX(0);
-        }
+    /* ===== Hero ===== */
+    .hero {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
 
-        .hamburger-toggle.open .bar:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 6px);
-        }
+    .hero h1 {
+      font-size: 2.5rem;
+    }
 
-        .hamburger-toggle.open .bar:nth-child(2) {
-            opacity: 0;
-        }
+    .hero h1 span {
+      color: #3d2500; /* destaque apenas no nome */
+    }
 
-        .hamburger-toggle.open .bar:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -6px);
-        }
-    </style>
+    .hero p {
+      margin-top: 15px;
+      font-size: 1.2rem;
+      color: #caf5f7;
+    }
+
+    /* ===== Carrossel ===== */
+    .container {
+      height: 400px;
+      width: 90%;
+      max-width: 1100px;
+      border-radius: 1em;
+      overflow: hidden;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+      margin: 40px auto;
+    }
+
+    .palette {
+      display: flex;
+      height: 100%;
+      width: 100%;
+    }
+
+    .foto {
+      flex: 1;
+      transition: flex 0.3s ease-in-out;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .foto img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .foto:hover {
+      flex: 3;
+    }
+
+    .foto:hover img {
+      transform: scale(1.1);
+    }
+  </style>
 </head>
 <body>
-    <canvas id="particles"></canvas>
-    <canvas id="three-canvas"></canvas>
+  <canvas id="particles"></canvas>
+  <canvas id="three-canvas"></canvas>
 
-    <header>
-        <div class="left">
-            <button class="hamburger-toggle" aria-label="Abrir menu">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </button>
-        </div>
-    </header>
+  <!-- ===== Header ===== -->
+  <header>
+    <div class="left">
+      <button class="hamburger-toggle" aria-label="Abrir menu">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </header>
 
-    <nav class="nav-menu">
-        <ul>
-            <li><a href="index.html" class="active">Início</a></li>
-            <li><a href="projetos.html">Projeto</a></li>
-            <li><a href="lixo.html">Lixo Eletrônico</a></li>
-            <li><a href="ia.html">IA</a></li>
-            <li><a href="creditos.html">Créditos</a></li>
-        </ul>
-    </nav>
+  <!-- ===== Menu ===== -->
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="index.html" class="active">Início</a></li>
+      <li><a href="projetos.html">Projetos</a></li>
+      <li><a href="lixo.html">Lixo Eletrônico</a></li>
+      <li><a href="ia.html">IA</a></li>
+      <li><a href="creditos.html">Créditos</a></li>
+    </ul>
+  </nav>
 
-    <section class="hero fade-in">
-        <h1>Bem-vindo à página inicial do projeto <span class="destaque">Recicla Tech</span></h1>
-        <p>Cada clique é um passo em direção a um futuro sustentável.</p>
-    </section>
+  <!-- ===== Hero ===== -->
+  <section class="hero fade-in">
+    <h1>Bem-vindo ao projeto <span>Recicla Tech</span></h1>
+    <p>Cada clique é um passo em direção a um futuro sustentável.</p>
+  </section>
 
-    <div class="mascote" id="mascote">🤖</div>
+  <!-- ===== Carrossel ===== -->
+  <div class="container">
+    <div class="palette">
+      <div class="foto"><img src="foto1.jpg" alt="Foto 1"></div>
+      <div class="foto"><img src="foto2.jpg" alt="Foto 2"></div>
+      <div class="foto"><img src="foto3.jpg" alt="Foto 3"></div>
+      <div class="foto"><img src="foto4.jpg" alt="Foto 4"></div>
+      <div class="foto"><img src="foto5.jpg" alt="Foto 5"></div>
+    </div>
+  </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-    <script src="script.js"></script>
+  <!-- ===== Scripts ===== -->
+  <script>
+    const hamburgerToggle = document.querySelector('.hamburger-toggle');
+    const navMenu = document.querySelector('.nav-menu');
 
-    <script>
-        const hamburgerToggle = document.querySelector('.hamburger-toggle');
-        const navMenu = document.querySelector('.nav-menu');
-
-        hamburgerToggle.addEventListener('click', () => {
-            hamburgerToggle.classList.toggle('open');
-            navMenu.classList.toggle('open');
-        });
-    </script>
+    hamburgerToggle.addEventListener('click', () => {
+      hamburgerToggle.classList.toggle('open');
+      navMenu.classList.toggle('open');
+    });
+  </script>
 </body>
 </html>
