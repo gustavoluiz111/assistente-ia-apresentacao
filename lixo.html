@@ -5,40 +5,81 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lixo Eletrônico - EcoRobôs</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<style>
+  /* ===== Reset ===== */
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Orbitron', sans-serif; background:#0a0f1e; color:#f4f6f8; overflow-x:hidden; }
+
+  /* ===== Canvas ===== */
+  #particles, #three-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
+
+  /* ===== Navbar / Header ===== */
+  header { position:fixed; top:0; left:0; width:100%; padding:20px; display:flex; align-items:center; z-index:1000; }
+  .left { display:flex; align-items:center; }
+  .hamburger-toggle { position:relative; z-index:1001; background:none; border:none; cursor:pointer; display:flex; flex-direction:column; justify-content:space-around; width:30px; height:24px; }
+  .hamburger-toggle .bar { display:block; width:100%; height:3px; background:#caf5f7; border-radius:3px; transition: all 0.3s ease-in-out; }
+  .hamburger-toggle.open .bar:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
+  .hamburger-toggle.open .bar:nth-child(2) { opacity:0; }
+  .hamburger-toggle.open .bar:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
+
+  /* ===== Menu ===== */
+  .nav-menu { position:fixed; top:0; left:0; width:280px; height:100vh; background:#0a0f1e; padding-top:100px; padding-left:30px; transform:translateX(-100%); transition: transform 0.4s cubic-bezier(0.23,1,0.32,1); z-index:999; }
+  .nav-menu.open { transform:translateX(0); }
+  .nav-menu ul { list-style:none; }
+  .nav-menu ul li { margin-bottom:25px; }
+  .nav-menu ul li a { color:#caf5f7; text-decoration:none; font-size:1.5rem; font-weight:bold; transition:color 0.2s ease; }
+  .nav-menu ul li a:hover, .nav-menu ul li a.active { color:#00f2ff; }
+
+  /* ===== Hero ===== */
+  .hero { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; padding:0 20px; }
+  .hero h1 { font-size:2.5rem; color:#00ffff; margin-bottom:20px; }
+  .hero p { font-size:1.2rem; color:#f4f6f8; max-width:800px; text-align:center; }
+
+  /* ===== Conteúdo ===== */
+  .conteudo { max-width:900px; margin:0 auto; padding:20px; line-height:1.6; }
+  .conteudo h2,h3,h4 { margin-top:20px; color:#00ffff; }
+  .conteudo a { color:#00f2ff; text-decoration:none; }
+  .conteudo a:hover { text-decoration:underline; }
+
+  /* ===== Mascote ===== */
+  .mascote { width:80px; height:80px; position:fixed; bottom:20px; right:20px; border-radius:8px; animation: float 3s ease-in-out infinite; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:2.5rem; z-index:15; }
+  @keyframes float { 0%,100%{transform:translateY(0);}50%{transform:translateY(-15px);} }
+</style>
 </head>
 <body>
 
-<!-- Canvas para efeitos visuais -->
 <canvas id="particles"></canvas>
 <canvas id="three-canvas"></canvas>
 
-<!-- Navbar nova -->
-<header class="navbar">
-  <button class="hamburger-toggle" aria-label="Abrir menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
-  <nav class="nav-menu">
-    <ul>
-      <li><a href="index.html">Home</a></li>
-      <li><a href="projetos.html">Projetos</a></li>
-      <li><a href="lixo.html" class="active">Lixo Eletrônico</a></li>
-      <li><a href="ia.html">IA</a></li>
-      <li><a href="creditos.html">Créditos</a></li>
-    </ul>
-  </nav>
+<!-- ===== Header / Navbar ===== -->
+<header>
+  <div class="left">
+    <button class="hamburger-toggle" aria-label="Abrir menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
+  </div>
 </header>
 
-<!-- Hero -->
+<nav class="nav-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projetos.html">Projetos</a></li>
+    <li><a href="lixo.html" class="active">Lixo Eletrônico</a></li>
+    <li><a href="ia.html">IA</a></li>
+    <li><a href="creditos.html">Créditos</a></li>
+  </ul>
+</nav>
+
+<!-- ===== Hero ===== -->
 <section class="hero fade-in">
   <h1>Lixo Eletrônico</h1>
   <p>Entenda os impactos do e-lixo no meio ambiente, na saúde humana e animal, e saiba como a reciclagem é essencial.</p>
 </section>
 
-<!-- Conteúdo principal -->
-<section class="conteudo fade-in" style="max-width:900px; margin:0 auto; padding:20px;">
+<!-- ===== Conteúdo ===== -->
+<section class="conteudo fade-in">
   <h2>O que é lixo eletrônico?</h2>
   <p>O lixo eletrônico, também chamado de e-lixo, é formado por equipamentos eletrônicos e elétricos ou partes deles que foram descartados por estarem quebrados, obsoletos ou sem utilidade. Ele contém metais pesados e outras substâncias tóxicas que, se descartadas inadequadamente, podem poluir o ambiente e causar doenças.</p>
 
@@ -72,21 +113,101 @@
   </ul>
 </section>
 
-<!-- Mascote -->
-<div class="mascote" id="mascote">🤖</div>
+<!-- ===== Mascote ===== -->
+<div class="mascote">🤖</div>
 
-<!-- Scripts -->
+<!-- ===== Scripts ===== -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-<script src="script.js"></script>
 <script>
-  // Hamburger funcional
-  const hamburger = document.querySelector('.hamburger-toggle');
+  // Hamburger Toggle
+  const hamburgerToggle = document.querySelector('.hamburger-toggle');
   const navMenu = document.querySelector('.nav-menu');
-  hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('open');
+  hamburgerToggle.addEventListener('click', () => {
+    hamburgerToggle.classList.toggle('open');
     navMenu.classList.toggle('open');
   });
-</script>
 
+  // Particles 2D
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let particles = [];
+  function resizeCanvas(){ canvas.width=window.innerWidth; canvas.height=window.innerHeight; }
+  window.addEventListener('resize', resizeCanvas); resizeCanvas();
+  function createParticles(){ 
+    for(let i=0;i<100;i++){
+      particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});
+    }
+  }
+  createParticles();
+  function animateParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,255,255,0.7)';
+      ctx.fill();
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0||p.x>canvas.width)p.dx*=-1;
+      if(p.y<0||p.y>canvas.height)p.dy*=-1;
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
+
+  // THREE.js Cubes 3D
+  const threeCanvas = document.getElementById('three-canvas');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+  const renderer = new THREE.WebGLRenderer({canvas:threeCanvas, alpha:true});
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.position.z=30;
+
+  const geometry = new THREE.BoxGeometry();
+  const material = new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
+  const cubes=[];
+  for(let i=0;i<50;i++){
+    const cube=new THREE.Mesh(geometry,material);
+    cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
+    scene.add(cube);
+    cubes.push(cube);
+  }
+
+  const lines=[];
+  for(let i=0;i<50;i++){
+    const a=cubes[i];
+    const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];
+    const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z), new THREE.Vector3(b.position.x,b.position.y,b.position.z)];
+    const geometryLine=new THREE.BufferGeometry().setFromPoints(points);
+    const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.6});
+    const line=new THREE.Line(geometryLine,lineMaterial);
+    scene.add(line);
+    lines.push({line,a,b,t:Math.random()});
+  }
+
+  function animate3D(){
+    requestAnimationFrame(animate3D);
+    cubes.forEach(c=>{c.rotation.x+=0.002; c.rotation.y+=0.003;});
+    lines.forEach(obj=>{
+      obj.t+=0.01;
+      const posA=obj.a.position, posB=obj.b.position;
+      const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));
+      const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));
+      const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));
+      obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z), new THREE.Vector3(lerpX,lerpY,lerpZ)]);
+      obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);
+    });
+    camera.position.x=Math.sin(Date.now()*0.0005)*10;
+    camera.position.y=Math.cos(Date.now()*0.0005)*5;
+    camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+  }
+  animate3D();
+
+  window.addEventListener('resize',()=>{
+    camera.aspect=window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth,window.innerHeight);
+  });
+</script>
 </body>
 </html>
