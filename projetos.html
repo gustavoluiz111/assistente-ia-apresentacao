@@ -7,367 +7,6 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
-  /* ===== Reset ===== */
-  * { margin:0; padding:0; box-sizing:border-box; }
-
-  body {
-    font-family:'Orbitron', sans-serif;
-    background:#0a0a1a;
-    color:#caf5f7;
-    overflow-x:hidden;
-    position:relative;
-  }
-
-  /* ===== Canvas ===== */
-  canvas#particles, canvas#three-canvas { position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:-1; }
-
-  /* ===== Navbar ===== */
-  header {
-    position:fixed;
-    top:0;
-    left:0;
-    width:100%;
-    padding:20px;
-    display:flex;
-    align-items:center;
-    z-index:1000;
-  }
-  .left { display:flex; align-items:center; }
-  .hamburger-toggle {
-    position:relative;
-    z-index:1001;
-    background:none;
-    border:none;
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-around;
-    width:30px;
-    height:24px;
-  }
-  .hamburger-toggle .bar { display:block; width:100%; height:3px; background:#caf5f7; border-radius:3px; transition: all 0.3s ease-in-out; }
-  .hamburger-toggle.open .bar:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
-  .hamburger-toggle.open .bar:nth-child(2) { opacity:0; }
-  .hamburger-toggle.open .bar:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
-
-  /* ===== Menu lateral ===== */
-  .nav-menu {
-    position:fixed;
-    top:0;
-    left:0;
-    width:280px;
-    height:100vh;
-    background:#0a0f1e;
-    padding-top:100px;
-    padding-left:30px;
-    transform:translateX(-100%);
-    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
-    z-index:999;
-  }
-  .nav-menu.open { transform:translateX(0); }
-  .nav-menu ul { list-style:none; }
-  .nav-menu ul li { margin-bottom:25px; }
-  .nav-menu ul li a { color:#caf5f7; text-decoration:none; font-size:1.5rem; font-weight:bold; transition:color 0.2s ease; }
-  .nav-menu ul li a:hover, .nav-menu ul li a.active { color:#00f2ff; }
-
-  /* ===== Hero ===== */
-  .hero {padding:120px 40px 40px; text-align:center;}
-  .hero h1 {font-size:3rem; color:#caf5f7; margin-bottom:20px;}
-  .hero p {font-size:1.2rem; max-width:700px; margin:auto; line-height:1.6;}
-
-  /* ===== Projeto Texto ===== */
-  .projeto-text {max-width:900px; margin:20px auto; padding:20px; text-align:left; line-height:1.6;}
-  .projeto-text h2 {color:#00f2ff; margin-top:25px;}
-  .projeto-text ul li{margin-bottom:10px;}
-
-  /* ===== Mapa ===== */
-  #map {
-    width:90%;
-    height:500px;
-    margin:40px auto;
-    border-radius:10px;
-    box-shadow:0 4px 10px rgba(0,0,0,0.5);
-  }
-  .map-legend {
-    padding:6px 8px;
-    background:rgba(41,100,142,0.8);
-    box-shadow:0 0 15px rgba(0,0,0,0.2);
-    border-radius:5px;
-    color:#caf5f7;
-  }
-  .map-legend i{
-    width:18px; height:18px;
-    float:left; margin-right:8px;
-    border-radius:50%;
-  }
-
-  /* ===== Mascote ===== */
-  .mascote {
-    width:80px; height:80px;
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    border-radius:8px;
-    animation:float 3s ease-in-out infinite;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    font-size:2.5rem;
-    z-index:15;
-  }
-  @keyframes float{
-    0%,100%{transform:translateY(0);}
-    50%{transform:translateY(-15px);}
-  }
-  .balao {
-    position:fixed;
-    background:#29648e;
-    border:2px solid #00f2ff;
-    border-radius:10px;
-    padding:10px 15px;
-    max-width:220px;
-    color:#00f2ff;
-    font-size:0.85rem;
-    display:none;
-    opacity:0;
-    transform-origin:bottom right;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index:16;
-  }
-  .balao::after {
-    content:'';
-    position:absolute;
-    bottom:-10px;
-    right:15px;
-    border-width:10px 10px 0 10px;
-    border-style:solid;
-    border-color:#29648e transparent transparent transparent;
-  }
-
-  /* ===== Fade-in ===== */
-  .fade-in { opacity:0; transform:translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
-  .fade-in.visible { opacity:1; transform:translateY(0); }
-
-  /* ===== Responsivo ===== */
-  @media(max-width:768px){
-    .hero h1{font-size:2rem;}
-    .hero p{font-size:1rem;}
-    .mascote{width:60px;height:60px;font-size:2rem;}
-  }
-</style>
-</head>
-<body>
-
-<header>
-  <div class="left">
-    <button class="hamburger-toggle" aria-label="Abrir menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-  </div>
-</header>
-
-<nav class="nav-menu">
-  <ul>
-    <li><a href="index.html">Início</a></li>
-    <li><a href="projetos.html" class="active">Projeto</a></li>
-    <li><a href="lixo.html">Lixo Eletrônico</a></li>
-    <li><a href="ia.html">IA</a></li>
-    <li><a href="creditos.html">Créditos</a></li>
-  </ul>
-</nav>
-
-<section class="hero fade-in">
-  <h1>Projeto Recicla Tech</h1>
-  <p>Conscientizando e envolvendo a comunidade em iniciativas de reciclagem de lixo eletrônico.</p>
-</section>
-
-<section class="projeto-text fade-in">
-  <h2>Bem-vindo ao Projeto Recicla Tech</h2>
-  <p>Com a urgência de tratar o lixo eletrônico, o projeto "Eco Robôs" entra em ação para conscientizar e envolver a comunidade em uma causa crucial para o meio ambiente e a sociedade.</p>
-  <h2>Nosso Propósito</h2>
-  <p>Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave.</p>
-  <h2>O que Fazemos</h2>
-  <p>Implementamos pontos de coleta em escolas e promovemos atividades educativas sobre os impactos do e-lixo e formas corretas de descarte e reutilização.</p>
-  <h2>Resultados e Parcerias</h2>
-  <p>Buscamos transformar o lixo eletrônico em produtos inovadores através de parcerias com empresas, incentivando a economia circular.</p>
-  <h2>Conheça Nossos Pilares</h2>
-  <ul>
-    <li><b>Educação Ambiental:</b> Conscientizar a comunidade escolar sobre o descarte correto e impactos do e-lixo.</li>
-    <li><b>Pontos de Coleta Estratégicos:</b> Pontos de coleta em escolas, acessíveis e seguros.</li>
-    <li><b>Inovação e Economia Circular:</b> Transformar o lixo eletrônico em novos produtos, reduzindo impacto ambiental.</li>
-    <li><b>Avaliação e Melhoria Contínua:</b> Monitorar resíduos coletados e impacto das ações.</li>
-  </ul>
-</section>
-
-<div id="map" class="fade-in"></div>
-<div class="mascote" id="mascote">🤖</div>
-<div class="balao" id="balao"></div>
-<canvas id="particles"></canvas>
-<canvas id="three-canvas"></canvas>
-
-<script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
-<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-<script>
-  // Hamburger Toggle
-  const hamburgerToggle = document.querySelector('.hamburger-toggle');
-  const navMenu = document.querySelector('.nav-menu');
-  hamburgerToggle.addEventListener('click', () => {
-    hamburgerToggle.classList.toggle('open');
-    navMenu.classList.toggle('open');
-  });
-
-  // Mascote
-  const mascote = document.getElementById("mascote");
-  const balao = document.getElementById("balao");
-  const dicas = ["Separe plásticos, metais e circuitos!", "Reaproveite peças antigas.", "Use sensores para automatizar.", "Pequenos robôs ajudam a reciclar."];
-  let dicaIndex=0;
-  mascote.addEventListener("click",()=>{
-    balao.style.display="block";
-    balao.textContent=dicas[dicaIndex];
-    dicaIndex=(dicaIndex+1)%dicas.length;
-    balao.style.transform="scale(0)";
-    balao.style.opacity="0";
-    setTimeout(()=>{balao.style.transform="scale(1)"; balao.style.opacity="1";},10);
-    const rect=mascote.getBoundingClientRect();
-    balao.style.bottom=`${window.innerHeight-rect.top+10}px`;
-    balao.style.right=`${window.innerWidth-rect.right}px`;
-  });
-  document.addEventListener("click",(e)=>{if(!mascote.contains(e.target)&&!balao.contains(e.target)) balao.style.display="none";});
-  window.addEventListener("resize",()=>{if(balao.style.display==="block"){const rect=mascote.getBoundingClientRect();balao.style.bottom=`${window.innerHeight-rect.top+10}px`;balao.style.right=`${window.innerWidth-rect.right}px`;}});
-
-  // Fade-in
-  function handleFadeIn() {
-    document.querySelectorAll('.fade-in').forEach(el=>{
-      const rect=el.getBoundingClientRect();
-      if(rect.top < window.innerHeight - 50){el.classList.add('visible');}
-    });
-  }
-  window.addEventListener('scroll', handleFadeIn);
-  window.addEventListener('load', handleFadeIn);
-
-  // Particles
-  const canvas = document.getElementById('particles');
-  const ctx = canvas.getContext('2d');
-  let particles=[];
-  function resize(){canvas.width=window.innerWidth; canvas.height=window.innerHeight;}
-  window.addEventListener('resize',resize); resize();
-  for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}
-  function animateParticles(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-      p.x+=p.dx; p.y+=p.dy;
-      if(p.x<0||p.x>canvas.width)p.dx*=-1;
-      if(p.y<0||p.y>canvas.height)p.dy*=-1;
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='rgba(0,255,255,0.7)';
-      ctx.fill();
-    });
-    requestAnimationFrame(animateParticles);
-  }
-  animateParticles();
-
-  // Three.js
-  const threeCanvas = document.getElementById('three-canvas');
-  const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-  const renderer = new THREE.WebGLRenderer({canvas:threeCanvas, alpha:true});
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.position.z = 30;
-
-  const geometry = new THREE.BoxGeometry();
-  const material = new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
-  const cubes=[];
-  for(let i=0;i<50;i++){
-    const cube=new THREE.Mesh(geometry,material);
-    cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
-    scene.add(cube);
-    cubes.push(cube);
-  }
-
-  const lines=[];
-  for(let i=0;i<50;i++){
-    const a=cubes[i];
-    const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];
-    const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z), new THREE.Vector3(b.position.x,b.position.y,b.position.z)];
-    const geometryLine=new THREE.BufferGeometry().setFromPoints(points);
-    const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.6});
-    const line=new THREE.Line(geometryLine,lineMaterial);
-    scene.add(line);
-    lines.push({line,a,b,t:Math.random()});
-  }
-
-  function animate3D(){
-    requestAnimationFrame(animate3D);
-    cubes.forEach(c=>{c.rotation.x+=0.002; c.rotation.y+=0.003;});
-    lines.forEach(obj=>{
-      obj.t+=0.01;
-      const posA=obj.a.position, posB=obj.b.position;
-      const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));
-      const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));
-      const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));
-      obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z), new THREE.Vector3(lerpX,lerpY,lerpZ)]);
-      obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);
-    });
-    camera.position.x=Math.sin(Date.now()*0.0005)*10;
-    camera.position.y=Math.cos(Date.now()*0.0005)*5;
-    camera.lookAt(0,0,0);
-    renderer.render(scene,camera);
-  }
-  animate3D();
-
-  window.addEventListener('resize',()=>{
-    camera.aspect=window.innerWidth/window.innerHeight;
-    camera.updateProjectionMatrix();
-    renderer.setSize(window.innerWidth,window.innerHeight);
-  });
-
-  // Mapa
-  const map = L.map('map').setView([-7.846, -35.253], 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  const escolas = [
-      { nome: 'EREM Professor Cândido de Andrade Maciel', lat: -7.8443, lon: -35.2573, status: 'Pendente' },
-      { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.8504, lon: -35.2498, status: 'Pendente' },
-      { nome: 'EREM Deputado João Teobaldo de Azevedo', lat: -7.8430, lon: -35.2520, status: 'Pendente' },
-      { nome: 'Escola de Aplicação Professor Chaves (UPE)', lat: -7.7435, lon: -35.2281, status: 'Em funcionamento' },
-      { nome: 'EREM Dom Carlos Coelho', lat: -7.7441, lon: -35.2255, status: 'Pendente' },
-      { nome: 'Escola Estadual Capitão Plínio de Souza Monteiro', lat: -7.7408, lon: -35.2269, status: 'Pendente' }
-  ];
-
-  escolas.forEach(e=>{
-      const color = e.status==='Em funcionamento'?'green':'cyan';
-      const marker=L.circleMarker([e.lat,e.lon],{color,color,fillColor:color,fillOpacity:0.8,radius:10}).addTo(map);
-      marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
-  });
-
-  const legend = L.control({position:'bottomright'});
-  legend.onAdd=function(){
-    const div=L.DomUtil.create('div','map-legend');
-    div.innerHTML+='<h4>Status dos Pontos</h4>';
-    div.innerHTML+='<i style="background: green"></i> Em funcionamento<br>';
-    div.innerHTML+='<i style="background: cyan"></i> Pendente';
-    return div;
-  };
-  legend.addTo(map);
-</script>
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projeto Recicla Tech</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
-<style>
   :root {
     --dark-blue: #0a0f1e;
     --light-neutral: #f4f6f8;
@@ -384,7 +23,7 @@
     position:relative;
   }
 
-  /* ===== Navbar original que você enviou ===== */
+  /* ===== Navbar ===== */
   header.navbar {
     width: 100%;
     height: 70px;
@@ -442,7 +81,6 @@
   .hamburger-toggle.open .bar:nth-child(2){opacity:0;}
   .hamburger-toggle.open .bar:nth-child(3){transform:rotate(-45deg) translate(5px,-6px);}
 
-  /* ===== Responsivo Navbar ===== */
   @media(max-width:768px){
     header.navbar nav { display:none; position:fixed; top:70px; left:0; flex-direction:column; background: rgba(10,15,30,0.95); width:100%; padding:20px; }
     header.navbar nav.show { display:flex; }
@@ -466,6 +104,8 @@
     margin:40px auto;
     border-radius:10px;
     box-shadow:0 4px 10px rgba(0,0,0,0.5);
+    z-index:1;
+    position:relative;
   }
   .map-legend {
     padding:6px 8px;
@@ -531,7 +171,7 @@
     top:0; left:0;
     width:100%; height:100%;
     pointer-events:none;
-    z-index:0;
+    z-index:0; /* cubos atrás de tudo */
   }
 
   /* ===== Fade-in ===== */
@@ -643,80 +283,88 @@
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let particles=[];
-  function resize(){canvas.width=window.innerWidth; canvas.height=window.innerHeight;}
-  window.addEventListener('resize',resize); resize();
-  for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}
+  function resizeCanvas(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}
+  window.addEventListener('resize', resizeCanvas); resizeCanvas();
+  function createParticles(){
+    for(let i=0;i<100;i++){
+      particles.push({x:Math.random()*canvas.width, y:Math.random()*canvas.height, r:Math.random()*2+1, dx:(Math.random()-0.5)*0.5, dy:(Math.random()-0.5)*0.5});
+    }
+  }
+  createParticles();
   function animateParticles(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
     particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='rgba(0,255,255,0.7)';
+      ctx.fill();
       p.x+=p.dx; p.y+=p.dy;
       if(p.x<0||p.x>canvas.width)p.dx*=-1;
       if(p.y<0||p.y>canvas.height)p.dy*=-1;
-      ctx.beginPath();
-      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle='cyan';
-      ctx.fill();
     });
     requestAnimationFrame(animateParticles);
   }
   animateParticles();
 
-  // Three.js
+  // Three.js Cubes
   const threeCanvas = document.getElementById('three-canvas');
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
   const renderer = new THREE.WebGLRenderer({canvas:threeCanvas, alpha:true});
   renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.position.z = 5;
+  camera.position.z=30;
 
-  const cubes = [];
   const geometry = new THREE.BoxGeometry();
-  for(let i=0;i<20;i++){
-    const material = new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
-    const cube = new THREE.Mesh(geometry, material);
-    cube.position.set((Math.random()-0.5)*20, (Math.random()-0.5)*20, (Math.random()-0.5)*20);
+  const material = new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
+  const cubes=[];
+  for(let i=0;i<50;i++){
+    const cube=new THREE.Mesh(geometry, material);
+    cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
     scene.add(cube);
     cubes.push(cube);
   }
 
-  function animateThree(){
-    requestAnimationFrame(animateThree);
-    cubes.forEach(c=>{c.rotation.x += 0.01; c.rotation.y += 0.01;});
+  const lines=[];
+  for(let i=0;i<50;i++){
+    const a=cubes[i];
+    const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];
+    const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z), new THREE.Vector3(b.position.x,b.position.y,b.position.z)];
+    const geometryLine=new THREE.BufferGeometry().setFromPoints(points);
+    const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.6});
+    const line=new THREE.Line(geometryLine,lineMaterial);
+    scene.add(line);
+    lines.push({line,a,b,t:Math.random()});
+  }
+
+  function animate3D(){
+    requestAnimationFrame(animate3D);
+    cubes.forEach(c=>{c.rotation.x+=0.002; c.rotation.y+=0.003;});
+    lines.forEach(obj=>{
+      obj.t+=0.01;
+      const posA=obj.a.position, posB=obj.b.position;
+      const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));
+      const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));
+      const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));
+      obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z), new THREE.Vector3(lerpX,lerpY,lerpZ)]);
+      obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);
+    });
+    camera.position.x=Math.sin(Date.now()*0.0005)*10;
+    camera.position.y=Math.cos(Date.now()*0.0005)*5;
+    camera.lookAt(0,0,0);
     renderer.render(scene,camera);
   }
-  animateThree();
-  window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight);});
-
-  // Mapa
-  const map = L.map('map').setView([-7.846, -35.253], 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-  }).addTo(map);
-
-  const escolas = [
-      { nome: 'EREM Professor Cândido de Andrade Maciel', lat: -7.8443, lon: -35.2573, status: 'Pendente' },
-      { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.8504, lon: -35.2498, status: 'Pendente' },
-      { nome: 'EREM Deputado João Teobaldo de Azevedo', lat: -7.8430, lon: -35.2520, status: 'Pendente' },
-      { nome: 'Escola de Aplicação Professor Chaves (UPE)', lat: -7.7435, lon: -35.2281, status: 'Em funcionamento' },
-      { nome: 'EREM Dom Carlos Coelho', lat: -7.7441, lon: -35.2255, status: 'Pendente' },
-      { nome: 'Escola Estadual Capitão Plínio de Souza Monteiro', lat: -7.7408, lon: -35.2269, status: 'Pendente' }
-  ];
-
-  escolas.forEach(e=>{
-      const color = e.status==='Em funcionamento'?'green':'cyan';
-      const marker=L.circleMarker([e.lat,e.lon],{color,color,fillColor:color,fillOpacity:0.8,radius:10}).addTo(map);
-      marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
+  animate3D();
+  window.addEventListener('resize', ()=>{
+    camera.aspect=window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth, window.innerHeight);
   });
 
-  const legend = L.control({position:'bottomright'});
-  legend.onAdd=function(){
-    const div=L.DomUtil.create('div','map-legend');
-    div.innerHTML+='<h4>Status dos Pontos</h4>';
-    div.innerHTML+='<i style="background: green"></i> Em funcionamento<br>';
-    div.innerHTML+='<i style="background: cyan"></i> Pendente';
-    return div;
-  };
-  legend.addTo(map);
+  // Leaflet Map
+  const map = L.map('map').setView([-8.0,-35.0],13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    attribution:'&copy; OpenStreetMap contributors'
+  }).addTo(map);
 </script>
 </body>
 </html>
