@@ -23,61 +23,70 @@
     position:relative;
   }
 
-  /* ===== Header ===== */
-  header {
-    display:flex;
-    justify-content:flex-start;
-    align-items:center;
-    padding:10px 20px;
-    position:fixed;
-    width:100%;
-    top:0;
-    background:rgba(41,100,142,0.9);
-    z-index:1000;
-    box-shadow:0 2px 10px rgba(0,0,0,0.3);
+  /* ===== Navbar original que você enviou ===== */
+  header.navbar {
+    width: 100%;
+    height: 70px;
+    background: rgba(10,15,30,0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   }
+
+  header.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--neon-cyan);
+  }
+
+  header.navbar nav {
+    display: flex;
+    gap: 25px;
+  }
+
+  header.navbar nav a {
+    text-decoration: none;
+    color: var(--light-neutral);
+    font-weight: bold;
+    transition: color 0.2s;
+  }
+
+  header.navbar nav a:hover, header.navbar nav a.active {
+    color: var(--neon-cyan);
+  }
+
   .hamburger-toggle {
-    width:30px;
-    height:24px;
-    background:none;
-    border:none;
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-around;
-    padding:0;
-    z-index:1001;
+    display: none;
+    flex-direction: column;
+    justify-content: space-around;
+    width: 30px;
+    height: 24px;
+    background: none;
+    border: none;
+    cursor: pointer;
   }
   .hamburger-toggle .bar {
-    width:100%;
-    height:3px;
-    background-color:var(--light-neutral);
-    border-radius:3px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--light-neutral);
+    border-radius: 3px;
     transition: all 0.3s ease-in-out;
   }
   .hamburger-toggle.open .bar:nth-child(1){transform:rotate(45deg) translate(5px,6px);}
   .hamburger-toggle.open .bar:nth-child(2){opacity:0;}
   .hamburger-toggle.open .bar:nth-child(3){transform:rotate(-45deg) translate(5px,-6px);}
 
-  /* ===== Nav menu ===== */
-  .nav-menu {
-    position:fixed;
-    top:0;
-    left:0;
-    width:280px;
-    height:100vh;
-    background:rgba(10,15,30,0.95);
-    padding-top:80px;
-    padding-left:30px;
-    transform:translateX(-100%);
-    transition: transform 0.4s ease;
-    z-index:999;
+  /* ===== Responsivo Navbar ===== */
+  @media(max-width:768px){
+    header.navbar nav { display:none; position:fixed; top:70px; left:0; flex-direction:column; background: rgba(10,15,30,0.95); width:100%; padding:20px; }
+    header.navbar nav.show { display:flex; }
+    .hamburger-toggle { display:flex; }
   }
-  .nav-menu.open {transform:translateX(0);}
-  .nav-menu ul {list-style:none;}
-  .nav-menu ul li {margin-bottom:25px;}
-  .nav-menu ul li a {color:var(--light-neutral); text-decoration:none; font-size:1.5rem; font-weight:bold; transition:color 0.2s;}
-  .nav-menu ul li a:hover, .nav-menu ul li a.active {color:var(--neon-cyan);}
 
   /* ===== Hero ===== */
   .hero {padding:120px 40px 40px; text-align:center;}
@@ -178,23 +187,21 @@
 </head>
 <body>
 
-<header>
+<header class="navbar">
+  <div class="logo">Recicla Tech</div>
   <button class="hamburger-toggle" aria-label="Abrir menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
+  <nav>
+    <a href="index.html">Início</a>
+    <a href="projetos.html" class="active">Projeto</a>
+    <a href="lixo.html">Lixo Eletrônico</a>
+    <a href="ia.html">IA</a>
+    <a href="creditos.html">Créditos</a>
+  </nav>
 </header>
-
-<nav class="nav-menu">
-  <ul>
-    <li><a href="index.html">Início</a></li>
-    <li><a href="projetos.html" class="active">Projeto</a></li>
-    <li><a href="lixo.html">Lixo Eletrônico</a></li>
-    <li><a href="ia.html">IA</a></li>
-    <li><a href="creditos.html">Créditos</a></li>
-  </ul>
-</nav>
 
 <section class="hero fade-in">
   <h1>Projeto Recicla Tech</h1>
@@ -230,10 +237,10 @@
 <script>
   // Hamburger
   const hamburger = document.querySelector('.hamburger-toggle');
-  const navMenu = document.querySelector('.nav-menu');
+  const nav = document.querySelector('header nav');
   hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('open');
-    navMenu.classList.toggle('open');
+    nav.classList.toggle('show');
   });
 
   // Mascote
@@ -293,7 +300,7 @@
   }
   animateParticles();
 
-  // ===== Three.js (código original do seu projeto) =====
+  // Three.js
   const threeCanvas = document.getElementById('three-canvas');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
@@ -301,7 +308,6 @@
   renderer.setSize(window.innerWidth, window.innerHeight);
   camera.position.z = 5;
 
-  // Cubos múltiplos
   const cubes = [];
   const geometry = new THREE.BoxGeometry();
   for(let i=0;i<20;i++){
@@ -320,7 +326,7 @@
   animateThree();
   window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight);});
 
-  // ===== MAPA =====
+  // Mapa
   const map = L.map('map').setView([-7.846, -35.253], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
