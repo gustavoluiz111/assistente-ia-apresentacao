@@ -278,22 +278,47 @@
   function resize(){canvas.width=window.innerWidth; canvas.height=window.innerHeight;}
   window.addEventListener('resize',resize); resize();
   for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}
-  function animate(){ctx.clearRect(0,0,canvas.width,canvas.height);particles.forEach(p=>{p.x+=p.dx; p.y+=p.dy; if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1; ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='cyan'; ctx.fill();});requestAnimationFrame(animate);}
-  animate();
+  function animateParticles(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    particles.forEach(p=>{
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0||p.x>canvas.width)p.dx*=-1;
+      if(p.y<0||p.y>canvas.height)p.dy*=-1;
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle='cyan';
+      ctx.fill();
+    });
+    requestAnimationFrame(animateParticles);
+  }
+  animateParticles();
 
-  // Three.js cubos
-  const threeCanvas=document.getElementById('three-canvas');
-  const scene=new THREE.Scene();
-  const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
-  const renderer=new THREE.WebGLRenderer({canvas:threeCanvas, alpha:true});
+  // ===== Three.js (código original do seu projeto) =====
+  const threeCanvas = document.getElementById('three-canvas');
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({canvas:threeCanvas, alpha:true});
   renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.position.z=5;
-  const geometry=new THREE.BoxGeometry();
-  const material=new THREE.MeshBasicMaterial({color:0x00ffff,wireframe:true});
-  const cube=new THREE.Mesh(geometry,material); scene.add(cube);
-  function animateThree(){requestAnimationFrame(animateThree); cube.rotation.x+=0.01; cube.rotation.y+=0.01; renderer.render(scene,camera);}
+  camera.position.z = 5;
+
+  // Cubos múltiplos
+  const cubes = [];
+  const geometry = new THREE.BoxGeometry();
+  for(let i=0;i<20;i++){
+    const material = new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
+    const cube = new THREE.Mesh(geometry, material);
+    cube.position.set((Math.random()-0.5)*20, (Math.random()-0.5)*20, (Math.random()-0.5)*20);
+    scene.add(cube);
+    cubes.push(cube);
+  }
+
+  function animateThree(){
+    requestAnimationFrame(animateThree);
+    cubes.forEach(c=>{c.rotation.x += 0.01; c.rotation.y += 0.01;});
+    renderer.render(scene,camera);
+  }
   animateThree();
-  window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight);});
+  window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth, window.innerHeight);});
 
   // ===== MAPA =====
   const map = L.map('map').setView([-7.846, -35.253], 13);
@@ -328,4 +353,3 @@
 </script>
 </body>
 </html>
-
