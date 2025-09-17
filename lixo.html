@@ -8,29 +8,35 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
 <canvas id="particles"></canvas>
 <canvas id="three-canvas"></canvas>
 
-<header>
-  <div class="left">
-    <div class="logo">
-      <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
-    </div>
-  </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="projetos.html">Projetos</a>
-    <a href="lixo.html" class="active">Lixo Eletrônico</a>
-    <a href="ia.html">IA</a>
-    <a href="creditos.html">Créditos</a>
+<!-- Navbar nova -->
+<header class="navbar">
+  <button class="hamburger-toggle" aria-label="Abrir menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="projetos.html">Projetos</a></li>
+      <li><a href="lixo.html" class="active">Lixo Eletrônico</a></li>
+      <li><a href="ia.html">IA</a></li>
+      <li><a href="creditos.html">Créditos</a></li>
+    </ul>
   </nav>
 </header>
 
+<!-- Hero -->
 <section class="hero fade-in">
   <h1>Lixo Eletrônico</h1>
   <p>Entenda os impactos do e-lixo no meio ambiente, na saúde humana e animal, e saiba como a reciclagem é essencial.</p>
 </section>
 
+<!-- Conteúdo -->
 <section class="conteudo fade-in" style="max-width:900px; margin:0 auto; padding:20px;">
   <h2>O que é lixo eletrônico?</h2>
   <p>O lixo eletrônico, também chamado de e-lixo, é formado por equipamentos eletrônicos e elétricos ou partes deles que foram descartados por estarem quebrados, obsoletos ou sem utilidade. Ele contém metais pesados e outras substâncias tóxicas que, se descartadas inadequadamente, podem poluir o ambiente e causar doenças.</p>
@@ -65,11 +71,21 @@
   </ul>
 </section>
 
+<!-- Mascote -->
 <div class="mascote" id="mascote">🤖</div>
 
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script src="script.js"></script>
+<script>
+  // Hamburger funcional
+  const hamburger = document.querySelector('.hamburger-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+  });
+</script>
+
 </body>
 </html>
-
-
