@@ -207,3 +207,224 @@
             display: none;
             opacity: 0;
             transform-origin: bottom right;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            z-index: 16;
+        }
+        .balao::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 15px;
+            border-width: 10px 10px 0 10px;
+            border-style: solid;
+            border-color: #29648e transparent transparent transparent;
+        }
+
+        /* CANVAS PARTICLES E 3D */
+        canvas#particles, canvas#three-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* RESPONSIVO */
+        @media(max-width: 768px) {
+            .logo img { height: 30px; }
+            .hero h1 { font-size: 2rem; }
+            .hero p { font-size: 1rem; max-width: 90%; }
+            .mascote { width: 60px; height: 60px; font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="left">
+            <div class="logo"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo"></div>
+            <button class="hamburger-toggle" aria-label="Abrir menu">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+        </div>
+        </header>
+
+    <nav class="nav-menu">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            <li><a href="projetos.html" class="active">Projeto</a></li>
+            <li><a href="lixo.html">Lixo Eletrônico</a></li>
+            <li><a href="ia.html">IA</a></li>
+            <li><a href="creditos.html">Créditos</a></li>
+        </ul>
+    </nav>
+
+
+    <section class="hero fade-in">
+        <h1>Projeto Recicla Tech</h1>
+        <p>Conscientizando e envolvendo a comunidade em iniciativas de reciclagem de lixo eletrônico.</p>
+    </section>
+
+    <section class="projeto-text fade-in">
+        <h2>Bem-vindo ao Projeto Recicla Tech</h2>
+        <p>Com a urgência de tratar o lixo eletrônico, o projeto "Eco Robôs" entra em ação para conscientizar e envolver a comunidade em uma causa crucial para o meio ambiente e a sociedade.</p>
+        <h2>Nosso Propósito</h2>
+        <p>Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave.</p>
+        <h2>O que Fazemos</h2>
+        <p>Implementamos pontos de coleta em escolas e promovemos atividades educativas sobre os impactos do e-lixo e formas corretas de descarte e reutilização.</p>
+        <h2>Resultados e Parcerias</h2>
+        <p>Buscamos transformar o lixo eletrônico em produtos inovadores através de parcerias com empresas, incentivando a economia circular.</p>
+        <h2>Conheça Nossos Pilares</h2>
+        <ul>
+            <li><b>Educação Ambiental:</b> Conscientizar a comunidade escolar sobre o descarte correto e impactos do e-lixo.</li>
+            <li><b>Pontos de Coleta Estratégicos:</b> Pontos de coleta em escolas, acessíveis e seguros.</li>
+            <li><b>Inovação e Economia Circular:</b> Transformar o lixo eletrônico em novos produtos, reduzindo impacto ambiental.</li>
+            <li><b>Avaliação e Melhoria Contínua:</b> Monitorar resíduos coletados e impacto das ações.</li>
+        </ul>
+        <p>Junte-se a nós nesta missão por um planeta mais limpo e saudável!</p>
+    </section>
+
+    <div id="map" class="fade-in"></div>
+    <div class="mascote" id="mascote">🤖</div>
+    <div class="balao" id="balao"></div>
+    <canvas id="particles"></canvas>
+    <canvas id="three-canvas"></canvas>
+
+    <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script>
+        // --- LÓGICA DO NOVO MENU HAMBÚRGUER ---
+        const hamburger = document.querySelector('.hamburger-toggle');
+        const navMenu = document.querySelector('.nav-menu');
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            navMenu.classList.toggle('open');
+        });
+
+        // --- Mascote --- 
+        const mascote = document.getElementById("mascote");
+        const balao = document.getElementById("balao");
+        const dicas = ["Separe plásticos, metais e circuitos!", "Reaproveite peças antigas.", "Use sensores para automatizar.", "Pequenos robôs ajudam a reciclar."];
+        let dicaIndex = 0;
+        mascote.addEventListener("click", () => {
+            balao.style.display = "block";
+            balao.textContent = dicas[dicaIndex];
+            dicaIndex = (dicaIndex + 1) % dicas.length;
+            balao.style.transform = "scale(0)";
+            balao.style.opacity = "0";
+            setTimeout(() => {
+                balao.style.transform = "scale(1)";
+                balao.style.opacity = "1";
+            }, 10);
+            const rect = mascote.getBoundingClientRect();
+            balao.style.bottom = `${window.innerHeight - rect.top + 10}px`;
+            balao.style.right = `${window.innerWidth - rect.right}px`;
+        });
+        document.addEventListener("click", (e) => {
+            if (!mascote.contains(e.target) && !balao.contains(e.target)) balao.style.display = "none";
+        });
+        window.addEventListener("resize", () => {
+            if (balao.style.display === "block") {
+                const rect = mascote.getBoundingClientRect();
+                balao.style.bottom = `${window.innerHeight - rect.top + 10}px`;
+                balao.style.right = `${window.innerWidth - rect.right}px`;
+            }
+        });
+
+        // --- Partículas --- 
+        const canvas = document.getElementById('particles');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+        function createParticles() { for (let i = 0; i < 100; i++) { particles.push({ x: Math.random() * canvas.width, y: Math.random() * canvas.height, r: Math.random() * 2 + 1, dx: (Math.random() - 0.5) * 0.5, dy: (Math.random() - 0.5) * 0.5 }); } }
+        createParticles();
+        function animate() { ctx.clearRect(0, 0, canvas.width, canvas.height); particles.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fillStyle = 'rgba(0,255,255,0.7)'; ctx.fill(); p.x += p.dx; p.y += p.dy; if (p.x < 0 || p.x > canvas.width) p.dx *= -1; if (p.y < 0 || p.y > canvas.height) p.dy *= -1; }); requestAnimationFrame(animate); }
+        animate();
+
+        // --- THREE.js 3D --- 
+        // (Seu código original do Three.js foi mantido aqui sem alterações)
+        const threeCanvas=document.getElementById('three-canvas'); 
+        const scene3D=new THREE.Scene(); 
+        const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000); 
+        const renderer=new THREE.WebGLRenderer({canvas:threeCanvas,alpha:true});renderer.setSize(window.innerWidth,window.innerHeight); 
+        const geometry=new THREE.BoxGeometry(); 
+        const material=new THREE.MeshBasicMaterial({color:0x00ffff,wireframe:true}); 
+        const cubes=[];for(let i=0;i<50;i++){const cube=new THREE.Mesh(geometry,material);cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);scene3D.add(cube);cubes.push(cube);} 
+        camera.position.z=30; 
+        const lines=[];for(let i=0;i<50;i++){const a=cubes[i];const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z),new THREE.Vector3(b.position.x,b.position.y,b.position.z)];const geometryLine=new THREE.BufferGeometry().setFromPoints(points);const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff,transparent:true,opacity:0.6});const line=new THREE.Line(geometryLine,lineMaterial);scene3D.add(line);lines.push({line,a,b,t:Math.random()});} 
+        function mascoteDistanceEffect(){const rect=mascote.getBoundingClientRect();const mx=rect.left+rect.width/2;const my=rect.top+rect.height/2;lines.forEach(obj=>{const projX=(obj.a.position.x+obj.b.position.x)/2+window.innerWidth/2;const projY=(obj.a.position.y+obj.b.position.y)/2+window.innerHeight/2;const dist=Math.hypot(mx-projX,my-projY);obj.line.material.opacity=dist<200?1:0.3+0.4*Math.sin(obj.t*2);});} 
+        function animate3D(){requestAnimationFrame(animate3D);cubes.forEach(c=>{c.rotation.x+=0.002;c.rotation.y+=0.003;});lines.forEach(obj=>{obj.t+=0.01;const posA=obj.a.position;const posB=obj.b.position;const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z),new THREE.Vector3(lerpX,lerpY,lerpZ)]);obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);});mascoteDistanceEffect();camera.position.x=Math.sin(Date.now()*0.0005)*10;camera.position.y=Math.cos(Date.now()*0.0005)*5;camera.lookAt(0,0,0);renderer.render(scene3D,camera);} 
+        animate3D(); 
+        window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight;camera.updateProjectionMatrix();renderer.setSize(window.innerWidth,window.innerHeight);}); 
+
+        // --- FADE-IN --- 
+        const fadeEls = document.querySelectorAll('.fade-in');
+        const checkFade = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            fadeEls.forEach(el => {
+                const boxTop = el.getBoundingClientRect().top;
+                if (boxTop < triggerBottom) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        };
+        // Adicionando CSS para a animação fade-in
+        document.head.insertAdjacentHTML('beforeend', '<style>.fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }</style>');
+        window.addEventListener('scroll', checkFade);
+        checkFade(); // Executa uma vez no carregamento
+
+        // --- LÓGICA DO MAPA ATUALIZADA ---
+        const map = L.map('map').setView([-7.846, -35.253], 13); // Centralizado entre as cidades
+
+        L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_dark/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Lista de escolas pesquisada e atualizada
+        const escolas = [
+            // CARPINA
+            { nome: 'EREM Professor Cândido de Andrade Maciel', lat: -7.8443, lon: -35.2573, status: 'Pendente' },
+            { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.8504, lon: -35.2498, status: 'Pendente' },
+            { nome: 'EREM Deputado João Teobaldo de Azevedo', lat: -7.8430, lon: -35.2520, status: 'Pendente' },
+            
+            // NAZARÉ DA MATA
+            { nome: 'Escola de Aplicação Professor Chaves (UPE)', lat: -7.7435, lon: -35.2281, status: 'Em funcionamento' },
+            { nome: 'EREM Dom Carlos Coelho', lat: -7.7441, lon: -35.2255, status: 'Pendente' },
+            { nome: 'Escola Estadual Capitão Plínio de Souza Monteiro', lat: -7.7408, lon: -35.2269, status: 'Pendente' }
+        ];
+
+        escolas.forEach(e => {
+            const isAtivo = e.status === 'Em funcionamento';
+            const color = isAtivo ? 'var(--neon-green)' : 'var(--neon-cyan)';
+            
+            const marker = L.circleMarker([e.lat, e.lon], {
+                color: color,
+                fillColor: color,
+                fillOpacity: 0.8,
+                radius: 10
+            }).addTo(map);
+
+            marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
+        });
+        
+        // Adicionando a Legenda ao Mapa
+        const legend = L.control({position: 'bottomright'});
+        legend.onAdd = function (map) {
+            const div = L.DomUtil.create('div', 'map-legend');
+            div.innerHTML += '<h4>Status dos Pontos</h4>';
+            div.innerHTML += '<i style="background: var(--neon-green)"></i> Em funcionamento<br>';
+            div.innerHTML += '<i style="background: var(--neon-cyan)"></i> Pendente';
+            return div;
+        };
+        legend.addTo(map);
+
+    </script>
+</body>
+</html>
