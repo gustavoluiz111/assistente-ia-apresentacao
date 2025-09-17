@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA - EcoRobôs</title>
+<title>IA - Recicla Tech</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <style>
 :root {
   --dark-blue: #0a0f1e;
   --light-neutral: #f4f6f8;
   --neon-cyan: #00ffff;
-  --neon-green: #39ff14;
 }
 
 /* BODY */
@@ -25,7 +24,7 @@ body {
 /* HEADER */
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 10px 20px;
   background: rgba(41,100,142,0.9);
@@ -34,28 +33,58 @@ header {
   top: 0;
   z-index: 1000;
 }
-.logo img { height: 40px; }
-nav a {
+.logo img { height: 40px; margin-right: 20px; }
+
+/* HAMBURGER */
+.hamburger-toggle {
+  position: relative;
+  z-index: 1001;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 24px;
+}
+.hamburger-toggle .bar {
+  display: block;
+  width: 100%;
+  height: 3px;
+  background: var(--light-neutral);
+  border-radius: 3px;
+  transition: all 0.3s ease-in-out;
+}
+.hamburger-toggle.open .bar:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
+.hamburger-toggle.open .bar:nth-child(2) { opacity: 0; }
+.hamburger-toggle.open .bar:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
+
+/* NAV MENU */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 280px;
+  height: 100vh;
+  background: var(--dark-blue);
+  padding-top: 100px;
+  padding-left: 30px;
+  transform: translateX(-100%);
+  transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+  z-index: 999;
+}
+.nav-menu.open { transform: translateX(0); }
+.nav-menu ul { list-style: none; }
+.nav-menu ul li { margin-bottom: 25px; }
+.nav-menu ul li a {
   color: var(--light-neutral);
   text-decoration: none;
-  margin-left: 25px;
-  font-weight: 500;
-  position: relative;
+  font-size: 1.5rem;
+  font-weight: bold;
+  transition: color 0.2s ease;
 }
-nav a::after {
-  content: '';
-  display: block;
-  height: 2px;
-  background: var(--neon-cyan);
-  transition: width 0.3s;
-  width: 0;
-  position: absolute;
-  bottom: -4px;
-  left: 0;
-}
-nav a:hover { color: var(--neon-cyan); }
-nav a:hover::after { width: 100%; }
-nav a.active { color: var(--neon-cyan); }
+.nav-menu ul li a:hover, .nav-menu ul li a.active { color: var(--neon-cyan); }
 
 /* HERO */
 section.hero {
@@ -82,13 +111,6 @@ canvas#particles, canvas#three-canvas {
   pointer-events: none;
   z-index:0;
 }
-
-@media (max-width:768px){
-  nav a{ margin-left:10px; font-size:0.9rem; }
-  .logo img{ height:30px; }
-  section.hero h1{ font-size:2rem; }
-  section.hero p{ font-size:1rem; }
-}
 </style>
 </head>
 <body>
@@ -97,20 +119,28 @@ canvas#particles, canvas#three-canvas {
 
 <header>
   <div class="logo">
-    <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo EcoRobôs">
+    <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo Recicla Tech">
   </div>
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="projetos.html">Projetos</a>
-    <a href="lixo.html">Lixo Eletrônico</a>
-    <a href="ia.html" class="active">IA</a>
-    <a href="creditos.html">Créditos</a>
-  </nav>
+  <button class="hamburger-toggle" aria-label="Abrir menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
 </header>
+
+<nav class="nav-menu">
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="projetos.html">Projetos</a></li>
+    <li><a href="lixo.html">Lixo Eletrônico</a></li>
+    <li><a href="ia.html" class="active">IA</a></li>
+    <li><a href="creditos.html">Créditos</a></li>
+  </ul>
+</nav>
 
 <section class="hero">
   <h1>Converse com nossa IA</h1>
-  <p>Use o chat no canto inferior direito para interagir com a EcoRobôs IA.</p>
+  <p>Use o chat no canto inferior direito para interagir com a Recicla Tech IA.</p>
 </section>
 
 <!-- SCRIPT CHATFUEL -->
@@ -205,10 +235,12 @@ function animate3D(){
 }
 animate3D();
 
-window.addEventListener('resize',()=>{
-  camera.aspect=window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth,window.innerHeight);
+// --- HAMBURGER MOBILE / SEMPRE ---
+const hamburgerToggle = document.querySelector('.hamburger-toggle');
+const navMenu = document.querySelector('.nav-menu');
+hamburgerToggle.addEventListener('click', () => {
+  hamburgerToggle.classList.toggle('open');
+  navMenu.classList.toggle('open');
 });
 </script>
 </body>
