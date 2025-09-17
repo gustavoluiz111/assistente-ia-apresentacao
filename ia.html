@@ -26,21 +26,20 @@ header {
   position:fixed; top:0; left:0; width:100%; padding:20px; 
   display:flex; align-items:center; z-index:1000; 
 }
-.left { display:flex; align-items:center; }
 
 /* HAMBURGER */
 .hamburger-toggle {
   position:relative; z-index:1001; background:none; border:none; cursor:pointer;
   display:flex; flex-direction:column; justify-content:space-around;
-  width:30px; height:24px;
+  width:40px; height:32px; /* aumentado */
 }
 .hamburger-toggle .bar {
-  display:block; width:100%; height:3px; background:var(--light-neutral);
+  display:block; width:100%; height:4px; background:var(--light-neutral);
   border-radius:3px; transition: all 0.3s ease-in-out;
 }
-.hamburger-toggle.open .bar:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
+.hamburger-toggle.open .bar:nth-child(1) { transform: rotate(45deg) translate(6px,7px); }
 .hamburger-toggle.open .bar:nth-child(2) { opacity:0; }
-.hamburger-toggle.open .bar:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
+.hamburger-toggle.open .bar:nth-child(3) { transform: rotate(-45deg) translate(6px,-7px); }
 
 /* NAV MENU */
 .nav-menu {
@@ -70,10 +69,9 @@ section.hero h1 {
 }
 section.hero p {
   font-size: 1.2rem;
-  max-width: 700px;
-  margin: auto;
   line-height: 1.6;
-  color: var(--light-neutral);
+  max-width: 800px;
+  margin: 0 auto;
 }
 
 /* CANVAS */
@@ -89,13 +87,11 @@ canvas#particles, canvas#three-canvas {
 
 <!-- ===== Header ===== -->
 <header>
-  <div class="left">
-    <button class="hamburger-toggle" aria-label="Abrir menu">
-      <span class="bar"></span>
-      <span class="bar"></span>
-      <span class="bar"></span>
-    </button>
-  </div>
+  <button class="hamburger-toggle" aria-label="Abrir menu">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </button>
 </header>
 
 <!-- ===== Menu ===== -->
@@ -109,27 +105,31 @@ canvas#particles, canvas#three-canvas {
   </ul>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <h1>Converse com nossa IA</h1>
-  <p>Use o chat no canto inferior direito para interagir com a Recicla Tech IA.</p>
+<!-- ===== Hero ===== -->
+<section class="hero fade-in">
+  <h1>Inteligência Artificial</h1>
+  <p>
+    A Inteligência Artificial é uma ferramenta poderosa no combate ao descarte incorreto de lixo eletrônico.  
+    Com ela, é possível identificar, classificar e sugerir formas de reciclagem de componentes eletrônicos,  
+    tornando o processo mais rápido e eficiente.  
+  </p>
+  <p>
+    <strong>Dica:</strong> Aguarde alguns segundos até o ícone do chat aparecer no canto inferior direito da tela.  
+    Quando ele surgir, clique e comece a conversar com a nossa IA! 🤖
+  </p>
 </section>
 
-<!-- SCRIPT CHATFUEL -->
-<script>
-(function() {
- var script = document.createElement('script');
- script.dataset.bot = "68ca0c144662ac97ea0be150";
- script.dataset.zindex = "99999";
- script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
- script.async = true;
- script.defer = true;
- document.getElementsByTagName('head')[0].appendChild(script);
-})()
-</script>
-
+<!-- ===== Scripts ===== -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script>
+// --- HAMBURGER ---
+const hamburgerToggle = document.querySelector('.hamburger-toggle');
+const navMenu = document.querySelector('.nav-menu');
+hamburgerToggle.addEventListener('click', () => {
+  hamburgerToggle.classList.toggle('open');
+  navMenu.classList.toggle('open');
+});
+
 // --- PARTICULAS ---
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
@@ -207,13 +207,25 @@ function animate3D(){
 }
 animate3D();
 
-// --- HAMBURGER ---
-const hamburgerToggle = document.querySelector('.hamburger-toggle');
-const navMenu = document.querySelector('.nav-menu');
-hamburgerToggle.addEventListener('click', () => {
-  hamburgerToggle.classList.toggle('open');
-  navMenu.classList.toggle('open');
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
 });
 </script>
+
+<!-- ===== Chatfuel Widget ===== -->
+<script>
+(function() {
+  var script = document.createElement('script');
+  script.dataset.bot = "68ca0c144662ac97ea0be150";
+  script.dataset.zindex = "99999";
+  script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
+  script.async = true;
+  script.defer = true;
+  document.getElementsByTagName('head')[0].appendChild(script);
+})()
+</script>
+
 </body>
 </html>
