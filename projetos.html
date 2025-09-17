@@ -20,7 +20,7 @@
     height: 70px;
     background: rgba(10,15,30,0.95);
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start; /* Alinha items à esquerda */
     align-items: center;
     padding: 0 25px;
     position: fixed;
@@ -28,14 +28,10 @@
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   }
-  header.navbar .logo {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #00ffff;
-  }
   header.navbar nav {
     display: flex;
     gap: 25px;
+    margin-left: 20px; /* Espaço entre hamburger e menu lateral */
   }
   header.navbar nav a {
     text-decoration: none;
@@ -103,55 +99,12 @@
   #map { width:90%; height:500px; margin:40px auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5); z-index:1; }
   .map-legend { padding:6px 8px; background:rgba(41,100,142,0.8); box-shadow:0 0 15px rgba(0,0,0,0.2); border-radius:5px; color:#caf5f7; }
   .map-legend i{ width:18px; height:18px; float:left; margin-right:8px; border-radius:50%; }
-
-  /* Mascote */
-  .mascote {
-    width:80px; height:80px;
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    border-radius:8px;
-    animation:float 3s ease-in-out infinite;
-    cursor:pointer;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    font-size:2.5rem;
-    z-index:15;
-  }
-  @keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
-  .balao {
-    position:fixed;
-    background:#29648e;
-    border:2px solid #00ffff;
-    border-radius:10px;
-    padding:10px 15px;
-    max-width:220px;
-    color:#00ffff;
-    font-size:0.85rem;
-    display:none;
-    opacity:0;
-    transform-origin:bottom right;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    z-index:16;
-  }
-  .balao::after {
-    content:'';
-    position:absolute;
-    bottom:-10px;
-    right:15px;
-    border-width:10px 10px 0 10px;
-    border-style:solid;
-    border-color:#29648e transparent transparent transparent;
-  }
 </style>
 </head>
 <body>
 
 <!-- Navbar -->
 <header class="navbar">
-  <div class="logo">Recicla Tech</div>
   <button class="hamburger-toggle" aria-label="Abrir menu">
     <span class="bar"></span>
     <span class="bar"></span>
@@ -194,10 +147,6 @@
 <!-- Mapa -->
 <div id="map"></div>
 
-<!-- Mascote -->
-<div class="mascote" id="mascote">🤖</div>
-<div class="balao" id="balao"></div>
-
 <!-- Canvases -->
 <canvas id="particles"></canvas>
 <canvas id="three-canvas"></canvas>
@@ -213,25 +162,6 @@
     hamburger.classList.toggle('open');
     navMenu.classList.toggle('open');
   });
-
-  // Mascote
-  const mascote = document.getElementById("mascote");
-  const balao = document.getElementById("balao");
-  const dicas = ["Separe plásticos, metais e circuitos!", "Reaproveite peças antigas.", "Use sensores para automatizar.", "Pequenos robôs ajudam a reciclar."];
-  let dicaIndex=0;
-  mascote.addEventListener("click",()=>{
-    balao.style.display="block";
-    balao.textContent=dicas[dicaIndex];
-    dicaIndex=(dicaIndex+1)%dicas.length;
-    balao.style.transform="scale(0)";
-    balao.style.opacity="0";
-    setTimeout(()=>{balao.style.transform="scale(1)"; balao.style.opacity="1";},10);
-    const rect=mascote.getBoundingClientRect();
-    balao.style.bottom=`${window.innerHeight-rect.top+10}px`;
-    balao.style.right=`${window.innerWidth-rect.right}px`;
-  });
-  document.addEventListener("click",(e)=>{if(!mascote.contains(e.target)&&!balao.contains(e.target)) balao.style.display="none";});
-  window.addEventListener("resize",()=>{if(balao.style.display==="block"){const rect=mascote.getBoundingClientRect(); balao.style.bottom=`${window.innerHeight-rect.top+10}px`; balao.style.right=`${window.innerWidth-rect.right}px`;}});
 
   // Fade-in
   function handleFadeIn() {
