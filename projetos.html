@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Projeto Recicla Tech</title>
+<title>Recicla Tech - IPA 2025</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
@@ -16,85 +16,165 @@
 
   /* ===== Navbar ===== */
   header.navbar {
-    width:100%; height:70px; background: rgba(10,15,30,0.95);
-    display:flex; justify-content:flex-start; align-items:center; padding:0 25px;
-    position:fixed; top:0; z-index:1000; box-shadow:0 2px 10px rgba(0,0,0,0.3);
+    width: 100%;
+    height: 70px;
+    background: rgba(10,15,30,0.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 25px;
+    position: fixed;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  }
+  header.navbar .logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #00ffff;
   }
   header.navbar nav {
-    margin-left: auto;
-    display:flex; gap:25px;
+    display: flex;
+    gap: 25px;
   }
   header.navbar nav a {
-    text-decoration:none; color:#caf5f7; font-weight:bold; transition: color 0.2s;
+    text-decoration: none;
+    color: #caf5f7;
+    font-weight: bold;
+    transition: color 0.2s;
   }
-  header.navbar nav a:hover, header.navbar nav a.active { color:#00f2ff; }
-
-  /* Hamburger Button */
+  header.navbar nav a:hover, header.navbar nav a.active {
+    color: #00f2ff;
+  }
   .hamburger-toggle {
-    background:none; border:none; cursor:pointer; display:flex;
-    flex-direction:column; justify-content:space-around; width:30px; height:24px; z-index:1001;
+    position: relative;
+    z-index: 1001;
+    background:none;
+    border:none;
+    cursor:pointer;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-around;
+    width:30px;
+    height:24px;
   }
-  .hamburger-toggle .bar { width:100%; height:3px; background:#caf5f7; border-radius:3px; transition: all 0.3s ease-in-out; }
-  .hamburger-toggle.open .bar:nth-child(1){ transform:rotate(45deg) translate(5px,6px); }
+  .hamburger-toggle .bar {
+    display:block;
+    width:100%;
+    height:3px;
+    background:#caf5f7;
+    border-radius:3px;
+    transition: all 0.3s ease-in-out;
+  }
+  .hamburger-toggle.open .bar:nth-child(1){ transform: rotate(45deg) translate(5px,6px); }
   .hamburger-toggle.open .bar:nth-child(2){ opacity:0; }
-  .hamburger-toggle.open .bar:nth-child(3){ transform:rotate(-45deg) translate(5px,-6px); }
+  .hamburger-toggle.open .bar:nth-child(3){ transform: rotate(-45deg) translate(5px,-6px); }
 
-  /* Responsive Navbar */
-  @media(max-width:768px){
-    header.navbar nav { display:none; flex-direction:column; position:fixed; top:70px; left:0; width:100%; background:rgba(10,15,30,0.95); padding:20px; }
-    header.navbar nav.show { display:flex; }
+  /* Menu lateral */
+  .nav-menu {
+    position:fixed;
+    top:0; left:0;
+    width:280px;
+    height:100vh;
+    background:#0a0f1e;
+    padding-top:100px;
+    padding-left:30px;
+    transform:translateX(-100%);
+    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+    z-index:999;
   }
+  .nav-menu.open { transform:translateX(0); }
+  .nav-menu ul { list-style:none; }
+  .nav-menu ul li { margin-bottom:25px; }
+  .nav-menu ul li a { color:#caf5f7; text-decoration:none; font-size:1.5rem; font-weight:bold; transition:color 0.2s ease; }
+  .nav-menu ul li a:hover, .nav-menu ul li a.active { color:#00f2ff; }
 
-  /* ===== Hero ===== */
+  /* Hero */
   .hero { padding:120px 40px 40px; text-align:center; }
-  .hero h1 { font-size:3rem; color:#00f2ff; margin-bottom:20px; }
+  .hero h1 { font-size:3rem; color:#00ffff; margin-bottom:20px; }
   .hero p { font-size:1.2rem; max-width:700px; margin:auto; line-height:1.6; }
 
-  /* ===== Projeto Texto ===== */
+  /* Projeto Texto */
   .projeto-text { max-width:900px; margin:20px auto; padding:20px; text-align:left; line-height:1.6; }
-  .projeto-text h2 { color:#00f2ff; margin-top:25px; }
+  .projeto-text h2 { color:#00ffff; margin-top:25px; }
   .projeto-text ul li{ margin-bottom:10px; }
 
-  /* ===== Mapa ===== */
-  #map { width:90%; height:500px; margin:40px auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5); }
+  /* Mapa */
+  #map { width:90%; height:500px; margin:40px auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5); z-index:1; }
   .map-legend { padding:6px 8px; background:rgba(41,100,142,0.8); box-shadow:0 0 15px rgba(0,0,0,0.2); border-radius:5px; color:#caf5f7; }
   .map-legend i{ width:18px; height:18px; float:left; margin-right:8px; border-radius:50%; }
 
-  /* ===== Mascote ===== */
-  .mascote { width:80px; height:80px; position:fixed; bottom:20px; right:20px; border-radius:8px; animation:float 3s ease-in-out infinite; cursor:pointer; display:flex; align-items:center; justify-content:center; font-weight:bold; font-size:2.5rem; z-index:15; }
+  /* Mascote */
+  .mascote {
+    width:80px; height:80px;
+    position:fixed;
+    bottom:20px;
+    right:20px;
+    border-radius:8px;
+    animation:float 3s ease-in-out infinite;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:2.5rem;
+    z-index:15;
+  }
   @keyframes float{ 0%,100%{transform:translateY(0);} 50%{transform:translateY(-15px);} }
-  .balao { position:fixed; background:#29648e; border:2px solid #00f2ff; border-radius:10px; padding:10px 15px; max-width:220px; color:#00f2ff; font-size:0.85rem; display:none; opacity:0; transform-origin:bottom right; transition: transform 0.3s ease, opacity 0.3s ease; z-index:16; }
-  .balao::after { content:''; position:absolute; bottom:-10px; right:15px; border-width:10px 10px 0 10px; border-style:solid; border-color:#29648e transparent transparent transparent; }
-
-  /* ===== Fade-in ===== */
-  .fade-in { opacity:0; transform:translateY(30px); transition: opacity 1s ease-out, transform 1s ease-out; }
-  .fade-in.visible { opacity:1; transform:translateY(0); }
-
-  @media(max-width:768px){ .hero h1{font-size:2rem;} .hero p{font-size:1rem;} .mascote{width:60px;height:60px;font-size:2rem;} }
+  .balao {
+    position:fixed;
+    background:#29648e;
+    border:2px solid #00ffff;
+    border-radius:10px;
+    padding:10px 15px;
+    max-width:220px;
+    color:#00ffff;
+    font-size:0.85rem;
+    display:none;
+    opacity:0;
+    transform-origin:bottom right;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    z-index:16;
+  }
+  .balao::after {
+    content:'';
+    position:absolute;
+    bottom:-10px;
+    right:15px;
+    border-width:10px 10px 0 10px;
+    border-style:solid;
+    border-color:#29648e transparent transparent transparent;
+  }
 </style>
 </head>
 <body>
 
+<!-- Navbar -->
 <header class="navbar">
+  <div class="logo">Recicla Tech</div>
   <button class="hamburger-toggle" aria-label="Abrir menu">
     <span class="bar"></span>
     <span class="bar"></span>
     <span class="bar"></span>
   </button>
-  <nav>
-    <a href="index.html" class="active">Início</a>
-    <a href="projetos.html">Projetos</a>
-    <a href="lixo.html">Lixo Eletrônico</a>
-    <a href="ia.html">IA</a>
-    <a href="creditos.html">Créditos</a>
+  <nav class="nav-menu">
+    <ul>
+      <li><a href="index.html">Início</a></li>
+      <li><a href="projetos.html" class="active">Projetos</a></li>
+      <li><a href="lixo.html">Lixo Eletrônico</a></li>
+      <li><a href="ia.html">IA</a></li>
+      <li><a href="creditos.html">Créditos</a></li>
+    </ul>
   </nav>
 </header>
 
+<!-- Hero -->
 <section class="hero fade-in">
-  <h1>Projeto Recicla Tech</h1>
+  <h1>Bem-vindo ao Projeto Recicla Tech</h1>
   <p>Conscientizando e envolvendo a comunidade em iniciativas de reciclagem de lixo eletrônico.</p>
 </section>
 
+<!-- Projeto Texto -->
 <section class="projeto-text fade-in">
   <h2>Nosso Propósito</h2>
   <p>Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave.</p>
@@ -111,19 +191,28 @@
   </ul>
 </section>
 
-<div id="map" class="fade-in"></div>
+<!-- Mapa -->
+<div id="map"></div>
+
+<!-- Mascote -->
 <div class="mascote" id="mascote">🤖</div>
 <div class="balao" id="balao"></div>
+
+<!-- Canvases -->
 <canvas id="particles"></canvas>
 <canvas id="three-canvas"></canvas>
 
+<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-  // Navbar Hamburger
+  // Hamburger
   const hamburger = document.querySelector('.hamburger-toggle');
-  const nav = document.querySelector('header nav');
-  hamburger.addEventListener('click', ()=>{ hamburger.classList.toggle('open'); nav.classList.toggle('show'); });
+  const navMenu = document.querySelector('.nav-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    navMenu.classList.toggle('open');
+  });
 
   // Mascote
   const mascote = document.getElementById("mascote");
@@ -146,7 +235,10 @@
 
   // Fade-in
   function handleFadeIn() {
-    document.querySelectorAll('.fade-in').forEach(el=>{ if(el.getBoundingClientRect().top < window.innerHeight - 50){el.classList.add('visible');} });
+    document.querySelectorAll('.fade-in').forEach(el=>{
+      const rect=el.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 50){el.classList.add('visible');}
+    });
   }
   window.addEventListener('scroll', handleFadeIn);
   window.addEventListener('load', handleFadeIn);
@@ -160,52 +252,77 @@
   for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}
   function animateParticles(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='rgba(0,255,255,0.7)'; ctx.fill();
-      p.x+=p.dx; p.y+=p.dy;
-      if(p.x<0||p.x>canvas.width)p.dx*=-1;
-      if(p.y<0||p.y>canvas.height)p.dy*=-1;
-    });
+    particles.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='cyan';ctx.fill();});
     requestAnimationFrame(animateParticles);
   }
   animateParticles();
 
-  // Three.js Cubes 3D
+  // THREE.js Cubes
   const threeCanvas = document.getElementById('three-canvas');
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,0.1,1000);
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
   const renderer = new THREE.WebGLRenderer({canvas:threeCanvas, alpha:true});
-  renderer.setSize(window.innerWidth, window.innerHeight);
-  camera.position.z = 30;
-
-  const geometry = new THREE.BoxGeometry();
-  const material = new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
+  renderer.setSize(window.innerWidth,window.innerHeight);
+  camera.position.z=30;
+  const geometry=new THREE.BoxGeometry();
+  const material=new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
   const cubes=[];
-  for(let i=0;i<20;i++){ const cube=new THREE.Mesh(geometry,material); cube.position.set((Math.random()-0.5)*20,(Math.random()-0.5)*20,(Math.random()-0.5)*20); scene.add(cube); cubes.push(cube);}
-  function animateThree(){ requestAnimationFrame(animateThree); cubes.forEach(c=>{c.rotation.x+=0.01;c.rotation.y+=0.01;}); renderer.render(scene,camera);}
-  animateThree();
+  for(let i=0;i<50;i++){const cube=new THREE.Mesh(geometry,material); cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50); scene.add(cube); cubes.push(cube);}
+  const lines=[];
+  for(let i=0;i<50;i++){const a=cubes[i]; const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length]; const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z), new THREE.Vector3(b.position.x,b.position.y,b.position.z)]; const geometryLine=new THREE.BufferGeometry().setFromPoints(points); const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.6}); const line=new THREE.Line(geometryLine,lineMaterial); scene.add(line); lines.push({line,a,b,t:Math.random()});}
+  function animate3D(){
+    requestAnimationFrame(animate3D);
+    cubes.forEach(c=>{c.rotation.x+=0.002; c.rotation.y+=0.003;});
+    lines.forEach(obj=>{
+      obj.t+=0.01;
+      const posA=obj.a.position, posB=obj.b.position;
+      const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));
+      const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));
+      const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));
+      obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z), new THREE.Vector3(lerpX,lerpY,lerpZ)]);
+      obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);
+    });
+    camera.position.x=Math.sin(Date.now()*0.0005)*10;
+    camera.position.y=Math.cos(Date.now()*0.0005)*5;
+    camera.lookAt(0,0,0);
+    renderer.render(scene,camera);
+  }
+  animate3D();
   window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight);});
 
-  // Mapa
-  const map = L.map('map').setView([-7.846, -35.253], 13);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{ attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors' }).addTo(map);
+  // Mapa Leaflet
+  const map = L.map('map').setView([-7.744, -35.228], 13);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+    maxZoom:19, attribution:'&copy; OpenStreetMap contributors'
+  }).addTo(map);
 
   const escolas = [
     { nome: 'EREM Professor Cândido de Andrade Maciel', lat: -7.8443, lon: -35.2573, status: 'Pendente' },
-    { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.8504, lon: -35.2590, status: 'Pendente' },
-    { nome: 'Escola Municipal Professor José Alves', lat: -7.8475, lon: -35.2602, status: 'Pendente' },
+    { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.8504, lon: -35.2498, status: 'Pendente' },
     { nome: 'EREM Deputado João Teobaldo de Azevedo', lat: -7.8430, lon: -35.2520, status: 'Pendente' },
-    { nome: 'Colégio Recicla Tech', lat: -7.8498, lon: -35.2485, status: 'Pendente' }
+    { nome: 'Escola de Aplicação Professor Chaves (UPE)', lat: -7.7435, lon: -35.2281, status: 'Em funcionamento' },
+    { nome: 'EREM Dom Carlos Coelho', lat: -7.7441, lon: -35.2255, status: 'Pendente' },
+    { nome: 'Escola Estadual Capitão Plínio de Souza Monteiro', lat: -7.7408, lon: -35.2269, status: 'Pendente' }
   ];
 
-  escolas.forEach(escola=>{
-    const marker=L.marker([escola.lat,escola.lon]).addTo(map);
-    marker.bindPopup(`<b>${escola.nome}</b><br>Status: ${escola.status}`);
+  escolas.forEach(e => {
+    const color = e.status === 'Em funcionamento' ? 'green' : 'cyan';
+    const marker = L.circleMarker([e.lat, e.lon], {
+      color: color,
+      fillColor: color,
+      fillOpacity: 0.8,
+      radius: 10
+    }).addTo(map);
+    marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
   });
 
-  const legend = L.control({position: 'bottomright'});
-  legend.onAdd = function(map){
-    const div=L.DomUtil.create('div','map-legend'); div.innerHTML='<i style="background:#00f2ff"></i> Pontos de Coleta'; return div;
+  const legend = L.control({position:'bottomright'});
+  legend.onAdd = function(){
+    const div = L.DomUtil.create('div','map-legend');
+    div.innerHTML += '<h4>Status dos Pontos</h4>';
+    div.innerHTML += '<i style="background: green"></i> Em funcionamento<br>';
+    div.innerHTML += '<i style="background: cyan"></i> Pendente';
+    return div;
   };
   legend.addTo(map);
 </script>
