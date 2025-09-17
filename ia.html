@@ -22,69 +22,41 @@ body {
 }
 
 /* HEADER */
-header {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  padding: 10px 20px;
-  background: rgba(41,100,142,0.9);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 1000;
+header { 
+  position:fixed; top:0; left:0; width:100%; padding:20px; 
+  display:flex; align-items:center; z-index:1000; 
 }
-.logo img { height: 40px; margin-right: 20px; }
+.left { display:flex; align-items:center; }
 
 /* HAMBURGER */
 .hamburger-toggle {
-  position: relative;
-  z-index: 1001;
-  background: none;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 30px;
-  height: 24px;
+  position:relative; z-index:1001; background:none; border:none; cursor:pointer;
+  display:flex; flex-direction:column; justify-content:space-around;
+  width:30px; height:24px;
 }
 .hamburger-toggle .bar {
-  display: block;
-  width: 100%;
-  height: 3px;
-  background: var(--light-neutral);
-  border-radius: 3px;
-  transition: all 0.3s ease-in-out;
+  display:block; width:100%; height:3px; background:var(--light-neutral);
+  border-radius:3px; transition: all 0.3s ease-in-out;
 }
 .hamburger-toggle.open .bar:nth-child(1) { transform: rotate(45deg) translate(5px,6px); }
-.hamburger-toggle.open .bar:nth-child(2) { opacity: 0; }
+.hamburger-toggle.open .bar:nth-child(2) { opacity:0; }
 .hamburger-toggle.open .bar:nth-child(3) { transform: rotate(-45deg) translate(5px,-6px); }
 
 /* NAV MENU */
 .nav-menu {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 280px;
-  height: 100vh;
-  background: var(--dark-blue);
-  padding-top: 100px;
-  padding-left: 30px;
-  transform: translateX(-100%);
-  transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
-  z-index: 999;
+  position:fixed; top:0; left:0; width:280px; height:100vh;
+  background: var(--dark-blue); padding-top:100px; padding-left:30px;
+  transform:translateX(-100%); transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+  z-index:999;
 }
-.nav-menu.open { transform: translateX(0); }
-.nav-menu ul { list-style: none; }
-.nav-menu ul li { margin-bottom: 25px; }
+.nav-menu.open { transform:translateX(0); }
+.nav-menu ul { list-style:none; }
+.nav-menu ul li { margin-bottom:25px; }
 .nav-menu ul li a {
-  color: var(--light-neutral);
-  text-decoration: none;
-  font-size: 1.5rem;
-  font-weight: bold;
-  transition: color 0.2s ease;
+  color:var(--light-neutral); text-decoration:none; font-size:1.5rem;
+  font-weight:bold; transition:color 0.2s ease;
 }
-.nav-menu ul li a:hover, .nav-menu ul li a.active { color: var(--neon-cyan); }
+.nav-menu ul li a:hover, .nav-menu ul li a.active { color:var(--neon-cyan); }
 
 /* HERO */
 section.hero {
@@ -104,12 +76,10 @@ section.hero p {
   color: var(--light-neutral);
 }
 
-/* CANVAS PARTICLES E 3D */
+/* CANVAS */
 canvas#particles, canvas#three-canvas {
-  position: fixed; top:0; left:0;
-  width:100%; height:100%;
-  pointer-events: none;
-  z-index:0;
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  pointer-events: none; z-index:0;
 }
 </style>
 </head>
@@ -117,20 +87,21 @@ canvas#particles, canvas#three-canvas {
 <canvas id="particles"></canvas>
 <canvas id="three-canvas"></canvas>
 
+<!-- ===== Header ===== -->
 <header>
-  <div class="logo">
-    <img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/Free.png?raw=true" alt="Logo Recicla Tech">
+  <div class="left">
+    <button class="hamburger-toggle" aria-label="Abrir menu">
+      <span class="bar"></span>
+      <span class="bar"></span>
+      <span class="bar"></span>
+    </button>
   </div>
-  <button class="hamburger-toggle" aria-label="Abrir menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </button>
 </header>
 
+<!-- ===== Menu ===== -->
 <nav class="nav-menu">
   <ul>
-    <li><a href="index.html">Home</a></li>
+    <li><a href="index.html">Início</a></li>
     <li><a href="projetos.html">Projetos</a></li>
     <li><a href="lixo.html">Lixo Eletrônico</a></li>
     <li><a href="ia.html" class="active">IA</a></li>
@@ -138,6 +109,7 @@ canvas#particles, canvas#three-canvas {
   </ul>
 </nav>
 
+<!-- HERO -->
 <section class="hero">
   <h1>Converse com nossa IA</h1>
   <p>Use o chat no canto inferior direito para interagir com a Recicla Tech IA.</p>
@@ -146,13 +118,13 @@ canvas#particles, canvas#three-canvas {
 <!-- SCRIPT CHATFUEL -->
 <script>
 (function() {
-	var script = document.createElement('script');
-	script.dataset.bot = "68ca0c144662ac97ea0be150";
-	script.dataset.zindex = "99999";
-	script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
-	script.async = true;
-	script.defer = true;
-	document.getElementsByTagName('head')[0].appendChild(script);
+ var script = document.createElement('script');
+ script.dataset.bot = "68ca0c144662ac97ea0be150";
+ script.dataset.zindex = "99999";
+ script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
+ script.async = true;
+ script.defer = true;
+ document.getElementsByTagName('head')[0].appendChild(script);
 })()
 </script>
 
@@ -235,7 +207,7 @@ function animate3D(){
 }
 animate3D();
 
-// --- HAMBURGER MOBILE / SEMPRE ---
+// --- HAMBURGER ---
 const hamburgerToggle = document.querySelector('.hamburger-toggle');
 const navMenu = document.querySelector('.nav-menu');
 hamburgerToggle.addEventListener('click', () => {
