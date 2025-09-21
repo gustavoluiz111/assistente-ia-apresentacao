@@ -20,7 +20,7 @@
     height: 70px;
     background: rgba(10,15,30,0.95);
     display: flex;
-    justify-content: flex-start; /* Alinha items à esquerda */
+    justify-content: flex-start;
     align-items: center;
     padding: 0 25px;
     position: fixed;
@@ -31,7 +31,7 @@
   header.navbar nav {
     display: flex;
     gap: 25px;
-    margin-left: 20px; /* Espaço entre hamburger e menu lateral */
+    margin-left: 20px;
   }
   header.navbar nav a {
     text-decoration: none;
@@ -138,10 +138,15 @@
   <h2>Conheça Nossos Pilares</h2>
   <ul>
     <li><b>Educação Ambiental:</b> Conscientizar a comunidade escolar sobre o descarte correto e impactos do e-lixo.</li>
-    <li><b>Pontos de Coleta Estratégicos:</b> Pontos de coleta em escolas, acessíveis e seguros.</li>
+    <li><b>Pontos de Coleta Estratégicos:</b> Instalação de pontos em escolas, acessíveis e seguros para toda a comunidade.</li>
     <li><b>Inovação e Economia Circular:</b> Transformar o lixo eletrônico em novos produtos, reduzindo impacto ambiental.</li>
     <li><b>Avaliação e Melhoria Contínua:</b> Monitorar resíduos coletados e impacto das ações.</li>
   </ul>
+
+  <h2>Onde Encontrar os Pontos de Coleta</h2>
+  <p>Os pontos de coleta estão distribuídos em diversas escolas da região. No mapa abaixo você pode visualizar a localização exata de cada ponto. 
+  Basta clicar sobre os marcadores para ver o nome da escola e o status de funcionamento.</p>
+  <p><b>Legenda:</b> Os pontos em <span style="color:lime;">verde</span> já estão ativos, enquanto os em <span style="color:cyan;">azul-claro</span> ainda estão em preparação.</p>
 </section>
 
 <!-- Mapa -->
@@ -219,7 +224,7 @@
   }
   animate3D();
   window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight);});
-<script>
+
   // Mapa Leaflet
   const map = L.map('map').setView([-7.744, -35.228], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
