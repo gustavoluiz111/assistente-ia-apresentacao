@@ -219,7 +219,7 @@
   }
   animate3D();
   window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight);});
-
+<script>
   // Mapa Leaflet
   const map = L.map('map').setView([-7.744, -35.228], 13);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
@@ -227,12 +227,21 @@
   }).addTo(map);
 
   const escolas = [
-    { nome: 'EREM Professor Cândido de Andrade Maciel', lat: -7.8443, lon: -35.2573, status: 'Pendente' },
-    { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.8504, lon: -35.2498, status: 'Pendente' },
-    { nome: 'EREM Deputado João Teobaldo de Azevedo', lat: -7.8430, lon: -35.2520, status: 'Pendente' },
-    { nome: 'Escola de Aplicação Professor Chaves (UPE)', lat: -7.7435, lon: -35.2281, status: 'Em funcionamento' },
-    { nome: 'EREM Dom Carlos Coelho', lat: -7.7441, lon: -35.2255, status: 'Pendente' },
-    { nome: 'Escola Estadual Capitão Plínio de Souza Monteiro', lat: -7.7408, lon: -35.2269, status: 'Pendente' }
+    { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.839853, lon: -35.253616, status: 'Pendente' },
+    { nome: 'Escola Deputado João Teobaldo de Azevedo', lat: -7.846947, lon: -35.267812, status: 'Pendente' },
+    { nome: 'Escola de Referência em Ensino Médio João Cavalcanti Petribu', lat: -7.846344, lon: -35.257469, status: 'Pendente' },
+    { nome: 'Escola José de Lima Júnior', lat: -7.842864, lon: -35.254117, status: 'Pendente' },
+    { nome: 'Escola Paula Frassinetti', lat: -7.845329, lon: -35.240171, status: 'Pendente' },
+    { nome: 'Escola Lions Clube de Carpina', lat: -7.839892, lon: -35.261351, status: 'Pendente' },
+    { nome: 'Escola São José', lat: -7.843979, lon: -35.261675, status: 'Pendente' },
+    { nome: 'Escola Aluísio Germano', lat: -7.849941, lon: -35.241131, status: 'Pendente' },
+    { nome: 'Escola de Referência em Ensino Médio Joaquim Olavo', lat: -7.844405, lon: -35.251114, status: 'Pendente' },
+    { nome: 'Escola Capitão Plínio de Souza Monteiro', lat: -7.749398, lon: -35.234594, status: 'Pendente' },
+    { nome: 'Escola de Aplicação Professor Chaves (UPE)', lat: -7.742388, lon: -35.229340, status: 'Em funcionamento' },
+    { nome: 'Escola de Referência em Ensino Médio Don Vieira', lat: -7.745560, lon: -35.233144, status: 'Pendente' },
+    { nome: 'Escola de Referência em Ensino Médio Maciel Monteiro', lat: -7.742804, lon: -35.227646, status: 'Pendente' },
+    { nome: 'Escola Dom Carlos Coelho', lat: -7.741051, lon: -35.223180, status: 'Pendente' },
+    { nome: 'Escola Dom Ricardo Vilela', lat: -7.732034, lon: -35.219329, status: 'Pendente' }
   ];
 
   escolas.forEach(e => {
