@@ -9,7 +9,7 @@
   /* ===== Reset ===== */
   * { margin:0; padding:0; box-sizing:border-box; }
   body { font-family:'Orbitron', sans-serif; background:#0a0a1a; color:#caf5f7; overflow-x:hidden; }
-  
+
   /* ===== Canvas ===== */
   #particles, #three-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
 
@@ -31,17 +31,58 @@
   .nav-menu ul li a:hover, .nav-menu ul li a.active { color:#00f2ff; }
 
   /* ===== Hero ===== */
-  .hero { display:flex; flex-direction:column; justify-content:center; align-items:center; height:100vh; text-align:center; }
+  .hero { display:flex; flex-direction:column; justify-content:center; align-items:center; height:80vh; text-align:center; padding-top:40px; }
   .hero h1 { font-size:2.5rem; color:#caf5f7; }
   .hero p { margin-top:15px; font-size:1.2rem; color:#caf5f7; }
 
   /* ===== Carrossel ===== */
-  .container { height:400px; width:90%; max-width:1100px; border-radius:1em; overflow:hidden; box-shadow:0 10px 20px rgba(0,0,0,0.4); margin:40px auto; }
-  .palette { display:flex; height:100%; width:100%; }
-  .foto { flex:1; transition:flex 0.3s ease-in-out; overflow:hidden; position:relative; cursor:pointer; }
-  .foto img { width:100%; height:100%; object-fit:cover; transition: transform 0.4s ease, filter 0.4s ease; }
-  .foto:hover { flex:3; }
-  .foto:hover img { transform:scale(1.1); filter:brightness(1.1); }
+  .carousel-container {
+    width:90%;
+    max-width:1100px;
+    margin: -40px auto 40px auto; /* subindo o carrossel */
+    overflow:hidden;
+    border-radius:1em;
+    box-shadow:0 10px 20px rgba(0,0,0,0.4);
+  }
+  .carousel-palette {
+    display:flex;
+    transition: transform 0.3s ease;
+  }
+  .carousel-foto {
+    flex:1;
+    overflow:hidden;
+    position:relative;
+    cursor:pointer;
+    transition:flex 0.3s ease-in-out;
+  }
+  .carousel-foto img {
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform 0.4s ease, filter 0.4s ease;
+  }
+  .carousel-foto:hover {
+    flex:3;
+  }
+  .carousel-foto:hover img {
+    transform:scale(1.1);
+    filter:brightness(1.1);
+  }
+
+  /* ===== Ajuste Mobile ===== */
+  @media (max-width: 768px) {
+    .carousel-container {
+      width:95%;
+      margin:-20px auto 30px auto;
+    }
+    .carousel-foto:hover {
+      flex:1.5;
+    }
+    .hero {
+      padding-top:20px;
+      height:60vh;
+    }
+  }
 </style>
 </head>
 <body>
@@ -77,16 +118,15 @@
   </section>
 
   <!-- ===== Carrossel ===== -->
- <div class="container">
-  <div class="palette">
-    <div class="foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(1).jpg?raw=true" alt="Foto 1"></div>
-    <div class="foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(2).jpg?raw=true" alt="Foto 2"></div>
-    <div class="foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(3).jpg?raw=true" alt="Foto 3"></div>
-    <div class="foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(4).jpg?raw=true" alt="Foto 4"></div>
-    <div class="foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(5).jpg?raw=true" alt="Foto 5"></div>
+  <div class="carousel-container">
+    <div class="carousel-palette">
+      <div class="carousel-foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(1).jpg?raw=true" alt="Foto 1"></div>
+      <div class="carousel-foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(2).jpg?raw=true" alt="Foto 2"></div>
+      <div class="carousel-foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(3).jpg?raw=true" alt="Foto 3"></div>
+      <div class="carousel-foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(4).jpg?raw=true" alt="Foto 4"></div>
+      <div class="carousel-foto"><img src="https://github.com/gustavoluiz111/assistente-ia-apresentacao/blob/main/foto%20(5).jpg?raw=true" alt="Foto 5"></div>
+    </div>
   </div>
-</div>
-
 
   <!-- ===== Scripts ===== -->
   <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
