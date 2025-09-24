@@ -31,7 +31,7 @@ header {
 .hamburger-toggle {
   position:relative; z-index:1001; background:none; border:none; cursor:pointer;
   display:flex; flex-direction:column; justify-content:space-around;
-  width:40px; height:32px; /* aumentado */
+  width:40px; height:32px;
 }
 .hamburger-toggle .bar {
   display:block; width:100%; height:4px; background:var(--light-neutral);
@@ -79,6 +79,30 @@ canvas#particles, canvas#three-canvas {
   position: fixed; top:0; left:0; width:100%; height:100%;
   pointer-events: none; z-index:0;
 }
+
+/* MICROFONE FIXO */
+#micButton {
+  position: fixed;
+  bottom: 90px;   /* acima da borda */
+  left: 20px;     /* lado oposto ao chatfuel */
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: none;
+  background: var(--neon-cyan);
+  color: var(--dark-blue);
+  font-size: 1.5rem;
+  cursor: pointer;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 15px var(--neon-cyan);
+}
+#micButton.listening {
+  background: red;
+  color: white;
+}
 </style>
 </head>
 <body>
@@ -118,6 +142,9 @@ canvas#particles, canvas#three-canvas {
     Quando ele surgir, clique e comece a conversar com a nossa IA! 🤖
   </p>
 </section>
+
+<!-- Botão do microfone -->
+<button id="micButton" title="Falar com a IA 🎤">🎤</button>
 
 <!-- ===== Scripts ===== -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
@@ -225,6 +252,73 @@ window.addEventListener('resize',()=>{
   script.defer = true;
   document.getElementsByTagName('head')[0].appendChild(script);
 })()
+</script>
+
+<!-- ===== Web Speech API ===== -->
+<script>
+// Falar texto
+function falar(texto) {
+  const utter = new SpeechSynthesisUtterance(texto);
+  utter.lang = "pt-BR";
+  speechSynthesis.speak(utter);
+}
+
+// Reconhecer fala
+function escutar(micButton) {
+  if (!('webkitSpeechRecognition' in window)) {
+    alert("Seu navegador não suporta reconhecimento de voz.");
+    return;
+  }
+  const recognition = new webkitSpeechRecognition();
+  recognition.lang = "pt-BR";
+  recognition.continuous = false;
+  recognition.interimResults = false;
+
+  recognition.onstart = () => micButton.classList.add("listening");
+  recognition.onend = () => micButton.classList.remove("listening");
+
+  recognition.onresult = function(event) {
+    const textoUsuario = event.results[0][0].transcript;
+    console.log("Usuário disse:", textoUsuario);
+
+    // Enviar para o Chatfuel
+    const input = document.querySelector(".cf-textarea");
+    const btn = document.querySelector(".cf-send-button");
+    if (input && btn) {
+      input.value = textoUsuario;
+      btn.click();
+    }
+  };
+
+  recognition.start();
+}
+
+// Observar mensagens do bot e falar
+const observer = new MutationObserver(mutations => {
+  mutations.forEach(mutation => {
+    mutation.addedNodes.forEach(node => {
+      if (node.nodeType === 1 && node.classList.contains("cf-message") && node.classList.contains("cf-bot")) {
+        const texto = node.innerText.trim();
+        if (texto) falar(texto);
+      }
+    });
+  });
+});
+
+window.addEventListener("load", () => {
+  // Ativar observer no chat
+  const check = setInterval(() => {
+    const chat = document.querySelector(".cf-chat__messages");
+    if (chat) {
+      observer.observe(chat, { childList: true, subtree: true });
+      clearInterval(check);
+    }
+  }, 1000);
+
+  // Botão microfone
+  const micButton = document.getElementById("micButton");
+  micButton.addEventListener("click", () => escutar(micButton));
+});
 </script>
 
 </body>
