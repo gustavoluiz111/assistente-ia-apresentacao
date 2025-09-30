@@ -629,4 +629,37 @@
   color: #333;
   border-bottom-left-radius: 4px;
 }
+/* ===== AJUSTE PARA LABELS VIRAREM BOTÕES ===== */
+.label-files,
+.label-voice,
+.label-text {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;         /* mãozinha */
+  border: none;
+  background: transparent; /* mantém o visual */
+  padding: 6px;
+  border-radius: 8px;
+  transition: background 0.2s ease;
+}
+
+/* Hover/Focus para parecer clicável */
+.label-files:hover,
+.label-voice:hover,
+.label-text:hover,
+.label-files:focus,
+.label-voice:focus,
+.label-text:focus {
+  background: rgba(0,0,0,0.05);
+  outline: none;
+}
+
+/* Ativo (quando clicar) */
+.label-files:active,
+.label-voice:active,
+.label-text:active {
+  background: rgba(0,0,0,0.15);
+  transform: scale(0.95);
+}
 
