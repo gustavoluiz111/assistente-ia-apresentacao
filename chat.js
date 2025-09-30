@@ -1,106 +1,70 @@
-const chatWindow = document.getElementById("chat-window");
-const userInput = document.getElementById("user-input");
-const sendBtn = document.getElementById("send-btn");
-const voiceBtn = document.getElementById("voice-btn");
+// Seleção de elementos
+const inputText = document.getElementById('input-text');
+const chatContainer = document.getElementById('chat');
+const uploadFileBtn = document.getElementById('upload-file');
+const uploadImageBtn = document.getElementById('upload-image');
+const uploadCameraBtn = document.getElementById('upload-camera');
+const voiceToggle = document.getElementById('input-voice');
 
-let baseConhecimento = {};
-let sinonimos = {
-  "oi": ["olá", "opa", "e aí", "salve"],
-  "tchau": ["falou", "até mais", "até logo"],
-  "qual é o seu nome": ["seu nome", "quem é você", "quem é vc"],
-  "eco": ["ecorobos", "eco robôs", "eco-robôs"]
-};
-
-// --- Carregar JSON ---
-fetch("perguntas.json")
-  .then(res => res.json())
-  .then(data => {
-    // Converte array [{question, answer}] em objeto {question: answer}
-    baseConhecimento = {};
-    data.forEach(item => {
-      if (item.question && item.answer) {
-        baseConhecimento[item.question.toLowerCase()] = item.answer;
-      }
-    });
-  });
-
-// --- Adiciona mensagem na tela ---
-function addMessage(text, sender) {
-  const msg = document.createElement("div");
-  msg.classList.add("message", sender);
-  msg.textContent = text;
-  chatWindow.appendChild(msg);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
+// Função para criar mensagens no chat
+function addMessage(content, type = 'user') {
+  const msg = document.createElement('div');
+  msg.classList.add('message', type);
+  msg.textContent = content;
+  chatContainer.appendChild(msg);
+  chatContainer.scrollTop = chatContainer.scrollHeight; // rolar para baixo
 }
 
-// --- Função de resposta ---
-function responder(pergunta) {
-  const chave = pergunta.toLowerCase().trim();
-
-  // 1. Busca exata
-  if (baseConhecimento[chave]) {
-    return baseConhecimento[chave];
+// Enviar mensagem ao pressionar Enter
+inputText.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter' && inputText.value.trim() !== '') {
+    addMessage(inputText.value, 'user');
+    inputText.value = '';
+    // Aqui você pode chamar sua API de IA e adicionar a resposta:
+    // addMessage(respostaIA, 'ai');
   }
-
-  // 2. Busca por sinônimos
-  for (let original in sinonimos) {
-    if (sinonimos[original].some(p => chave.includes(p))) {
-      return baseConhecimento[original] || "Certo, mas não encontrei resposta.";
-    }
-  }
-
-  // 3. Busca por palavra dentro da frase
-  for (let key in baseConhecimento) {
-    if (chave.includes(key)) {
-      return baseConhecimento[key];
-    }
-  }
-
-  return "Desculpe, não entendi. Pode reformular?";
-}
-
-// --- Função de resposta com "digitando..." ---
-function respostaIAComDigitando(pergunta) {
-  const digitando = document.createElement("div");
-  digitando.classList.add("message", "bot");
-  digitando.textContent = "digitando...";
-  chatWindow.appendChild(digitando);
-  chatWindow.scrollTop = chatWindow.scrollHeight;
-
-  setTimeout(() => {
-    const resposta = responder(pergunta);
-    digitando.textContent = resposta;
-    chatWindow.scrollTop = chatWindow.scrollHeight;
-  }, 800 + Math.random() * 1200);
-}
-
-// --- Envio de texto ---
-function enviarTexto() {
-  const texto = userInput.value.trim();
-  if (!texto) return;
-  addMessage(texto, "user");
-  userInput.value = "";
-  respostaIAComDigitando(texto);
-}
-
-sendBtn.addEventListener("click", enviarTexto);
-userInput.addEventListener("keypress", e => {
-  if (e.key === "Enter") enviarTexto();
 });
 
-// --- Reconhecimento de voz ---
-const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
-if (SpeechRecognition) {
-  const recognition = new SpeechRecognition();
-  recognition.lang = "pt-BR";
-
-  voiceBtn.addEventListener("click", () => {
-    recognition.start();
-  });
-
-  recognition.onresult = (event) => {
-    const texto = event.results[0][0].transcript;
-    addMessage(texto, "user");
-    respostaIAComDigitando(texto);
+// Upload de arquivos
+uploadFileBtn.addEventListener('click', () => {
+  const fileInput = document.createElement('input');
+  fileInput.type = 'file';
+  fileInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) addMessage(`Arquivo enviado: ${file.name}`, 'user');
   };
-}
+  fileInput.click();
+});
+
+uploadImageBtn.addEventListener('click', () => {
+  const imgInput = document.createElement('input');
+  imgInput.type = 'file';
+  imgInput.accept = 'image/*';
+  imgInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) addMessage(`Imagem enviada: ${file.name}`, 'user');
+  };
+  imgInput.click();
+});
+
+uploadCameraBtn.addEventListener('click', () => {
+  const camInput = document.createElement('input');
+  camInput.type = 'file';
+  camInput.accept = 'image/*';
+  camInput.capture = 'environment';
+  camInput.onchange = (e) => {
+    const file = e.target.files[0];
+    if (file) addMessage(`Foto tirada: ${file.name}`, 'user');
+  };
+  camInput.click();
+});
+
+// Toggle voz (apenas visual)
+voiceToggle.addEventListener('change', () => {
+  if (voiceToggle.checked) {
+    console.log('Gravação de voz ativada');
+    // Aqui você pode iniciar gravação real com Web Speech API
+  } else {
+    console.log('Gravação de voz desativada');
+  }
+});
