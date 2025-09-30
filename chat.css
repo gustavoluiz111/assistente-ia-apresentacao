@@ -1,6 +1,6 @@
 .container-ia-chat {
   position: fixed;
-  bottom: 360px;
+  bottom: 130px;
   left: 360px;
   display: flex;
   align-items: center;
@@ -574,92 +574,58 @@
   100% {
     transform: scale(0.97);
   }
-/* ===== ESTILIZAÇÃO DO CHAT WINDOW E MENSAGENS ===== */
-.chat-window {
-  position: fixed;
-  bottom: 430px; /* fica logo acima do container-ia-chat */
-  left: 360px;
-  width: 360px;
-  max-height: 400px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+}
+/* === Seção de mensagens do chat === */
+.chat-messages {
+  position: absolute;
+  bottom: 80px; /* ajusta acima da área de input */
+  left: 0;
+  width: 100%;
+  max-height: 280px;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  padding: 10px;
-  overflow-y: auto;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  gap: 8px;
+  padding: 0 10px;
+  box-sizing: border-box;
   z-index: 999;
 }
 
-.chat-window::-webkit-scrollbar {
-  width: 6px;
-}
-.chat-window::-webkit-scrollbar-thumb {
-  background: #b6b6b6;
-  border-radius: 6px;
-}
-.chat-window::-webkit-scrollbar-thumb:hover {
-  background: #8a8a8a;
-}
-
-/* Mensagens genéricas */
 .message {
-  max-width: 75%;
-  padding: 8px 12px;
-  margin: 6px 0;
-  border-radius: 12px;
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: 16px;
   font-size: 14px;
-  line-height: 1.3;
+  line-height: 18px;
   word-wrap: break-word;
+  animation: fadeIn 0.3s ease-out;
 }
 
-/* Mensagem do usuário */
 .message.user {
   align-self: flex-end;
-  background: linear-gradient(135deg, #9147ff, #ff4141);
+  background-color: #9147ff;
   color: #fff;
   border-bottom-right-radius: 4px;
 }
 
-/* Mensagem do bot */
 .message.bot {
   align-self: flex-start;
-  background: #f1f1f1;
-  color: #333;
+  background-color: #e9e9e9;
+  color: #4c4c4c;
   border-bottom-left-radius: 4px;
 }
-/* ===== AJUSTE PARA LABELS VIRAREM BOTÕES ===== */
-.label-files,
-.label-voice,
-.label-text {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;         /* mãozinha */
-  border: none;
-  background: transparent; /* mantém o visual */
-  padding: 6px;
-  border-radius: 8px;
-  transition: background 0.2s ease;
+
+/* Scrollbar opcional para o container */
+.chat-messages::-webkit-scrollbar {
+  width: 6px;
 }
 
-/* Hover/Focus para parecer clicável */
-.label-files:hover,
-.label-voice:hover,
-.label-text:hover,
-.label-files:focus,
-.label-voice:focus,
-.label-text:focus {
-  background: rgba(0,0,0,0.05);
-  outline: none;
+.chat-messages::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 3px;
 }
 
-/* Ativo (quando clicar) */
-.label-files:active,
-.label-voice:active,
-.label-text:active {
-  background: rgba(0,0,0,0.15);
-  transform: scale(0.95);
+@keyframes fadeIn {
+  from {opacity: 0; transform: translateY(10px);}
+  to {opacity: 1; transform: translateY(0);}
 }
-
