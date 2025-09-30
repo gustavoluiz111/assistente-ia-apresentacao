@@ -1,70 +1,92 @@
-// Seleção de elementos
-const inputText = document.getElementById('input-text');
-const chatContainer = document.getElementById('chat');
-const uploadFileBtn = document.getElementById('upload-file');
-const uploadImageBtn = document.getElementById('upload-image');
-const uploadCameraBtn = document.getElementById('upload-camera');
-const voiceToggle = document.getElementById('input-voice');
+// chat.js
 
-// Função para criar mensagens no chat
-function addMessage(content, type = 'user') {
-  const msg = document.createElement('div');
-  msg.classList.add('message', type);
-  msg.textContent = content;
-  chatContainer.appendChild(msg);
-  chatContainer.scrollTop = chatContainer.scrollHeight; // rolar para baixo
-}
+document.addEventListener("DOMContentLoaded", () => {
+  const inputText = document.getElementById("input-text");
+  const labelText = document.querySelector(".label-text");
+  const containerChat = document.querySelector(".container-ia-chat");
 
-// Enviar mensagem ao pressionar Enter
-inputText.addEventListener('keypress', (e) => {
-  if (e.key === 'Enter' && inputText.value.trim() !== '') {
-    addMessage(inputText.value, 'user');
-    inputText.value = '';
-    // Aqui você pode chamar sua API de IA e adicionar a resposta:
-    // addMessage(respostaIA, 'ai');
+  // Criar área de mensagens (se não existir)
+  let chatWindow = document.querySelector(".chat-window");
+  if (!chatWindow) {
+    chatWindow = document.createElement("div");
+    chatWindow.classList.add("chat-window");
+    containerChat.parentNode.insertBefore(chatWindow, containerChat);
   }
-});
 
-// Upload de arquivos
-uploadFileBtn.addEventListener('click', () => {
-  const fileInput = document.createElement('input');
-  fileInput.type = 'file';
-  fileInput.onchange = (e) => {
-    const file = e.target.files[0];
-    if (file) addMessage(`Arquivo enviado: ${file.name}`, 'user');
-  };
-  fileInput.click();
-});
-
-uploadImageBtn.addEventListener('click', () => {
-  const imgInput = document.createElement('input');
-  imgInput.type = 'file';
-  imgInput.accept = 'image/*';
-  imgInput.onchange = (e) => {
-    const file = e.target.files[0];
-    if (file) addMessage(`Imagem enviada: ${file.name}`, 'user');
-  };
-  imgInput.click();
-});
-
-uploadCameraBtn.addEventListener('click', () => {
-  const camInput = document.createElement('input');
-  camInput.type = 'file';
-  camInput.accept = 'image/*';
-  camInput.capture = 'environment';
-  camInput.onchange = (e) => {
-    const file = e.target.files[0];
-    if (file) addMessage(`Foto tirada: ${file.name}`, 'user');
-  };
-  camInput.click();
-});
-
-// Toggle voz (apenas visual)
-voiceToggle.addEventListener('change', () => {
-  if (voiceToggle.checked) {
-    console.log('Gravação de voz ativada');
-    // Aqui você pode iniciar gravação real com Web Speech API
-  } else {
-    console.log('Gravação de voz desativada');
+  // Função para adicionar mensagens no chat
+  function addMessage(content, sender = "user") {
+    const msg = document.createElement("div");
+    msg.classList.add("message", sender);
+    msg.innerText = content;
+    chatWindow.appendChild(msg);
+    chatWindow.scrollTop = chatWindow.scrollHeight; // sempre rola pro fim
   }
+
+  // Simulação de resposta da IA
+  function botResponse(userMessage) {
+    // Aqui você poderia chamar sua API (ex.: OpenAI)
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve("🤖 Resposta da IA para: " + userMessage);
+      }, 1000);
+    });
+  }
+
+  // Enviar mensagem ao apertar botão ou Enter
+  async function sendMessage() {
+    const text = inputText.value.trim();
+    if (text === "") return;
+
+    addMessage(text, "user");
+    inputText.value = "";
+
+    const response = await botResponse(text);
+    addMessage(response, "bot");
+  }
+
+  // Clique no botão de enviar
+  labelText.addEventListener("click", sendMessage);
+
+  // Pressionar Enter também envia
+  inputText.addEventListener("keydown", (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
+  });
+
+  // ====== Função de voz (simples usando Web Speech API) ======
+  const inputVoice = document.getElementById("input-voice");
+  const labelVoice = document.querySelector(".label-voice");
+
+  if ("webkitSpeechRecognition" in window) {
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = "pt-BR";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    labelVoice.addEventListener("click", () => {
+      if (inputVoice.checked) {
+        recognition.start();
+      } else {
+        recognition.stop();
+      }
+    });
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      inputText.value = transcript;
+    };
+  }
+
+  // ====== Upload de arquivos (só exibe nome por enquanto) ======
+  const inputFiles = document.getElementById("input-files");
+
+  inputFiles.addEventListener("change", () => {
+    if (inputFiles.files.length > 0) {
+      [...inputFiles.files].forEach((file) => {
+        addMessage("📎 Arquivo anexado: " + file.name, "user");
+      });
+    }
+  });
 });
