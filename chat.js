@@ -2,10 +2,16 @@
 
 document.addEventListener("DOMContentLoaded", () => {
   const inputText = document.getElementById("input-text");
-  const labelText = document.querySelector(".label-text");
+  const inputVoice = document.getElementById("input-voice");
+  const inputFiles = document.getElementById("input-files");
+
+  const btnSend = document.querySelector(".label-text");
+  const btnVoice = document.querySelector(".label-voice");
+  const btnFiles = document.querySelector(".label-files");
+
   const containerChat = document.querySelector(".container-ia-chat");
 
-  // Criar área de mensagens (se não existir)
+  // ===== Criar janela de chat se não existir =====
   let chatWindow = document.querySelector(".chat-window");
   if (!chatWindow) {
     chatWindow = document.createElement("div");
@@ -13,41 +19,39 @@ document.addEventListener("DOMContentLoaded", () => {
     containerChat.parentNode.insertBefore(chatWindow, containerChat);
   }
 
-  // Função para adicionar mensagens no chat
+  // ===== Função para adicionar mensagens =====
   function addMessage(content, sender = "user") {
     const msg = document.createElement("div");
     msg.classList.add("message", sender);
     msg.innerText = content;
     chatWindow.appendChild(msg);
-    chatWindow.scrollTop = chatWindow.scrollHeight; // sempre rola pro fim
+    chatWindow.scrollTop = chatWindow.scrollHeight;
   }
 
-  // Simulação de resposta da IA
+  // ===== Função do bot (simulação) =====
   function botResponse(userMessage) {
-    // Aqui você poderia chamar sua API (ex.: OpenAI)
     return new Promise((resolve) => {
       setTimeout(() => {
-        resolve("🤖 Resposta da IA para: " + userMessage);
+        resolve("🤖 Resposta da IA: " + userMessage);
       }, 1000);
     });
   }
 
-  // Enviar mensagem ao apertar botão ou Enter
+  // ===== Enviar mensagem =====
   async function sendMessage() {
     const text = inputText.value.trim();
-    if (text === "") return;
-
+    if (!text) return;
     addMessage(text, "user");
     inputText.value = "";
-
     const response = await botResponse(text);
     addMessage(response, "bot");
   }
 
-  // Clique no botão de enviar
-  labelText.addEventListener("click", sendMessage);
+  // ===== Eventos =====
+  // Enviar pelo botão
+  btnSend.addEventListener("click", sendMessage);
 
-  // Pressionar Enter também envia
+  // Enviar pelo Enter
   inputText.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -55,33 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ====== Função de voz (simples usando Web Speech API) ======
-  const inputVoice = document.getElementById("input-voice");
-  const labelVoice = document.querySelector(".label-voice");
-
-  if ("webkitSpeechRecognition" in window) {
-    const recognition = new webkitSpeechRecognition();
-    recognition.lang = "pt-BR";
-    recognition.continuous = false;
-    recognition.interimResults = false;
-
-    labelVoice.addEventListener("click", () => {
-      if (inputVoice.checked) {
-        recognition.start();
-      } else {
-        recognition.stop();
-      }
-    });
-
-    recognition.onresult = (event) => {
-      const transcript = event.results[0][0].transcript;
-      inputText.value = transcript;
-    };
-  }
-
-  // ====== Upload de arquivos (só exibe nome por enquanto) ======
-  const inputFiles = document.getElementById("input-files");
-
+  // ===== Upload de arquivos =====
   inputFiles.addEventListener("change", () => {
     if (inputFiles.files.length > 0) {
       [...inputFiles.files].forEach((file) => {
@@ -89,4 +67,39 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   });
+
+  btnFiles.addEventListener("click", () => {
+    inputFiles.click(); // abre seletor de arquivos
+  });
+
+  // ===== Reconhecimento de voz =====
+  if ("webkitSpeechRecognition" in window) {
+    const recognition = new webkitSpeechRecognition();
+    recognition.lang = "pt-BR";
+    recognition.continuous = false;
+    recognition.interimResults = false;
+
+    btnVoice.addEventListener("click", () => {
+      if (!inputVoice.checked) {
+        inputVoice.checked = true;
+        recognition.start();
+      } else {
+        inputVoice.checked = false;
+        recognition.stop();
+      }
+    });
+
+    recognition.onresult = (event) => {
+      const transcript = event.results[0][0].transcript;
+      inputText.value = transcript;
+      sendMessage(); // envia automaticamente
+      inputVoice.checked = false;
+    };
+
+    recognition.onend = () => {
+      inputVoice.checked = false;
+    };
+  } else {
+    console.warn("Navegador não suporta Web Speech API");
+  }
 });
