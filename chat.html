@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat IA</title>
+  <link rel="stylesheet" href="chat.css">
+</head>
+<body>
+  <!-- Chat container -->
+  <div class="container-ia-chat">
+    <!-- Input de voz oculto -->
+    <input type="checkbox" id="input-voice" class="input-voice">
+    
+    <!-- Input de texto -->
+    <input type="text" id="input-text" class="input-text" placeholder="Digite algo..." required>
+
+    <!-- Upload files -->
+    <div class="container-upload-files">
+      <div class="upload-file" id="upload-file">📎</div>
+      <div class="upload-file" id="upload-image">🖼️</div>
+      <div class="upload-file" id="upload-camera">📷</div>
+    </div>
+
+    <!-- Labels -->
+    <label for="upload-file" class="label-files">+</label>
+    <label for="input-voice" class="label-voice">
+      <div class="icon-voice">🎤</div>
+      <div class="text-voice">
+        <p>Gravando...</p>
+        <p>Diga algo!</p>
+      </div>
+    </label>
+    <label for="input-text" class="label-text"></label>
+  </div>
+
+  <!-- Container para mensagens -->
+  <div id="chat"></div>
+
+  <!-- JS externo -->
+  <script src="chat.js"></script>
+</body>
+</html>
