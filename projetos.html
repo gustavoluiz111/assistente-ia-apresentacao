@@ -7,14 +7,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 <style>
-  /* ===== Reset ===== */
   * { margin:0; padding:0; box-sizing:border-box; }
-  body { font-family:'Orbitron', sans-serif; background:#0a0a1a; color:#caf5f7; overflow-x:hidden; }
+  body { 
+    font-family:'Orbitron', sans-serif; 
+    background:#0a0a1a; 
+    color:#e4faff; 
+    overflow-x:hidden; 
+    text-shadow: 0 0 6px rgba(0, 255, 255, 0.1);
+  }
 
-  /* ===== Canvas ===== */
   #particles, #three-canvas { position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1; }
 
-  /* ===== Navbar ===== */
   header.navbar {
     width: 100%;
     height: 70px;
@@ -28,87 +31,107 @@
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0,0,0,0.3);
   }
-  header.navbar nav {
-    display: flex;
-    gap: 25px;
-    margin-left: 20px;
-  }
+  header.navbar nav { display: flex; gap: 25px; margin-left: 20px; }
   header.navbar nav a {
     text-decoration: none;
-    color: #caf5f7;
+    color: #e4faff;
     font-weight: bold;
     transition: color 0.2s;
+    text-shadow: 0 0 8px rgba(0,255,255,0.3);
   }
-  header.navbar nav a:hover, header.navbar nav a.active {
-    color: #00f2ff;
-  }
+  header.navbar nav a:hover, header.navbar nav a.active { color: #00f2ff; }
+
   .hamburger-toggle {
-    position: relative;
-    z-index: 1001;
-    background:none;
-    border:none;
-    cursor:pointer;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-around;
-    width:30px;
-    height:24px;
+    position: relative; z-index: 1001; background:none; border:none; cursor:pointer;
+    display:flex; flex-direction:column; justify-content:space-around; width:30px; height:24px;
   }
   .hamburger-toggle .bar {
-    display:block;
-    width:100%;
-    height:3px;
-    background:#caf5f7;
-    border-radius:3px;
+    display:block; width:100%; height:3px; background:#caf5f7; border-radius:3px;
     transition: all 0.3s ease-in-out;
   }
   .hamburger-toggle.open .bar:nth-child(1){ transform: rotate(45deg) translate(5px,6px); }
   .hamburger-toggle.open .bar:nth-child(2){ opacity:0; }
   .hamburger-toggle.open .bar:nth-child(3){ transform: rotate(-45deg) translate(5px,-6px); }
 
-  /* Menu lateral */
   .nav-menu {
-    position:fixed;
-    top:0; left:0;
-    width:280px;
-    height:100vh;
-    background:#0a0f1e;
-    padding-top:100px;
-    padding-left:30px;
-    transform:translateX(-100%);
-    transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
+    position:fixed; top:0; left:0; width:280px; height:100vh; background:#0a0f1e;
+    padding-top:100px; padding-left:30px;
+    transform:translateX(-100%); transition: transform 0.4s cubic-bezier(0.23,1,0.32,1);
     z-index:999;
   }
   .nav-menu.open { transform:translateX(0); }
   .nav-menu ul { list-style:none; }
   .nav-menu ul li { margin-bottom:25px; }
-  .nav-menu ul li a { color:#caf5f7; text-decoration:none; font-size:1.5rem; font-weight:bold; transition:color 0.2s ease; }
+  .nav-menu ul li a {
+    color:#e4faff; text-decoration:none; font-size:1.5rem; font-weight:bold;
+    transition:color 0.2s ease; text-shadow:0 0 8px rgba(0,255,255,0.3);
+  }
   .nav-menu ul li a:hover, .nav-menu ul li a.active { color:#00f2ff; }
 
-  /* Hero */
   .hero { padding:120px 40px 40px; text-align:center; }
-  .hero h1 { font-size:3rem; color:#00ffff; margin-bottom:20px; }
-  .hero p { font-size:1.2rem; max-width:700px; margin:auto; line-height:1.6; }
+  .hero h1 { 
+    font-size:3rem; 
+    color:#00ffff; 
+    margin-bottom:20px; 
+    text-shadow:0 0 10px rgba(0,255,255,0.6); 
+  }
+  .hero p { 
+    font-size:1.3rem; 
+    max-width:700px; 
+    margin:auto; 
+    line-height:1.8; 
+    color:#f4ffff; 
+  }
 
-  /* Projeto Texto */
-  .projeto-text { max-width:900px; margin:20px auto; padding:20px; text-align:left; line-height:1.6; }
-  .projeto-text h2 { color:#00ffff; margin-top:25px; }
-  .projeto-text ul li{ margin-bottom:10px; }
+  .projeto-text { 
+    max-width:900px; 
+    margin:20px auto; 
+    padding:20px; 
+    text-align:left; 
+    line-height:1.8; 
+  }
+  .projeto-text h2 { 
+    color:#00ffff; 
+    margin-top:30px; 
+    margin-bottom:10px; 
+    text-shadow:0 0 8px rgba(0,255,255,0.5); 
+  }
+  .projeto-text p, .projeto-text ul li { 
+    font-size:1.1rem; 
+    color:#e4faff; 
+    text-shadow:0 0 5px rgba(0,255,255,0.1);
+  }
+  .projeto-text ul li { margin-bottom:10px; }
 
-  /* Mapa */
-  #map { width:90%; height:500px; margin:40px auto; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,0.5); z-index:1; }
-  .map-legend { padding:6px 8px; background:rgba(41,100,142,0.8); box-shadow:0 0 15px rgba(0,0,0,0.2); border-radius:5px; color:#caf5f7; }
-  .map-legend i{ width:18px; height:18px; float:left; margin-right:8px; border-radius:50%; }
+  #map { 
+    width:90%; 
+    height:500px; 
+    margin:40px auto; 
+    border-radius:10px; 
+    box-shadow:0 4px 10px rgba(0,0,0,0.5); 
+    z-index:1; 
+  }
+  .map-legend { 
+    padding:6px 8px; 
+    background:rgba(41,100,142,0.8); 
+    box-shadow:0 0 15px rgba(0,0,0,0.2); 
+    border-radius:5px; 
+    color:#e4faff; 
+  }
+  .map-legend i{ 
+    width:18px; 
+    height:18px; 
+    float:left; 
+    margin-right:8px; 
+    border-radius:50%; 
+  }
 </style>
 </head>
 <body>
 
-<!-- Navbar -->
 <header class="navbar">
   <button class="hamburger-toggle" aria-label="Abrir menu">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
+    <span class="bar"></span><span class="bar"></span><span class="bar"></span>
   </button>
   <nav class="nav-menu">
     <ul>
@@ -121,46 +144,34 @@
   </nav>
 </header>
 
-<!-- Hero -->
 <section class="hero fade-in">
-  <h1>Bem-vindo ao Projeto Recicla Tech</h1>
-  <p>Conscientizando e envolvendo a comunidade em iniciativas de reciclagem de lixo eletrônico.</p>
+  <h1>Projeto ReciclaTech</h1>
+  <p>Primeiro ponto de coleta inteligente da Zona da Mata Norte — Pernambuco.</p>
 </section>
 
-<!-- Projeto Texto -->
 <section class="projeto-text fade-in">
   <h2>Nosso Propósito</h2>
-  <p>Com o avanço da tecnologia e o aumento do consumo de eletrônicos, o descarte incorreto do lixo eletrônico se tornou um problema grave.</p>
-  <h2>O que Fazemos</h2>
-  <p>Implementamos pontos de coleta em escolas e promovemos atividades educativas sobre os impactos do e-lixo e formas corretas de descarte e reutilização.</p>
-  <h2>Resultados e Parcerias</h2>
-  <p>Buscamos transformar o lixo eletrônico em produtos inovadores através de parcerias com empresas, incentivando a economia circular.</p>
-  <h2>Conheça Nossos Pilares</h2>
-  <ul>
-    <li><b>Educação Ambiental:</b> Conscientizar a comunidade escolar sobre o descarte correto e impactos do e-lixo.</li>
-    <li><b>Pontos de Coleta Estratégicos:</b> Instalação de pontos em escolas, acessíveis e seguros para toda a comunidade.</li>
-    <li><b>Inovação e Economia Circular:</b> Transformar o lixo eletrônico em novos produtos, reduzindo impacto ambiental.</li>
-    <li><b>Avaliação e Melhoria Contínua:</b> Monitorar resíduos coletados e impacto das ações.</li>
-  </ul>
+  <p>O ReciclaTech nasceu da necessidade de enfrentar um dos maiores desafios ambientais da atualidade: o descarte incorreto de lixo eletrônico. O projeto une educação, tecnologia e sustentabilidade para transformar esse problema em uma oportunidade de mudança e aprendizado.</p>
 
-  <h2>Onde Encontrar os Pontos de Coleta</h2>
-  <p>Os pontos de coleta estão distribuídos em diversas escolas da região. No mapa abaixo você pode visualizar a localização exata de cada ponto. 
-  Basta clicar sobre os marcadores para ver o nome da escola e o status de funcionamento.</p>
-  <p><b>Legenda:</b> Os pontos em <span style="color:lime;">verde</span> já estão ativos, enquanto os em <span style="color:cyan;">azul-claro</span> ainda estão em preparação.</p>
+  <h2>O que Fazemos</h2>
+  <p>Instalamos o primeiro ponto de coleta inteligente da Zona da Mata Norte, conectado a um site interativo que orienta sobre o descarte correto. No próprio site, uma Inteligência Artificial identifica o tipo de lixo eletrônico e explica ao usuário como descartá-lo de forma segura.</p>
+  <p>Além disso, desenvolvemos uma garra de manejo seguro que auxilia no controle de materiais corrosivos, garantindo a segurança dos operadores e preservando o meio ambiente.</p>
+
+  <h2>Parcerias e Iniciativas</h2>
+  <p>O ReciclaTech se conecta com projetos locais já existentes, como o Vale Luz, da Neoenergia Pernambuco, presente em cidades como Limoeiro. Nosso objetivo é expandir o impacto dessas ações, levando o conceito de tecnologia sustentável para as escolas da região.</p>
+
+  <h2>Resultados e Expansão</h2>
+  <p>Com o ponto de coleta em funcionamento, a Escola de Aplicação Professor Chaves (UPE) se torna referência na integração entre educação e sustentabilidade. O projeto busca inspirar outras instituições a replicarem o modelo e transformar a Zona da Mata Norte em um exemplo de inovação ambiental em Pernambuco.</p>
 </section>
 
-<!-- Mapa -->
 <div id="map"></div>
 
-<!-- Canvases -->
 <canvas id="particles"></canvas>
 <canvas id="three-canvas"></canvas>
 
-<!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
-  // Hamburger
   const hamburger = document.querySelector('.hamburger-toggle');
   const navMenu = document.querySelector('.nav-menu');
   hamburger.addEventListener('click', () => {
@@ -168,7 +179,6 @@
     navMenu.classList.toggle('open');
   });
 
-  // Fade-in
   function handleFadeIn() {
     document.querySelectorAll('.fade-in').forEach(el=>{
       const rect=el.getBoundingClientRect();
@@ -178,7 +188,6 @@
   window.addEventListener('scroll', handleFadeIn);
   window.addEventListener('load', handleFadeIn);
 
-  // Particles
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let particles=[];
@@ -192,7 +201,6 @@
   }
   animateParticles();
 
-  // THREE.js Cubes
   const threeCanvas = document.getElementById('three-canvas');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
@@ -225,47 +233,31 @@
   animate3D();
   window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight);});
 
-  // Mapa Leaflet
-  const map = L.map('map').setView([-7.744, -35.228], 13);
+  const map = L.map('map').setView([-7.742388, -35.229340], 14);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
     maxZoom:19, attribution:'&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  const escolas = [
-    { nome: 'Escola Técnica Estadual Maria Eduarda Ramos de Barros', lat: -7.839853, lon: -35.253616, status: 'Pendente' },
-    { nome: 'Escola Deputado João Teobaldo de Azevedo', lat: -7.846947, lon: -35.267812, status: 'Pendente' },
-    { nome: 'Escola de Referência em Ensino Médio João Cavalcanti Petribu', lat: -7.846344, lon: -35.257469, status: 'Pendente' },
-    { nome: 'Escola José de Lima Júnior', lat: -7.842864, lon: -35.254117, status: 'Pendente' },
-    { nome: 'Escola Paula Frassinetti', lat: -7.845329, lon: -35.240171, status: 'Pendente' },
-    { nome: 'Escola Lions Clube de Carpina', lat: -7.839892, lon: -35.261351, status: 'Pendente' },
-    { nome: 'Escola São José', lat: -7.843979, lon: -35.261675, status: 'Pendente' },
-    { nome: 'Escola Aluísio Germano', lat: -7.849941, lon: -35.241131, status: 'Pendente' },
-    { nome: 'Escola de Referência em Ensino Médio Joaquim Olavo', lat: -7.844405, lon: -35.251114, status: 'Pendente' },
-    { nome: 'Escola Capitão Plínio de Souza Monteiro', lat: -7.749398, lon: -35.234594, status: 'Pendente' },
-    { nome: 'Escola de Aplicação Professor Chaves (UPE)', lat: -7.742388, lon: -35.229340, status: 'Em funcionamento' },
-    { nome: 'Escola de Referência em Ensino Médio Don Vieira', lat: -7.745560, lon: -35.233144, status: 'Pendente' },
-    { nome: 'Escola de Referência em Ensino Médio Maciel Monteiro', lat: -7.742804, lon: -35.227646, status: 'Pendente' },
-    { nome: 'Escola Dom Carlos Coelho', lat: -7.741051, lon: -35.223180, status: 'Pendente' },
-    { nome: 'Escola Dom Ricardo Vilela', lat: -7.732034, lon: -35.219329, status: 'Pendente' }
-  ];
+  const escola = {
+    nome: 'Escola de Aplicação Professor Chaves (UPE)',
+    lat: -7.742388,
+    lon: -35.229340,
+    status: 'Em funcionamento'
+  };
 
-  escolas.forEach(e => {
-    const color = e.status === 'Em funcionamento' ? 'green' : 'cyan';
-    const marker = L.circleMarker([e.lat, e.lon], {
-      color: color,
-      fillColor: color,
-      fillOpacity: 0.8,
-      radius: 10
-    }).addTo(map);
-    marker.bindPopup(`<b>${e.nome}</b><br>Status: ${e.status}`);
-  });
+  const marker = L.circleMarker([escola.lat, escola.lon], {
+    color: 'green',
+    fillColor: 'green',
+    fillOpacity: 0.8,
+    radius: 10
+  }).addTo(map);
+  marker.bindPopup(`<b>${escola.nome}</b><br>Status: ${escola.status}`);
 
   const legend = L.control({position:'bottomright'});
   legend.onAdd = function(){
     const div = L.DomUtil.create('div','map-legend');
     div.innerHTML += '<h4>Status dos Pontos</h4>';
-    div.innerHTML += '<i style="background: green"></i> Em funcionamento<br>';
-    div.innerHTML += '<i style="background: cyan"></i> Pendente';
+    div.innerHTML += '<i style="background: green"></i> Em funcionamento';
     return div;
   };
   legend.addTo(map);
