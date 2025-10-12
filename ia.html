@@ -142,10 +142,6 @@ canvas#particles, canvas#three-canvas {
     Quando ele surgir, clique e comece a conversar com a nossa IA! 🤖
   </p>
 </section>
-
-<!-- Botão do microfone -->
-<button id="micButton" title="Falar com a IA 🎤">🎤</button>
-
 <!-- ===== Scripts ===== -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script>
@@ -244,14 +240,15 @@ window.addEventListener('resize',()=>{
 <!-- ===== Chatfuel Widget ===== -->
 <script>
 (function() {
-  var script = document.createElement('script');
-  script.dataset.bot = "68ca0c144662ac97ea0be150";
-  script.dataset.zindex = "99999";
-  script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
-  script.async = true;
-  script.defer = true;
-  document.getElementsByTagName('head')[0].appendChild(script);
+	var script = document.createElement('script');
+	script.dataset.bot = "68eaeedf74ff2bdfd552316c";
+	script.dataset.zindex = "99999";
+	script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
+	script.async = true;
+	script.defer = true;
+	document.getElementsByTagName('head')[0].appendChild(script);
 })()
+</script>
 </script>
 
 <!-- ===== Web Speech API ===== -->
@@ -314,11 +311,6 @@ window.addEventListener("load", () => {
       clearInterval(check);
     }
   }, 1000);
-
-  // Botão microfone
-  const micButton = document.getElementById("micButton");
-  micButton.addEventListener("click", () => escutar(micButton));
-});
 </script>
 
 </body>
