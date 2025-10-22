@@ -90,7 +90,7 @@
     text-align:left; 
     line-height:1.8; 
   }
-  .projeto-text h2 { 
+  .projeto-text h2, .projeto-text h3 { 
     color:#00ffff; 
     margin-top:30px; 
     margin-bottom:10px; 
@@ -160,6 +160,11 @@
   <h2>Parcerias e Iniciativas</h2>
   <p>O ReciclaTech se conecta com projetos locais já existentes, como o Vale Luz, da Neoenergia Pernambuco, presente em cidades como Limoeiro. Nosso objetivo é expandir o impacto dessas ações, levando o conceito de tecnologia sustentável para as escolas da região.</p>
 
+  <h3>Parceria com a REEEcicle</h3>
+  <p>O <strong>ReciclaTech</strong> firmou uma parceria com a <strong>REEEcicle</strong>, empresa pernambucana especializada em logística reversa e reciclagem de resíduos eletrônicos. A iniciativa tem como foco promover a educação ambiental e ensinar, de forma prática, o que é lixo eletrônico e como ocorre o processo de logística reversa.</p>
+  <p>Com essa parceria, nosso ponto de coleta em <strong>Carpina</strong> passa a integrar a rede de Pontos de Entrega Voluntária (PEVs) da REEEcicle, fortalecendo o compromisso com a sustentabilidade e a destinação correta de equipamentos eletroeletrônicos.</p>
+  <p>O ponto de coleta está localizado na <strong>Sede da Prefeitura de Carpina</strong> (Latitude: -7.850833 | Longitude: -35.254722), sendo um espaço de referência em conscientização e impacto ambiental positivo para toda a Zona da Mata Norte.</p>
+
   <h2>Resultados e Expansão</h2>
   <p>Com o ponto de coleta em funcionamento, a Escola de Aplicação Professor Chaves (UPE) se torna referência na integração entre educação e sustentabilidade. O projeto busca inspirar outras instituições a replicarem o modelo e transformar a Zona da Mata Norte em um exemplo de inovação ambiental em Pernambuco.</p>
 </section>
@@ -172,6 +177,7 @@
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 <script>
+  // Menu hamburger
   const hamburger = document.querySelector('.hamburger-toggle');
   const navMenu = document.querySelector('.nav-menu');
   hamburger.addEventListener('click', () => {
@@ -179,6 +185,7 @@
     navMenu.classList.toggle('open');
   });
 
+  // Fade-in
   function handleFadeIn() {
     document.querySelectorAll('.fade-in').forEach(el=>{
       const rect=el.getBoundingClientRect();
@@ -188,6 +195,7 @@
   window.addEventListener('scroll', handleFadeIn);
   window.addEventListener('load', handleFadeIn);
 
+  // Partículas
   const canvas = document.getElementById('particles');
   const ctx = canvas.getContext('2d');
   let particles=[];
@@ -196,11 +204,17 @@
   for(let i=0;i<100;i++){particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2+1,dx:(Math.random()-0.5)*0.5,dy:(Math.random()-0.5)*0.5});}
   function animateParticles(){
     ctx.clearRect(0,0,canvas.width,canvas.height);
-    particles.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0||p.x>canvas.width)p.dx*=-1;if(p.y<0||p.y>canvas.height)p.dy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle='cyan';ctx.fill();});
+    particles.forEach(p=>{
+      p.x+=p.dx; p.y+=p.dy;
+      if(p.x<0||p.x>canvas.width)p.dx*=-1;
+      if(p.y<0||p.y>canvas.height)p.dy*=-1;
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle='cyan'; ctx.fill();
+    });
     requestAnimationFrame(animateParticles);
   }
   animateParticles();
 
+  // Three.js animação 3D
   const threeCanvas = document.getElementById('three-canvas');
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
@@ -210,9 +224,21 @@
   const geometry=new THREE.BoxGeometry();
   const material=new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
   const cubes=[];
-  for(let i=0;i<50;i++){const cube=new THREE.Mesh(geometry,material); cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50); scene.add(cube); cubes.push(cube);}
+  for(let i=0;i<50;i++){
+    const cube=new THREE.Mesh(geometry,material);
+    cube.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50);
+    scene.add(cube); cubes.push(cube);
+  }
   const lines=[];
-  for(let i=0;i<50;i++){const a=cubes[i]; const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length]; const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z), new THREE.Vector3(b.position.x,b.position.y,b.position.z)]; const geometryLine=new THREE.BufferGeometry().setFromPoints(points); const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.6}); const line=new THREE.Line(geometryLine,lineMaterial); scene.add(line); lines.push({line,a,b,t:Math.random()});}
+  for(let i=0;i<50;i++){
+    const a=cubes[i];
+    const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];
+    const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z), new THREE.Vector3(b.position.x,b.position.y,b.position.z)];
+    const geometryLine=new THREE.BufferGeometry().setFromPoints(points);
+    const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.6});
+    const line=new THREE.Line(geometryLine,lineMaterial);
+    scene.add(line); lines.push({line,a,b,t:Math.random()});
+  }
   function animate3D(){
     requestAnimationFrame(animate3D);
     cubes.forEach(c=>{c.rotation.x+=0.002; c.rotation.y+=0.003;});
@@ -231,33 +257,52 @@
     renderer.render(scene,camera);
   }
   animate3D();
-  window.addEventListener('resize',()=>{camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); renderer.setSize(window.innerWidth,window.innerHeight);});
+  window.addEventListener('resize',()=>{
+    camera.aspect=window.innerWidth/window.innerHeight;
+    camera.updateProjectionMatrix();
+    renderer.setSize(window.innerWidth,window.innerHeight);
+  });
 
-  const map = L.map('map').setView([-7.742388, -35.229340], 14);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
-    maxZoom:19, attribution:'&copy; OpenStreetMap contributors'
+  // Mapa Leaflet
+  const map = L.map('map').setView([-7.79, -35.24], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19, 
+    attribution: '&copy; OpenStreetMap contributors'
   }).addTo(map);
 
-  const escola = {
-    nome: 'Escola de Aplicação Professor Chaves (UPE)',
-    lat: -7.742388,
-    lon: -35.229340,
-    status: 'Em funcionamento'
-  };
+  const pontos = [
+    {
+      nome: 'Escola de Aplicação Professor Chaves (UPE)',
+      lat: -7.742388,
+      lon: -35.229340,
+      cor: 'green',
+      status: 'Em funcionamento'
+    },
+    {
+      nome: 'Ponto de Coleta – Prefeitura de Carpina (Parceria REEEcicle)',
+      lat: -7.850833,
+      lon: -35.254722,
+      cor: 'cyan',
+      status: 'Em funcionamento'
+    }
+  ];
 
-  const marker = L.circleMarker([escola.lat, escola.lon], {
-    color: 'green',
-    fillColor: 'green',
-    fillOpacity: 0.8,
-    radius: 10
-  }).addTo(map);
-  marker.bindPopup(`<b>${escola.nome}</b><br>Status: ${escola.status}`);
+  pontos.forEach(p => {
+    const marker = L.circleMarker([p.lat, p.lon], {
+      color: p.cor,
+      fillColor: p.cor,
+      fillOpacity: 0.8,
+      radius: 10
+    }).addTo(map);
+    marker.bindPopup(`<b>${p.nome}</b><br>Status: ${p.status}`);
+  });
 
-  const legend = L.control({position:'bottomright'});
-  legend.onAdd = function(){
-    const div = L.DomUtil.create('div','map-legend');
+  const legend = L.control({position: 'bottomright'});
+  legend.onAdd = function() {
+    const div = L.DomUtil.create('div', 'map-legend');
     div.innerHTML += '<h4>Status dos Pontos</h4>';
-    div.innerHTML += '<i style="background: green"></i> Em funcionamento';
+    div.innerHTML += '<i style="background: green"></i> Escola de Aplicação (UPE)<br>';
+    div.innerHTML += '<i style="background: cyan"></i> Prefeitura de Carpina (REEEcicle)';
     return div;
   };
   legend.addTo(map);
