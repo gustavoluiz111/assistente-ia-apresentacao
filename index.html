@@ -214,8 +214,11 @@
   <div class="tooltip">
     <div class="profile">
       <div class="user">
-        <div class="img">RT</div>
-        <div class="details">
+   <<div class="img">
+  <img src="https://i.postimg.cc/LnNnT5ys/logo-rectech.png" alt="Logo RecTech">
+</div>
+
+<div class="details">
           <div class="name">Recicla Tech</div>
           <div class="username">@rec__tech</div>
         </div>
@@ -254,9 +257,9 @@
   .tooltip-container {
     position: fixed;
     top: 25px;           /* distância do topo */
-    right: 110px;         /* move um pouco mais para a esquerda do canto */
+    left: 110px;         /* move um pouco mais para a esquerda do canto */
     cursor: pointer;
-    transition: all 0.2s;
+    transition: all 0.5s;
     font-size: 17px;
     border-radius: 10px;
     z-index: 2000;
@@ -367,20 +370,24 @@
     );
   }
 
-  .user { display: flex; gap: 10px; }
   .img {
-    width: 50px;
-    height: 50px;
-    font-size: 25px;
-    font-weight: 700;
-    border: 1px solid #e6683c;
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #fff;
-    color: #e6683c;
-  }
+  width: 65px;                /* aumenta o tamanho geral */
+  height: 65px;
+  border: 2px solid #e6683c;  /* borda um pouco mais visível */
+  border-radius: 12px;        /* cantos suaves */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  overflow: hidden;           /* evita que a imagem ultrapasse */
+}
+
+.img img {
+  width: 100%;                /* ocupa todo o espaço da div */
+  height: 100%;
+  object-fit: contain;        /* mantém proporção da logo */
+}
+
 
   .name { font-size: 17px; font-weight: 700; color: #e6683c; }
   .details { display: flex; flex-direction: column; gap: 0; color: #fff; }
