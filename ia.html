@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>IA - Recicla Tech</title>
+<title>J.A.R.V.I.S - IA Recicla Tech</title>
 <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -129,36 +129,27 @@ canvas#particles, canvas#three-canvas {
   </ul>
 </nav>
 
-<!-- ===== Hero ===== -->
+<!-- ===== HERO ===== -->
 <section class="hero fade-in">
-  <h1>J.A.R.V.I.S - Inteligência Artificial da Recicla Tech</h1>
+  <h1>J.A.R.V.I.S - Inteligência Artificial Recicla Tech</h1>
   <p>
-    O <strong>J.A.R.V.I.S</strong> é o assistente inteligente da Recicla Tech, capaz de identificar tipos de lixo eletrônico, 
-    sugerir formas de descarte e registrar informações sobre os materiais enviados.
+    O <strong>J.A.R.V.I.S</strong> é o assistente inteligente da Recicla Tech, criado para ajudar no reconhecimento, 
+    classificação e descarte correto de lixo eletrônico, além de registrar informações de reciclagem.
   </p>
   <p>
-    <strong>Dica:</strong> Aguarde alguns segundos até o ícone do chat aparecer no canto inferior direito da tela.  
-    Quando ele surgir, clique e comece a conversar com a nossa IA! 🤖
+    <strong>Dica:</strong> Aguarde o ícone do chat aparecer no canto inferior direito da tela.  
+    Clique para conversar e aproveitar os recursos de voz do nosso sistema! 🤖
   </p>
 </section>
 
-<!-- ===== Chatfuel Widget ===== -->
-<script>
-(function() {
-	var script = document.createElement('script');
-	script.dataset.bot = "68eaeedf74ff2bdfd552316c";
-	script.dataset.zindex = "99999";
-	script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
-	script.async = true;
-	script.defer = true;
-	document.getElementsByTagName('head')[0].appendChild(script);
-})();
-</script>
+<!-- ===== Botpress Chat (substitui Chatfuel) ===== -->
+<script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2025/10/30/00/20251030004229-61KLGD6Y.js" defer></script>
 
-<!-- ===== THREE.js e partículas ===== -->
+<!-- ===== Scripts 3D e Efeitos ===== -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script>
-// HAMBURGER
+// --- HAMBURGER ---
 const hamburgerToggle = document.querySelector('.hamburger-toggle');
 const navMenu = document.querySelector('.nav-menu');
 hamburgerToggle.addEventListener('click', () => {
@@ -166,7 +157,7 @@ hamburgerToggle.addEventListener('click', () => {
   navMenu.classList.toggle('open');
 });
 
-// PARTICULAS
+// --- PARTICULAS ---
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -193,13 +184,12 @@ function animateParticles(){
 }
 animateParticles();
 
-// THREE.JS
+// --- THREE.JS 3D ---
 const threeCanvas=document.getElementById('three-canvas');
 const scene3D=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:threeCanvas, alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
-
 const geometry=new THREE.BoxGeometry();
 const material=new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
 const cubes=[];
@@ -242,36 +232,10 @@ function escutar(micButton) {
   recognition.onresult = function(event) {
     const textoUsuario = event.results[0][0].transcript;
     console.log("Usuário disse:", textoUsuario);
-    const input = document.querySelector(".cf-textarea");
-    const btn = document.querySelector(".cf-send-button");
-    if (input && btn) {
-      input.value = textoUsuario;
-      btn.click();
-    }
+    // Aqui você pode enviar o texto capturado para a API do Botpress futuramente
   };
   recognition.start();
 }
-
-const observer = new MutationObserver(mutations => {
-  mutations.forEach(mutation => {
-    mutation.addedNodes.forEach(node => {
-      if (node.nodeType === 1 && node.classList.contains("cf-message") && node.classList.contains("cf-bot")) {
-        const texto = node.innerText.trim();
-        if (texto) falar(texto);
-      }
-    });
-  });
-});
-
-window.addEventListener("load", () => {
-  const check = setInterval(() => {
-    const chat = document.querySelector(".cf-chat__messages");
-    if (chat) {
-      observer.observe(chat, { childList: true, subtree: true });
-      clearInterval(check);
-    }
-  }, 1000);
-});
 </script>
 
 </body>
