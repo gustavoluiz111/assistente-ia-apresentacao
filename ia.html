@@ -12,7 +12,7 @@
   --neon-cyan: #00ffff;
 }
 
-/* BODY */
+/* ===== BODY ===== */
 body {
   margin: 0;
   font-family: 'Orbitron', sans-serif;
@@ -21,13 +21,13 @@ body {
   overflow-x: hidden;
 }
 
-/* HEADER */
+/* ===== HEADER ===== */
 header { 
   position:fixed; top:0; left:0; width:100%; padding:20px; 
   display:flex; align-items:center; z-index:1000; 
 }
 
-/* HAMBURGER */
+/* ===== HAMBURGER ===== */
 .hamburger-toggle {
   position:relative; z-index:1001; background:none; border:none; cursor:pointer;
   display:flex; flex-direction:column; justify-content:space-around;
@@ -41,7 +41,7 @@ header {
 .hamburger-toggle.open .bar:nth-child(2) { opacity:0; }
 .hamburger-toggle.open .bar:nth-child(3) { transform: rotate(-45deg) translate(6px,-7px); }
 
-/* NAV MENU */
+/* ===== MENU ===== */
 .nav-menu {
   position:fixed; top:0; left:0; width:280px; height:100vh;
   background: var(--dark-blue); padding-top:100px; padding-left:30px;
@@ -57,7 +57,7 @@ header {
 }
 .nav-menu ul li a:hover, .nav-menu ul li a.active { color:var(--neon-cyan); }
 
-/* HERO */
+/* ===== HERO ===== */
 section.hero {
   padding: 120px 20px 40px;
   text-align: center;
@@ -74,17 +74,17 @@ section.hero p {
   margin: 0 auto;
 }
 
-/* CANVAS */
+/* ===== CANVAS ===== */
 canvas#particles, canvas#three-canvas {
   position: fixed; top:0; left:0; width:100%; height:100%;
   pointer-events: none; z-index:0;
 }
 
-/* MICROFONE FIXO */
+/* ===== MICROFONE ===== */
 #micButton {
   position: fixed;
-  bottom: 90px;   /* acima da borda */
-  left: 20px;     /* lado oposto ao chatfuel */
+  bottom: 90px;
+  left: 20px;
   width: 60px;
   height: 60px;
   border-radius: 50%;
@@ -131,21 +131,34 @@ canvas#particles, canvas#three-canvas {
 
 <!-- ===== Hero ===== -->
 <section class="hero fade-in">
-  <h1>Inteligência Artificial</h1>
+  <h1>J.A.R.V.I.S - Inteligência Artificial da Recicla Tech</h1>
   <p>
-    A Inteligência Artificial é uma ferramenta poderosa no combate ao descarte incorreto de lixo eletrônico.  
-    Com ela, é possível identificar, classificar e sugerir formas de reciclagem de componentes eletrônicos,  
-    tornando o processo mais rápido e eficiente.  
+    O <strong>J.A.R.V.I.S</strong> é o assistente inteligente da Recicla Tech, capaz de identificar tipos de lixo eletrônico, 
+    sugerir formas de descarte e registrar informações sobre os materiais enviados.
   </p>
   <p>
     <strong>Dica:</strong> Aguarde alguns segundos até o ícone do chat aparecer no canto inferior direito da tela.  
     Quando ele surgir, clique e comece a conversar com a nossa IA! 🤖
   </p>
 </section>
-<!-- ===== Scripts ===== -->
+
+<!-- ===== Chatfuel Widget ===== -->
+<script>
+(function() {
+	var script = document.createElement('script');
+	script.dataset.bot = "68eaeedf74ff2bdfd552316c";
+	script.dataset.zindex = "99999";
+	script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
+	script.async = true;
+	script.defer = true;
+	document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+
+<!-- ===== THREE.js e partículas ===== -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script>
-// --- HAMBURGER ---
+// HAMBURGER
 const hamburgerToggle = document.querySelector('.hamburger-toggle');
 const navMenu = document.querySelector('.nav-menu');
 hamburgerToggle.addEventListener('click', () => {
@@ -153,7 +166,7 @@ hamburgerToggle.addEventListener('click', () => {
   navMenu.classList.toggle('open');
 });
 
-// --- PARTICULAS ---
+// PARTICULAS
 const canvas = document.getElementById('particles');
 const ctx = canvas.getContext('2d');
 let particles = [];
@@ -180,7 +193,7 @@ function animateParticles(){
 }
 animateParticles();
 
-// --- THREE.JS 3D ---
+// THREE.JS
 const threeCanvas=document.getElementById('three-canvas');
 const scene3D=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
@@ -197,70 +210,23 @@ for(let i=0;i<50;i++){
   cubes.push(cube);
 }
 camera.position.z=30;
-
-const lines=[];
-for(let i=0;i<50;i++){
-  const a=cubes[i];
-  const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];
-  const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z),new THREE.Vector3(b.position.x,b.position.y,b.position.z)];
-  const geometryLine=new THREE.BufferGeometry().setFromPoints(points);
-  const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.6});
-  const line=new THREE.Line(geometryLine,lineMaterial);
-  scene3D.add(line);
-  lines.push({line,a,b,t:Math.random()});
-}
-
 function animate3D(){
   requestAnimationFrame(animate3D);
   cubes.forEach(c=>{ c.rotation.x+=0.002; c.rotation.y+=0.003; });
-  lines.forEach(obj=>{
-    obj.t+=0.01;
-    const posA=obj.a.position;
-    const posB=obj.b.position;
-    const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));
-    const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));
-    const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));
-    obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z), new THREE.Vector3(lerpX,lerpY,lerpZ)]);
-    obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);
-  });
-  camera.position.x=Math.sin(Date.now()*0.0005)*10;
-  camera.position.y=Math.cos(Date.now()*0.0005)*5;
   camera.lookAt(0,0,0);
   renderer.render(scene3D,camera);
 }
 animate3D();
-
-window.addEventListener('resize',()=>{
-  camera.aspect=window.innerWidth/window.innerHeight;
-  camera.updateProjectionMatrix();
-  renderer.setSize(window.innerWidth,window.innerHeight);
-});
 </script>
 
-<!-- ===== Chatfuel Widget ===== -->
+<!-- ===== VOZ ===== -->
 <script>
-(function() {
-	var script = document.createElement('script');
-	script.dataset.bot = "68eaeedf74ff2bdfd552316c";
-	script.dataset.zindex = "99999";
-	script.src = "https://panel.chatfuel.com/widgets/chat-widget/chat-widget.js";
-	script.async = true;
-	script.defer = true;
-	document.getElementsByTagName('head')[0].appendChild(script);
-})()
-</script>
-</script>
-
-<!-- ===== Web Speech API ===== -->
-<script>
-// Falar texto
 function falar(texto) {
   const utter = new SpeechSynthesisUtterance(texto);
   utter.lang = "pt-BR";
   speechSynthesis.speak(utter);
 }
 
-// Reconhecer fala
 function escutar(micButton) {
   if (!('webkitSpeechRecognition' in window)) {
     alert("Seu navegador não suporta reconhecimento de voz.");
@@ -270,15 +236,12 @@ function escutar(micButton) {
   recognition.lang = "pt-BR";
   recognition.continuous = false;
   recognition.interimResults = false;
-
   recognition.onstart = () => micButton.classList.add("listening");
   recognition.onend = () => micButton.classList.remove("listening");
 
   recognition.onresult = function(event) {
     const textoUsuario = event.results[0][0].transcript;
     console.log("Usuário disse:", textoUsuario);
-
-    // Enviar para o Chatfuel
     const input = document.querySelector(".cf-textarea");
     const btn = document.querySelector(".cf-send-button");
     if (input && btn) {
@@ -286,11 +249,9 @@ function escutar(micButton) {
       btn.click();
     }
   };
-
   recognition.start();
 }
 
-// Observar mensagens do bot e falar
 const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
@@ -303,7 +264,6 @@ const observer = new MutationObserver(mutations => {
 });
 
 window.addEventListener("load", () => {
-  // Ativar observer no chat
   const check = setInterval(() => {
     const chat = document.querySelector(".cf-chat__messages");
     if (chat) {
@@ -311,6 +271,7 @@ window.addEventListener("load", () => {
       clearInterval(check);
     }
   }, 1000);
+});
 </script>
 
 </body>
