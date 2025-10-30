@@ -103,6 +103,66 @@ canvas#particles, canvas#three-canvas {
   background: red;
   color: white;
 }
+
+/* ===== TOOLTIP INSTAGRAM ===== */
+.tooltip-container {
+  position: fixed;
+  top: 25px;
+  left: 110px;
+  cursor: pointer;
+  transition: all 0.5s;
+  font-size: 17px;
+  border-radius: 10px;
+  z-index: 2000;
+}
+.tooltip {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s;
+  border-radius: 15px;
+  box-shadow: inset 5px 5px 5px rgba(0,0,0,0.2),
+              inset -5px -5px 15px rgba(255,255,255,0.1),
+              5px 5px 15px rgba(0,0,0,0.3),
+              -5px -5px 15px rgba(255,255,255,0.1);
+}
+.profile {
+  background: #2a2b2f;
+  border-radius: 10px 15px;
+  padding: 10px;
+  border: 1px solid #52382f;
+  min-width: 180px;
+}
+.tooltip-container:hover .tooltip {
+  top: 90px;
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.icon { text-decoration: none; color:#fff; display:block; position:relative; }
+.layer { width:55px; height:55px; transition: transform 0.3s; }
+.icon:hover .layer { transform: rotate(-35deg) skew(20deg); }
+.layer span { position:absolute; top:0; left:0; height:100%; width:100%; border:1px solid #fff; border-radius:15px; transition: all 0.3s; }
+.layer span, .text { color:#e6683c; border-color:#e6683c; }
+.icon:hover .layer span:nth-child(1) { opacity:0.2; }
+.icon:hover .layer span:nth-child(2) { opacity:0.4; transform: translate(5px,-5px); }
+.icon:hover .layer span:nth-child(3) { opacity:0.6; transform: translate(10px,-10px); }
+.icon:hover .layer span:nth-child(4) { opacity:0.8; transform: translate(15px,-15px); }
+.icon:hover .layer span:nth-child(5) { opacity:1; transform: translate(20px,-20px); }
+.icon .text { position:absolute; left:50%; bottom:-5px; opacity:0; font-weight:500; transform: translateX(-50%); transition: bottom 0.3s ease, opacity 0.3s ease; }
+.icon:hover .text { bottom:-35px; opacity:1; }
+.instagramSVG { font-size:25px; display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); }
+.img { width:65px; height:65px; border:2px solid #e6683c; border-radius:12px; display:flex; align-items:center; justify-content:center; background:#fff; overflow:hidden; }
+.img img { width:100%; height:100%; object-fit:contain; }
+.name { font-size:17px; font-weight:700; color:#e6683c; }
+.details { display:flex; flex-direction:column; gap:0; color:#fff; }
+.about { color:#ccc; padding-top:5px; }
+
 </style>
 </head>
 <body>
@@ -142,11 +202,12 @@ canvas#particles, canvas#three-canvas {
   </p>
 </section>
 
-<!-- ===== Botpress Chat (substitui Chatfuel) ===== -->
+<!-- ===== Botpress Chat ===== -->
 <script src="https://cdn.botpress.cloud/webchat/v3.3/inject.js"></script>
 <script src="https://files.bpcontent.cloud/2025/10/30/00/20251030004229-61KLGD6Y.js" defer></script>
 
-<!-- ===== Scripts 3D e Efeitos ===== -->
+
+<!-- ===== Scripts 3D e Partículas ===== -->
 <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
 <script>
 // --- HAMBURGER ---
@@ -184,12 +245,13 @@ function animateParticles(){
 }
 animateParticles();
 
-// --- THREE.JS 3D ---
+// --- THREE.JS 3D com Linhas ---
 const threeCanvas=document.getElementById('three-canvas');
 const scene3D=new THREE.Scene();
 const camera=new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight,0.1,1000);
 const renderer=new THREE.WebGLRenderer({canvas:threeCanvas, alpha:true});
 renderer.setSize(window.innerWidth,window.innerHeight);
+
 const geometry=new THREE.BoxGeometry();
 const material=new THREE.MeshBasicMaterial({color:0x00ffff, wireframe:true});
 const cubes=[];
@@ -199,14 +261,46 @@ for(let i=0;i<50;i++){
   scene3D.add(cube);
   cubes.push(cube);
 }
+
+// Linhas entre cubos
+const lines=[];
+for(let i=0;i<50;i++){
+  const a=cubes[i];
+  const b=cubes[(i+Math.floor(Math.random()*cubes.length))%cubes.length];
+  const points=[new THREE.Vector3(a.position.x,a.position.y,a.position.z),
+                new THREE.Vector3(b.position.x,b.position.y,b.position.z)];
+  const geometryLine=new THREE.BufferGeometry().setFromPoints(points);
+  const lineMaterial=new THREE.LineBasicMaterial({color:0x00ffff, transparent:true, opacity:0.6});
+  const line=new THREE.Line(geometryLine,lineMaterial);
+  scene3D.add(line);
+  lines.push({line,a,b,t:Math.random()});
+}
+
 camera.position.z=30;
 function animate3D(){
   requestAnimationFrame(animate3D);
   cubes.forEach(c=>{ c.rotation.x+=0.002; c.rotation.y+=0.003; });
+  lines.forEach(obj=>{
+    obj.t+=0.01;
+    const posA=obj.a.position, posB=obj.b.position;
+    const lerpX=posA.x+(posB.x-posA.x)*(0.5+0.5*Math.sin(obj.t));
+    const lerpY=posA.y+(posB.y-posA.y)*(0.5+0.5*Math.sin(obj.t));
+    const lerpZ=posA.z+(posB.z-posA.z)*(0.5+0.5*Math.sin(obj.t));
+    obj.line.geometry.setFromPoints([new THREE.Vector3(posA.x,posA.y,posA.z), new THREE.Vector3(lerpX,lerpY,lerpZ)]);
+    obj.line.material.opacity=0.3+0.4*Math.sin(obj.t*2);
+  });
+  camera.position.x=Math.sin(Date.now()*0.0005)*10;
+  camera.position.y=Math.cos(Date.now()*0.0005)*5;
   camera.lookAt(0,0,0);
   renderer.render(scene3D,camera);
 }
 animate3D();
+
+window.addEventListener('resize',()=>{
+  camera.aspect=window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth,window.innerHeight);
+});
 </script>
 
 <!-- ===== VOZ ===== -->
